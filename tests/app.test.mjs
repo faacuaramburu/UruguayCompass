@@ -24,6 +24,12 @@ test('complete application flows, persistence, content, corrections and privacy'
  const text=()=>w.document.querySelector('#app').textContent;
  for(const[version,n]of [['short',36],['full',60],['extreme',240]]){
   await route('#inicio');if(w.document.querySelector('.resume-actions')){click('[data-action=reset]');click('[data-action=confirm-reset]');await new Promise(r=>setTimeout(r,10))}
+  assert.deepEqual([...w.document.querySelectorAll('.home-actions a')].map(a=>a.textContent),['Iniciar','Ver 12 ejes']);
+  assert.equal(w.document.querySelector('[name=version]'),null);
+  click('.home-actions a[href="#enciclopedia"]');await new Promise(r=>setTimeout(r,15));
+  assert.equal(w.document.querySelectorAll('.reading-list a[href^="#eje/"]').length,12);
+  await route('#inicio');click('.home-actions a[href="#iniciar"]');await new Promise(r=>setTimeout(r,15));
+  assert.equal(w.document.querySelectorAll('[name=version]').length,3);
   const radio=w.document.querySelector(`[name=version][value=${version}]`);radio.checked=true;radio.dispatchEvent(new w.Event('change',{bubbles:true}));click('[data-action=start]');await new Promise(r=>setTimeout(r,10));
   assert.ok(text().includes(`Pregunta 1 de ${n}`));assert.equal(w.document.querySelector('button[type=submit]').disabled,true);
   for(let i=0;i<n;i++){
