@@ -5,7 +5,11 @@ import {JSDOM} from 'jsdom';
 
 test('complete application flows, persistence, content, corrections and privacy',async()=>{
  const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
- const dom=new JSDOM(html,{url:'https://example.org/EspectroUruguayo/',pretendToBeVisual:true});
+ const dom=new JSDOM(html,{url:'https://example.org/UruguayCompass/',pretendToBeVisual:true});
+ const beacon=dom.window.document.querySelector('script[data-cf-beacon]');
+ assert.equal(beacon.src,'https://static.cloudflareinsights.com/beacon.min.js');
+ assert.equal(beacon.type,'module');
+ assert.deepEqual(JSON.parse(beacon.dataset.cfBeacon),{token:'58c830bd7ae74871a38f05c29dfb759d',spa:false});
  const {window:w}=dom;for(const key of ['window','document','localStorage','location','FormData','File'])globalThis[key]=w[key];
  w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};
  const cardText=[];
@@ -42,7 +46,7 @@ test('complete application flows, persistence, content, corrections and privacy'
   await route('#comparar/orsi');assert.equal(w.document.querySelectorAll('tbody tr').length,12);assert.ok([...w.document.querySelectorAll('tbody tr td:nth-child(3)')].every(e=>e.textContent!=='Sin evidencia')); // Orsi has all twelve program estimates.
  }
  for(const hash of ['#enciclopedia','#figuras','#partidos','#glosario','#historia','#metodologia','#faq','#eje/0','#ficha/artigas','#partido/fa']){await route(hash);assert.ok(w.document.querySelector('h1'));assert.ok(!text().includes('undefined'))}
- await route('#glosario');const search=w.document.querySelector('input');search.value='<script>';search.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(w.document.querySelector('#search-empty').hidden,false);assert.equal(w.document.querySelectorAll('script').length,1);
+ await route('#glosario');const search=w.document.querySelector('input');search.value='<script>';search.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(w.document.querySelector('#search-empty').hidden,false);assert.equal(w.document.querySelectorAll('script').length,2);
  await route('#correcciones');for(const[name,value]of [['subject','ANCAP <b>'],['message','Esta propuesta requiere una revisión de fuentes.'],['source','https://www.impo.com.uy/']])w.document.querySelector(`[name=${name}]`).value=value;
  w.document.querySelector('form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));assert.equal(w.document.querySelector('#correction-output').hidden,false);assert.ok(w.document.querySelector('#correction-preview').textContent.includes('<b>'));assert.equal(w.document.querySelector('#correction-preview b'),null);assert.ok(!w.document.querySelector('#issue-link').href.includes('a0q'));
  click('[data-action=theme]');assert.equal(w.document.documentElement.dataset.theme,'dark');

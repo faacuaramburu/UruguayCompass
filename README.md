@@ -2,6 +2,8 @@
 
 Aplicación educativa sobre política uruguaya con doce posiciones independientes, test de 36/60/240 preguntas, comparación programática y enciclopedia.
 
+Sitio publicado: [uruguaycompass.onrender.com](https://uruguaycompass.onrender.com/). Repositorio: [UruguayCompass](https://github.com/faacuaramburu/UruguayCompass).
+
 ## Ejecutar
 
 Node.js 20.19+ (recomendado 22). Para servir la aplicación no se necesita instalar dependencias:
@@ -18,7 +20,17 @@ npm test
 npm run check
 ```
 
-`dist/` es un sitio estático sin build ni dependencias externas de ejecución. Servir por HTTP, no `file://`. Las rutas hash permiten alojarlo en un subdirectorio, incluido GitHub Pages. No hay backend, cuentas propias ni analytics.
+`dist/` es un sitio estático sin paso de compilación ni librerías externas para ejecutar el test. Servir por HTTP, no `file://`. Las rutas hash permiten alojarlo en un subdirectorio, incluido GitHub Pages. No hay backend ni cuentas propias. Cloudflare Web Analytics mide visitas y rendimiento; las respuestas y resultados se procesan y guardan localmente.
+
+## Publicación y métricas
+
+- Render Static Site: rama `main`, raíz del repositorio, carpeta publicada `dist`.
+- Comando de validación antes de publicar: `npm ci --include=dev && npm test && npm run check`.
+- Panel: [UruguayCompass en Render](https://dashboard.render.com/static/srv-dbkkbn6c6qcc73amibeg).
+- El sitio estático se sirve desde CDN y no se suspende por inactividad.
+- Métricas: Cloudflare → Observability → Analytics → Web analytics → `uruguaycompass.onrender.com`.
+- El snippet está en `dist/index.html`; su token es un identificador público del sitio, no una clave API. `spa: false` desactiva la medición automática de cambios de pantalla. No agregar eventos de respuestas, resultados, puntajes ni afinidades políticas.
+- Guía del proveedor: [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/about/) y [medición de SPA](https://developers.cloudflare.com/web-analytics/get-started/web-analytics-spa/).
 
 ## Funciones
 
@@ -44,7 +56,7 @@ Los números son estimaciones editoriales, sin validación científica. Una prox
 
 ## Verificación
 
-Pruebas de lógica y DOM pasan, incluyendo los tres tests completos. Ver [detalle y límites](docs/VERIFICACION.md): en esta sesión el navegador automatizado estaba deshabilitado, por lo que la nueva interfaz requiere revisión visual de escritorio/móvil y exportación nativa. No se afirma que esa revisión haya ocurrido ni que esta versión esté desplegada.
+Pruebas de lógica y DOM pasan, incluyendo los tres tests completos. Render ejecuta las pruebas y la revisión de datos antes de publicar. El primer deploy se verificó por HTTPS con respuesta 200. Ver [detalle y límites](docs/VERIFICACION.md) para las comprobaciones de interfaz pendientes.
 
 Biryani se sirve localmente bajo [SIL Open Font License](dist/fonts/OFL.txt).
 
