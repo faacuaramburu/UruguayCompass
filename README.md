@@ -83,5 +83,3 @@ No backend, environment secrets, or bundling step are required. The Cloudflare b
 - Fonts: Biryani and Bricolage Grotesque, self-hosted under the [SIL Open Font License](dist/fonts/OFL.txt) and [Bricolage Grotesque license](dist/fonts/Bricolage-OFL.txt).
 - Political portraits: locally served documentary photographs with individual author, source, and license credits. See [photo credits](docs/FOTOS.md).
 - Editorial criteria: [result interpretations](docs/LECTURAS.md) and [political spectrum](docs/ESPECTRO.md).
-- Project context: [brief](docs/BRIEF.md), [design](DESIGN.md), and [verification notes](docs/VERIFICACION.md).
-- For contributors and coding assistants: [AGENTS.md](AGENTS.md) and [HANDOFF.md](HANDOFF.md).
