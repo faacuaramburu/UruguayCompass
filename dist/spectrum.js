@@ -18,15 +18,21 @@ const plotPosition=(economy,security)=>{
  return {x:100+(p.x-60)*560/260,y:65+(p.y-55)*460/260};
 };
 export function placeSpectrumLabels(groups,profile){
- const user=plotPosition(profile[0],profile[3]),placed=[];
+ const user=plotPosition(profile[0],profile[3]),placed=[],points=groups.map(g=>plotPosition(g.economy,g.security));
+ const userLabel={x:Math.max(140,Math.min(620,user.x)),y:Math.min(552,user.y+39)};
+ // Reserve the whole user marker and its word, not just the center point.
+ const rectDistance=p=>Math.hypot(Math.max(0,Math.abs(p.x-userLabel.x)-34),Math.max(0,Math.abs(p.y-(userLabel.y-10))-18));
+ const clearance=p=>Math.min(Math.hypot(p.x-user.x,p.y-user.y)-50,rectDistance(p)-27,...points.map(q=>Math.hypot(p.x-q.x,p.y-q.y)-29),...placed.map(q=>Math.hypot(p.x-q.x,p.y-q.y)-54));
  return groups.map(group=>{
   const point=plotPosition(group.economy,group.security),candidates=[];
   for(const radius of [34,60,90,120,155])for(const [dx,dy] of [[1,-1],[-1,1],[1,1],[-1,-1],[1,0],[-1,0],[0,-1],[0,1]]){
    const scale=dx&&dy?Math.SQRT1_2:1;
    candidates.push({x:Math.max(120,Math.min(640,point.x+dx*radius*scale)),y:Math.max(86,Math.min(504,point.y+dy*radius*scale))});
   }
-  const clearance=p=>Math.min(Math.hypot(p.x-user.x,p.y-user.y),...placed.map(q=>Math.hypot(p.x-q.x,p.y-q.y)));
-  const label=candidates.find(p=>clearance(p)>=52)||candidates.sort((a,b)=>clearance(b)-clearance(a))[0];
+  // A full plot search handles dense clusters and exact matches with the user.
+  for(let y=90;y<=500;y+=10)for(let x=120;x<=640;x+=10)candidates.push({x,y});
+  const available=candidates.filter(p=>clearance(p)>=0);
+  const label=available.sort((a,b)=>Math.hypot(a.x-point.x,a.y-point.y)-Math.hypot(b.x-point.x,b.y-point.y))[0]||candidates.sort((a,b)=>clearance(b)-clearance(a))[0];
   placed.push(label);return {...group,point,label};
  });
 }
@@ -38,22 +44,24 @@ export function filteredSpectrum(figures,{query='',party='all'}={}){
 export function renderSpectrumGraphic(profile,groups,selectedId){
  const user=plotPosition(profile[0],profile[3]);
  const grid=[.25,.75].map(t=>`<path class="spectrum-grid" d="M${100+560*t} 65V525 M100 ${65+460*t}H660"/>`).join('');
- const markers=placeSpectrumLabels(groups,profile).map(g=>{
-  const p=g.point,label=g.label,selected=g.figures.some(f=>f.id===selectedId);
+ const positioned=placeSpectrumLabels(groups,profile);
+ const leaders=positioned.map(g=>`<path class="spectrum-leader" d="M${g.point.x} ${g.point.y}L${g.label.x} ${g.label.y}"/><circle class="spectrum-dot" cx="${g.point.x}" cy="${g.point.y}" r="5"/>`).join('');
+ const markers=positioned.map(g=>{
+  const label=g.label,selected=g.figures.some(f=>f.id===selectedId);
   const names=g.figures.map(f=>f.name).join(' · ');
-  return `<g class="spectrum-marker${selected?' is-selected':''}" role="button" tabindex="0" data-spectrum-pick="${esc(g.figures[0].id)}" aria-pressed="${selected}" aria-label="${g.number}: ${esc(names)}. Economía ${g.economy}; seguridad ${g.security}."><title>${esc(names)} · ${g.economy} / ${g.security}</title><path class="spectrum-leader" d="M${p.x} ${p.y}L${label.x} ${label.y}"/><circle class="spectrum-dot" cx="${p.x}" cy="${p.y}" r="5"/><circle class="spectrum-hit" cx="${label.x}" cy="${label.y}" r="22"/><circle class="spectrum-pin" cx="${label.x}" cy="${label.y}" r="16"/><text class="spectrum-pin-number" x="${label.x}" y="${label.y+6}" text-anchor="middle">${g.number}</text>${selected?`<text class="spectrum-selected-label" x="${Math.max(220,Math.min(540,label.x))}" y="${Math.max(46,label.y-26)}" text-anchor="middle">${esc(names.length>45?names.slice(0,42)+'…':names)}</text>`:''}</g>`;
+  return `<g class="spectrum-marker${selected?' is-selected':''}" role="button" tabindex="0" data-spectrum-pick="${esc(g.figures[0].id)}" aria-pressed="${selected}" aria-label="${g.number}: ${esc(names)}. Economía ${g.economy}; seguridad ${g.security}."><circle class="spectrum-hit" cx="${label.x}" cy="${label.y}" r="22"/><circle class="spectrum-pin" cx="${label.x}" cy="${label.y}" r="16"/><text class="spectrum-pin-number" x="${label.x}" y="${label.y+6}" text-anchor="middle">${g.number}</text></g>`;
  }).join('');
- return `<svg class="spectrum-graphic" viewBox="0 0 760 610" role="group" aria-labelledby="spectrum-title spectrum-desc"><title id="spectrum-title">Tu posición y los referentes políticos</title><desc id="spectrum-desc">Economía: ${profile[0]} de 100, desde Mercado hacia Estado. Seguridad: ${profile[3]} de 100, desde Libertades hacia Control. Los números identifican referentes en la lista. El marcador Vos muestra tus respuestas. Hay ${groups.reduce((n,g)=>n+g.figures.length,0)} referentes ubicados.</desc>
+ return `<svg class="spectrum-graphic" viewBox="0 0 760 610" role="group" aria-label="Tu posición y los referentes políticos" aria-describedby="spectrum-desc"><desc id="spectrum-desc">Economía: ${profile[0]} de 100, desde Mercado hacia Estado. Seguridad: ${profile[3]} de 100, desde Libertades hacia Control. Los números identifican referentes en la lista. El marcador Vos muestra tus respuestas. Hay ${groups.reduce((n,g)=>n+g.figures.length,0)} referentes ubicados.</desc>
  <text class="spectrum-edge" x="380" y="25" text-anchor="middle">Más control de seguridad</text><text class="spectrum-edge" x="380" y="580" text-anchor="middle">Más libertades individuales</text><text class="spectrum-edge" transform="translate(30 295) rotate(-90)" text-anchor="middle">Más Estado</text><text class="spectrum-edge" transform="translate(730 295) rotate(90)" text-anchor="middle">Más mercado</text>
  <rect class="compass-zone zone-state-control" x="100" y="65" width="280" height="230"/><rect class="compass-zone zone-market-control" x="380" y="65" width="280" height="230"/><rect class="compass-zone zone-state-liberty" x="100" y="295" width="280" height="230"/><rect class="compass-zone zone-market-liberty" x="380" y="295" width="280" height="230"/>
  ${grid}<path class="spectrum-axis" d="M380 65V525 M100 295H660"/><rect class="spectrum-border" x="100" y="65" width="560" height="460"/>
- <path class="spectrum-user-guide" d="M${user.x} ${user.y}H380 M${user.x} ${user.y}V295"/><circle class="spectrum-user-ring" cx="${user.x}" cy="${user.y}" r="19"/><circle class="spectrum-user-point" cx="${user.x}" cy="${user.y}" r="7"/>${markers}<text class="spectrum-user-label compass-point-label" x="${Math.max(140,Math.min(620,user.x))}" y="${Math.min(552,user.y+39)}" text-anchor="middle">Vos</text></svg>`;
+ <path class="spectrum-user-guide" d="M${user.x} ${user.y}H380 M${user.x} ${user.y}V295"/>${leaders}${markers}<circle class="spectrum-user-ring" cx="${user.x}" cy="${user.y}" r="19"/><circle class="spectrum-user-point" cx="${user.x}" cy="${user.y}" r="7"/><text class="spectrum-user-label compass-point-label" x="${Math.max(140,Math.min(620,user.x))}" y="${Math.min(552,user.y+39)}" text-anchor="middle">Vos</text></svg>`;
 }
 function detail(figure,profile,group){
  if(!figure)return '<div class="spectrum-detail"><h3>No hay coincidencias con la búsqueda</h3><p>Probá otro nombre o elegí todos los partidos. Tu marcador sigue visible.</p></div>';
  const mapped=hasMapEvidence(figure);
  const evidence=[0,3].map(axis=>figure.evidence.find(v=>v.axis===axis)).filter(Boolean);
- return `<article class="spectrum-detail" aria-label="Referencia seleccionada"><h3>${esc(figure.name)}</h3><p class="spectrum-detail-meta">${esc(figure.partyName)} · ${esc(figure.mapBasis||figure.era)}</p>${mapped?`<dl class="spectrum-detail-values"><div><dt>Economía</dt><dd>${figure.profile[0]}<small>/100</small></dd></div><div><dt>Seguridad y libertades</dt><dd>${figure.profile[3]}<small>/100</small></dd></div></dl><p>Tu puntaje está a <strong>${Math.abs(profile[0]-figure.profile[0])} puntos</strong> en economía y a <strong>${Math.abs(profile[3]-figure.profile[3])} puntos</strong> en seguridad. La cercanía en este mapa usa solo estos dos temas.</p>${group?.figures.length>1?`<p class="small">Comparte coordenadas con ${group.figures.filter(f=>f.id!==figure.id).map(f=>esc(f.name)).join(', ')}. No se separan los puntos artificialmente.</p>`:''}`:`<p>Esta ficha todavía no tiene una ubicación comparable en ${esc(missingAxes(figure))}. Se muestra en el catálogo, sin colocar un punto inventado en el mapa.</p>`}<details ${mapped?'':'open'}><summary>Por qué está ubicado así y fuentes</summary>${evidence.map(e=>{const s=figure.sources[e.source];return `<p><strong>${e.axis===0?'Economía':'Seguridad y libertades'}:</strong> ${esc(e.note)}</p><a href="${esc(s.url)}${e.page?'#page='+e.page:''}" target="_blank" rel="noopener noreferrer">${esc(s.title)}${e.page?' · página '+e.page:''}</a>`}).join('')||'<p>No hay evidencia suficiente para esos ejes en esta edición. La ficha conserva las fuentes históricas disponibles.</p>'}</details><a class="spectrum-profile-link" href="#ficha/${esc(figure.id)}">Ver ficha completa y fuentes</a></article>`;
+ return `<article class="spectrum-detail" aria-label="Referencia seleccionada"><h3>${group?`Punto ${group.number} · `:''}${esc(figure.name)}</h3><p class="spectrum-detail-meta">${esc(figure.partyName)} · ${esc(figure.mapBasis||figure.era)}</p>${mapped?`<dl class="spectrum-detail-values"><div><dt>Economía</dt><dd>${figure.profile[0]}<small>/100</small></dd></div><div><dt>Seguridad y libertades</dt><dd>${figure.profile[3]}<small>/100</small></dd></div></dl><p>Tu puntaje está a <strong>${Math.abs(profile[0]-figure.profile[0])} puntos</strong> en economía y a <strong>${Math.abs(profile[3]-figure.profile[3])} puntos</strong> en seguridad. La cercanía en este mapa usa solo estos dos temas.</p>${group?.figures.length>1?`<p class="small">Comparte coordenadas con ${group.figures.filter(f=>f.id!==figure.id).map(f=>esc(f.name)).join(', ')}. No se separan los puntos artificialmente.</p>`:''}`:`<p>Esta ficha todavía no tiene una ubicación comparable en ${esc(missingAxes(figure))}. Se muestra en el catálogo, sin colocar un punto inventado en el mapa.</p>`}<details ${mapped?'':'open'}><summary>Por qué está ubicado así y fuentes</summary>${evidence.map(e=>{const s=figure.sources[e.source];return `<p><strong>${e.axis===0?'Economía':'Seguridad y libertades'}:</strong> ${esc(e.note)}</p><a href="${esc(s.url)}${e.page?'#page='+e.page:''}" target="_blank" rel="noopener noreferrer">${esc(s.title)}${e.page?' · página '+e.page:''}</a>`}).join('')||'<p>No hay evidencia suficiente para esos ejes en esta edición. La ficha conserva las fuentes históricas disponibles.</p>'}</details><a class="spectrum-profile-link" href="#ficha/${esc(figure.id)}">Ver ficha completa y fuentes</a></article>`;
 }
 export function renderSpectrumView(profile,figures,options={}){
  const matching=filteredSpectrum(figures,options),ids=new Set(matching.map(e=>e.id));

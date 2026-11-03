@@ -129,7 +129,6 @@ html[data-theme=dark] .result-radar-dot,html[data-theme=dark] .radar-axis-value{
 .spectrum-marker{cursor:pointer;outline:none}
 .spectrum-marker.is-selected .spectrum-pin,.spectrum-marker:focus .spectrum-pin{fill:var(--ink);stroke:var(--ink);stroke-width:5}
 .spectrum-marker.is-selected .spectrum-pin-number,.spectrum-marker:focus .spectrum-pin-number{fill:var(--paper)}
-.spectrum-selected-label{font-size:18px;fill:var(--ink);font-weight:700;paint-order:stroke;stroke:var(--paper);stroke-width:5;stroke-linejoin:round;pointer-events:none}
 .spectrum-user-guide{fill:none;stroke:var(--sky);stroke-width:2;stroke-dasharray:5 7;opacity:.8;pointer-events:none}
 .spectrum-user-ring{fill:var(--paper);stroke:var(--blue);stroke-width:5;pointer-events:none}
 .spectrum-user-point{fill:var(--blue);pointer-events:none}
@@ -167,7 +166,6 @@ html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graph
  .spectrum-reference strong{font-size:18px}
  .spectrum-detail h3{font-size:25px}
  .spectrum-map-layout{gap:20px}
- .spectrum-selected-label{display:none}
  .spectrum-pin{r:18px}
  .spectrum-pin-number{font-size:25px;dominant-baseline:middle;transform:translateY(-4px)}
 }

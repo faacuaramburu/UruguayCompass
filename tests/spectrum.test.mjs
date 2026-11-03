@@ -40,9 +40,29 @@ test('map and full catalog stay accessible, including missing data and exact ove
  const dom=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'cosse'}));const d=dom.window.document;
  assert.equal(d.querySelectorAll('.spectrum-reference').length,28);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
  assert.equal(d.querySelector('.spectrum-user-label').textContent,'Vos');assert.equal(d.querySelectorAll('.spectrum-user-ring').length,1);
+ assert.equal(d.querySelectorAll('.spectrum-selected-label').length,0);
+ assert.ok(d.querySelector('.spectrum-detail h3').textContent.startsWith('Punto '));
+ assert.ok(d.querySelector('.spectrum-user-ring').compareDocumentPosition(d.querySelector('.spectrum-marker'))&2,'User marker is drawn above all references');
  assert.ok(d.querySelector('.spectrum-detail').textContent.includes('Yamandú Orsi'));assert.ok(d.querySelector('.spectrum-detail').textContent.includes('0 puntos'));
  assert.ok([...d.querySelectorAll('.spectrum-marker')].every(e=>e.getAttribute('role')==='button'&&e.getAttribute('tabindex')==='0'));
  const hidden=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'artigas'}));assert.ok(hidden.window.document.querySelector('.spectrum-detail').textContent.includes('sin colocar un punto inventado'));
  const empty=new JSDOM(renderSpectrumView(p,FIGURES,{query:'nadie-con-este-nombre'}));assert.ok(empty.window.document.querySelector('.spectrum-user-label'));assert.equal(empty.window.document.querySelectorAll('.spectrum-marker').length,0);
  for(const instance of [dom,hidden,empty])instance.window.close();
+});
+
+test('all-party labels leave room for the user, their caption and every source point',()=>{
+ const groups=spectrumGroups(FIGURES);
+ const profiles=[[25,75],[0,0],[0,100],[100,0],[100,100],[50,50],...groups.map(g=>[g.economy,g.security])];
+ for(const [economy,security] of profiles){
+  const profile=Array(12).fill(50);profile[0]=economy;profile[3]=security;
+  const user={x:100+(100-economy)*5.6,y:65+(100-security)*4.6};
+  const caption={x:Math.max(140,Math.min(620,user.x)),y:Math.min(552,user.y+39)-10};
+  const labels=placeSpectrumLabels(groups,profile);
+  for(const [i,a] of labels.entries()){
+   assert.ok(Math.hypot(a.label.x-user.x,a.label.y-user.y)>=49.99);
+   assert.ok(Math.hypot(Math.max(0,Math.abs(a.label.x-caption.x)-34),Math.max(0,Math.abs(a.label.y-caption.y)-18))>=26.99);
+   for(const b of labels)assert.ok(Math.hypot(a.label.x-b.point.x,a.label.y-b.point.y)>=28.99);
+   for(const b of labels.slice(i+1))assert.ok(Math.hypot(a.label.x-b.label.x,a.label.y-b.label.y)>=53.99);
+  }
+ }
 });
