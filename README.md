@@ -47,3 +47,7 @@ Los números son estimaciones editoriales, sin validación científica. Una prox
 Pruebas de lógica y DOM pasan, incluyendo los tres tests completos. Ver [detalle y límites](docs/VERIFICACION.md): en esta sesión el navegador automatizado estaba deshabilitado, por lo que la nueva interfaz requiere revisión visual de escritorio/móvil y exportación nativa. No se afirma que esa revisión haya ocurrido ni que esta versión esté desplegada.
 
 Biryani se sirve localmente bajo [SIL Open Font License](dist/fonts/OFL.txt).
+
+## Lecturas ampliadas
+
+Los resultados ahora incluyen síntesis descriptiva, doce ejes visibles con revisión de respuestas, brújula, prioridades, prototipos pedagógicos, personajes con fotos, partidos, selector de coincidencias/diferencias y tarjeta con retrato. Ver [criterios y límites de estas lecturas](docs/LECTURAS.md). No incluyen humor ni porcentajes de confianza.

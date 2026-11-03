@@ -8,7 +8,9 @@ test('complete application flows, persistence, content, corrections and privacy'
  const dom=new JSDOM(html,{url:'https://example.org/EspectroUruguayo/',pretendToBeVisual:true});
  const {window:w}=dom;for(const key of ['window','document','localStorage','location','FormData','File'])globalThis[key]=w[key];
  w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};
- w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:(_,key)=>()=>{}});
+ const cardText=[];
+ w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:(_,key)=>key==='measureText'?text=>({width:text.length*11}):key==='fillText'?text=>cardText.push(text):()=>{}});
+ globalThis.Image=class{naturalWidth=300;naturalHeight=400;set src(value){queueMicrotask(()=>this.onload?.())}};
  let sharedFile=null;Object.defineProperty(globalThis,'navigator',{configurable:true,value:{canShare:()=>true,share:async data=>{sharedFile=data.files[0]}}});
  Object.defineProperty(w.document,'fonts',{value:{ready:Promise.resolve()}});
  w.HTMLCanvasElement.prototype.toBlob=function(callback){callback(new Blob(['png-test'],{type:'image/png'}))};
@@ -25,10 +27,13 @@ test('complete application flows, persistence, content, corrections and privacy'
    if(i===1){click('[data-action=previous]');assert.ok(w.document.querySelector('[name=answer]:checked'));w.document.querySelector('#question-form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));}
    w.document.querySelector('#question-form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   }
-  await new Promise(r=>setTimeout(r,15));assert.ok(text().includes('Coincidencias con personajes'));assert.equal(w.document.querySelectorAll('.axis-result').length,12);assert.ok([...w.document.querySelectorAll('.axis-result strong')].every(e=>e.textContent==='50 / 100'));
+  await new Promise(r=>setTimeout(r,15));assert.ok(text().includes('Coincidencias con personajes'));assert.equal(w.document.querySelectorAll('.axis-tile').length,12);assert.ok([...w.document.querySelectorAll('.axis-tile-heading>strong')].every(e=>e.textContent==='50/100'));
+  assert.equal(w.document.querySelectorAll('.results-index nav a').length,9);assert.equal(w.document.querySelectorAll('.model-row').length,5);
+  const ref=w.document.querySelector('#insight-reference');ref.value='salle';ref.dispatchEvent(new w.Event('change',{bubbles:true}));assert.ok(w.document.querySelector('#difference-content').textContent.includes('Gustavo Salle'));
+  click('[data-jump="compass-panel"]');assert.equal(w.document.activeElement.id,'compass-panel');assert.equal(w.location.hash,'#resultados');
   assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,4);
   const saved=JSON.parse(w.localStorage.getItem('uruguay-compass-v1'));assert.equal(saved.completed,true);assert.equal(Object.keys(saved.answers).length,n);
-  if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false)}
+  if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false);assert.equal(cardText.filter(t=>t.startsWith('0 ')&&t.endsWith(' 100')).length,12)}
   await route('#comparaciones');assert.equal(w.document.querySelectorAll('.match-row').length,12);assert.equal(w.document.querySelectorAll('.match-row h3 a[href^="#partido/"]').length,6);
   await route('#comparar/orsi');assert.equal(w.document.querySelectorAll('tbody tr').length,12);assert.ok([...w.document.querySelectorAll('tbody tr td:nth-child(3)')].every(e=>e.textContent!=='Sin evidencia')); // Orsi has all twelve program estimates.
  }
