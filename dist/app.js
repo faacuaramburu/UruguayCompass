@@ -91,10 +91,26 @@ document.addEventListener('change',event=>{
 });
 async function resultImage(){return createResultCard(document.querySelector('#share-preview'),{profile:profile(),axes:AXES,ranking:ranked().ranked,photos:PHOTOS,partyRanking:rankProfiles(profile(),PARTIES).ranked})}
 
-function refreshSpectrum(){
+function refreshSpectrum({selectionOnly=false}={}){
  const host=document.querySelector('#spectrum-view'),p=profile();if(!host||!p)return;
  const active=document.activeElement,focusId=active?.dataset?.spectrumPick,wasMarker=active?.classList?.contains('spectrum-marker');
- host.innerHTML=renderSpectrumView(p,FIGURES,spectrumState);
+ const next=document.createElement('template');next.innerHTML=renderSpectrumView(p,FIGURES,spectrumState);
+ // Keep the sticky strip and its containing figure mounted across selections.
+ // Replacing them resets the browser's sticky/scroll anchoring mid-map.
+ host.querySelector('.spectrum-selection').replaceChildren(...next.content.querySelector('.spectrum-selection').childNodes);
+ host.querySelector('.spectrum-detail').replaceWith(next.content.querySelector('.spectrum-detail'));
+ if(selectionOnly){
+  const selectedPoint=next.content.querySelector('.spectrum-marker.is-selected')?.dataset.spectrumPick;
+  for(const marker of host.querySelectorAll('.spectrum-marker')){
+   const selected=marker.dataset.spectrumPick===selectedPoint;
+   marker.classList.toggle('is-selected',selected);marker.setAttribute('aria-pressed',String(selected));
+  }
+  for(const reference of host.querySelectorAll('.spectrum-reference'))reference.setAttribute('aria-pressed',String(reference.dataset.spectrumPick===spectrumState.selectedId));
+ }else{
+  host.querySelector('.spectrum-count').replaceChildren(...next.content.querySelector('.spectrum-count').childNodes);
+  host.querySelector('.spectrum-graphic').replaceWith(next.content.querySelector('.spectrum-graphic'));
+  host.querySelector('.spectrum-catalog').replaceWith(next.content.querySelector('.spectrum-catalog'));
+ }
  if(focusId){const candidates=[...host.querySelectorAll('[data-spectrum-pick]')];const next=candidates.find(e=>e.dataset.spectrumPick===focusId&&e.classList.contains('spectrum-marker')===wasMarker);next?.focus({preventScroll:true})}
  announce(host.querySelector('.spectrum-selection').textContent);
 }
@@ -102,9 +118,9 @@ document.addEventListener('input',event=>{if(event.target.id!=='spectrum-search'
 document.addEventListener('change',event=>{if(event.target.id!=='spectrum-party')return;spectrumState.party=event.target.value;refreshSpectrum()});
 document.addEventListener('click',event=>{
  const pick=event.target.closest('[data-spectrum-pick]');
- if(pick){event.preventDefault();spectrumState.selectedId=pick.dataset.spectrumPick;refreshSpectrum();return}
+ if(pick){event.preventDefault();spectrumState.selectedId=pick.dataset.spectrumPick;refreshSpectrum({selectionOnly:true});return}
  if(event.target.closest('[data-spectrum-reset]')){spectrumState.query='';spectrumState.party='all';document.querySelector('#spectrum-search').value='';document.querySelector('#spectrum-party').value='all';refreshSpectrum()}
 });
-document.addEventListener('keydown',event=>{const point=event.target.closest('.spectrum-marker');if(point&&['Enter',' '].includes(event.key)){event.preventDefault();spectrumState.selectedId=point.dataset.spectrumPick;refreshSpectrum()}});
+document.addEventListener('keydown',event=>{const point=event.target.closest('.spectrum-marker');if(point&&['Enter',' '].includes(event.key)){event.preventDefault();spectrumState.selectedId=point.dataset.spectrumPick;refreshSpectrum({selectionOnly:true})}});
 
 window.addEventListener('hashchange',render);render();

@@ -45,13 +45,18 @@ test('complete application flows, persistence, content, corrections and privacy'
    const spectrumSearch=w.document.querySelector('#spectrum-search');spectrumSearch.focus();spectrumSearch.value='talvi';spectrumSearch.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(w.document.activeElement,spectrumSearch);assert.equal(w.document.querySelectorAll('.spectrum-reference').length,1);assert.ok(w.document.querySelector('.spectrum-detail').textContent.includes('Ernesto Talvi'));
    const spectrumParty=w.document.querySelector('#spectrum-party');spectrumParty.value='pn';spectrumParty.dispatchEvent(new w.Event('change',{bubbles:true}));assert.equal(w.document.querySelectorAll('.spectrum-reference').length,0);assert.ok(w.document.querySelector('.spectrum-user-label'));
    click('[data-spectrum-reset]');assert.equal(w.document.querySelectorAll('.spectrum-reference').length,28);
+   const stableStrip=w.document.querySelector('.spectrum-selection'),stableFigure=w.document.querySelector('.spectrum-figure'),stableMap=w.document.querySelector('.spectrum-graphic');
    w.document.querySelector('.spectrum-marker[data-spectrum-pick="ojeda"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
+   assert.equal(w.document.querySelector('.spectrum-selection'),stableStrip,'Selection keeps the sticky strip mounted');
+   assert.equal(w.document.querySelector('.spectrum-figure'),stableFigure,'Selection keeps the sticky containing block mounted');
+   assert.equal(w.document.querySelector('.spectrum-graphic'),stableMap,'Selection keeps the map and its scroll anchor mounted');
    assert.ok(w.document.querySelector('.spectrum-selection').textContent.includes('Andrés Ojeda y Robert Silva'));
    assert.ok(w.document.querySelector('.spectrum-selection').compareDocumentPosition(w.document.querySelector('.spectrum-graphic'))&4,'Identification is before the map');
    click('.spectrum-selection [data-jump]');assert.equal(w.document.activeElement.id,'spectrum-selected-detail');
    click('.spectrum-reference[data-spectrum-pick="artigas"]');assert.ok(w.document.querySelector('.spectrum-detail').textContent.includes('no tiene una ubicación comparable'));assert.equal(w.document.querySelectorAll('.spectrum-marker[data-spectrum-pick="artigas"]').length,0);
    const marker=w.document.querySelector('.spectrum-marker');marker.focus();marker.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));assert.equal(w.document.querySelector(`.spectrum-marker[data-spectrum-pick="${marker.dataset.spectrumPick}"]`).getAttribute('aria-pressed'),'true');assert.ok(w.document.activeElement.classList.contains('spectrum-marker'));
    assert.ok(w.document.querySelector('.spectrum-selection').textContent.includes('Punto '));
+   assert.equal(w.document.activeElement,marker,'Keyboard selection preserves the actual focused SVG node');
   }
   assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,4);
   assert.ok(w.document.querySelector('.card-preview-party').textContent.includes('Partido Independiente'));
