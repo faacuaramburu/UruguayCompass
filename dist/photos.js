@@ -1,4 +1,12 @@
 export const PHOTOS = {
+  "lacalle-herrera": {
+    "author": "Embajada de EEUU en Uruguay",
+    "licenseUrl": null,
+    "license": "Public domain",
+    "note": "Recorte de encuadre en la interfaz; archivo original conservado.",
+    "src": "images/lacalle-herrera.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Luisalbertolacalle.jpg"
+  },
   "ojeda": {
     "author": "Desayunos Informales",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
@@ -190,5 +198,21 @@ export const PHOTOS = {
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9sar_Vega.jpg",
     "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "sanguinetti": {
+    "author": "Agmontesdeoca",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "src": "images/sanguinetti.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:PresidenteSanguinetti.jpg",
+    "note": "Recorte de encuadre en la interfaz; archivo original conservado."
+  },
+  "jorge-batlle": {
+    "author": "Roosewelt Pinheiro/ABr",
+    "license": "CC BY 3.0 br",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+    "src": "images/jorge-batlle.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jorge_Batlle.jpg",
+    "note": "Recorte de encuadre en la interfaz; archivo original conservado."
   }
 };

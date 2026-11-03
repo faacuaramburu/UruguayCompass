@@ -1,35 +1,59 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {FIGURES} from '../dist/politics.js';
+import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
 import {hasMapEvidence,filteredSpectrum,spectrumGroups} from '../dist/spectrum.js';
 
-test('all 32 requested figures have distinct sourced profiles, including restored historical references',()=>{
- const requested=['cosse','astori','bergara','alejandro-sanchez','topolansky','andrade','blanca-rodriguez','martinez','lacalle-herrera','lema','raffo','argimon','da-silva','sartori','larranaga','bordaberry','sanguinetti','jorge-batlle','silva','pacheco-areco','artigas','rivera','oribe','lavalleja','berro','saravia','herrera','wilson','haedo','batlle','terra','latorre'];
- assert.equal(requested.length,32);assert.equal(FIGURES.length,50);assert.equal(new Set(FIGURES.map(f=>f.id)).size,50);
- for(const id of requested){
-  const f=FIGURES.find(f=>f.id===id);assert.ok(f,id);
-  assert.ok(f.bio.length>50,id);assert.ok(f.actions.length>0,id);
-  assert.ok(f.sources.length>0,id);assert.ok(f.sources.every(s=>s.title&&s.url.startsWith('https://')),id);
+const removed=['wilson','seregni','bergara','alejandro-sanchez','topolansky','andrade','blanca-rodriguez','lema','da-silva','pacheco-areco','artigas','rivera','oribe','lavalleja','berro','saravia','herrera','haedo','batlle','terra','latorre'];
+test('only the 29 sourced, usable result references remain in the catalog and map',()=>{
+ assert.equal(FIGURES.length,29);assert.equal(new Set(FIGURES.map(f=>f.id)).size,29);
+ for(const f of FIGURES){
+  assert.ok(f.rankEligible&&f.eligible&&f.comparable,f.id);
+  assert.ok(f.bio.length>50&&f.actions.length>0&&f.sources.length>0,f.id);
+  assert.ok(f.sources.every(s=>s.title&&s.url.startsWith('https://')),f.id);
   assert.equal(f.profile.length,12);assert.equal(f.rationale.length,12);
+  assert.ok(hasMapEvidence(f),f.id);
   for(const [axis,value] of f.profile.entries())if(value!==null){
-   assert.ok(Number.isFinite(value)&&value>=0&&value<=100,id);
-   assert.ok(f.evidence.some(e=>e.axis===axis&&f.sources[e.source]?.url),id+' evidence');
+   assert.ok(Number.isFinite(value)&&value>=0&&value<=100,f.id);
+   assert.ok(f.evidence.some(e=>e.axis===axis&&f.sources[e.source]?.url),f.id+' evidence');
   }
-  if(f.historical){assert.ok(f.profile.every(v=>v===null),id);assert.equal(f.rankEligible,false);assert.equal(hasMapEvidence(f),false);}
+  for(const axis of COMPARISON_AXES)assert.ok(Number.isFinite(f.profile[axis]),f.id);
  }
- assert.notEqual(FIGURES.find(f=>f.id==='herrera').name,FIGURES.find(f=>f.id==='lacalle-herrera').name);
- assert.equal(filteredSpectrum(FIGURES,{query:'Aparicio Sarabia'})[0].id,'saravia');
- assert.equal(filteredSpectrum(FIGURES,{query:'Bernardo Berro'})[0].id,'berro');
+ assert.equal(removed.length,21);
+ for(const id of removed){assert.ok(!FIGURES.some(f=>f.id===id),id);assert.ok(!filteredSpectrum(FIGURES,{query:id}).some(f=>f.id===id),id)}
+ assert.equal(filteredSpectrum(FIGURES,{query:'Aparicio Sarabia'}).length,0);
 });
 
-test('vicepresidential formula references share dated coordinates also become real results on the same common coverage',()=>{
+test('Lacalle Herrera uses only the five documented topics of the signed 2009 ticket program',()=>{
+ const f=FIGURES.find(f=>f.id==='lacalle-herrera');
+ assert.equal(f.comparisonLabel,'Programa de fórmula de 2009');
+ assert.deepEqual(f.profile,[25,null,null,85,null,null,10,null,null,null,60,35]);
+ for(const axis of COMPARISON_AXES){const e=f.evidence.find(e=>e.axis===axis);assert.ok(e.page>=12&&e.page<=25);assert.equal(f.sources[e.source].url,'https://impo.com.uy/diariooficial/2009/10/01/avisosdeldia.pdf')}
+ assert.ok(f.comparisonNote.includes('no una medición personal'));
+});
+
+test('vicepresidential references preserve shared programs and explicit ties',()=>{
  const groups=spectrumGroups(FIGURES);
  for(const [vice,president,year] of [['astori','mujica',2009],['argimon','lacalle',2019]]){
   const a=FIGURES.find(f=>f.id===vice),b=FIGURES.find(f=>f.id===president);
-  assert.equal(a.rankEligible,true);assert.ok(a.mapBasis.includes(year));
+  assert.ok(a.rankEligible&&a.mapBasis.includes(year));
   assert.deepEqual([a.profile[0],a.profile[3]],[b.profile[0],b.profile[3]]);
   assert.ok(groups.some(g=>g.figures.some(f=>f.id===vice)&&g.figures.some(f=>f.id===president)));
   assert.equal(a.profile.filter(v=>v===null).length,7);
  }
- assert.equal(FIGURES.filter(f=>f.rankEligible).length,26);
+});
+
+test('restored presidents identify government evidence, keep unknowns and balance security sources',()=>{
+ for(const [id,period] of [['sanguinetti','1995–2000'],['jorge-batlle','2000–2005']]){
+  const f=FIGURES.find(f=>f.id===id);
+  assert.equal(f.comparisonType,'government');assert.equal(f.comparisonLabel,`Medidas de gobierno ${period}`);
+  assert.ok(f.comparisonNote.includes('no un programa electoral'));
+  assert.ok(f.comparisonNote.includes('no se atribuye su autoría exclusiva'));
+  assert.equal(f.profile.filter(v=>v===null).length,7);
+  assert.deepEqual([...new Set(f.evidence.map(e=>e.axis))],COMPARISON_AXES);
+ }
+ const batlle=FIGURES.find(f=>f.id==='jorge-batlle');
+ const security=batlle.evidence.filter(e=>e.axis===3);
+ assert.equal(security.length,2);assert.ok(security.some(e=>batlle.sources[e.source].url.includes('17726-2003')));
+ assert.ok(batlle.rationale[3].includes('alternativas'));
 });

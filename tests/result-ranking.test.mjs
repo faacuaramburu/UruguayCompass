@@ -8,7 +8,7 @@ import {questionSet,scoreProfile,restoreState} from '../dist/core.js';
 
 test('every eligible reference can appear among the closest results with sourced common axes',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
- assert.equal(eligible.length,26);
+ assert.equal(eligible.length,29);
  for(const f of eligible){
   const r=rankFigures(f.profile.map(v=>v??50),FIGURES);
   assert.deepEqual(r.axes,COMPARISON_AXES);
@@ -18,8 +18,8 @@ test('every eligible reference can appear among the closest results with sourced
  }
 });
 
-test('own precandidacy programs can win independently instead of copying the party program',()=>{
- for(const id of ['bordaberry','sartori','raffo','larranaga','vega','lust','gonzalo-martinez']){
+test('independent sourced references can win without copying a current party program',()=>{
+ for(const id of ['bordaberry','sartori','raffo','larranaga','vega','lust','gonzalo-martinez','lacalle-herrera','sanguinetti','jorge-batlle']){
   const f=FIGURES.find(f=>f.id===id),r=rankFigures(f.profile.map(v=>v??50),FIGURES);
   assert.equal(r.closest.length,1,id);assert.equal(r.ranked[0].entity.id,id);
  }
@@ -35,7 +35,8 @@ test('dated shared programs produce visible ties and selecting a portrait cannot
 });
 
 test('a previously completed test is recalculated with new candidates without changing its answers',()=>{
- const qs=questionSet(QUESTIONS,'short'),target=FIGURES.find(f=>f.id==='raffo').profile,answers={};
+ for(const id of ['raffo','lacalle-herrera','sanguinetti','jorge-batlle']){
+ const qs=questionSet(QUESTIONS,'short'),target=FIGURES.find(f=>f.id===id).profile,answers={};
  for(let axis=0;axis<12;axis++){
   const group=qs.filter(q=>q.axis===axis);let best=null;
   for(let a=0;a<5;a++)for(let b=0;b<5;b++)for(let c=0;c<5;c++){
@@ -47,6 +48,7 @@ test('a previously completed test is recalculated with new candidates without ch
  const saved=JSON.stringify({schema:1,version:'short',completed:true,cursor:35,answers});
  const state=restoreState(saved,QUESTIONS),p=scoreProfile(qs,state.answers);
  assert.equal(state.completed,true);assert.deepEqual(state.answers,answers);
- const result=rankFigures(p,FIGURES);assert.equal(result.ranked[0].entity.id,'raffo');
+ const result=rankFigures(p,FIGURES);assert.equal(result.ranked[0].entity.id,id);
  assert.ok(result.ranked[0].score>=97);assert.deepEqual(state.answers,JSON.parse(saved).answers);
+ }
 });

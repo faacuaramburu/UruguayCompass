@@ -3,6 +3,7 @@ import {expandFigures} from './figure-expansion.js';
 import {extendComparisons} from './comparison-profiles.js';
 import {completeFigureCatalog} from './figure-catalog.js';
 import {expandRankedReferences} from './ranking-expansion.js';
+import {extendGovernmentReferences} from './government-references.js';
 const PROGRAM_ROOT = 'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const REPRESENTATION = {title:'Cámara de Representantes · Diario de Sesiones, 18/02/2025, pp. 209–212',url:'https://documentos.diputados.gub.uy/docs/L50/Diario/d4549.pdf#page=209'};
 const CANDIDATURES = {title:'Corte Electoral · Acta 10739, elección nacional de 2024',url:'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf'};
@@ -79,17 +80,6 @@ const BASE_FIGURES = [
     [{title:'MTSS · Renuncia al cargo ministerial, 2024',url:'https://www.gub.uy/ministerio-trabajo-seguridad-social/institucional/normativa/resolucion-n-1125024-renuncia-del-sr-pablo-mieres'}]),
   candidate('salle','Gustavo Salle','is','Candidato presidencial de Identidad Soberana en la elección nacional de 2024. La comparación usa sus propuestas electorales sobre soberanía y políticas públicas.',
     ['Encabezó la candidatura de Identidad Soberana en 2024.','El programa propone un sistema previsional estatal y mayor autonomía nacional.']),
-  documented('wilson','Wilson Ferreira Aldunate','pn','1960–1988','Dirigente y candidato presidencial del Partido Nacional. Su trayectoria comprende oposición a la dictadura, exilio, prisión y participación en la recuperación democrática.',
-    ['Ejerció cargos legislativos y ministeriales.','Su oposición a la dictadura lo llevó al exilio y la prisión.'],
-    [{title:'Museo de la Memoria · Memorias de una vida por la democracia',url:'https://mume.montevideo.gub.uy/sites/mume.montevideo.gub.uy/files/articulos/descargas/folleto_a_30_anos_de_la_muerte_de_wilson.pdf'},{title:'IMPO · Decreto de duelo nacional, 1988',url:'https://www.impo.com.uy/bases/decretos/225-1988/1'}],
-    [[3,20,'Defensa de las libertades democráticas ante la dictadura; evidencia contextual.']]),
-  documented('seregni','Líber Seregni','fa','1971–1996','Fundador, primer presidente y candidato presidencial del Frente Amplio. Su trayectoria incluye la articulación de una coalición política y la resistencia a la dictadura.',
-    ['Presidió el Frente Amplio desde su fundación en 1971 hasta 1996.','Su intervención fundacional vinculó democracia y justicia social.'],
-    [{title:'Frente Amplio · Acto y declaración de fundación',url:'https://www.frenteamplio.uy/historia/fundacion/'},{title:'Frente Amplio · Trayectoria de Líber Seregni',url:'https://www.frenteamplio.uy/presidencia/liber-seregni/'}]),
-  documented('sanguinetti','Julio María Sanguinetti','pc','1985–1990 · 1995–2000','Presidente en dos períodos tras la dictadura. Sus gobiernos participaron en la transición democrática y en reformas institucionales y previsionales.',
-    ['Promulgó la Ley de Caducidad en 1986.','Durante su segundo gobierno se aprobó el sistema previsional mixto de 1995.'],
-    [{title:'MEC · Reseña documental de Julio María Sanguinetti',url:'https://www.gub.uy/ministerio-educacion-cultura/sites/ministerio-educacion-cultura/files/2025-11/JULIO%20MARIA%20SANGUINETTI%20Y%20MARTA%20CANESSA.pdf'},{title:'IMPO · Ley 15.848 de 1986',url:'https://www.impo.com.uy/bases/leyes/15848-1986'},{title:'IMPO · Ley 16.713 de 1995',url:'https://www.impo.com.uy/bases/leyes/16713-1995'}],
-    [[9,85,'La Ley de Caducidad limitó la pretensión punitiva estatal sobre delitos del período de facto.',1],[10,80,'La reforma de 1995 estableció solidaridad intergeneracional y ahorro individual obligatorio.',2]]),
   documented('vazquez','Tabaré Vázquez','fa','2005–2010 · 2015–2020','Médico y dirigente del Frente Amplio, fue intendente de Montevideo y presidente en dos períodos. Su primer gobierno impulsó reformas tributarias y sanitarias.',
     ['Impulsó el nuevo sistema tributario de 2007.','Promovió la reforma de salud y la ampliación de políticas sociales.'],
     [{title:'Archivo de Presidencia · Biografía de Tabaré Vázquez',url:'https://archivo.presidencia.gub.uy/_web/pages/vazquez01.htm'},{title:'Archivo de Presidencia · Reforma tributaria y reforma de salud, 2007',url:'https://archivo.presidencia.gub.uy/_web/noticias/2007/10/2007101002.htm'}],
@@ -106,19 +96,19 @@ const BASE_FIGURES = [
     [{title:'Presidencia · Proclamación de la fórmula Orsi–Cosse',url:'https://www.gub.uy/presidencia/institucional/estructura-del-organismo/yamandu-orsi'},{title:'Uruguay XXI · Transición presidencial de 2025',url:'https://www.uruguayxxi.gub.uy/es/noticias/articulo/uruguay-celebra-su-continuidad-democratica-y-estabilidad-con-la-asuncion-de-yamandu-orsi-a-la-presidencia/'}])
 ];
 
-export const FIGURES=expandRankedReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT)),PARTIES));
+export const FIGURES=expandRankedReferences(extendGovernmentReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT)),PARTIES)));
 
 export const POLITICAL_META = {
   updatedAt:'2026-11-03',
-  period:'Programas de candidaturas de 2009, 2014, 2019 y 2024',
+  period:'Programas de 2009, 2014, 2019 y 2024 y medidas de gobiernos de 1995–2005',
   representationSource:REPRESENTATION,
   candidateSource:CANDIDATURES,
-  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cinco temas documentados, incluidos programas presidenciales, precandidaturas y fórmulas.`,
+  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cinco temas documentados, incluidos programas presidenciales, precandidaturas, fórmulas y medidas de gobiernos identificados.`,
   figuresInRanking:FIGURES.filter(f=>f.rankEligible).map(f=>f.id),
-  balanceNote:'La comparación entre personas incluye programas de distintas elecciones: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
+  balanceNote:'La comparación entre personas incluye programas de distintas elecciones y medidas de gobiernos concretos: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
   limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
-  individualLimit:'Los perfiles comparables representan propuestas electorales fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'Las figuras históricas tienen fichas de contexto. No se trasladan sus propuestas a instituciones posteriores a su época. Las referencias con cobertura parcial quedan fuera del ranking de cinco ejes.',
+  individualLimit:'Los perfiles comparables representan programas o medidas de gobiernos identificados, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
+  historicalLimit:'El catálogo solo incluye referentes con los cinco temas comunes documentados. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
   missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };

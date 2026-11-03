@@ -4,6 +4,13 @@ import {COMPARISON_AXES} from './comparison-profiles.js';
 // evidence for the same five topics; unknown positions stay unknown.
 const root='https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const programs=[
+ {id:'lacalle-herrera',year:2009,kind:'Programa de fórmula',formula:true,title:'Lacalle Herrera–Larrañaga · Programa 2010–2015, Diario Oficial del 1/10/2009',url:'https://impo.com.uy/diariooficial/2009/10/01/avisosdeldia.pdf',positions:[
+  [0,25,14,'Prioriza libertad económica, propiedad privada y competencia, con regulación y protección social.'],
+  [3,85,25,'Propone ampliar la Guardia Republicana y elevar penas, junto con rehabilitación y alternativas para infractores primarios.'],
+  [6,10,14,'Propone apertura comercial, más acuerdos bilaterales y flexibilizar el Mercosur.'],
+  [10,60,20,'Propone cooperación educativa estatal y privada y reconocer títulos docentes privados (p. 21), junto con ampliar escuelas públicas. Evidencia educativa, no una reforma previsional.'],
+  [11,35,18,'Propone controles ambientales, un instituto de biodiversidad y evaluaciones de impacto, buscando equilibrar conservación y desarrollo.']
+ ]},
  {id:'bordaberry',year:2014,title:'Pedro Bordaberry · Plan Uruguay 2015–2020',url:root+'Plan_Uruguay_2015_2020_Partido_Colorado_compressed%20%281%29_0.pdf',positions:[
   [0,35,138,'Promueve inversión y emprendimientos, reduce obstáculos al sector privado y conserva herramientas públicas.'],
   [3,85,224,'Amplía vigilancia tecnológica y capacidad policial; exige cumplimiento de condenas, junto con rehabilitación (p. 222).'],

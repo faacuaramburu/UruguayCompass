@@ -1,52 +1,80 @@
-# Espectro político con referentes
+# Espectro político y cobertura de resultados
 
-La brújula de resultados se amplió por pedido del usuario. Mantiene economía y seguridad/libertades y muestra el marcador de la persona junto a referencias editoriales. No es un eje universal de izquierda/derecha ni una medición de autoritarismo.
+El mapa representa economía y seguridad/libertades. No equivale a una escala universal de izquierda y derecha ni mide autoritarismo. La persona conserva sus doce puntajes; el mapa solo proyecta dos.
 
-## Catálogo y coordenadas
+## Catálogo vigente
 
-Hay 50 figuras. El catálogo incorpora todos los 32 nombres solicitados, incluidos los históricos. Las fichas históricas describen su época y enlazan fuentes; no reciben puntajes contemporáneos ni entran al ranking.
+Hay **29 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cinco temas documentados: economía, seguridad y libertades, comercio exterior, educación/seguridad social y ambiente/desarrollo. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
 
-27 tienen evidencia para economía y seguridad. Las otras 23 conservan sus fuentes y su contexto sin coordenadas. Un dato parcial económico no permite completar seguridad con el centro de la escala. Danilo Astori y Beatriz Argimón comparten en el mapa el programa de las fórmulas de 2009 y 2019 que integraron, respectivamente; ahora participan del resultado con los cinco temas del programa compartido. El empate con Mujica o Lacalle Pou se muestra expresamente.
+Los programas corresponden a elecciones de 2009, 2014, 2019 y 2024. Se agregan dos referencias de medidas de gobierno, explícitamente identificadas y distintas de un programa electoral: Sanguinetti (1995–2000) y Jorge Batlle (2000–2005). Cada ficha identifica su documento y período. Los integrantes de una misma fórmula pueden compartir programa y afinidad: se muestra el empate y se permite elegir el retrato sin modificar el puntaje. No se copia un programa a una persona solo por pertenecer a su partido.
 
-Las fórmulas de 2024 usan el programa electoral que representaron, no convicciones personales de cada integrante. Cosse/Orsi, Ripoll/Delgado y las otras fórmulas pueden compartir coordenadas. Las personas de 2019 y las gestiones anteriores identifican expresamente ese período. La cercanía visual entre años con coberturas distintas no constituye un ranking de similitud.
+## Incorporación tras la segunda revisión
 
-## Rúbrica editorial
+**Luis Alberto Lacalle Herrera** participa con el programa de la fórmula Lacalle Herrera–Larrañaga de 2009, firmado por ambos y publicado por la Corte Electoral en el [Diario Oficial del 1/10/2009](https://impo.com.uy/diariooficial/2009/10/01/avisosdeldia.pdf#page=12). No se mezcla con su gobierno de 1990–1995 ni con el programa de Larrañaga de 2014.
 
-Economía conserva 0 = mercado, 100 = participación estatal; seguridad conserva 0 = libertades y garantías, 100 = control de seguridad. En el mapa, Estado queda a la izquierda, mercado a la derecha, control arriba y libertades abajo. Las coordenadas de la persona se calculan exactamente como antes.
+| Tema | Puntaje editorial | Página del PDF |
+| --- | --- | --- |
+| Economía | 25 | 14 |
+| Seguridad y libertades | 85 | 25 |
+| Comercio exterior | 10 | 14 |
+| Educación/seguridad social | 60 | 20–21; evidencia educativa |
+| Ambiente/desarrollo | 35 | 18 |
 
-Se documentan propuestas concretas en profile/rationale/evidence de cada figura. Los números son una interpretación orientativa en pasos de cinco, no datos de encuestas ni valores emitidos por las personas. 25–35 representa orientación al mercado o a garantías; 65–85, mayor papel estatal o control, según el eje. Los extremos requieren propuestas explícitas, como la estatización bancaria de Unidad Popular (95 en economía). Un 50 exige evidencia de una combinación de instrumentos; no reemplaza un dato desconocido. Los datos de gobierno se describen como parciales y no se extrapolan a toda una trayectoria.
+Los fundamentos están en `dist/ranking-expansion.js`. Las propuestas sustentan la lectura; los números no aparecen en el programa y son estimaciones editoriales. El eje educativo/previsional combina políticas distintas: el fundamento indica cuál está documentada.
 
-## Fuentes principales nuevas
+## Referencias retiradas
+
+Se retiraron estas **21 fichas** del catálogo, los resultados y el mapa porque esta revisión no reunió evidencia comparable suficiente en los cinco temas. Esto no significa que no existan fuentes sobre sus trayectorias.
+
+- Wilson Ferreira Aldunate
+- Líber Seregni
+- Mario Bergara
+- Alejandro Sánchez
+- Lucía Topolansky
+- Óscar Andrade
+- Blanca Rodríguez
+- Martín Lema
+- Sebastián Da Silva
+- Jorge Pacheco Areco
+- José Artigas
+- Fructuoso Rivera
+- Manuel Oribe
+- Juan Antonio Lavalleja
+- Bernardo Prudencio Berro
+- Aparicio Saravia
+- Luis Alberto de Herrera
+- Eduardo Víctor Haedo
+- José Batlle y Ordóñez
+- Gabriel Terra
+- Lorenzo Latorre
+
+Las referencias más antiguas no se proyectan sobre instituciones y debates posteriores a su época. La sección educativa de historia política continúa como contexto general, sin convertir a esas figuras en candidatos del resultado.
+
+## Fuentes y cálculo
 
 - [Corte Electoral: fórmulas nacionales de 2024](https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf).
-- [Programas de 2024](https://www.gub.uy/corte-electoral/comunicacion/publicaciones/programas-gobierno-nacional): programas de las seis fórmulas parlamentarias y de Asamblea Popular, PCA y PERI.
-- [Programas de 2019](https://www.gub.uy/corte-electoral/comunicacion/publicaciones/programas-gobierno-partidos-politicos-para-periodo-2020-2025): Frente Amplio, Partido Nacional y Partido Colorado.
+- [Programas de 2024](https://www.gub.uy/corte-electoral/comunicacion/publicaciones/programas-gobierno-nacional).
+- [Programas de 2019](https://www.gub.uy/corte-electoral/comunicacion/publicaciones/programas-gobierno-partidos-politicos-para-periodo-2020-2025).
 - Mujica: [programa 2010–2015](https://www.frenteamplio.uy/wp-content/uploads/programa_2010_2015_1_0-2.pdf), candidatura de 2009.
 - Vázquez: [programa 2015–2020](https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/Programa_nacional_FA_2015_2020.pdf), candidatura de 2014.
-- Sanguinetti: leyes [16.906 de inversiones](https://www.impo.com.uy/bases/leyes-originales/16906-1998) y [16.707 de seguridad ciudadana](https://www.impo.com.uy/bases/leyes-originales/16707-1995), en su versión original.
 
-## Interacción y límites
+Las fuentes y páginas de cada ubicación se encuentran en las fichas y en `dist/comparison-profiles.js` y `dist/ranking-expansion.js`. Los seis programas partidarios de 2024 se comparan por separado y no cambian con esta revisión.
 
-Los números corresponden a grupos de coordenadas idénticas. Los puntos permanecen en sus coordenadas reales; los números se separan y se conectan al punto con una línea para evitar superposición. Todos los nombres aparecen como botones accesibles y amplios; los puntos también se seleccionan con Enter o espacio. Buscar no modifica las respuestas ni las envía a ningún servicio. La ficha seleccionada muestra los documentos utilizados y permite abrir su contexto completo.
+La afinidad es 100 menos el promedio de las diferencias absolutas en los cinco temas. `dist/result-ranking.js` recalcula también los tests guardados sin alterar respuestas ni requerir repetir el cuestionario. Las pruebas verifican que todos los referentes del catálogo puedan salir y que seleccionar una foto no altere la afinidad.
 
-Los filtros pueden dejar el mapa sin referentes: el punto de la persona permanece. Las fichas sin coordenadas se identifican como tales. El ranking de personas y la tarjeta usan 26 referentes con cobertura documentada. Se incorporaron propuestas de Bordaberry (2014), Sartori (2019), Raffo (2024), la fórmula con Larrañaga (2014), los programas de PCA, PERI y Unidad Popular de 2024 y los integrantes de las fórmulas con cobertura común. Todas se comparan sobre economía, seguridad, comercio exterior, educación/seguridad social y ambiente. No se mezclan gestiones ni se completan los otros siete ejes desconocidos. El ranking de partidos mantiene seis programas de 2024. Esta selección no tiene igual cantidad de referencias por partido ni mide preferencias electorales actuales.
+## Interacción del mapa
 
-## Cobertura programática del ranking ampliado
+Economía conserva 0 = mercado, 100 = Estado; seguridad conserva 0 = libertades, 100 = control. El mapa coloca Estado a la izquierda, mercado a la derecha, control arriba y libertades abajo.
 
-Los cinco programas incorporados tienen sus valores, páginas y fundamentos en `dist/comparison-profiles.js`. Para Mujica y Vázquez se reemplazó la aproximación parcial a sus gobiernos por el programa de una elección concreta. Cada referencia habilitada puede aparecer entre las más cercanas. Los empates se muestran completos: el orden alfabético inicial no significa mayor cercanía y la persona puede elegir cuál mostrar en la foto y la tarjeta.
+Las coordenadas idénticas se agrupan bajo un número. Las etiquetas se separan para evitar superposiciones y una línea las une al punto real, sin mover los datos. Se puede buscar por nombre, filtrar por partido y seleccionar un referente con clic, Enter o espacio. Buscar o seleccionar no modifica ni transmite las respuestas. El punto de la persona permanece cuando un filtro no encuentra referentes.
 
-La combinación educación/seguridad social es un eje compuesto: el puntaje resume instrumentos de provisión y ahorro, no calidad de enseñanza ni generosidad de prestaciones. Una propuesta pública en educación puede coexistir con ahorro previsional mixto. Los números son lecturas editoriales gruesas, no una medición exacta.
+## Nuevas referencias de gobierno
 
-## Ampliación biográfica
+Se recuperaron Sanguinetti y Jorge Batlle al completar la búsqueda con normas originales y declaraciones de sus administraciones. Los cinco temas se conservan, pero la fuente cambia: medidas aprobadas y declaraciones en ejercicio, no promesas electorales. La ficha y la metodología explican esa limitación. La promulgación no prueba autoría exclusiva del presidente ni describe toda su trayectoria. Los otros siete ejes permanecen sin puntaje.
 
-`dist/figure-catalog.js` incorpora 25 fichas nuevas, evita duplicados y mantiene separadas trayectoria, propuestas documentadas y cobertura comparable. El catálogo incluye todos los nombres solicitados, y `dist/ranking-expansion.js` completa la comparación de quienes tienen los cinco temas documentados. Los datos desconocidos siguen siendo `null`. Las fichas históricas muestran contexto y fuentes en lugar de doce escalas vacías.
+Los fundamentos y fuentes están en `dist/government-references.js`:
 
-Las fuentes incluyen Udelar, Presidencia, gobiernos departamentales, Parlamento, ANEP, INDDHH, el MNAV y documentos publicados por las propias candidaturas. Las fuentes partidarias documentan declaraciones propias; no se las presenta como evaluaciones independientes. Los alias de búsqueda reconocen «Aparicio Sarabia» como Aparicio Saravia sin crear otra ficha.
+- **Sanguinetti, 1995–2000:** inversión (Ley 16.906), seguridad (Ley 16.707), acuerdo comercial Chile–Mercosur de 1996 (OEA/SICE), previsión mixta (Ley 16.713) y áreas protegidas (Ley 17.234, promulgada en febrero de 2000).
+- **Jorge Batlle, 2000–2005:** inversión y seguridad (Ley 17.243), alternativas a la prisión preventiva (Ley 17.726, como contrapeso a las medidas penales anteriores), TLC con México (Ley 17.766), respaldo expreso a las AFAP en mayo de 2004 y prevención/precaución ambiental (Ley 17.283).
 
-## Resultados ampliados y avance guardado
-
-El cálculo habilita referencias por cobertura documental en los cinco temas comunes, no por la sola existencia de una ficha. `dist/result-ranking.js` recalcula también los tests guardados; no altera las respuestas ni requiere repetir el cuestionario. Las pruebas verifican que todos los referentes habilitados puedan aparecer como resultado y que las propuestas de Raffo, Sartori y Bordaberry puedan obtener una coincidencia máxima independiente. Elegir una foto entre referentes empatados no puede promover una afinidad inferior ni modificar un porcentaje.
-
-Las propuestas de educación y previsión forman un eje compuesto. Algunas fuentes documentan principalmente educación; otras, el régimen previsional. Cada fundamento identifica esa cobertura parcial dentro del tema. No se interpreta como una evaluación integral de ambas políticas.
-
-Referencias contemporáneas que siguen sin cobertura suficiente para el resultado: Wilson Ferreira Aldunate, Líber Seregni, Julio María Sanguinetti, Jorge Batlle, Luis Alberto Lacalle Herrera, Mario Bergara, Alejandro Sánchez, Lucía Topolansky, Óscar Andrade, Blanca Rodríguez, Martín Lema, Sebastián Da Silva. Los doce históricos conservan su contexto sin trasladarlos a debates posteriores.
+Estos dos perfiles pueden resultar los más cercanos de forma independiente. También se recalculan en los tests guardados. Las pruebas verifican la cobertura, los tipos de fuente, el contrapeso en seguridad y que las figuras aún retiradas no reaparezcan.

@@ -1,6 +1,6 @@
 # Fotografías de las coincidencias
 
-Se sirven archivos locales, sin consultas a terceros al mostrar un resultado. Hay retratos locales para 24 de los 26 referentes del resultado. Gonzalo Martínez y María Elvira Canoniero tienen un aviso explícito de retrato no disponible con licencia verificada; su cobertura política sí permite la comparación. Son fotografías documentales, no retratos generados.
+Se sirven archivos locales, sin consultas a terceros al mostrar un resultado. Hay retratos locales para 27 de los 29 referentes del resultado. Gonzalo Martínez y María Elvira Canoniero tienen un aviso explícito de retrato no disponible con licencia verificada; su cobertura política sí permite la comparación. Son fotografías documentales, no retratos generados.
 
 Los archivos originales se conservan. La interfaz usa `object-fit: cover` para recortar el encuadre; no modifica rostros ni añade elementos. Los créditos de autor y licencia enlazan a la ficha original junto a cada retrato. Datos completos también en `dist/photos.js`.
 
@@ -42,3 +42,8 @@ Se descargaron archivos o miniaturas de Wikimedia Commons. El tamaño y el encua
 - Juan Sartori: [fuente](https://commons.wikimedia.org/wiki/File:Juan_Jos%C3%A9_Sartori_(cropped).png), Desayunos informales, CC BY 3.0 ([licencia](https://creativecommons.org/licenses/by/3.0)).
 - Jorge Larrañaga: [fuente](https://commons.wikimedia.org/wiki/File:Jorge_Larra%C3%B1aga_2009.jpg), Andrea Mazza, CC BY 3.0 ([licencia](https://creativecommons.org/licenses/by/3.0)).
 - Pedro Bordaberry: [fuente](https://commons.wikimedia.org/wiki/File:Pedrobordaberry.jpg), Embajada de EEUU en Uruguay., Public domain.
+
+- Luis Alberto Lacalle Herrera: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Luisalbertolacalle.jpg), Embajada de EEUU en Uruguay, dominio público según la ficha. Original local conservado; encuadre mediante CSS.
+
+- Julio María Sanguinetti: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:PresidenteSanguinetti.jpg), Agmontesdeoca, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0). Original local conservado; encuadre mediante CSS.
+- Jorge Batlle: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Jorge_Batlle.jpg), Roosewelt Pinheiro/ABr, [CC BY 3.0 Brasil](https://creativecommons.org/licenses/by/3.0/br/). Original local conservado; encuadre mediante CSS.
