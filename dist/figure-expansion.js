@@ -16,7 +16,7 @@ export function expandFigures(base,parties,candidatures,root){
   }
  }
  function add(id,name,partyId,partyName,period,bio,actions,sources,known=[],basis=''){
-  figures.push({id,name,party:partyId,partyName,sector:partyName,era:period,period,bio,summary:bio,actions,quotes:[],sources:[],profile:Array(12).fill(null),rationale:Array(12).fill(unknown),evidence:[],eligible:false,rankEligible:false,comparable:false,cohort:'catalogo-ampliado',editorial:true,comparisonNote:'Referencia de contexto. El mapa utiliza solo los ejes documentados del período indicado; esta ficha solo se suma al ranking si tiene los cinco ejes comunes documentados.'});
+  figures.push({id,name,party:partyId,partyName,sector:partyName,era:period,period,bio,summary:bio,actions,quotes:[],sources:[],profile:Array(12).fill(null),rationale:Array(12).fill(unknown),evidence:[],eligible:false,rankEligible:false,comparable:false,cohort:'catalogo-ampliado',editorial:true,comparisonNote:'Referencia de contexto. El mapa utiliza solo los ejes documentados del período indicado; esta ficha solo se suma al ranking si tiene los cuatro ejes comunes documentados.'});
   locate(id,basis,sources,known);
  }
  const formula=(id,name,partyId,role)=>{

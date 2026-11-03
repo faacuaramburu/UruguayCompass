@@ -1,3 +1,4 @@
+import {EDUCATION_ORDERS} from './education-pensions.js';
 // Banco editorial: 20 afirmaciones por eje; una idea por afirmación.
 // Acuerdo con direction +1 acerca al polo derecho; con -1, al izquierdo.
 // No es una escala psicométrica validada. Ver metodología de la aplicación.
@@ -277,6 +278,7 @@ export const QUESTIONS = Array.from({ length: 20 }, (_, tier) =>
     axis,
     order: tier + 1,
     text: statements[tier],
+    ...(axis===10?{topic:EDUCATION_ORDERS.has(tier+1)?"education":"pensions"}:{}),
     direction: tier % 2 === 0 ? -1 : 1
   }))
 ).flat();

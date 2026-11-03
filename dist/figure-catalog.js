@@ -56,7 +56,7 @@ export function completeFigureCatalog(base,parties){
    era:data.period,sector:data.partyName||parties.find(p=>p.id===data.party)?.name,summary:data.bio,quotes:[],
    profile:Array(12).fill(null),rationale:Array(12).fill(unknown),evidence:[],
    eligible:false,rankEligible:false,comparable:false,editorial:true,cohort:'catalogo-ampliado',
-   comparisonNote:'Los cinco temas comunes se completan con el programa fechado en ranking-expansion.js.'};
+   comparisonNote:'Los cuatro temas comunes se completan con el programa fechado en ranking-expansion.js.'};
   for(const [axis,value,index,note,page=null] of known){entity.profile[axis]=value;entity.rationale[axis]=note;entity.evidence.push({axis,source:index,note,page})}
   if(known.length)entity.mapBasis=data.basis;
   if(formula){

@@ -24,10 +24,10 @@ test('only the 31 sourced, usable result references remain in the catalog and ma
  assert.equal(filteredSpectrum(FIGURES,{query:'Aparicio Sarabia'}).length,0);
 });
 
-test('Lacalle Herrera uses only the five documented topics of the signed 2009 ticket program',()=>{
+test('Lacalle Herrera uses only the four documented topics of the signed 2009 ticket program',()=>{
  const f=FIGURES.find(f=>f.id==='lacalle-herrera');
  assert.equal(f.comparisonLabel,'Programa de fórmula de 2009');
- assert.deepEqual(f.profile,[25,null,null,85,null,null,10,null,null,null,60,35]);
+ assert.deepEqual(f.profile,[25,null,null,85,null,null,10,null,null,null,null,35]);
  for(const axis of COMPARISON_AXES){const e=f.evidence.find(e=>e.axis===axis);assert.ok(e.page>=12&&e.page<=25);assert.equal(f.sources[e.source].url,'https://impo.com.uy/diariooficial/2009/10/01/avisosdeldia.pdf')}
  assert.ok(f.comparisonNote.includes('no una medición personal'));
 });
@@ -39,7 +39,7 @@ test('vicepresidential references preserve shared programs and explicit ties',()
   assert.ok(a.rankEligible&&a.mapBasis.includes(year));
   assert.deepEqual([a.profile[0],a.profile[3]],[b.profile[0],b.profile[3]]);
   assert.ok(groups.some(g=>g.figures.some(f=>f.id===vice)&&g.figures.some(f=>f.id===president)));
-  assert.equal(a.profile.filter(v=>v===null).length,7);
+  assert.equal(a.profile.filter(v=>v===null).length,8);
  }
 });
 
@@ -49,7 +49,7 @@ test('restored presidents identify government evidence, keep unknowns and balanc
   assert.equal(f.comparisonType,'government');assert.equal(f.comparisonLabel,`Medidas de gobierno ${period}`);
   assert.ok(f.comparisonNote.includes('no un programa electoral'));
   assert.ok(f.comparisonNote.includes('no se atribuye su autoría exclusiva'));
-  assert.equal(f.profile.filter(v=>v===null).length,7);
+  assert.equal(f.profile.filter(v=>v===null).length,8);
   assert.deepEqual([...new Set(f.evidence.map(e=>e.axis))],COMPARISON_AXES);
  }
  const batlle=FIGURES.find(f=>f.id==='jorge-batlle');
@@ -58,11 +58,11 @@ test('restored presidents identify government evidence, keep unknowns and balanc
  assert.ok(batlle.rationale[3].includes('alternativas'));
 });
 
-test('dated public statements cover five shared topics without filling unknowns or copying a party',()=>{
+test('dated public statements cover four shared topics without filling unknowns or copying a party',()=>{
  for(const [id,period] of [['bergara','2024'],['andrade','2016–2019']]){
   const f=FIGURES.find(f=>f.id===id);assert.equal(f.comparisonType,'statements');
   assert.equal(f.comparisonLabel,'Declaraciones públicas de '+period);
-  assert.equal(f.profile.filter(v=>v===null).length,7);
+  assert.equal(f.profile.filter(v=>v===null).length,8);
   assert.deepEqual(f.evidence.map(e=>e.axis),COMPARISON_AXES);
   assert.ok(f.comparisonNote.includes('se presume que estas posiciones sigan vigentes'));
  }

@@ -39,6 +39,6 @@ export function extendGovernmentReferences(figures){
   const comparisonLabel=`Medidas de gobierno ${record.period}`;
   return {...figure,profile,rationale,evidence,sources:[...figure.sources,...record.sources],
    historical:false,cohort:'gobierno-documentado',comparisonType:'government',comparisonLabel,mapBasis:comparisonLabel,
-   comparisonNote:`Esta referencia describe medidas y declaraciones del gobierno de ${record.period}, no un programa electoral ni todas las ideas personales del presidente. Las leyes fueron aprobadas por el Parlamento y promulgadas durante esa administración; no se atribuye su autoría exclusiva. Se comparan los mismos cinco temas, pero las decisiones de gobierno y las promesas electorales son fuentes distintas. Los puntajes son interpretaciones editoriales y no califican los resultados de la gestión.`};
+   comparisonNote:`Esta referencia describe medidas y declaraciones del gobierno de ${record.period}, no un programa electoral ni todas las ideas personales del presidente. Las leyes fueron aprobadas por el Parlamento y promulgadas durante esa administración; no se atribuye su autoría exclusiva. Se comparan los mismos cuatro temas, pero las decisiones de gobierno y las promesas electorales son fuentes distintas. Los puntajes son interpretaciones editoriales y no califican los resultados de la gestión.`};
  });
 }
