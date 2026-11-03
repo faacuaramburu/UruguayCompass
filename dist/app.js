@@ -95,8 +95,8 @@ function refreshSpectrum({selectionOnly=false}={}){
  const host=document.querySelector('#spectrum-view'),p=profile();if(!host||!p)return;
  const active=document.activeElement,focusId=active?.dataset?.spectrumPick,wasMarker=active?.classList?.contains('spectrum-marker');
  const next=document.createElement('template');next.innerHTML=renderSpectrumView(p,FIGURES,spectrumState);
- // Keep the sticky strip and its containing figure mounted across selections.
- // Replacing them resets the browser's sticky/scroll anchoring mid-map.
+ // Keep the identification strip and map mounted across selections
+ // to preserve keyboard focus and the browser's scroll anchor.
  host.querySelector('.spectrum-selection').replaceChildren(...next.content.querySelector('.spectrum-selection').childNodes);
  host.querySelector('.spectrum-detail').replaceWith(next.content.querySelector('.spectrum-detail'));
  if(selectionOnly){

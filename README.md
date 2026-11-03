@@ -4,6 +4,8 @@
 
 **[Take the test at uruguaycompass.onrender.com](https://uruguaycompass.onrender.com/)** · Spanish (Uruguay) · Desktop and mobile
 
+![Uruguay Compass home screen in dark mode, with the questionnaire options and an example twelve-axis radar](docs/images/uruguay-compass-dark.jpg)
+
 ## Take the test
 
 Choose a version and respond to statements about political debates in Uruguay:

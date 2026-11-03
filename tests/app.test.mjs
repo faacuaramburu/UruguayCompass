@@ -47,8 +47,8 @@ test('complete application flows, persistence, content, corrections and privacy'
    click('[data-spectrum-reset]');assert.equal(w.document.querySelectorAll('.spectrum-reference').length,28);
    const stableStrip=w.document.querySelector('.spectrum-selection'),stableFigure=w.document.querySelector('.spectrum-figure'),stableMap=w.document.querySelector('.spectrum-graphic');
    w.document.querySelector('.spectrum-marker[data-spectrum-pick="ojeda"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
-   assert.equal(w.document.querySelector('.spectrum-selection'),stableStrip,'Selection keeps the sticky strip mounted');
-   assert.equal(w.document.querySelector('.spectrum-figure'),stableFigure,'Selection keeps the sticky containing block mounted');
+   assert.equal(w.document.querySelector('.spectrum-selection'),stableStrip,'Selection keeps the identification strip mounted');
+   assert.equal(w.document.querySelector('.spectrum-figure'),stableFigure,'Selection keeps the chart container mounted');
    assert.equal(w.document.querySelector('.spectrum-graphic'),stableMap,'Selection keeps the map and its scroll anchor mounted');
    assert.ok(w.document.querySelector('.spectrum-selection').textContent.includes('Andrés Ojeda y Robert Silva'));
    assert.ok(w.document.querySelector('.spectrum-selection').compareDocumentPosition(w.document.querySelector('.spectrum-graphic'))&4,'Identification is before the map');
