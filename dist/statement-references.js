@@ -30,6 +30,6 @@ export function extendStatementReferences(figures){
   const comparisonLabel=`Declaraciones públicas de ${reference.period}`;
   return {...figure,profile,rationale,evidence,sources,
    cohort:'declaraciones-documentadas',comparisonType:'statements',comparisonLabel,mapBasis:comparisonLabel,
-   comparisonNote:`Se comparan declaraciones públicas fechadas en ${reference.period}, identificadas en cada fuente. No se copia el programa de su partido ni se presume que estas posiciones sigan vigentes. Son fuentes distintas de un programa electoral o de medidas de gobierno. Los cuatro puntajes son interpretaciones editoriales de esos temas; no describen toda su trayectoria ni todas sus ideas.`};
+   comparisonNote:`Se comparan declaraciones públicas fechadas en ${reference.period}, identificadas en cada fuente. No se copia el programa de su partido ni se presume que estas posiciones sigan vigentes. Son fuentes distintas de un programa electoral o de medidas de gobierno. Los cinco puntajes son interpretaciones editoriales de esos temas; no describen toda su trayectoria ni todas sus ideas.`};
  });
 }

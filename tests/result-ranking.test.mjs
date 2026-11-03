@@ -21,7 +21,7 @@ test('every eligible reference can appear among the closest results with sourced
 test('independent sourced references can win without copying a current party program',()=>{
  for(const id of ['bordaberry','sartori','raffo','larranaga','vega','lust','gonzalo-martinez','lacalle-herrera','sanguinetti','jorge-batlle','bergara','andrade']){
   const f=FIGURES.find(f=>f.id===id),r=rankFigures(f.profile.map(v=>v??50),FIGURES);
-  assert.ok(r.closest.some(x=>x.entity.id===id),id);for(const other of r.closest)assert.deepEqual(COMPARISON_AXES.map(a=>other.entity.profile[a]),COMPARISON_AXES.map(a=>f.profile[a]));
+  assert.equal(r.closest.length,1,id);assert.equal(r.ranked[0].entity.id,id);
  }
 });
 

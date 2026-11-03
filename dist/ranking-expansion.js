@@ -1,7 +1,7 @@
 import {COMPARISON_AXES} from './comparison-profiles.js';
 
 // A biography alone never enables a result. Every ranked reference needs dated
-// evidence for the same four topics; unknown positions stay unknown.
+// evidence for the same five topics; unknown positions stay unknown.
 const root='https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const programs=[
  {id:'lacalle-herrera',year:2009,kind:'Programa de fórmula',formula:true,title:'Lacalle Herrera–Larrañaga · Programa 2010–2015, Diario Oficial del 1/10/2009',url:'https://impo.com.uy/diariooficial/2009/10/01/avisosdeldia.pdf',positions:[
@@ -80,7 +80,7 @@ export function expandRankedReferences(figures){
   }
   f.comparisonLabel=`${program.kind||'Programa de candidatura'} de ${program.year}`;
   f.mapBasis=f.comparisonLabel;f.comparisonGroup=f.id;
-  f.comparisonNote=`Esta comparación utiliza ${f.comparisonLabel.toLocaleLowerCase('es')}, sobre los mismos cuatro temas que las demás referencias. ${program.formula?'Es el programa de la fórmula que integró; no una medición personal. ':'No se mezclan propuestas de otras elecciones. '}Los valores son interpretaciones editoriales de las fuentes. Cuando un eje reúne educación y previsión se indica qué componente está documentado.`;
+  f.comparisonNote=`Esta comparación utiliza ${f.comparisonLabel.toLocaleLowerCase('es')}, sobre los mismos cinco temas que las demás referencias. ${program.formula?'Es el programa de la fórmula que integró; no una medición personal. ':'No se mezclan propuestas de otras elecciones. '}Los valores son interpretaciones editoriales de las fuentes. Cuando un eje reúne educación y previsión se indica qué componente está documentado.`;
  }
  for(const [id,referenceId,year] of formulas){
   const f=expanded.find(f=>f.id===id),reference=expanded.find(f=>f.id===referenceId),offset=f.sources.length;
@@ -93,7 +93,7 @@ export function expandRankedReferences(figures){
    f.evidence.push({...evidence,source:offset+evidence.source,note});
   }
   f.comparisonLabel=`Programa de fórmula de ${year}`;f.mapBasis=f.comparisonLabel;f.comparisonGroup=referenceId;
-  f.comparisonNote=`Representa el programa de la fórmula que integró en ${year}, no una reconstrucción de sus ideas personales. Comparte esos cuatro puntajes con ${reference.name}; si quedan más cerca, el resultado muestra el empate. No se asigna una diferencia que la fuente no documenta.`;
+  f.comparisonNote=`Representa el programa de la fórmula que integró en ${year}, no una reconstrucción de sus ideas personales. Comparte esos cinco puntajes con ${reference.name}; si quedan más cerca, el resultado muestra el empate. No se asigna una diferencia que la fuente no documenta.`;
  }
  return expanded.map(f=>{
   const eligible=!f.historical&&COMPARISON_AXES.every(axis=>Number.isFinite(f.profile[axis])&&f.evidence.some(e=>e.axis===axis&&f.sources[e.source]?.url));

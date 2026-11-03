@@ -1,6 +1,6 @@
-// One dated program per reference. All ranked references share these four axes.
+// One dated program per reference. All ranked references share these five axes.
 // Values are editorial interpretations in steps of five, not numbers in the sources.
-export const COMPARISON_AXES=[0,3,6,11];
+export const COMPARISON_AXES=[0,3,6,10,11];
 const root='https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const programs=[
  {id:'mujica',year:2009,period:'2010–2015',title:'Frente Amplio · Programa 2010–2015',url:'https://www.frenteamplio.uy/wp-content/uploads/programa_2010_2015_1_0-2.pdf',positions:[
@@ -50,6 +50,6 @@ export function extendComparisons(figures){
   return {...figure,profile,rationale,evidence,sources:[...figure.sources,{title:program.title,url:program.url}],
    rankEligible:true,eligible:true,comparable:true,cohort:`candidaturas-${program.year}`,comparisonLabel,mapBasis:comparisonLabel,
    era:`Candidatura nacional de ${program.year}`,period:program.period,
-   comparisonNote:`Se compara el programa ${program.period} que representó su candidatura de ${program.year}, sobre los mismos cuatro ejes que las demás referencias. No se mezclan medidas de otros gobiernos ni se reconstruye toda su trayectoria.`};
+   comparisonNote:`Se compara el programa ${program.period} que representó su candidatura de ${program.year}, sobre los mismos cinco ejes que las demás referencias. No se mezclan medidas de otros gobiernos ni se reconstruye toda su trayectoria.`};
  });
 }
