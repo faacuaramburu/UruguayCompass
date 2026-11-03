@@ -1,3 +1,4 @@
+import {portraitRect,photoCredit} from './portrait.js';
 // Canvas local: no peticiones de imágenes a terceros ni datos en URLs.
 export async function createResultCard(canvas,{profile,axes,ranking,photos,partyRanking=[]}){
  await document.fonts.ready;canvas.hidden=false;const topParty=partyRanking[0],closestParties=partyRanking.filter(x=>x.score===topParty?.score),offset=topParty?180:0;canvas.height=1500+offset;const c=canvas.getContext('2d'),top=ranking[0],photo=photos[top.entity.id];
@@ -7,7 +8,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,party
  text('En estas respuestas, mi perfil se acerca más al de',60,177,25);
  text(top.entity.name,60,240,53,700,ink,1080);
  let image=null;if(photo){try{image=await new Promise((resolve,reject)=>{const im=new Image();const timeout=setTimeout(()=>reject(Error('Foto no disponible')),4000);im.onload=()=>{clearTimeout(timeout);resolve(im)};im.onerror=()=>{clearTimeout(timeout);reject(Error('Foto no disponible'))};im.src=photo.src})}catch{}}
- if(image){const w=image.naturalWidth||image.width,h=image.naturalHeight||image.height;const ratio=320/390;let sw=w,sh=h;if(w/h>ratio)sw=h*ratio;else sh=w/ratio;c.drawImage(image,(w-sw)/2,Math.max(0,(h-sh)*.25),sw,sh,60,280,320,390)}
+ if(image){const w=image.naturalWidth||image.width,h=image.naturalHeight||image.height;c.drawImage(image,...portraitRect(photo,w,h,320/390),60,280,320,390)}
  else {c.fillStyle='#d8e6f7';c.fillRect(60,280,320,390);text(top.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),130,500,72,700)}
  text(`${top.score}%`,420,365,76,700,blue);text('coincidencia editorial',420,411,25);text(top.entity.comparisonLabel,420,460,22,400,muted);text('Comparación sobre cinco ejes comunes',420,499,22,400,muted);
  const tied=ranking.filter(x=>x.score===top.score);
@@ -19,6 +20,6 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,party
  text('Cada puntaje se lee entre los dos polos de su eje.',60,1275+offset,21,400,muted);
  text('No implica pensar igual en todo ni apoyar a un partido.',60,1320+offset,22);
  text('Educativo. Sin validación científica ni recomendación de voto.',60,1360+offset,21);
- if(photo)text(`Foto: ${photo.author} · ${photo.license} · Wikimedia Commons`,60,1422+offset,15,400,muted,1080);
+ if(photo)text(`Foto: ${photoCredit(photo)} · ${new URL(photo.source).hostname}`,60,1422+offset,15,400,muted,1080);
  return new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('PNG no disponible')),'image/png'));
 }

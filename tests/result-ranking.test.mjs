@@ -8,7 +8,7 @@ import {questionSet,scoreProfile,restoreState} from '../dist/core.js';
 
 test('every eligible reference can appear among the closest results with sourced common axes',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
- assert.equal(eligible.length,29);
+ assert.equal(eligible.length,31);
  for(const f of eligible){
   const r=rankFigures(f.profile.map(v=>v??50),FIGURES);
   assert.deepEqual(r.axes,COMPARISON_AXES);
@@ -19,7 +19,7 @@ test('every eligible reference can appear among the closest results with sourced
 });
 
 test('independent sourced references can win without copying a current party program',()=>{
- for(const id of ['bordaberry','sartori','raffo','larranaga','vega','lust','gonzalo-martinez','lacalle-herrera','sanguinetti','jorge-batlle']){
+ for(const id of ['bordaberry','sartori','raffo','larranaga','vega','lust','gonzalo-martinez','lacalle-herrera','sanguinetti','jorge-batlle','bergara','andrade']){
   const f=FIGURES.find(f=>f.id===id),r=rankFigures(f.profile.map(v=>v??50),FIGURES);
   assert.equal(r.closest.length,1,id);assert.equal(r.ranked[0].entity.id,id);
  }
@@ -35,7 +35,7 @@ test('dated shared programs produce visible ties and selecting a portrait cannot
 });
 
 test('a previously completed test is recalculated with new candidates without changing its answers',()=>{
- for(const id of ['raffo','lacalle-herrera','sanguinetti','jorge-batlle']){
+ for(const id of ['raffo','lacalle-herrera','sanguinetti','jorge-batlle','bergara','andrade']){
  const qs=questionSet(QUESTIONS,'short'),target=FIGURES.find(f=>f.id===id).profile,answers={};
  for(let axis=0;axis<12;axis++){
   const group=qs.filter(q=>q.axis===axis);let best=null;

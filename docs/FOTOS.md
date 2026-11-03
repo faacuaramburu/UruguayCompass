@@ -1,6 +1,6 @@
 # Fotografías de las coincidencias
 
-Se sirven archivos locales, sin consultas a terceros al mostrar un resultado. Hay retratos locales para 27 de los 29 referentes del resultado. Gonzalo Martínez y María Elvira Canoniero tienen un aviso explícito de retrato no disponible con licencia verificada; su cobertura política sí permite la comparación. Son fotografías documentales, no retratos generados.
+Los 31 referentes tienen fotografía documental local, sin consultas a terceros al mostrar resultados. Veintinueve provienen de Wikimedia Commons, con la licencia indicada en su ficha; dos proceden de publicaciones periodísticas que no indican licencia abierta. En estos casos se identifica el medio y la fuente sin atribuirles una licencia inexistente. No son retratos generados.
 
 Los archivos originales se conservan. La interfaz usa `object-fit: cover` para recortar el encuadre; no modifica rostros ni añade elementos. Los créditos de autor y licencia enlazan a la ficha original junto a cada retrato. Datos completos también en `dist/photos.js`.
 
@@ -27,7 +27,7 @@ La fuente de titulares Bricolage Grotesque se incorpora con su licencia SIL OFL 
 
 ## Retratos del resultado ampliado
 
-Se descargaron archivos o miniaturas de Wikimedia Commons. El tamaño y el encuadre pueden variar; no se modifican rostros. Se conserva la atribución de los recortes ya publicados en Commons.
+Se descargaron archivos o miniaturas de las fuentes identificadas. El tamaño y el encuadre pueden variar; no se modifican rostros. Se conserva la atribución de los recortes ya publicados en Commons.
 
 - Carolina Cosse: [fuente](https://commons.wikimedia.org/wiki/File:CosseCarolina.jpg), Metodo3356, CC BY-SA 4.0 ([licencia](https://creativecommons.org/licenses/by-sa/4.0)).
 - Valeria Ripoll: [fuente](https://commons.wikimedia.org/wiki/File:Valeria_Ripoll.png), Desayunos informales, CC BY 3.0 ([licencia](https://creativecommons.org/licenses/by/3.0)).
@@ -47,3 +47,12 @@ Se descargaron archivos o miniaturas de Wikimedia Commons. El tamaño y el encua
 
 - Julio María Sanguinetti: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:PresidenteSanguinetti.jpg), Agmontesdeoca, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0). Original local conservado; encuadre mediante CSS.
 - Jorge Batlle: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Jorge_Batlle.jpg), Roosewelt Pinheiro/ABr, [CC BY 3.0 Brasil](https://creativecommons.org/licenses/by/3.0/br/). Original local conservado; encuadre mediante CSS.
+
+## Fotografías completadas
+
+- Mario Bergara: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Mariobergara.jpg), US Embassy in Montevideo, dominio público según la ficha.
+- Óscar Andrade: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Oscar_Andrade_(cropped).jpg), Zeroth, CC BY-SA 4.0.
+- Gonzalo Martínez: [APU · Tiempo Político](https://www.apu.uy/node/2024), imagen promocional de su entrevista de junio de 2024. No indica licencia abierta. Se encuadra únicamente el retrato, dejando fuera los textos del anuncio.
+- María Elvira Canoniero: [Paysandú Online](https://paysanduonline.uy/noticia/la-sanducera-marita-canoniero-renuncio-a-la-presidencia-de-identidad-soberana-y-cuestiono-la-conduccion-del-partido), autor individual y licencia no indicados. Se encuadra la oradora a la izquierda de la fotografía.
+
+Los archivos y miniaturas se conservan como fueron descargados; el encuadre se aplica en la interfaz y en el PNG. La atribución enlaza siempre la publicación de origen.

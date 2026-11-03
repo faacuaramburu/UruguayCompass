@@ -5,10 +5,15 @@ import {QUESTIONS} from '../dist/questions.js';
 import {AXES,GLOSSARY,TIMELINE,FAQ} from '../dist/context.js';
 import {PARTIES,FIGURES} from '../dist/politics.js';
 import {PHOTOS} from '../dist/photos.js';
-assert.equal(QUESTIONS.length,240);assert.equal(AXES.length,12);assert.equal(PARTIES.length,6);assert.equal(FIGURES.length,29);
+assert.equal(QUESTIONS.length,240);assert.equal(AXES.length,12);assert.equal(PARTIES.length,6);assert.equal(FIGURES.length,31);
 assert.equal(new Set(QUESTIONS.map(q=>q.text)).size,240);
 assert.ok(FIGURES.every(f=>f.rankEligible),'Every catalog entry must be usable as a result');
-for(const figure of FIGURES){const photo=PHOTOS[figure.id];if(!photo){assert.ok(figure.photoUnavailable,`Retrato o ausencia explícita: ${figure.id}`);continue}assert.ok(photo?.author&&photo?.license&&photo?.source.startsWith('https://commons.wikimedia.org/'));await access('dist/'+photo.src)}
+for(const figure of FIGURES){
+ const photo=PHOTOS[figure.id];assert.ok(photo?.author&&photo?.source.startsWith('https://'),`Retrato atribuido: ${figure.id}`);
+ assert.ok(photo.license||(photo.rightsStatus==='unspecified'&&photo.publisher),`Derechos documentados: ${figure.id}`);
+ if(photo.crop){const [x,y,w,h]=photo.crop,[width,height]=photo.dimensions;assert.ok([x,y,w,h,width,height].every(Number.isFinite)&&x>=0&&y>=0&&w>0&&h>0&&x+w<=width&&y+h<=height,figure.id)}
+ await access('dist/'+photo.src);
+}
 for(const entity of [...PARTIES,...FIGURES]){assert.equal(entity.profile.length,12);assert.equal(entity.rationale.length,12);for(const n of entity.profile)assert.ok(n===null||(Number.isFinite(n)&&n>=0&&n<=100));for(const s of entity.sources)assert.ok(s.url.startsWith('https://'));}
 for(const file of await readdir('dist'))if(file.endsWith('.js')){const p=spawnSync(process.execPath,['--check',`dist/${file}`],{stdio:'inherit'});assert.equal(p.status,0,`Sintaxis de ${file}`);}
 for(const file of ['dist/index.html','dist/styles.css','dist/sun.svg','dist/fonts/Biryani-Regular.ttf','dist/fonts/Biryani-Bold.ttf','dist/fonts/BricolageGrotesque.ttf','dist/fonts/OFL.txt','dist/fonts/Bricolage-OFL.txt','README.md'])await access(file);

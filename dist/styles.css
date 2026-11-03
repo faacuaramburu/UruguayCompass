@@ -188,3 +188,7 @@ html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graph
 .portrait-placeholder>div{display:grid;place-items:center;min-height:130px;aspect-ratio:5/6;background:var(--panel);border:1px solid var(--line);color:var(--muted);font:700 40px var(--display)}
 
 .entity-status{display:block;font-size:10px;line-height:1.8;font-weight:400;color:var(--muted);margin-top:4px}
+
+/* Documentary portrait frames preserve the identified subject at every size. */
+.portrait-window{display:block;position:relative;overflow:hidden;border-radius:10px}
+.portrait .portrait-window>img{position:absolute;max-width:none;width:var(--photo-width);height:auto;left:var(--photo-left);top:var(--photo-top);border-radius:0}

@@ -4,7 +4,7 @@ El mapa representa economía y seguridad/libertades. No equivale a una escala un
 
 ## Catálogo vigente
 
-Hay **29 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cinco temas documentados: economía, seguridad y libertades, comercio exterior, educación/seguridad social y ambiente/desarrollo. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
+Hay **31 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cinco temas documentados: economía, seguridad y libertades, comercio exterior, educación/seguridad social y ambiente/desarrollo. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
 
 Los programas corresponden a elecciones de 2009, 2014, 2019 y 2024. Se agregan dos referencias de medidas de gobierno, explícitamente identificadas y distintas de un programa electoral: Sanguinetti (1995–2000) y Jorge Batlle (2000–2005). Cada ficha identifica su documento y período. Los integrantes de una misma fórmula pueden compartir programa y afinidad: se muestra el empate y se permite elegir el retrato sin modificar el puntaje. No se copia un programa a una persona solo por pertenecer a su partido.
 
@@ -24,14 +24,12 @@ Los fundamentos están en `dist/ranking-expansion.js`. Las propuestas sustentan 
 
 ## Referencias retiradas
 
-Se retiraron estas **21 fichas** del catálogo, los resultados y el mapa porque esta revisión no reunió evidencia comparable suficiente en los cinco temas. Esto no significa que no existan fuentes sobre sus trayectorias.
+Se retiraron estas **19 fichas** del catálogo, los resultados y el mapa porque esta revisión no reunió evidencia comparable suficiente en los cinco temas. Esto no significa que no existan fuentes sobre sus trayectorias.
 
 - Wilson Ferreira Aldunate
 - Líber Seregni
-- Mario Bergara
 - Alejandro Sánchez
 - Lucía Topolansky
-- Óscar Andrade
 - Blanca Rodríguez
 - Martín Lema
 - Sebastián Da Silva
@@ -78,3 +76,12 @@ Los fundamentos y fuentes están en `dist/government-references.js`:
 - **Jorge Batlle, 2000–2005:** inversión y seguridad (Ley 17.243), alternativas a la prisión preventiva (Ley 17.726, como contrapeso a las medidas penales anteriores), TLC con México (Ley 17.766), respaldo expreso a las AFAP en mayo de 2004 y prevención/precaución ambiental (Ley 17.283).
 
 Estos dos perfiles pueden resultar los más cercanos de forma independiente. También se recalculan en los tests guardados. Las pruebas verifican la cobertura, los tipos de fuente, el contrapeso en seguridad y que las figuras aún retiradas no reaparezcan.
+
+## Declaraciones públicas incorporadas
+
+Bergara (2024) y Andrade (2016–2019) completan los cinco temas con declaraciones propias fechadas, sin copiar el programa de su partido. No se presume que sigan vigentes. Los fundamentos están en `dist/statement-references.js`; los números son interpretaciones editoriales.
+
+- **Mario Bergara:** [entrevista en Voces, 4/5/2024](https://semanariovoces.com/mario-bergara-los-cucos-de-bolches-y-tupas-insultan-la-inteligencia-de-la-gente/), sobre inversión, seguridad, inserción comercial, previsión y ambiente.
+- **Óscar Andrade:** [entrevista en Voces, 8/6/2019](https://semanariovoces.com/oscar-andrade-si-esperas-la-bendicion-de-los-sectores-mas-poderosos-no-vas-a-hacer-nada/), y [declaraciones sobre un TLC con China, 2/10/2016](https://www.elobservador.com.uy/nota/posible-tlc-con-china-divide-y-pone-en-alerta-al-pit-cnt-20161022500). El fundamento comercial se limita a ese acuerdo y fecha; no se interpreta como rechazo a todo comercio.
+
+La evidencia educativa no completa automáticamente la previsional ni viceversa: las fichas señalan qué parte está documentada. Los siete ejes restantes se mantienen sin puntaje.

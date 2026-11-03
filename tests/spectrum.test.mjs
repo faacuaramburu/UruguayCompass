@@ -5,10 +5,10 @@ import {FIGURES} from '../dist/politics.js';
 import {hasMapEvidence,spectrumGroups,filteredSpectrum,renderSpectrumView,placeSpectrumLabels} from '../dist/spectrum.js';
 
 test('catalog contains only result-eligible references with documented map coordinates',()=>{
- assert.equal(FIGURES.length,29);
- assert.equal(new Set(FIGURES.map(e=>e.id)).size,29);
- assert.equal(FIGURES.filter(e=>e.rankEligible).length,29);
- assert.equal(FIGURES.filter(hasMapEvidence).length,29);
+ assert.equal(FIGURES.length,31);
+ assert.equal(new Set(FIGURES.map(e=>e.id)).size,31);
+ assert.equal(FIGURES.filter(e=>e.rankEligible).length,31);
+ assert.equal(FIGURES.filter(hasMapEvidence).length,31);
  for(const f of FIGURES.filter(hasMapEvidence))for(const axis of [0,3]){
   const evidence=f.evidence.find(e=>e.axis===axis);assert.ok(f.sources[evidence.source].url.startsWith('https://'));assert.ok(evidence.note.length>20);assert.ok(f.mapBasis);
  }
@@ -17,7 +17,7 @@ test('catalog contains only result-eligible references with documented map coord
 });
 test('shared coordinates retain every name without moving data points',()=>{
  const groups=spectrumGroups(FIGURES);
- assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),29);
+ assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),31);
  const fa=groups.find(g=>g.figures.some(e=>e.id==='orsi'));assert.deepEqual(fa.figures.map(e=>e.id).sort(),['cosse','orsi']);assert.equal(fa.economy,80);assert.equal(fa.security,40);
  for(const g of groups)for(const f of g.figures)assert.deepEqual([g.economy,g.security],[f.profile[0],f.profile[3]]);
 });
@@ -38,7 +38,7 @@ test('number labels avoid one another while source points remain fixed',()=>{
 test('map and catalog stay accessible, including exact overlaps and removed selections',()=>{
  const p=Array(12).fill(50);p[0]=80;p[3]=40;
  const dom=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'cosse'}));const d=dom.window.document;
- assert.equal(d.querySelectorAll('.spectrum-reference').length,29);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
+ assert.equal(d.querySelectorAll('.spectrum-reference').length,31);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
  assert.equal(d.querySelector('.spectrum-user-label').textContent,'Vos');assert.equal(d.querySelectorAll('.spectrum-user-ring').length,1);
  assert.equal(d.querySelectorAll('.spectrum-selected-label').length,0);
  assert.equal(d.querySelector('.spectrum-detail h3').textContent,'Comparación con vos');assert.equal(d.querySelector('.spectrum-catalog').open,false);

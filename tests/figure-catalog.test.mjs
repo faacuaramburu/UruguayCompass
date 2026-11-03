@@ -4,9 +4,9 @@ import {FIGURES} from '../dist/politics.js';
 import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
 import {hasMapEvidence,filteredSpectrum,spectrumGroups} from '../dist/spectrum.js';
 
-const removed=['wilson','seregni','bergara','alejandro-sanchez','topolansky','andrade','blanca-rodriguez','lema','da-silva','pacheco-areco','artigas','rivera','oribe','lavalleja','berro','saravia','herrera','haedo','batlle','terra','latorre'];
-test('only the 29 sourced, usable result references remain in the catalog and map',()=>{
- assert.equal(FIGURES.length,29);assert.equal(new Set(FIGURES.map(f=>f.id)).size,29);
+const removed=['wilson','seregni','alejandro-sanchez','topolansky','blanca-rodriguez','lema','da-silva','pacheco-areco','artigas','rivera','oribe','lavalleja','berro','saravia','herrera','haedo','batlle','terra','latorre'];
+test('only the 31 sourced, usable result references remain in the catalog and map',()=>{
+ assert.equal(FIGURES.length,31);assert.equal(new Set(FIGURES.map(f=>f.id)).size,31);
  for(const f of FIGURES){
   assert.ok(f.rankEligible&&f.eligible&&f.comparable,f.id);
   assert.ok(f.bio.length>50&&f.actions.length>0&&f.sources.length>0,f.id);
@@ -19,7 +19,7 @@ test('only the 29 sourced, usable result references remain in the catalog and ma
   }
   for(const axis of COMPARISON_AXES)assert.ok(Number.isFinite(f.profile[axis]),f.id);
  }
- assert.equal(removed.length,21);
+ assert.equal(removed.length,19);
  for(const id of removed){assert.ok(!FIGURES.some(f=>f.id===id),id);assert.ok(!filteredSpectrum(FIGURES,{query:id}).some(f=>f.id===id),id)}
  assert.equal(filteredSpectrum(FIGURES,{query:'Aparicio Sarabia'}).length,0);
 });
@@ -56,4 +56,16 @@ test('restored presidents identify government evidence, keep unknowns and balanc
  const security=batlle.evidence.filter(e=>e.axis===3);
  assert.equal(security.length,2);assert.ok(security.some(e=>batlle.sources[e.source].url.includes('17726-2003')));
  assert.ok(batlle.rationale[3].includes('alternativas'));
+});
+
+test('dated public statements cover five shared topics without filling unknowns or copying a party',()=>{
+ for(const [id,period] of [['bergara','2024'],['andrade','2016–2019']]){
+  const f=FIGURES.find(f=>f.id===id);assert.equal(f.comparisonType,'statements');
+  assert.equal(f.comparisonLabel,'Declaraciones públicas de '+period);
+  assert.equal(f.profile.filter(v=>v===null).length,7);
+  assert.deepEqual(f.evidence.map(e=>e.axis),COMPARISON_AXES);
+  assert.ok(f.comparisonNote.includes('se presume que estas posiciones sigan vigentes'));
+ }
+ const f=FIGURES.find(f=>f.id==='andrade'),e=f.evidence.find(e=>e.axis===6);
+ assert.ok(e.note.includes('2016'));assert.ok(f.sources[e.source].url.includes('elobservador'));
 });

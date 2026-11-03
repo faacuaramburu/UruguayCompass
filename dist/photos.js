@@ -214,5 +214,61 @@ export const PHOTOS = {
     "src": "images/jorge-batlle.jpg",
     "source": "https://commons.wikimedia.org/wiki/File:Jorge_Batlle.jpg",
     "note": "Recorte de encuadre en la interfaz; archivo original conservado."
+  },
+  "bergara": {
+    "src": "images/bergara.jpg",
+    "author": "US Embassy in Montevideo",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Mariobergara.jpg",
+    "note": "Archivo original conservado; encuadre mediante CSS."
+  },
+  "andrade": {
+    "src": "images/andrade.jpg",
+    "author": "Zeroth",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Oscar_Andrade_(cropped).jpg",
+    "note": "Miniatura de Wikimedia Commons; encuadre mediante CSS."
+  },
+  "gonzalo-martinez": {
+    "src": "images/gonzalo-martinez.jpg",
+    "author": "APU · Tiempo Político",
+    "publisher": "APU",
+    "license": null,
+    "licenseUrl": null,
+    "rightsStatus": "unspecified",
+    "source": "https://www.apu.uy/node/2024",
+    "crop": [
+      136,
+      72,
+      388,
+      472
+    ],
+    "dimensions": [
+      1280,
+      720
+    ],
+    "note": "Imagen promocional de la entrevista de junio de 2024; original conservado, encuadre de su retrato mediante CSS. La fuente no indica una licencia abierta."
+  },
+  "canoniero": {
+    "src": "images/canoniero.webp",
+    "author": "Paysandú Online · autor no indicado",
+    "publisher": "Paysandú Online",
+    "license": null,
+    "licenseUrl": null,
+    "rightsStatus": "unspecified",
+    "source": "https://paysanduonline.uy/noticia/la-sanducera-marita-canoniero-renuncio-a-la-presidencia-de-identidad-soberana-y-cuestiono-la-conduccion-del-partido",
+    "crop": [
+      145,
+      40,
+      205,
+      250
+    ],
+    "dimensions": [
+      650,
+      380
+    ],
+    "note": "Fotografía publicada junto a la noticia sobre Canoniero; encuadre de la oradora a la izquierda mediante CSS. La fuente no indica autor individual ni licencia abierta."
   }
 };

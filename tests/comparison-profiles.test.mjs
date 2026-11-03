@@ -7,7 +7,7 @@ import {PHOTOS} from '../dist/photos.js';
 
 test('older candidacies can win the same five-axis comparison without filling unknowns',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
- assert.equal(eligible.length,29);
+ assert.equal(eligible.length,31);
  assert.deepEqual(sharedAxes(eligible),COMPARISON_AXES);
  for(const [id,year] of [['mujica',2009],['vazquez',2014],['lacalle',2019],['martinez',2019],['talvi',2019]]){
   const f=eligible.find(e=>e.id===id);

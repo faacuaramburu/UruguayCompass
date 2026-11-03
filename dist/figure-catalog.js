@@ -5,6 +5,14 @@ const presidencia='https://www.gub.uy/presidencia/';
 const unknown='Sin evidencia comparable suficiente para ubicar este eje.';
 
 const entries=[
+ {id:'bergara',name:'Mario Bergara',party:'fa',period:'Declaraciones de 2024',
+  bio:'Economista y dirigente del Frente Amplio, con trayectoria en el Banco Central, el Ministerio de Economía y el Senado. Esta referencia recoge propuestas personales expresadas en una entrevista de mayo de 2024.',
+  actions:['Defiende una combinación de políticas públicas e innovación productiva.','Distingue su propuesta previsional de la eliminación del ahorro individual.'],
+  sources:[source('Semanario Voces · Entrevista a Mario Bergara, 2024','https://semanariovoces.com/mario-bergara-los-cucos-de-bolches-y-tupas-insultan-la-inteligencia-de-la-gente/')]},
+ {id:'andrade',name:'Óscar Andrade',aliases:['Oscar Andrade','Boca Andrade'],party:'fa',period:'Declaraciones de 2016–2019',
+  bio:'Dirigente sindical y político del Frente Amplio, precandidato presidencial en 2019. La referencia usa sus declaraciones sobre inversión pública, seguridad, educación, ambiente y acuerdos comerciales, con sus fechas a la vista.',
+  actions:['En 2019 propone ampliar vivienda pública, becas y prevención social del delito.','En 2016 cuestiona un tratado bilateral con China por la asimetría entre las economías.'],
+  sources:[source('Semanario Voces · Entrevista a Óscar Andrade, 2019','https://semanariovoces.com/oscar-andrade-si-esperas-la-bendicion-de-los-sectores-mas-poderosos-no-vas-a-hacer-nada/')]},
  {id:'sanguinetti',name:'Julio María Sanguinetti',party:'pc',period:'Gobierno 1995–2000',
   bio:'Presidente de Uruguay en 1985–1990 y 1995–2000. Esta referencia se limita a medidas de su segunda administración, incluidas la reforma previsional, la promoción de inversiones y la creación del sistema de áreas protegidas.',
   actions:['Durante su segunda presidencia se aprobó el régimen previsional mixto de 1995.','Promulgó la Ley de Inversiones de 1998 y la ley de áreas naturales protegidas de febrero de 2000.'],

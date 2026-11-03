@@ -98,6 +98,6 @@ export function expandRankedReferences(figures){
  return expanded.map(f=>{
   const eligible=!f.historical&&COMPARISON_AXES.every(axis=>Number.isFinite(f.profile[axis])&&f.evidence.some(e=>e.axis===axis&&f.sources[e.source]?.url));
   return {...f,rankEligible:eligible,eligible,comparable:eligible,comparisonGroup:f.comparisonGroup||f.id,
-   photoUnavailable:['canoniero','gonzalo-martinez'].includes(f.id)?'Todavía no hay un retrato con licencia verificada.':null};
+   photoUnavailable:null};
  });
 }
