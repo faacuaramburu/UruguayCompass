@@ -43,3 +43,7 @@ Por pedido del usuario, los párrafos bajo las barras dejan de repetir el númer
 La brújula también cambia: explica combinaciones mediante ejemplos de decisiones de política económica y seguridad, en lugar de repetir que la persona se inclina a un polo. Se mantienen el cálculo, las coordenadas y las comparaciones. Evitar volver a fórmulas repetitivas como «tu puntaje indica inclinación hacia…» en estos párrafos.
 
 La tarjeta de la página y el PNG muestran también el partido más cercano, calculado a partir del ranking de partidos y no inferido del personaje. Si hay empate, se listan todos los partidos empatados. El PNG aumenta su altura para conservar los doce ejes y las aclaraciones sin solapamientos. La coincidencia sigue siendo programática y no implica apoyo partidario.
+
+## Preferencia final de redacción del usuario
+
+El usuario aclaró que quiere descripciones personales y simples de la orientación: «Tu postura se inclina hacia el libre mercado, con más espacio para las empresas y menos intervención del Estado». Esta indicación sustituye la redacción anterior de ejemplos de políticas y dilemas. Se aplicó a los doce ejes y a la brújula, conservando polos, umbrales y cálculos. Evitar textos académicos, preguntas sobre diseño de políticas y atribuciones de posiciones absolutas. Usar «menos intervención» en lugar de afirmar que el Estado no interviene en nada. Para posiciones centrales, reconocer que pueden surgir de respuestas neutras o de preferencias distintas.

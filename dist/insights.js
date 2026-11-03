@@ -1,49 +1,48 @@
-// Lecturas descriptivas. No estiman certeza, personalidad ni intención de voto.
-// Ejemplos compatibles con una orientación, no políticas individuales deducidas.
-const AXIS_MEANINGS=[
- ['Una aplicación posible sería permitir que más empresas compitan en servicios hoy concentrados en pocos proveedores. El desafío es asegurar competencia real y acceso también donde prestar el servicio resulta menos rentable.',
-  'Una aplicación posible sería mantener empresas públicas para sostener servicios estratégicos o inversiones de largo plazo. El desafío es evaluar sus costos, su gestión y a quiénes llegan efectivamente sus beneficios.'],
- ['Bajar un impuesto exige decidir si se reduce gasto, se reasignan recursos o se busca otro ingreso. El efecto también depende de qué impuesto se modifica: una rebaja al consumo y una a las rentas altas pueden beneficiar a grupos distintos.',
-  'Financiar transferencias o servicios con aportes mayores de quienes más ingresos tienen puede reducir diferencias de acceso. El diseño debe considerar quién paga realmente cada impuesto y cómo se evalúa el uso de lo recaudado.'],
- ['Acuerdos adaptados a cada empresa podrían facilitar cambios de horarios, tareas o contratación. El punto a resolver es cómo negociar esas condiciones cuando empleadores y trabajadores tienen capacidades de negociación desiguales.',
-  'Pisos salariales y negociación colectiva podrían dar respaldo a quienes tienen menos capacidad de negociar individualmente. La discusión es cómo adaptar esos acuerdos a empresas con productividad y recursos diferentes.'],
- ['Ante una medida como ampliar la vigilancia, esta orientación invita a preguntar quién la autoriza, qué información se guarda y cómo se reclama por un abuso. Las garantías importan tanto en el diseño como en la aplicación de la medida.',
-  'Más patrullaje, vigilancia o facultades de investigación requieren definir recursos, responsables y objetivos. Una evaluación útil pregunta qué delitos se busca reducir y cómo se controlarán los resultados y posibles abusos.'],
- ['Un ejemplo compatible sería ampliar opciones legales sobre decisiones familiares o personales. El debate práctico pasa por hacer efectivos esos derechos y resolver cómo conviven con convicciones distintas en servicios e instituciones.',
-  'Un ejemplo compatible sería conservar ciertas normas sobre familia o educación y exigir más deliberación antes de cambiarlas. El debate práctico es cómo sostener esas continuidades respetando los derechos de quienes eligen otras formas de vida.'],
- ['En una escuela u oficina pública, esta orientación lleva a distinguir las creencias de cada persona de la posición oficial de la institución. El desafío es permitir la expresión individual sin que el Estado favorezca una fe.',
-  'Un ejemplo compatible sería admitir expresiones religiosas o colaboración con organizaciones de fe en actividades públicas. La cuestión práctica es asegurar igualdad de trato para otras religiones y para quienes no profesan ninguna.'],
- ['Reducir barreras a las importaciones podría ampliar la oferta y dar acceso a insumos del exterior. La transición requiere pensar qué ocurre con empresas y empleos locales expuestos a una competencia mayor.',
-  'Aranceles, preferencias de compra o apoyos sectoriales podrían dar margen a productores locales para invertir. La discusión es cuánto duran esas medidas, quién asume su costo y con qué metas se evalúan.'],
- ['En una negociación internacional, esta orientación permite buscar acuerdos distintos según el asunto. Esa autonomía exige capacidad para negociar y sostener decisiones propias cuando países con más poder presionan en otra dirección.',
-  'Coordinar decisiones con un bloque puede dar continuidad a acuerdos y mayor capacidad de acción conjunta. El costo a discutir es qué margen de decisión conserva Uruguay cuando sus intereses difieren de los de sus socios.'],
- ['Un ejemplo compatible sería condicionar más el ingreso o la residencia a ciertos requisitos. Para evaluar esas medidas conviene precisar qué problema buscan resolver y cómo afectarían el empleo, las familias y el trato igualitario.',
-  'Facilitar residencia, reconocimiento de estudios e integración laboral puede ampliar las oportunidades de quienes llegan. Su implementación requiere coordinar vivienda, educación y servicios para acompañar a la población nueva y a la residente.'],
- ['Abrir archivos, buscar personas desaparecidas o investigar responsabilidades son decisiones distintas que requieren recursos y procedimientos. El debate incluye cómo preservar pruebas, atender a las víctimas y sostener garantías judiciales.',
-  'Una propuesta de cierre debería precisar qué procesos abarca y qué mecanismos de verdad o reparación mantendría. Ese alcance importa para discutir sus efectos sobre las víctimas, las responsabilidades y las generaciones siguientes.'],
- ['Fortalecer centros educativos y prestaciones públicas supone decidir cómo se financian y cómo llegan a poblaciones distintas. Educación y jubilaciones pueden merecer respuestas diferentes: compartir este eje no obliga a elegir la misma solución en ambas.',
-  'Ampliar opciones entre prestadores o combinar gestión pública y privada exige reglas de calidad, financiamiento y supervisión. En educación importa evitar exclusiones; en jubilaciones, definir cómo se reparten riesgos y garantías.'],
- ['Ante un proyecto que genera empleo pero afecta agua, suelo o ecosistemas, esta orientación abre la discusión sobre límites, alternativas y prevención. También exige decidir quién asume los costos de proteger esos recursos.',
-  'Ante ese mismo proyecto, esta orientación pone sobre la mesa empleo, inversión y actividad local. La decisión requiere precisar qué impactos se aceptan, cómo se fiscalizan y quién responde si aparecen daños.']
+// Lectura directa de las respuestas, sin atribuir una identidad permanente.
+const AXIS_READINGS=[
+ ['Tu postura se inclina más hacia el libre mercado: preferís que las empresas y las personas tengan más espacio para producir, competir y decidir, con menos intervención del Estado en la economía.',
+  'Tu postura se inclina más hacia un Estado activo en la economía: preferís que regule los mercados, mantenga empresas públicas y participe en sectores que considerás importantes.'],
+ ['Tu postura se inclina más hacia impuestos bajos: preferís que personas y empresas conserven una mayor parte de sus ingresos y que el Estado limite o reorganice sus gastos.',
+  'Tu postura se inclina más hacia la redistribución: preferís que quienes tienen más ingresos aporten más para financiar servicios públicos y reducir diferencias económicas.'],
+ ['Tu postura se inclina más hacia la flexibilidad laboral: preferís que empresas y trabajadores tengan más margen para acordar condiciones, horarios y formas de contratación.',
+  'Tu postura se inclina más hacia la protección laboral: preferís reglas comunes que respalden a los trabajadores, junto con sindicatos y negociación colectiva con mayor peso.'],
+ ['Tu postura se inclina más hacia las libertades individuales: preferís poner límites a la vigilancia y a las facultades policiales para proteger la privacidad y las garantías de las personas.',
+  'Tu postura se inclina más hacia el control de seguridad: preferís dar más herramientas de vigilancia e investigación a las autoridades para prevenir delitos y actuar frente a ellos.'],
+ ['Tu postura se inclina más hacia el progresismo: preferís ampliar derechos y dar más libertad para elegir cómo vivir, formar una familia y tomar decisiones personales.',
+  'Tu postura se inclina más hacia el conservadurismo: preferís conservar valores y normas sociales tradicionales y avanzar con más cautela ante cambios en familia, educación o costumbres.'],
+ ['Tu postura se inclina más hacia la laicidad: preferís que las decisiones e instituciones públicas se mantengan separadas de las creencias religiosas y no favorezcan ninguna fe.',
+  'Tu postura se inclina más hacia una presencia religiosa en lo público: aceptás que las creencias y organizaciones religiosas tengan más participación en actividades y debates del Estado.'],
+ ['Tu postura se inclina más hacia la apertura comercial: preferís facilitar las importaciones, las exportaciones y los acuerdos con otros países, con menos barreras al intercambio.',
+  'Tu postura se inclina más hacia proteger la producción nacional: preferís que el Estado apoye a productores locales y limite parte de la competencia de productos del exterior.'],
+ ['Tu postura se inclina más hacia la autonomía internacional: preferís que Uruguay decida su posición según cada asunto y mantenga margen para acordar con países de distintos bloques.',
+  'Tu postura se inclina más hacia el alineamiento internacional: preferís que Uruguay afiance alianzas y coordine sus decisiones con países o bloques con los que comparte intereses.'],
+ ['Tu postura se inclina más hacia una inmigración con mayores condiciones: preferís exigir más requisitos para el ingreso, la residencia y la integración de quienes llegan al país.',
+  'Tu postura se inclina más hacia una inmigración abierta: preferís facilitar la llegada, la residencia y la integración de personas de otros países, dando lugar a una sociedad más diversa.'],
+ ['Tu postura se inclina más hacia continuar la búsqueda de verdad y justicia: preferís investigar lo ocurrido durante la dictadura, abrir información y revisar responsabilidades.',
+  'Tu postura se inclina más hacia cerrar procesos sobre el pasado: preferís limitar su continuidad y dar mayor prioridad a una nueva etapa de convivencia y relaciones institucionales.'],
+ ['Tu postura se inclina más hacia la provisión pública: preferís que el Estado tenga el papel principal en la educación y en la protección jubilatoria. Las respuestas sobre esas dos áreas pueden tener matices distintos.',
+  'Tu postura se inclina más hacia opciones mixtas: preferís combinar servicios públicos y privados y dar más lugar a la elección de las personas en educación y jubilaciones.'],
+ ['Tu postura se inclina más hacia priorizar el ambiente: preferís poner límites a actividades que puedan dañar el agua, el suelo o los ecosistemas, incluso si eso restringe algunos proyectos productivos.',
+  'Tu postura se inclina más hacia priorizar el desarrollo productivo: das más importancia a generar empleo, inversión y actividad económica al decidir sobre proyectos con impactos ambientales.']
 ];
-const AXIS_CENTER=[
- 'Una economía puede combinar empresas públicas en ciertos servicios y competencia privada en otros. Para entender esa combinación, conviene mirar qué sectores querés reservar al Estado y qué reglas aplicarías al resto.',
- 'Se puede apoyar un gasto social y cuestionar el impuesto elegido para financiarlo. Distinguir entre cuánto recaudar, de quién y para qué ayuda a entender un promedio central.',
- 'Se pueden sostener pisos comunes y permitir acuerdos particulares sobre horarios o tareas. La pregunta útil es qué condiciones deberían ser irrenunciables y cuáles podrían negociarse.',
- 'Se puede respaldar una medida de investigación y exigir autorización, plazos y revisión. Para entender la combinación, conviene mirar qué controles aceptarías y bajo qué garantías.',
- 'Las decisiones sobre familia, educación y autonomía personal pueden ir en sentidos distintos. Revisar cada respuesta permite distinguir acuerdos concretos de una preferencia general por cambiar o conservar normas.',
- 'Se puede defender la neutralidad de una institución y admitir expresiones religiosas de las personas que la integran. La diferencia está entre una práctica individual y una posición oficial del Estado.',
- 'Se puede abrir el comercio en algunos productos y apoyar una transición más gradual en otros. La cuestión es con qué criterios se elegirían esos sectores y cuánto durarían las excepciones.',
- 'Un país puede coordinarse con sus socios en comercio y conservar posiciones propias en otros asuntos. Un promedio central deja abierta la pregunta de qué compromisos aceptarías y en qué temas.',
- 'Se pueden facilitar ciertos trámites de residencia y exigir condiciones para otros. Para interpretar la combinación conviene separar ingreso al país, acceso a servicios e integración laboral.',
- 'La búsqueda de información, la reparación y los procesos judiciales son decisiones diferentes. El promedio puede ocultar que apoyás unas medidas y tenés reservas sobre otras.',
- 'Podés preferir provisión pública en educación y un sistema mixto en jubilaciones, o al revés. Leer ambas áreas por separado aporta más información que atribuirles una única posición.',
- 'Se puede apoyar una inversión y condicionarla a límites ambientales concretos. La cuestión práctica es qué impactos aceptarías, qué alternativas pedirías y quién debería fiscalizar el cumplimiento.'
+const AXIS_BALANCED=[
+ 'Tu postura económica combina espacio para las empresas privadas con participación del Estado. El conjunto de tus respuestas no da una preferencia marcada por uno de los dos.',
+ 'Tu postura combina interés por mantener los impuestos contenidos con apoyo a financiar servicios y reducir desigualdades. No aparece una preferencia marcada por uno de esos objetivos.',
+ 'Tu postura combina protección para los trabajadores con margen para negociar condiciones según cada situación. No aparece una preferencia marcada por reglas más rígidas o más flexibles.',
+ 'Tu postura combina herramientas para combatir el delito con límites que protejan las libertades individuales. No aparece una preferencia marcada por ampliar el control o restringirlo.',
+ 'Tu postura social combina apertura a algunos cambios con preferencia por conservar ciertas normas. Tus respuestas no se inclinan de forma marcada hacia el progresismo o el conservadurismo.',
+ 'Tu postura combina neutralidad religiosa del Estado con aceptación de algunas expresiones de fe en lo público. No aparece una preferencia marcada por uno de los dos polos.',
+ 'Tu postura comercial combina apertura al intercambio con apoyo a proteger ciertas actividades locales. No aparece una preferencia marcada por abrir o restringir el comercio de forma general.',
+ 'Tu postura internacional combina alianzas con otros países y margen para que Uruguay tome decisiones propias. No aparece una preferencia marcada por alinearse o mantenerse al margen de los bloques.',
+ 'Tu postura migratoria combina apertura a quienes llegan con condiciones para su ingreso e integración. El conjunto de tus respuestas no se inclina de forma marcada hacia uno de los polos.',
+ 'Tu postura sobre el pasado combina apoyo a algunas medidas de verdad y revisión con reservas sobre la continuidad de otros procesos. Las respuestas concretas ayudan a distinguir esas diferencias.',
+ 'Tu postura combina respaldo a los servicios públicos con aceptación de opciones mixtas. Puede haber diferencias entre lo que preferís para educación y para jubilaciones.',
+ 'Tu postura combina cuidado ambiental con interés por el empleo y la actividad productiva. El conjunto de tus respuestas no da una prioridad marcada a uno de esos objetivos.'
 ];
-export function explainAxis(axis,value,meta){
- if(!Number.isFinite(value)||value<0||value>100||!AXIS_MEANINGS[axis])return 'No hay un puntaje disponible para interpretar este eje.';
- if(Math.abs(value-50)<10)return AXIS_CENTER[axis];
- return AXIS_MEANINGS[axis][value<50?0:1];
+export function explainAxis(axis,value){
+ if(!Number.isFinite(value)||value<0||value>100||!AXIS_READINGS[axis])return 'No hay un puntaje disponible para interpretar este eje.';
+ if(Math.abs(value-50)<10)return AXIS_BALANCED[axis]+' Un promedio central también puede surgir de respuestas neutras o preferencias distintas.';
+ return AXIS_READINGS[axis][value<50?0:1];
 }
 export function responseStats(questions,answers){return Array.from({length:12},(_,axis)=>{const qs=questions.filter(q=>q.axis===axis);const values=qs.map(q=>(answers[q.id]-2)*q.direction);return {count:qs.length,neutral:values.filter(v=>v===0).length,left:values.filter(v=>v<0).length,right:values.filter(v=>v>0).length,intensity:qs.length?Math.round(values.reduce((s,v)=>s+Math.abs(v),0)/(2*qs.length)*100):0}})}
 export function strongestAxes(profile){return profile.map((value,axis)=>({axis,value,distance:Math.abs(value-50)})).filter(x=>x.distance>=10).sort((a,b)=>b.distance-a.distance||a.axis-b.axis)}

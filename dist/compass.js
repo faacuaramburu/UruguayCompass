@@ -8,24 +8,17 @@ export function describeCompass(economy,security){
   center:{low:'Economía intermedia y libertades individuales',center:'Una posición intermedia en ambos ejes',high:'Economía intermedia y mayor control de seguridad'},
   high:{low:'Participación estatal y libertades individuales',center:'Participación estatal, con equilibrio en seguridad',high:'Participación estatal y mayor control de seguridad'}
  };
- const examples={
-  low:{
-   low:'Una propuesta compatible sería abrir un servicio a la competencia y, al mismo tiempo, exigir autorización y límites para la vigilancia policial. La combinación pone límites distintos al poder estatal en la economía y en la seguridad: cada medida debe justificarse por lo que hace y cómo se controla.',
-   center:'Una propuesta compatible sería facilitar la entrada de empresas a un sector y evaluar las medidas de seguridad caso a caso. La pregunta que esta combinación deja abierta es qué condiciones exigís para ampliar una facultad policial: eficacia, autorización previa, revisión o límites de duración.',
-   high:'Una propuesta compatible sería simplificar la actividad empresarial y aumentar los recursos de investigación policial. La combinación requiere separar dos decisiones: qué papel cumple el Estado como productor o regulador y qué facultades tiene para prevenir e investigar delitos.'
-  },
-  center:{
-   low:'Podrías combinar empresas públicas en algunos servicios y competencia privada en otros, manteniendo límites estrictos a la vigilancia. Para profundizar, conviene mirar qué sectores querés gestionar públicamente y qué garantías exigirías ante una medida de seguridad.',
-   center:'El punto central puede resultar de apoyar propuestas distintas según el caso. Una forma de profundizar es elegir un servicio concreto y una medida de seguridad: ¿quién debería prestarlo y bajo qué reglas?, ¿qué facultades aceptarías y con qué supervisión? Las respuestas individuales ayudan a ver esa diferencia.',
-   high:'Podrías combinar gestión pública y privada según el servicio y respaldar más herramientas de investigación. El debate práctico pasa por definir qué instituciones las administran, qué objetivos deben cumplir y qué controles permiten evaluar su actuación.'
-  },
-  high:{
-   low:'Una propuesta compatible sería sostener una empresa pública y exigir controles judiciales estrictos para la vigilancia. Esta combinación distingue la capacidad del Estado para prestar servicios de sus facultades sobre la vida privada. El diseño debe atender tanto la calidad de los servicios como las garantías de las personas.',
-   center:'Una propuesta compatible sería invertir en servicios públicos y condicionar cada medida de seguridad a sus resultados y garantías. La discusión reúne capacidad de gestión, financiamiento y controles: un mismo apoyo a la acción estatal puede tener condiciones diferentes en cada área.',
-   high:'Una propuesta compatible sería ampliar servicios públicos y reforzar la capacidad de investigación policial. Ese conjunto exige recursos y buena coordinación institucional; también plantea cómo supervisar las decisiones, evaluar sus resultados y responder ante errores o abusos.'
-  }
+ const economyText={
+  low:'Tu postura se inclina hacia el libre mercado: preferís dar más espacio a las empresas y a la iniciativa privada, con menos intervención económica del Estado.',
+  center:'En economía, tu postura combina actividad privada y participación del Estado, sin inclinarse de forma marcada hacia una de las dos.',
+  high:'Tu postura se inclina hacia un Estado con mayor presencia económica: preferís que regule los mercados, mantenga servicios públicos y participe en actividades importantes.'
  };
- return {title:titles[e][s],text:examples[e][s]};
+ const securityText={
+  low:'En seguridad, preferís proteger las libertades y la privacidad, poniendo límites a la vigilancia y a las facultades de las autoridades.',
+  center:'En seguridad, tus respuestas combinan herramientas para combatir el delito con límites que protejan los derechos individuales.',
+  high:'En seguridad, preferís que las autoridades cuenten con más herramientas de vigilancia e investigación para prevenir y enfrentar delitos.'
+ };
+ return {title:titles[e][s],text:economyText[e]+' '+securityText[s]};
 }
 export function compassCoordinates(economy,security){
  const bounded=n=>Math.max(0,Math.min(100,Number.isFinite(n)?n:50));
