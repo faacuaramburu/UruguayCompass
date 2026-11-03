@@ -25,3 +25,9 @@ Foto local de la referencia principal con atribución, índice de coincidencia s
 Verificación: pruebas de cálculo y DOM; la inspección visual de la nueva página y PNG permanece pendiente porque el navegador local está deshabilitado en esta sesión.
 
 La primera sección del resultado muestra ahora el modelo ideológico más cercano (con explicación de cobertura y empates). Inmediatamente después aparece una leyenda 0/50/100 visible antes de la lectura y de los ejes. Se aclara que izquierda/derecha describe el lado de cada barra y no una clasificación política universal: Mercado ocupa 0 y Estado 100, mientras Progresista ocupa 0 y Conservador 100.
+
+## Interpretación de cada eje y retrato inicial
+
+Cada eje incluye una frase visible que interpreta su propio valor, sin usar izquierda/derecha política como equivalencia universal. A menos de diez puntos de 50 se considera intermedio; de diez a diecinueve, inclinación leve; de veinte a treinta y cuatro, moderada; de treinta y cinco a cincuenta, marcada. Estas palabras describen distancia entre polos, no seguridad ni firmeza de la persona. La explicación usa un par de significados específico para cada eje.
+
+El primer panel separa «¿Qué propone este modelo?» de las respuestas. A su derecha aparece el personaje más cercano con fotografía y crédito; se aclara que la similitud del modelo (cuatro ejes) y la afinidad programática del personaje (cinco ejes comunes) son comparaciones distintas. En móvil, el retrato pasa debajo.
