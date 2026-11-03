@@ -35,8 +35,9 @@ test('complete application flows, persistence, content, corrections and privacy'
   click('[data-jump="compass-panel"]');assert.equal(w.document.activeElement.id,'compass-panel');assert.equal(w.location.hash,'#resultados');
   assert.ok(w.document.querySelector('#compass-panel svg[role="img"]'));assert.equal(w.document.querySelectorAll('#compass-panel .compass-values dd strong').length,2);assert.equal(w.document.querySelector('.compass-point-label').textContent,'Vos');
   assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,4);
+  assert.ok(w.document.querySelector('.card-preview-party').textContent.includes('Partido Independiente'));
   const saved=JSON.parse(w.localStorage.getItem('uruguay-compass-v1'));assert.equal(saved.completed,true);assert.equal(Object.keys(saved.answers).length,n);
-  if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false);assert.equal(cardText.filter(t=>t.startsWith('0 ')&&t.endsWith(' 100')).length,12)}
+  if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false);assert.equal(cardText.filter(t=>t.startsWith('0 ')&&t.endsWith(' 100')).length,12);assert.ok(cardText.includes('Partido más cercano'));assert.ok(cardText.includes('Partido Independiente'));assert.equal(w.document.querySelector('#share-preview').height,1680)}
   await route('#comparaciones');assert.equal(w.document.querySelectorAll('.match-row').length,12);assert.equal(w.document.querySelectorAll('.match-row h3 a[href^="#partido/"]').length,6);
   await route('#comparar/orsi');assert.equal(w.document.querySelectorAll('tbody tr').length,12);assert.ok([...w.document.querySelectorAll('tbody tr td:nth-child(3)')].every(e=>e.textContent!=='Sin evidencia')); // Orsi has all twelve program estimates.
  }
