@@ -1,18 +1,65 @@
-# Uruguay Compass — Los 12 Ejes
+# Uruguay Compass
 
-Aplicación educativa sobre política uruguaya con doce posiciones independientes, test de 36/60/240 preguntas, comparación programática y enciclopedia.
+**Explore your political views across 12 dimensions and compare your answers with Uruguayan political figures and parties.** Take the questionnaire, find your closest matches, and understand where your views align or differ. A built-in encyclopedia explains the issues, people, and history behind the results.
 
-Sitio publicado: [uruguaycompass.onrender.com](https://uruguaycompass.onrender.com/). Repositorio: [UruguayCompass](https://github.com/faacuaramburu/UruguayCompass).
+**[Take the test at uruguaycompass.onrender.com](https://uruguaycompass.onrender.com/)** · Spanish (Uruguay) · Desktop and mobile
 
-## Ejecutar
+## Take the test
 
-Node.js 20.19+ (recomendado 22). Para servir la aplicación no se necesita instalar dependencias:
+Choose a version and respond to statements about political debates in Uruguay:
+
+- **Short:** 36 questions, about 5 minutes.
+- **Full:** 60 questions, about 9 minutes.
+- **Extreme:** 240 questions, about 30 minutes.
+
+Each statement has five responses, from strongly disagree to strongly agree, including a neutral option. Go back to review an answer or leave and resume later in the same browser. No account is required.
+
+Your results show separate scores for economy, taxation, labor, security, social values, secularism, trade, foreign policy, immigration, historical memory, education and social security, and the environment. Each scale explains both ends and what your position means. A score of 0 or 100 refers to that specific axis, not to a universal left–right label.
+
+## Understand your results
+
+- **Closest political matches:** compare your answers with six presidential candidacies from 2024, with portraits, source documents, and a breakdown of similarities and differences. Party comparisons use the same five shared axes for every entry.
+- **Political spectrum:** see your position alongside 21 documented political figures on an economy and security map. Search by name, filter by party, or select a number to identify its figures and read the evidence. People who share coordinates remain grouped together.
+- **Your twelve axes:** read plain-language explanations, review the answers behind each score, and switch to a labeled radar chart.
+- **Interpretations:** explore five educational ideological models, expressed priorities, and comparisons with individual references.
+- **Shareable result:** generate a PNG card with your closest figure, party comparison, and twelve scores. Saving or sharing requires an explicit action.
+
+These are educational, editorial comparisons, not a scientifically validated assessment or a voting recommendation. The main ranking compares campaign programs, not a complete reconstruction of a person's beliefs. Historical and other partial profiles remain separate. Sources support the documented positions; the numerical placements are editorial estimates. Missing evidence stays missing rather than becoming a score of 50.
+
+## Explore the encyclopedia
+
+Browse explanations of all twelve axes, profiles of **28 political figures** and **six parties**, a searchable glossary, and a political history timeline. Seven figure profiles do not yet have enough comparable evidence to appear on the two-axis map; their available sources remain accessible.
+
+The methodology and FAQ explain how scores and comparisons work. Found an error or disagree with a placement? Use the correction form to prepare a report, or [open a GitHub issue](https://github.com/faacuaramburu/UruguayCompass/issues) with supporting sources. Reports are never submitted automatically.
+
+## Your answers stay in your browser
+
+Answers, progress, and results are processed and stored locally. They are not sent to a server, analytics, correction reports, or share links. You can repeat the test or delete your saved data from the app. Clearing browser storage also removes your progress; there is no account sync between devices.
+
+The live site uses Cloudflare Web Analytics for traffic and performance statistics. Automatic SPA navigation tracking is disabled, and the app does not send questionnaire answers, scores, political affinities, or test interaction events to analytics. Result images are generated on your device.
+
+## Built with
+
+- **Languages:** JavaScript ES modules, HTML, and CSS.
+- **Frontend:** static pages with hash-based routing, data-driven SVG charts, and Canvas for the home illustration and PNG export. No runtime framework or build step.
+- **Storage:** browser local storage, with handling for unavailable storage.
+- **Testing:** Node.js test runner and jsdom for scoring, data integrity, and application flows.
+- **Hosting:** Render Static Site, serving `dist/` from `main`.
+- **Analytics:** Cloudflare Web Analytics.
+
+## Run locally
+
+Requires **Node.js 20.19 or newer** and npm.
 
 ```sh
+git clone https://github.com/faacuaramburu/UruguayCompass.git
+cd UruguayCompass
 npm start
 ```
 
-Abrir http://127.0.0.1:4173/. Para pruebas:
+Open **[http://127.0.0.1:4173](http://127.0.0.1:4173)**. Stop the server with `Ctrl+C`. Serving the app does not require installing dependencies. Use HTTP rather than opening `index.html` directly.
+
+Install development dependencies and run the checks:
 
 ```sh
 npm ci
@@ -20,47 +67,21 @@ npm test
 npm run check
 ```
 
-`dist/` es un sitio estático sin paso de compilación ni librerías externas para ejecutar el test. Servir por HTTP, no `file://`. Las rutas hash permiten alojarlo en un subdirectorio, incluido GitHub Pages. No hay backend ni cuentas propias. Cloudflare Web Analytics mide visitas y rendimiento; las respuestas y resultados se procesan y guardan localmente.
+The tests cover scoring extremes, neutral answers, shared comparison coverage, invalid saved data, complete questionnaire flows, chart geometry, filters, and keyboard selection.
 
-## Publicación y métricas
+## Deploy
 
-- Render Static Site: rama `main`, raíz del repositorio, carpeta publicada `dist`.
-- Comando de validación antes de publicar: `npm ci --include=dev && npm test && npm run check`.
-- Panel: [UruguayCompass en Render](https://dashboard.render.com/static/srv-dbkkbn6c6qcc73amibeg).
-- El sitio estático se sirve desde CDN y no se suspende por inactividad.
-- Métricas: Cloudflare → Observability → Analytics → Web analytics → `uruguaycompass.onrender.com`.
-- El snippet está en `dist/index.html`; su token es un identificador público del sitio, no una clave API. `spa: false` desactiva la medición automática de cambios de pantalla. No agregar eventos de respuestas, resultados, puntajes ni afinidades políticas.
-- Guía del proveedor: [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/about/) y [medición de SPA](https://developers.cloudflare.com/web-analytics/get-started/web-analytics-spa/).
+Create a Render **Static Site** connected to this repository and the `main` branch:
 
-## Funciones
+- **Build command:** `npm ci --include=dev && npm test && npm run check`
+- **Publish directory:** `dist`
 
-- Portada A2 aprobada, modos claro/oscuro y adaptación móvil.
-- Cuestionario de una afirmación por pantalla, cinco respuestas, progreso, anterior/siguiente y reanudación local.
-- Doce puntajes, radar y explicaciones con ambos polos.
-- Tres referencias cercanas y una lejana; todas las candidaturas y partidos; comparación por eje, fundamentos y fuentes.
-- Enciclopedia de doce ejes, 28 personajes, seis partidos, glosario con búsqueda e historia.
-- Espectro político con tu posición y 21 referentes documentados, búsqueda, filtro por partido y fuentes. Las otras siete fichas se muestran sin inventar coordenadas.
-- Metodología, FAQ, privacidad y borrado local.
-- Tarjeta PNG y compartir desde el dispositivo; reportes de corrección descargables o como borrador de Issue, nunca enviados automáticamente.
+No backend, environment secrets, or bundling step are required. The Cloudflare beacon configuration lives in `dist/index.html`; its site identifier is public. Keep `spa: false` and do not add tracking that includes political answers or results.
 
-## Diseño
+## Credits and documentation
 
-![Diseño A2 aprobado](docs/design-a2.png)
-
-Ver [DESIGN.md](DESIGN.md). Para continuar con una IA: [AGENTS.md](AGENTS.md), [HANDOFF.md](HANDOFF.md), [brief](docs/BRIEF.md).
-
-## Alcance de las comparaciones
-
-Esta edición compara **seis candidaturas de 2024**, una por cada partido parlamentario, mediante el programa que representaron. Los índices usan los mismos **cinco ejes con evidencia común**. Los doce puntajes personales se muestran completos. Las figuras históricas tienen fichas y ubicaciones parciales, pero no se incluyen en el ranking sin evidencia comparable. No se reemplazan valores desconocidos por 50.
-
-Los números son estimaciones editoriales, sin validación científica. Una proximidad no significa pensar igual en todo ni apoyar un partido. Las fuentes respaldan propuestas, no certifican el número asignado.
-
-## Verificación
-
-Pruebas de lógica y DOM pasan, incluyendo los tres tests completos. Render ejecuta las pruebas y la revisión de datos antes de publicar. El primer deploy se verificó por HTTPS con respuesta 200. Ver [detalle y límites](docs/VERIFICACION.md) para las comprobaciones de interfaz pendientes.
-
-Biryani se sirve localmente bajo [SIL Open Font License](dist/fonts/OFL.txt).
-
-## Lecturas ampliadas
-
-Los resultados ahora incluyen síntesis descriptiva, doce ejes visibles con revisión de respuestas, brújula, prioridades, prototipos pedagógicos, personajes con fotos, partidos, selector de coincidencias/diferencias y tarjeta con retrato. Ver [criterios y límites de estas lecturas](docs/LECTURAS.md). No incluyen humor ni porcentajes de confianza.
+- Fonts: Biryani and Bricolage Grotesque, self-hosted under the [SIL Open Font License](dist/fonts/OFL.txt) and [Bricolage Grotesque license](dist/fonts/Bricolage-OFL.txt).
+- Political portraits: locally served documentary photographs with individual author, source, and license credits. See [photo credits](docs/FOTOS.md).
+- Editorial criteria: [result interpretations](docs/LECTURAS.md) and [political spectrum](docs/ESPECTRO.md).
+- Project context: [brief](docs/BRIEF.md), [design](DESIGN.md), and [verification notes](docs/VERIFICACION.md).
+- For contributors and coding assistants: [AGENTS.md](AGENTS.md) and [HANDOFF.md](HANDOFF.md).
