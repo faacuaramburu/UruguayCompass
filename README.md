@@ -16,13 +16,13 @@ Choose a version and respond to statements about political debates in Uruguay:
 
 Each statement has five responses, from strongly disagree to strongly agree, including a neutral option. Go back to review an answer or leave and resume later in the same browser. No account is required.
 
-Your results show separate scores for economy, taxation, labor, security, social values, secularism, trade, foreign policy, immigration, historical memory, education and social security, and the environment. Each scale explains both ends and what your position means. A score of 0 or 100 refers to that specific axis, not to a universal left–right label.
+Your results show separate scores for economy, taxation, labor, security, social values, secularism, trade, foreign policy, immigration, historical memory, education and social security, and the environment. Each scale shows both ends; expand its explanation to read what your position means. A score of 0 or 100 refers to that specific axis, not to a universal left–right label.
 
 ## Understand your results
 
 - **Closest political matches:** compare your answers with 11 presidential candidacies from 2009, 2014, 2019, and 2024, with portraits, source documents, and a breakdown of similarities and differences. Party comparisons use the same five shared axes for every entry.
 - **Political spectrum:** see your position alongside 21 documented political figures on an economy and security map. Search by name, filter by party, or select a number to identify its figures and read the evidence. People who share coordinates remain grouped together.
-- **Your twelve axes:** read plain-language explanations, review the answers behind each score, and switch to a labeled radar chart inside an expandable section.
+- **Your twelve axes:** read plain-language explanations, review the answers behind each score, inside an individual disclosure for each axis, and switch to a labeled radar chart.
 - **Interpretations:** explore five educational ideological models, expressed priorities, and comparisons with individual references.
 - **Shareable result:** generate a PNG card with your closest figure, party comparison, and twelve scores. Saving or sharing requires an explicit action.
 
