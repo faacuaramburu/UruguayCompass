@@ -1,0 +1,46 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {JSDOM} from 'jsdom';
+
+test('complete application flows, persistence, content, corrections and privacy',async()=>{
+ const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
+ const dom=new JSDOM(html,{url:'https://example.org/EspectroUruguayo/',pretendToBeVisual:true});
+ const {window:w}=dom;for(const key of ['window','document','localStorage','location','FormData','File'])globalThis[key]=w[key];
+ w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};
+ w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:(_,key)=>()=>{}});
+ let sharedFile=null;Object.defineProperty(globalThis,'navigator',{configurable:true,value:{canShare:()=>true,share:async data=>{sharedFile=data.files[0]}}});
+ Object.defineProperty(w.document,'fonts',{value:{ready:Promise.resolve()}});
+ w.HTMLCanvasElement.prototype.toBlob=function(callback){callback(new Blob(['png-test'],{type:'image/png'}))};
+ await import('../dist/app.js');
+ const click=s=>{const el=w.document.querySelector(s);assert.ok(el,`Missing ${s}`);el.click()};
+ const route=async hash=>{w.location.hash=hash;await new Promise(r=>setTimeout(r,15))};
+ const text=()=>w.document.querySelector('#app').textContent;
+ for(const[version,n]of [['short',36],['full',60],['extreme',240]]){
+  await route('#inicio');if(w.document.querySelector('.resume-actions')){click('[data-action=reset]');click('[data-action=confirm-reset]');await new Promise(r=>setTimeout(r,10))}
+  const radio=w.document.querySelector(`[name=version][value=${version}]`);radio.checked=true;radio.dispatchEvent(new w.Event('change',{bubbles:true}));click('[data-action=start]');await new Promise(r=>setTimeout(r,10));
+  assert.ok(text().includes(`Pregunta 1 de ${n}`));assert.equal(w.document.querySelector('button[type=submit]').disabled,true);
+  for(let i=0;i<n;i++){
+   const answer=w.document.querySelector('[name=answer][value="2"]');answer.checked=true;answer.dispatchEvent(new w.Event('change',{bubbles:true}));
+   if(i===1){click('[data-action=previous]');assert.ok(w.document.querySelector('[name=answer]:checked'));w.document.querySelector('#question-form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));}
+   w.document.querySelector('#question-form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+  }
+  await new Promise(r=>setTimeout(r,15));assert.ok(text().includes('Coincidencias con personajes'));assert.equal(w.document.querySelectorAll('.axis-result').length,12);assert.ok([...w.document.querySelectorAll('.axis-result strong')].every(e=>e.textContent==='50 / 100'));
+  const saved=JSON.parse(w.localStorage.getItem('uruguay-compass-v1'));assert.equal(saved.completed,true);assert.equal(Object.keys(saved.answers).length,n);
+  if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false)}
+  await route('#comparaciones');assert.equal(w.document.querySelectorAll('.match-row').length,12);assert.equal(w.document.querySelectorAll('.match-row h3 a[href^="#partido/"]').length,6);
+  await route('#comparar/orsi');assert.equal(w.document.querySelectorAll('tbody tr').length,12);assert.ok([...w.document.querySelectorAll('tbody tr td:nth-child(3)')].every(e=>e.textContent!=='Sin evidencia')); // Orsi has all twelve program estimates.
+ }
+ for(const hash of ['#enciclopedia','#figuras','#partidos','#glosario','#historia','#metodologia','#faq','#eje/0','#ficha/artigas','#partido/fa']){await route(hash);assert.ok(w.document.querySelector('h1'));assert.ok(!text().includes('undefined'))}
+ await route('#glosario');const search=w.document.querySelector('input');search.value='<script>';search.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(w.document.querySelector('#search-empty').hidden,false);assert.equal(w.document.querySelectorAll('script').length,1);
+ await route('#correcciones');for(const[name,value]of [['subject','ANCAP <b>'],['message','Esta propuesta requiere una revisión de fuentes.'],['source','https://www.impo.com.uy/']])w.document.querySelector(`[name=${name}]`).value=value;
+ w.document.querySelector('form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));assert.equal(w.document.querySelector('#correction-output').hidden,false);assert.ok(w.document.querySelector('#correction-preview').textContent.includes('<b>'));assert.equal(w.document.querySelector('#correction-preview b'),null);assert.ok(!w.document.querySelector('#issue-link').href.includes('a0q'));
+ click('[data-action=theme]');assert.equal(w.document.documentElement.dataset.theme,'dark');
+ const beforeSkip=w.location.hash;click('.skip-link');assert.equal(w.location.hash,beforeSkip);assert.equal(w.document.activeElement.id,'main');
+ await route('#privacidad');click('[data-action=erase]');assert.equal(w.localStorage.getItem('uruguay-compass-v1'),null);
+ await route('#resultados');assert.ok(text().includes('Todavía falta tu perfil'));
+ await route('#__proto__');assert.ok(text().includes('No encontramos esa página'));
+ await route('#privacidad');const remove=w.Storage.prototype.removeItem;w.Storage.prototype.removeItem=()=>{throw new Error('Storage blocked')};click('[data-action=erase]');assert.ok(w.document.querySelector('#erase-status').textContent.includes('impidió borrar'));w.Storage.prototype.removeItem=remove;
+ dom.window.close();
+});
+

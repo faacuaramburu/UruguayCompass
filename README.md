@@ -1,46 +1,49 @@
 # Uruguay Compass — Los 12 Ejes
 
-Test político educativo sobre Uruguay, con doce puntajes independientes, comparaciones documentadas y una mini enciclopedia.
-
-**Estado: trabajo en curso.** Este commit guarda la portada A2 implementada y los módulos de preguntas, contexto, referencias políticas y cálculo. El flujo del cuestionario, resultados y enciclopedia todavía no está conectado a la interfaz. El botón «Empezar el test» y los enlaces internos son, por ahora, parte de la portada y no abren esas pantallas.
-
-## Continuar con una IA
-
-Leer primero [AGENTS.md](AGENTS.md), después [HANDOFF.md](HANDOFF.md) y el [brief completo](docs/BRIEF.md). El diseño ya fue elegido y aprobado; no hace falta volver a proponer estilos.
+Aplicación educativa sobre política uruguaya con doce posiciones independientes, test de 36/60/240 preguntas, comparación programática y enciclopedia.
 
 ## Ejecutar
 
-Requiere Node.js 20 o posterior. No hay dependencias de npm que instalar.
+Node.js 20.19+ (recomendado 22). Para servir la aplicación no se necesita instalar dependencias:
 
 ```sh
 npm start
 ```
 
-Abrir `http://127.0.0.1:4173/`.
+Abrir http://127.0.0.1:4173/. Para pruebas:
 
 ```sh
+npm ci
 npm test
 npm run check
 ```
 
-La carpeta `dist/` se puede servir con cualquier servidor estático. No abrir `index.html` mediante `file://`, porque los módulos JavaScript requieren HTTP.
+`dist/` es un sitio estático sin build ni dependencias externas de ejecución. Servir por HTTP, no `file://`. Las rutas hash permiten alojarlo en un subdirectorio, incluido GitHub Pages. No hay backend, cuentas propias ni analytics.
 
-## Diseño elegido
+## Funciones
 
-![A2, referencia aprobada](docs/design-a2.png)
+- Portada A2 aprobada, modos claro/oscuro y adaptación móvil.
+- Cuestionario de una afirmación por pantalla, cinco respuestas, progreso, anterior/siguiente y reanudación local.
+- Doce puntajes, radar y explicaciones con ambos polos.
+- Tres referencias cercanas y una lejana; todas las candidaturas y partidos; comparación por eje, fundamentos y fuentes.
+- Enciclopedia de doce ejes, 16 personajes, seis partidos, glosario con búsqueda e historia.
+- Metodología, FAQ, privacidad y borrado local.
+- Tarjeta PNG y compartir desde el dispositivo; reportes de corrección descargables o como borrador de Issue, nunca enviados automáticamente.
 
-Fondo claro, texto a la izquierda, radar ilustrativo a la derecha, selector discreto de duración y una acción principal. Las imágenes de referencia son para reproducir el diseño con HTML, CSS y gráficos de datos, no para usarlas como una interfaz rasterizada.
+## Diseño
 
-## Contenido y límites
+![Diseño A2 aprobado](docs/design-a2.png)
 
-- 240 afirmaciones: 20 por eje; versiones de 36, 60 y 240 preguntas.
-- 12 ejes, 26 términos de glosario, 12 hitos históricos y 10 respuestas de FAQ.
-- 16 figuras y 6 partidos con fuentes públicas.
-- La comparación equilibrada inicial contiene seis candidaturas de 2024, una por partido. Usa sus programas como referencias editoriales, no como una medición de convicciones personales.
-- La evidencia común para ese ranking cubre **cinco ejes**: economía, seguridad/libertades, comercio exterior, educación/seguridad social y ambiente/desarrollo. Los doce puntajes de la persona se calculan completos; no se deben anunciar afinidades documentadas en los doce ejes.
-- Las figuras históricas tienen fichas y ubicaciones parciales; todavía no existe una matriz histórica comparable que permita incluirlas en el ranking.
-- Es un recurso educativo, sin validación científica y sin recomendación de voto.
+Ver [DESIGN.md](DESIGN.md). Para continuar con una IA: [AGENTS.md](AGENTS.md), [HANDOFF.md](HANDOFF.md), [brief](docs/BRIEF.md).
 
-Las preguntas y los textos editoriales necesitan revisión humana. Las fuentes respaldan propuestas y hechos; no validan científicamente los números asignados.
+## Alcance de las comparaciones
 
-La tipografía Biryani se incluye localmente bajo SIL Open Font License: [licencia](dist/fonts/OFL.txt).
+Esta edición compara **seis candidaturas de 2024**, una por cada partido parlamentario, mediante el programa que representaron. Los índices usan los mismos **cinco ejes con evidencia común**. Los doce puntajes personales se muestran completos. Las figuras históricas tienen fichas y ubicaciones parciales, pero no se incluyen en el ranking sin evidencia comparable. No se reemplazan valores desconocidos por 50.
+
+Los números son estimaciones editoriales, sin validación científica. Una proximidad no significa pensar igual en todo ni apoyar un partido. Las fuentes respaldan propuestas, no certifican el número asignado.
+
+## Verificación
+
+Pruebas de lógica y DOM pasan, incluyendo los tres tests completos. Ver [detalle y límites](docs/VERIFICACION.md): en esta sesión el navegador automatizado estaba deshabilitado, por lo que la nueva interfaz requiere revisión visual de escritorio/móvil y exportación nativa. No se afirma que esa revisión haya ocurrido ni que esta versión esté desplegada.
+
+Biryani se sirve localmente bajo [SIL Open Font License](dist/fonts/OFL.txt).

@@ -1,4 +1,14 @@
 {
-  "name":"uruguay-compass-12-ejes","version":"1.0.0","private":true,"type":"module",
-  "scripts":{"start":"node scripts/serve.mjs","test":"node --test tests/*.test.mjs","check":"node scripts/check.mjs"}
+  "name": "uruguay-compass-12-ejes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
 }
