@@ -28,7 +28,8 @@ test('complete application flows, persistence, content, corrections and privacy'
    w.document.querySelector('#question-form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   }
   await new Promise(r=>setTimeout(r,15));assert.ok(text().includes('Coincidencias con personajes'));assert.equal(w.document.querySelectorAll('.axis-tile').length,12);assert.ok([...w.document.querySelectorAll('.axis-tile-heading>strong')].every(e=>e.textContent==='50/100'));
-  assert.equal(w.document.querySelectorAll('.results-index nav a').length,9);assert.equal(w.document.querySelectorAll('.model-row').length,5);
+  assert.equal(w.document.querySelectorAll('.results-index nav a').length,11);assert.equal(w.document.querySelectorAll('.model-row').length,5);
+  assert.equal(w.document.querySelector('.results-content>section').id,'ideology-panel');assert.equal(w.document.querySelector('.results-content>section:nth-child(2)').id,'scale-panel');assert.ok(w.document.querySelector('#scale-panel').textContent.includes('no etiquetas políticas'));assert.ok(w.document.querySelector('#ideology-panel h2').textContent.includes('equilibrio'));
   const ref=w.document.querySelector('#insight-reference');ref.value='salle';ref.dispatchEvent(new w.Event('change',{bubbles:true}));assert.ok(w.document.querySelector('#difference-content').textContent.includes('Gustavo Salle'));
   click('[data-jump="compass-panel"]');assert.equal(w.document.activeElement.id,'compass-panel');assert.equal(w.location.hash,'#resultados');
   assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,4);

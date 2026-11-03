@@ -23,3 +23,5 @@ La cercanía a un modelo = 100 menos distancia absoluta media. Un alto valor no 
 Foto local de la referencia principal con atribución, índice de coincidencia sobre cinco ejes, otras dos referencias y doce puntajes con sus polos 0/100. Las fotos no se consultan a terceros al exportar. La tarjeta no incluye respuestas individuales ni datos personales. El envío se realiza solo por una acción explícita.
 
 Verificación: pruebas de cálculo y DOM; la inspección visual de la nueva página y PNG permanece pendiente porque el navegador local está deshabilitado en esta sesión.
+
+La primera sección del resultado muestra ahora el modelo ideológico más cercano (con explicación de cobertura y empates). Inmediatamente después aparece una leyenda 0/50/100 visible antes de la lectura y de los ejes. Se aclara que izquierda/derecha describe el lado de cada barra y no una clasificación política universal: Mercado ocupa 0 y Estado 100, mientras Progresista ocupa 0 y Conservador 100.
