@@ -5,26 +5,26 @@ import {FIGURES} from '../dist/politics.js';
 import {hasMapEvidence,spectrumGroups,filteredSpectrum,renderSpectrumView,placeSpectrumLabels} from '../dist/spectrum.js';
 
 test('expanded catalog keeps evidence, unknowns and the balanced ranking separate',()=>{
- assert.equal(FIGURES.length,25);
- assert.equal(new Set(FIGURES.map(e=>e.id)).size,25);
+ assert.equal(FIGURES.length,50);
+ assert.equal(new Set(FIGURES.map(e=>e.id)).size,50);
  assert.equal(FIGURES.filter(e=>e.rankEligible).length,11);
- assert.equal(FIGURES.filter(hasMapEvidence).length,21);
+ assert.equal(FIGURES.filter(hasMapEvidence).length,23);
  for(const f of FIGURES.filter(hasMapEvidence))for(const axis of [0,3]){
   const evidence=f.evidence.find(e=>e.axis===axis);assert.ok(f.sources[evidence.source].url.startsWith('https://'));assert.ok(evidence.note.length>20);assert.ok(f.mapBasis);
  }
- for(const id of ['artigas','batlle','herrera'])assert.equal(FIGURES.find(e=>e.id===id),undefined);
+ for(const id of ['artigas','batlle','herrera']){const f=FIGURES.find(e=>e.id===id);assert.ok(f.historical);assert.ok(f.profile.every(v=>v===null));assert.equal(f.rankEligible,false);}
  const jorge=FIGURES.find(e=>e.id==='jorge-batlle');assert.equal(hasMapEvidence(jorge),false);assert.equal(jorge.profile[3],null);
  assert.equal(hasMapEvidence({...FIGURES[0],evidence:[]}),false);
 });
 test('shared coordinates retain every name without moving data points',()=>{
  const groups=spectrumGroups(FIGURES);
- assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),21);
+ assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),23);
  const fa=groups.find(g=>g.figures.some(e=>e.id==='orsi'));assert.deepEqual(fa.figures.map(e=>e.id).sort(),['cosse','orsi']);assert.equal(fa.economy,80);assert.equal(fa.security,40);
  for(const g of groups)for(const f of g.figures)assert.deepEqual([g.economy,g.security],[f.profile[0],f.profile[3]]);
 });
 test('filters support accents, party membership and unknown historical profiles',()=>{
  assert.equal(filteredSpectrum(FIGURES,{query:'cesar'}).at(0).id,'vega');
- assert.deepEqual(filteredSpectrum(FIGURES,{party:'historic'}),[]);
+ assert.deepEqual(filteredSpectrum(FIGURES,{party:'historic'}).map(f=>f.id),['artigas','latorre']);
  assert.ok(filteredSpectrum(FIGURES,{party:'pn'}).every(e=>e.party==='pn'));
  assert.deepEqual(filteredSpectrum(FIGURES,{query:'<script>'}),[]);
 });
@@ -39,7 +39,7 @@ test('number labels avoid one another while source points remain fixed',()=>{
 test('map and full catalog stay accessible, including missing data and exact overlaps',()=>{
  const p=Array(12).fill(50);p[0]=80;p[3]=40;
  const dom=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'cosse'}));const d=dom.window.document;
- assert.equal(d.querySelectorAll('.spectrum-reference').length,25);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
+ assert.equal(d.querySelectorAll('.spectrum-reference').length,50);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
  assert.equal(d.querySelector('.spectrum-user-label').textContent,'Vos');assert.equal(d.querySelectorAll('.spectrum-user-ring').length,1);
  assert.equal(d.querySelectorAll('.spectrum-selected-label').length,0);
  assert.equal(d.querySelector('.spectrum-detail h3').textContent,'Comparación con vos');assert.equal(d.querySelector('.spectrum-catalog').open,false);

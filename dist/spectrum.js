@@ -39,7 +39,7 @@ export function placeSpectrumLabels(groups,profile){
 const missingAxes=figure=>[!Number.isFinite(figure.profile[0])?'economía':null,!Number.isFinite(figure.profile[3])?'seguridad y libertades':null].filter(Boolean).join(' y ')||'evidencia comparable';
 export function filteredSpectrum(figures,{query='',party='all'}={}){
  const needle=normalize(query.trim());
- return figures.filter(e=>(party==='all'||(e.party||'historic')===party)&&normalize(`${e.name} ${e.partyName}`).includes(needle)).sort((a,b)=>a.name.localeCompare(b.name,'es'));
+ return figures.filter(e=>(party==='all'||(e.party||'historic')===party)&&normalize(`${e.name} ${e.partyName} ${(e.aliases||[]).join(' ')}`).includes(needle)).sort((a,b)=>a.name.localeCompare(b.name,'es'));
 }
 export function renderSpectrumGraphic(profile,groups,selectedId){
  const user=plotPosition(profile[0],profile[3]);
@@ -82,6 +82,6 @@ export function renderSpectrumView(profile,figures,options={}){
  return `<p class="spectrum-count" role="status">${mapped.length} referentes en ${groups.length} ubicaciones${options.query||options.party&&options.party!=='all'?' con estos filtros':''}. Tocá un número para comparar.</p>${selection(selected,selectedGroup)}<div class="spectrum-map-layout"><figure class="spectrum-figure">${renderSpectrumGraphic(profile,groups,selected?.id)}<figcaption><span class="spectrum-legend-user">Azul: tus respuestas</span><span>Números: referentes políticos</span><span>Las líneas unen cada número con su posición real.</span></figcaption></figure>${detail(selected,profile,selectedGroup)}</div><details class="spectrum-catalog" ${options.query?'open':''}><summary>Ver lista de referentes (${matching.length})</summary><div class="spectrum-reference-list">${list(mapped)||'<p>No hay referentes con ubicación para estos filtros.</p>'}</div>${missing.length?`<details class="spectrum-missing"><summary>Sin datos suficientes para el mapa (${missing.length})</summary><p>Estas fichas conservan sus fuentes, pero falta evidencia comparable en uno o ambos ejes.</p><div class="spectrum-reference-list">${list(missing)}</div></details>`:''}</details>`;
 }
 export function renderSpectrum(profile,figures,options={}){
- const parties=[...new Map(figures.map(e=>[e.party||'historic',e.partyName])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'es'));
+ const parties=[...new Map(figures.map(e=>[e.party||'historic',e.party?e.partyName:'Referentes históricos'])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'es'));
  return `<div class="spectrum-tools"><label>Buscar un político<input type="search" id="spectrum-search" placeholder="Nombre o partido" value="${esc(options.query||'')}" autocomplete="off"></label><label>Partido<select id="spectrum-party"><option value="all">Todos los partidos</option>${parties.map(([id,name])=>`<option value="${esc(id)}" ${options.party===id?'selected':''}>${esc(name)}</option>`).join('')}</select></label><button type="button" class="secondary" data-spectrum-reset>Ver todos</button></div><div id="spectrum-view">${renderSpectrumView(profile,figures,options)}</div>`;
 }

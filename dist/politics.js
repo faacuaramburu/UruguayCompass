@@ -1,6 +1,7 @@
 // Editorial dataset. The source documents support the proposals; the numbers are our estimates.
 import {expandFigures} from './figure-expansion.js';
 import {extendComparisons} from './comparison-profiles.js';
+import {completeFigureCatalog} from './figure-catalog.js';
 const PROGRAM_ROOT = 'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const REPRESENTATION = {title:'Cámara de Representantes · Diario de Sesiones, 18/02/2025, pp. 209–212',url:'https://documentos.diputados.gub.uy/docs/L50/Diario/d4549.pdf#page=209'};
 const CANDIDATURES = {title:'Corte Electoral · Acta 10739, elección nacional de 2024',url:'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf'};
@@ -104,10 +105,10 @@ const BASE_FIGURES = [
     [{title:'Presidencia · Proclamación de la fórmula Orsi–Cosse',url:'https://www.gub.uy/presidencia/institucional/estructura-del-organismo/yamandu-orsi'},{title:'Uruguay XXI · Transición presidencial de 2025',url:'https://www.uruguayxxi.gub.uy/es/noticias/articulo/uruguay-celebra-su-continuidad-democratica-y-estabilidad-con-la-asuncion-de-yamandu-orsi-a-la-presidencia/'}])
 ];
 
-export const FIGURES=extendComparisons(expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT));
+export const FIGURES=completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT)),PARTIES);
 
 export const POLITICAL_META = {
-  updatedAt:'2026-11-02',
+  updatedAt:'2026-11-03',
   period:'Programas de candidaturas de 2009, 2014, 2019 y 2024',
   representationSource:REPRESENTATION,
   candidateSource:CANDIDATURES,
@@ -116,7 +117,7 @@ export const POLITICAL_META = {
   balanceNote:'La comparación entre personas incluye programas de distintas elecciones: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
   limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
   individualLimit:'Los once perfiles comparables representan programas de candidaturas fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'Las figuras de hace un siglo o más sin datos comparables se excluyen del catálogo. Las referencias recientes con cobertura parcial no entran en el ranking de cinco ejes.',
+  historicalLimit:'Las figuras históricas tienen fichas de contexto. No se trasladan sus propuestas a instituciones posteriores a su época. Las referencias con cobertura parcial quedan fuera del ranking de cinco ejes.',
   missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };
