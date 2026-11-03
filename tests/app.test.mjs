@@ -26,6 +26,7 @@ test('complete application flows, persistence, content, corrections and privacy'
    w.document.querySelector('#question-form').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
   }
   await new Promise(r=>setTimeout(r,15));assert.ok(text().includes('Coincidencias con personajes'));assert.equal(w.document.querySelectorAll('.axis-result').length,12);assert.ok([...w.document.querySelectorAll('.axis-result strong')].every(e=>e.textContent==='50 / 100'));
+  assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,4);
   const saved=JSON.parse(w.localStorage.getItem('uruguay-compass-v1'));assert.equal(saved.completed,true);assert.equal(Object.keys(saved.answers).length,n);
   if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false)}
   await route('#comparaciones');assert.equal(w.document.querySelectorAll('.match-row').length,12);assert.equal(w.document.querySelectorAll('.match-row h3 a[href^="#partido/"]').length,6);
