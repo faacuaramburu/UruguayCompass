@@ -1,0 +1,8 @@
+node_modules/
+.openai/
+.impeccable/
+.env*
+!/.env.example
+*.zip
+*.log
+coverage/

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es-UY">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff"><meta name="description" content="Explorá tus posturas políticas en doce ejes y conocé coincidencias con figuras uruguayas. Un test educativo, privado y sin registro.">
+<title>Uruguay Compass — Los 12 Ejes</title>
+<link rel="icon" href="sun.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Ir al contenido</a>
+<div id="app">
+<div class="home-frame">
+<header class="home-header">
+<a class="sun" href="#inicio" aria-label="Uruguay Compass, inicio"><img src="sun.svg" alt="" width="60" height="60"></a>
+<a class="brand" href="#inicio"><strong>Uruguay Compass</strong><span> — Los 12 Ejes</span></a>
+<nav aria-label="Principal"><a class="nav-encyclopedia" href="#enciclopedia">Enciclopedia</a><a class="nav-methodology" href="#metodologia">Metodología</a></nav>
+</header>
+<main id="main" tabindex="-1">
+<section class="home-intro" aria-labelledby="home-title">
+<h1 id="home-title">¿A qué personaje político<br class="desktop-br"> se acercan tus ideas?</h1>
+<p class="home-description">Explorá tus posturas en doce ejes y descubrí<br class="desktop-br"> coincidencias con figuras uruguayas.</p>
+<fieldset class="version-choice"><legend class="sr-only">Elegí la duración del test</legend>
+<label><input type="radio" name="version" value="short" checked><span><strong>Corta</strong> · 36 preguntas · 5 min</span></label>
+<label><input type="radio" name="version" value="full"><span><strong>Completa</strong> · 60 preguntas · 9 min</span></label>
+<label><input type="radio" name="version" value="extreme"><span><strong>Extrema</strong> · 240 preguntas · 30 min</span></label>
+</fieldset>
+<button class="primary home-start" data-action="start">Empezar el test</button>
+</section>
+<figure class="sample-chart" aria-labelledby="sample-title"><figcaption id="sample-title">Perfil de ejemplo</figcaption><span class="chart-economy">Economía</span><canvas id="home-radar" width="850" height="852" aria-label="Gráfico ilustrativo de doce ejes; no representa a una persona ni un resultado real.">Perfil ilustrativo: doce posiciones distintas. Los resultados reales incluyen una tabla accesible.</canvas><span class="chart-work">Trabajo</span><span class="chart-environment">Ambiente</span></figure>
+</main>
+<footer class="home-footer"><p class="closing">Tus respuestas describen posturas. No te definen.</p><p class="home-disclaimer">Educativo. No es una recomendación de voto.</p></footer>
+</div>
+</div>
+<div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+<script type="module" src="hero.js"></script>
+</body></html>

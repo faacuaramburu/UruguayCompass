@@ -1,0 +1,20 @@
+{
+  "version": "2026-11-02-editorial-1",
+  "total": 240,
+  "axes": 12,
+  "perAxis": 20,
+  "versions": {"corta": 36, "completa": 60, "extrema": 240},
+  "selection": "Corta: order <= 3; Completa: order <= 5; Extrema: todas. El orden intercala los doce ejes por ronda.",
+  "direction": "+1: el acuerdo acerca al polo derecho. -1: el acuerdo acerca al polo izquierdo.",
+  "balance": "Cada eje tiene diez afirmaciones por orientación. Las selecciones impares contienen ambas orientaciones: 2/1 en Corta y 3/2 en Completa.",
+  "authorship": "Contenido editorial original para una aplicación educativa; no es una escala psicométrica validada.",
+  "review": "Las afirmaciones expresan propuestas normativas, no afirman resultados históricos, cifras ni posturas de personajes. Se revisaron conteo, unicidad textual, campos, orientaciones y cobertura por versión.",
+  "limits": [
+    "Las preguntas no tienen calibración empírica de dificultad o discriminación.",
+    "Algunas políticas involucran más de un eje; se asignan al tema predominante.",
+    "Las versiones de distinta longitud pueden producir puntajes diferentes.",
+    "Memoria histórica y Fuerzas Armadas reúne posiciones que no necesariamente cambian juntas.",
+    "Educación y seguridad social reúne dos ámbitos que deben leerse también por separado en las explicaciones.",
+    "La neutralidad editorial debe revisarse con participación plural y fuentes antes de presentar el instrumento como definitivo."
+  ]
+}
