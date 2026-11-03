@@ -39,6 +39,8 @@ test('complete application flows, persistence, content, corrections and privacy'
   click('[data-jump="compass-panel"]');assert.equal(w.document.activeElement.id,'compass-panel');assert.equal(w.location.hash,'#resultados');
   assert.ok(w.document.querySelector('#compass-panel svg[role="group"]'));assert.equal(w.document.querySelectorAll('#compass-panel .compass-values dd strong').length,2);assert.equal(w.document.querySelector('.compass-point-label').textContent,'Vos');
   assert.equal(w.document.querySelectorAll('.spectrum-reference').length,28);
+  assert.ok(w.document.querySelector('.radar-details svg#result-radar'));
+  assert.equal(w.document.querySelectorAll('.radar-details .radar-key li').length,12);
   if(version==='short'){
    const spectrumSearch=w.document.querySelector('#spectrum-search');spectrumSearch.focus();spectrumSearch.value='talvi';spectrumSearch.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(w.document.activeElement,spectrumSearch);assert.equal(w.document.querySelectorAll('.spectrum-reference').length,1);assert.ok(w.document.querySelector('.spectrum-detail').textContent.includes('Ernesto Talvi'));
    const spectrumParty=w.document.querySelector('#spectrum-party');spectrumParty.value='pn';spectrumParty.dispatchEvent(new w.Event('change',{bubbles:true}));assert.equal(w.document.querySelectorAll('.spectrum-reference').length,0);assert.ok(w.document.querySelector('.spectrum-user-label'));
