@@ -35,3 +35,9 @@ El primer panel separa «¿Qué propone este modelo?» de las respuestas. A su d
 La brújula usa ahora un gráfico SVG de datos con cuatro zonas de tonos equivalentes, ejes explícitos, proyecciones punteadas hacia el centro y un marcador «Vos». Se conservan las coordenadas originales: x=100−economía e y=100−seguridad. Los valores y su orientación aparecen también como texto. No requiere interacción para comprenderse; la explicación de alcance se despliega con teclado. Pruebas cubren centro, extremos, límites, descripción accesible y ubicación del marcador. La revisión visual nueva sigue pendiente por navegador local deshabilitado.
 
 La brújula incluye un resumen combinado de economía y seguridad: nueve combinaciones según orientación a cada polo o posición intermedia. Los umbrales son los mismos que en los demás ejes (hasta 40, centro 41–59, desde 60); a menos de veinte puntos del centro, el texto usa «algo más de peso». El resumen describe preferencias de esos dos temas y no asigna una identidad ideológica.
+
+## Revisión de textos informativos
+
+Por pedido del usuario, los párrafos bajo las barras dejan de repetir el número y el nombre del polo. Hay ejemplos de aplicación, decisiones de diseño y cuestiones a evaluar para cada orientación; los promedios centrales tienen preguntas específicas del tema. Son contexto educativo compatible con una orientación, no propuestas individuales atribuidas automáticamente a quien responde. Los puntajes y etiquetas siguen visibles en la barra.
+
+La brújula también cambia: explica combinaciones mediante ejemplos de decisiones de política económica y seguridad, en lugar de repetir que la persona se inclina a un polo. Se mantienen el cálculo, las coordenadas y las comparaciones. Evitar volver a fórmulas repetitivas como «tu puntaje indica inclinación hacia…» en estos párrafos.

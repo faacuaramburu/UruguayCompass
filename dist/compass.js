@@ -8,10 +8,24 @@ export function describeCompass(economy,security){
   center:{low:'Economía intermedia y libertades individuales',center:'Una posición intermedia en ambos ejes',high:'Economía intermedia y mayor control de seguridad'},
   high:{low:'Participación estatal y libertades individuales',center:'Participación estatal, con equilibrio en seguridad',high:'Participación estatal y mayor control de seguridad'}
  };
- const emphasis=n=>Math.abs(n-50)<20?'algo más de peso':'más peso';
- const economyText=e==='center'?'Tus respuestas económicas quedan entre el protagonismo del mercado y la participación estatal.':e==='low'?`Tus respuestas dan ${emphasis(economy)} a la iniciativa privada y la competencia que a un papel económico más activo del Estado.`:`Tus respuestas dan ${emphasis(economy)} a la participación y la regulación del Estado que al protagonismo del mercado.`;
- const securityText=s==='center'?'En seguridad, quedan entre ampliar los instrumentos de control y priorizar las garantías individuales.':s==='low'?`En seguridad, dan ${emphasis(security)} a las garantías y libertades individuales que a ampliar los instrumentos de control.`:`En seguridad, dan ${emphasis(security)} a los instrumentos de control que a priorizar las garantías individuales ante esas medidas.`;
- return {title:titles[e][s],text:`${economyText} ${securityText}${e==='center'||s==='center'?' Una posición intermedia puede combinar preferencias distintas; no significa estar de acuerdo con todas las propuestas.':''}`};
+ const examples={
+  low:{
+   low:'Una propuesta compatible sería abrir un servicio a la competencia y, al mismo tiempo, exigir autorización y límites para la vigilancia policial. La combinación pone límites distintos al poder estatal en la economía y en la seguridad: cada medida debe justificarse por lo que hace y cómo se controla.',
+   center:'Una propuesta compatible sería facilitar la entrada de empresas a un sector y evaluar las medidas de seguridad caso a caso. La pregunta que esta combinación deja abierta es qué condiciones exigís para ampliar una facultad policial: eficacia, autorización previa, revisión o límites de duración.',
+   high:'Una propuesta compatible sería simplificar la actividad empresarial y aumentar los recursos de investigación policial. La combinación requiere separar dos decisiones: qué papel cumple el Estado como productor o regulador y qué facultades tiene para prevenir e investigar delitos.'
+  },
+  center:{
+   low:'Podrías combinar empresas públicas en algunos servicios y competencia privada en otros, manteniendo límites estrictos a la vigilancia. Para profundizar, conviene mirar qué sectores querés gestionar públicamente y qué garantías exigirías ante una medida de seguridad.',
+   center:'El punto central puede resultar de apoyar propuestas distintas según el caso. Una forma de profundizar es elegir un servicio concreto y una medida de seguridad: ¿quién debería prestarlo y bajo qué reglas?, ¿qué facultades aceptarías y con qué supervisión? Las respuestas individuales ayudan a ver esa diferencia.',
+   high:'Podrías combinar gestión pública y privada según el servicio y respaldar más herramientas de investigación. El debate práctico pasa por definir qué instituciones las administran, qué objetivos deben cumplir y qué controles permiten evaluar su actuación.'
+  },
+  high:{
+   low:'Una propuesta compatible sería sostener una empresa pública y exigir controles judiciales estrictos para la vigilancia. Esta combinación distingue la capacidad del Estado para prestar servicios de sus facultades sobre la vida privada. El diseño debe atender tanto la calidad de los servicios como las garantías de las personas.',
+   center:'Una propuesta compatible sería invertir en servicios públicos y condicionar cada medida de seguridad a sus resultados y garantías. La discusión reúne capacidad de gestión, financiamiento y controles: un mismo apoyo a la acción estatal puede tener condiciones diferentes en cada área.',
+   high:'Una propuesta compatible sería ampliar servicios públicos y reforzar la capacidad de investigación policial. Ese conjunto exige recursos y buena coordinación institucional; también plantea cómo supervisar las decisiones, evaluar sus resultados y responder ante errores o abusos.'
+  }
+ };
+ return {title:titles[e][s],text:examples[e][s]};
 }
 export function compassCoordinates(economy,security){
  const bounded=n=>Math.max(0,Math.min(100,Number.isFinite(n)?n:50));
