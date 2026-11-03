@@ -19,7 +19,7 @@ export function explainAxis(axis,value,meta){
  if(distance<10)return `${value}/100: tus respuestas quedan cerca del punto intermedio entre ${meta.left} y ${meta.right}. Puede surgir de respuestas neutras o de combinar preferencias en ambos sentidos.`;
  const side=value<50?0:1,pole=side===0?meta.left:meta.right;
  const strength=distance>=35?'marcada':distance>=20?'moderada':'leve';
- return `${value}/100: tus respuestas muestran una inclinación ${strength} hacia ${pole}. En los temas preguntados, dan más peso a ${AXIS_MEANINGS[axis][side]} que a ${AXIS_MEANINGS[axis][1-side]}.`;
+ return `${value}/100: tus respuestas muestran una inclinación ${strength} hacia ${pole}. Dan más peso a ${AXIS_MEANINGS[axis][side]} que a ${AXIS_MEANINGS[axis][1-side]}.`;
 }
 export function responseStats(questions,answers){return Array.from({length:12},(_,axis)=>{const qs=questions.filter(q=>q.axis===axis);const values=qs.map(q=>(answers[q.id]-2)*q.direction);return {count:qs.length,neutral:values.filter(v=>v===0).length,left:values.filter(v=>v<0).length,right:values.filter(v=>v>0).length,intensity:qs.length?Math.round(values.reduce((s,v)=>s+Math.abs(v),0)/(2*qs.length)*100):0}})}
 export function strongestAxes(profile){return profile.map((value,axis)=>({axis,value,distance:Math.abs(value-50)})).filter(x=>x.distance>=10).sort((a,b)=>b.distance-a.distance||a.axis-b.axis)}
