@@ -1,5 +1,18 @@
 // Proyección de datos, no clasificación ideológica. Economía se invierte en X
 // para conservar Estado a la izquierda y Mercado a la derecha.
+export function describeCompass(economy,security){
+ const category=n=>n<=40?'low':n>=60?'high':'center';
+ const e=category(economy),s=category(security);
+ const titles={
+  low:{low:'Mercado y libertades individuales',center:'Mercado, con equilibrio en seguridad',high:'Mercado y mayor control de seguridad'},
+  center:{low:'Economía intermedia y libertades individuales',center:'Una posición intermedia en ambos ejes',high:'Economía intermedia y mayor control de seguridad'},
+  high:{low:'Participación estatal y libertades individuales',center:'Participación estatal, con equilibrio en seguridad',high:'Participación estatal y mayor control de seguridad'}
+ };
+ const emphasis=n=>Math.abs(n-50)<20?'algo más de peso':'más peso';
+ const economyText=e==='center'?'Tus respuestas económicas quedan entre el protagonismo del mercado y la participación estatal.':e==='low'?`Tus respuestas dan ${emphasis(economy)} a la iniciativa privada y la competencia que a un papel económico más activo del Estado.`:`Tus respuestas dan ${emphasis(economy)} a la participación y la regulación del Estado que al protagonismo del mercado.`;
+ const securityText=s==='center'?'En seguridad, quedan entre ampliar los instrumentos de control y priorizar las garantías individuales.':s==='low'?`En seguridad, dan ${emphasis(security)} a las garantías y libertades individuales que a ampliar los instrumentos de control.`:`En seguridad, dan ${emphasis(security)} a los instrumentos de control que a priorizar las garantías individuales ante esas medidas.`;
+ return {title:titles[e][s],text:`${economyText} ${securityText}${e==='center'||s==='center'?' Una posición intermedia puede combinar preferencias distintas; no significa estar de acuerdo con todas las propuestas.':''}`};
+}
 export function compassCoordinates(economy,security){
  const bounded=n=>Math.max(0,Math.min(100,Number.isFinite(n)?n:50));
  return {x:60+(100-bounded(economy))*2.6,y:55+(100-bounded(security))*2.6};
