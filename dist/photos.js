@@ -86,5 +86,109 @@ export const PHOTOS = {
     "note": "Recorte de encuadre en la interfaz; archivo original conservado.",
     "src": "images/lacalle.jpg",
     "source": "https://commons.wikimedia.org/wiki/File%3AFoto_Oficial_Presidente_Luis_Lacalle_Pou_(cropped).jpg"
+  },
+  "astori": {
+    "src": "images/astori.jpg",
+    "author": "Zeroth",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Danilo_Astori_2011.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "argimon": {
+    "src": "images/argimon.jpg",
+    "author": "Coto1510",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Beatriz_Argim%C3%B3n_PN_septiembre_2019_(cropped).jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "cosse": {
+    "src": "images/cosse.jpg",
+    "author": "Metodo3356",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:CosseCarolina.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "raffo": {
+    "src": "images/raffo.jpg",
+    "author": "Ganímedes",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Laura_Raffo_Set_2020_cropped.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "sartori": {
+    "src": "images/sartori.png",
+    "author": "Desayunos informales",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Juan_Jos%C3%A9_Sartori_(cropped).png",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "bordaberry": {
+    "src": "images/bordaberry.jpg",
+    "author": "Embajada de EEUU en Uruguay.",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Pedrobordaberry.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "larranaga": {
+    "src": "images/larranaga.jpg",
+    "author": "Andrea Mazza",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jorge_Larra%C3%B1aga_2009.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "silva": {
+    "src": "images/silva.png",
+    "author": "Desayunos Informales",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Robert_Silva_2023_(cropped).png",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "ripoll": {
+    "src": "images/ripoll.png",
+    "author": "Desayunos informales",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Valeria_Ripoll.png",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "quintana": {
+    "src": "images/quintana.png",
+    "author": "Desayunos Informales",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lorena_Quintana.png",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "bottero": {
+    "src": "images/bottero.jpg",
+    "author": "Desayunos informales.",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:M%C3%B3nica_Bottero_(cropped).jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "lust": {
+    "src": "images/lust.jpg",
+    "author": "Desayunos Informales",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lust_cropped.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+  },
+  "vega": {
+    "src": "images/vega.jpg",
+    "author": "Marinna",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9sar_Vega.jpg",
+    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
   }
 };

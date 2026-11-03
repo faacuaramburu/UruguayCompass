@@ -7,8 +7,8 @@ import {hasMapEvidence,spectrumGroups,filteredSpectrum,renderSpectrumView,placeS
 test('expanded catalog keeps evidence, unknowns and the balanced ranking separate',()=>{
  assert.equal(FIGURES.length,50);
  assert.equal(new Set(FIGURES.map(e=>e.id)).size,50);
- assert.equal(FIGURES.filter(e=>e.rankEligible).length,11);
- assert.equal(FIGURES.filter(hasMapEvidence).length,23);
+ assert.equal(FIGURES.filter(e=>e.rankEligible).length,26);
+ assert.equal(FIGURES.filter(hasMapEvidence).length,27);
  for(const f of FIGURES.filter(hasMapEvidence))for(const axis of [0,3]){
   const evidence=f.evidence.find(e=>e.axis===axis);assert.ok(f.sources[evidence.source].url.startsWith('https://'));assert.ok(evidence.note.length>20);assert.ok(f.mapBasis);
  }
@@ -18,7 +18,7 @@ test('expanded catalog keeps evidence, unknowns and the balanced ranking separat
 });
 test('shared coordinates retain every name without moving data points',()=>{
  const groups=spectrumGroups(FIGURES);
- assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),23);
+ assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),27);
  const fa=groups.find(g=>g.figures.some(e=>e.id==='orsi'));assert.deepEqual(fa.figures.map(e=>e.id).sort(),['cosse','orsi']);assert.equal(fa.economy,80);assert.equal(fa.security,40);
  for(const g of groups)for(const f of g.figures)assert.deepEqual([g.economy,g.security],[f.profile[0],f.profile[3]]);
 });

@@ -7,13 +7,13 @@ import {PHOTOS} from '../dist/photos.js';
 
 test('older candidacies can win the same five-axis comparison without filling unknowns',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
- assert.equal(eligible.length,11);
+ assert.equal(eligible.length,26);
  assert.deepEqual(sharedAxes(eligible),COMPARISON_AXES);
  for(const [id,year] of [['mujica',2009],['vazquez',2014],['lacalle',2019],['martinez',2019],['talvi',2019]]){
   const f=eligible.find(e=>e.id===id);
   const profile=f.profile.map(n=>n??50);
   const result=rankProfiles(profile,eligible);
-  assert.equal(result.ranked[0].entity.id,id,`${id} can be the closest reference`);
+  assert.ok(result.ranked.some(x=>x.entity.id===id&&x.score===result.ranked[0].score),`${id} can be a closest reference`);
   assert.equal(result.ranked[0].score,100);
   assert.equal(f.comparisonLabel,`Programa de candidatura de ${year}`);
   assert.equal(f.profile.filter(n=>n===null).length,7);

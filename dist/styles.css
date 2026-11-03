@@ -182,3 +182,9 @@ html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graph
 @media(max-width:600px){.spectrum-selection h3{font-size:20px}.spectrum-selection-number{flex-basis:30px;height:30px;font-size:18px}.spectrum-selection>a{flex-basis:100%;margin-left:44px}.spectrum-selection>div{flex-basis:calc(100% - 44px)}.spectrum-user-reading h3{font-size:20px}.spectrum-user-reading>p{font-size:13px}.spectrum-tools .secondary{width:100%}.spectrum-graphic{width:calc(100% + 24px);max-width:none;margin-left:-12px}.spectrum-edge{font-size:21px}}
 
 .spectrum-axis-comparison .pole-labels{margin:8px 0 0}.spectrum-detail .spectrum-detail-meta{margin-bottom:12px}
+
+.closest-reference-picker{display:block;clear:both;font-size:12px;line-height:1.7;margin:18px 0}.closest-reference-picker select{display:block;width:100%;min-width:0;margin-top:8px;font:inherit}.card-preview-person .card-tie{grid-column:1/-1}.ranking-coverage{margin-top:-6px;margin-bottom:28px;max-width:80ch}
+
+.portrait-placeholder>div{display:grid;place-items:center;min-height:130px;aspect-ratio:5/6;background:var(--panel);border:1px solid var(--line);color:var(--muted);font:700 40px var(--display)}
+
+.entity-status{display:block;font-size:10px;line-height:1.8;font-weight:400;color:var(--muted);margin-top:4px}

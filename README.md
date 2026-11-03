@@ -20,17 +20,17 @@ Your results show separate scores for economy, taxation, labor, security, social
 
 ## Understand your results
 
-- **Closest political matches:** compare your answers with 11 presidential candidacies from 2009, 2014, 2019, and 2024, with portraits, source documents, and a breakdown of similarities and differences. Party comparisons use the same five shared axes for every entry.
-- **Political spectrum:** see your position alongside 23 documented political figures on an economy and security map. Search by name, filter by party, or select a number to identify its figures and read the evidence. People who share coordinates remain grouped together.
+- **Closest political matches:** compare your answers with 26 documented political references from 2009, 2014, 2019, and 2024, with portraits, source documents, and a breakdown of similarities and differences. Every ranked reference uses the same five shared topics. Shared electoral programs produce visible ties; you can choose a tied figure for the portrait and export card without changing the score.
+- **Political spectrum:** see your position alongside 27 documented political figures on an economy and security map. Search by name, filter by party, or select a number to identify its figures and read the evidence. People who share coordinates remain grouped together.
 - **Your twelve axes:** read plain-language explanations, review the answers behind each score, inside an individual disclosure for each axis, and switch to a labeled radar chart.
 - **Interpretations:** explore five educational ideological models, expressed priorities, and comparisons with individual references.
 - **Shareable result:** generate a PNG card with your closest figure, party comparison, and twelve scores. Saving or sharing requires an explicit action.
 
-These are educational, editorial comparisons, not a scientifically validated assessment or a voting recommendation. The main ranking compares campaign programs, not a complete reconstruction of a person's beliefs. Older programs are dated explicitly; partial profiles stay outside the ranking. Historical figures have contextual biographies; they are not assigned positions on institutions or debates that came after their time. Sources support the documented positions; the numerical placements are editorial estimates. Missing evidence stays missing rather than becoming a score of 50.
+These are educational, editorial comparisons, not a scientifically validated assessment or a voting recommendation. The main ranking compares campaign programs, not a complete reconstruction of a person's beliefs. Presidential programs, primary-election proposals, and shared tickets are dated and identified explicitly; partial profiles stay outside the ranking. Saved answers automatically use the current comparison dataset. Historical figures have contextual biographies; they are not assigned positions on institutions or debates that came after their time. Sources support the documented positions; the numerical placements are editorial estimates. Missing evidence stays missing rather than becoming a score of 50.
 
 ## Explore the encyclopedia
 
-Browse explanations of all twelve axes, profiles of **50 political figures** and **six parties**, a searchable glossary, and a political history timeline. The catalog includes contemporary and historical references. Twenty-seven profiles stay outside the two-axis map: their evidence is partial or their historical context cannot be mapped onto modern debates. Their biographies and sources remain accessible.
+Browse explanations of all twelve axes, profiles of **50 political figures** and **six parties**, a searchable glossary, and a political history timeline. The catalog includes contemporary and historical references. Twenty-three profiles stay outside the two-axis map: their evidence is partial or their historical context cannot be mapped onto modern debates. Their biographies and sources remain accessible.
 
 The methodology and FAQ explain how scores and comparisons work. Found an error or disagree with a placement? Use the correction form to prepare a report, or [open a GitHub issue](https://github.com/faacuaramburu/UruguayCompass/issues) with supporting sources. Reports are never submitted automatically.
 

@@ -22,14 +22,14 @@ test('all 32 requested figures have distinct sourced profiles, including restore
  assert.equal(filteredSpectrum(FIGURES,{query:'Bernardo Berro'})[0].id,'berro');
 });
 
-test('vicepresidential formula references share dated coordinates without changing the presidential ranking',()=>{
+test('vicepresidential formula references share dated coordinates also become real results on the same common coverage',()=>{
  const groups=spectrumGroups(FIGURES);
  for(const [vice,president,year] of [['astori','mujica',2009],['argimon','lacalle',2019]]){
   const a=FIGURES.find(f=>f.id===vice),b=FIGURES.find(f=>f.id===president);
-  assert.equal(a.rankEligible,false);assert.ok(a.mapBasis.includes(year));
+  assert.equal(a.rankEligible,true);assert.ok(a.mapBasis.includes(year));
   assert.deepEqual([a.profile[0],a.profile[3]],[b.profile[0],b.profile[3]]);
   assert.ok(groups.some(g=>g.figures.some(f=>f.id===vice)&&g.figures.some(f=>f.id===president)));
-  assert.equal(a.profile.filter(v=>v===null).length,10);
+  assert.equal(a.profile.filter(v=>v===null).length,7);
  }
- assert.equal(FIGURES.filter(f=>f.rankEligible).length,11);
+ assert.equal(FIGURES.filter(f=>f.rankEligible).length,26);
 });

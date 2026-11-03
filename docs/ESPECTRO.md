@@ -6,7 +6,7 @@ La brújula de resultados se amplió por pedido del usuario. Mantiene economía 
 
 Hay 50 figuras. El catálogo incorpora todos los 32 nombres solicitados, incluidos los históricos. Las fichas históricas describen su época y enlazan fuentes; no reciben puntajes contemporáneos ni entran al ranking.
 
-23 tienen evidencia para economía y seguridad. Las otras 27 conservan sus fuentes y su contexto sin coordenadas. Un dato parcial económico no permite completar seguridad con el centro de la escala. Danilo Astori y Beatriz Argimón comparten en el mapa el programa de las fórmulas de 2009 y 2019 que integraron, respectivamente; no se suman como referencias duplicadas al ranking.
+27 tienen evidencia para economía y seguridad. Las otras 23 conservan sus fuentes y su contexto sin coordenadas. Un dato parcial económico no permite completar seguridad con el centro de la escala. Danilo Astori y Beatriz Argimón comparten en el mapa el programa de las fórmulas de 2009 y 2019 que integraron, respectivamente; ahora participan del resultado con los cinco temas del programa compartido. El empate con Mujica o Lacalle Pou se muestra expresamente.
 
 Las fórmulas de 2024 usan el programa electoral que representaron, no convicciones personales de cada integrante. Cosse/Orsi, Ripoll/Delgado y las otras fórmulas pueden compartir coordenadas. Las personas de 2019 y las gestiones anteriores identifican expresamente ese período. La cercanía visual entre años con coberturas distintas no constituye un ranking de similitud.
 
@@ -29,16 +29,24 @@ Se documentan propuestas concretas en profile/rationale/evidence de cada figura.
 
 Los números corresponden a grupos de coordenadas idénticas. Los puntos permanecen en sus coordenadas reales; los números se separan y se conectan al punto con una línea para evitar superposición. Todos los nombres aparecen como botones accesibles y amplios; los puntos también se seleccionan con Enter o espacio. Buscar no modifica las respuestas ni las envía a ningún servicio. La ficha seleccionada muestra los documentos utilizados y permite abrir su contexto completo.
 
-Los filtros pueden dejar el mapa sin referentes: el punto de la persona permanece. Las fichas sin coordenadas se identifican como tales. El ranking de personas y la tarjeta usan once programas: seis candidaturas de 2024, Mujica (2009), Vázquez (2014), Lacalle Pou, Martínez y Talvi (2019). Todas se comparan sobre economía, seguridad, comercio exterior, educación/seguridad social y ambiente. No se mezclan gestiones ni se completan los otros siete ejes desconocidos. El ranking de partidos mantiene seis programas de 2024. Esta selección no tiene igual cantidad de referencias por partido ni mide preferencias electorales actuales.
+Los filtros pueden dejar el mapa sin referentes: el punto de la persona permanece. Las fichas sin coordenadas se identifican como tales. El ranking de personas y la tarjeta usan 26 referentes con cobertura documentada. Se incorporaron propuestas de Bordaberry (2014), Sartori (2019), Raffo (2024), la fórmula con Larrañaga (2014), los programas de PCA, PERI y Unidad Popular de 2024 y los integrantes de las fórmulas con cobertura común. Todas se comparan sobre economía, seguridad, comercio exterior, educación/seguridad social y ambiente. No se mezclan gestiones ni se completan los otros siete ejes desconocidos. El ranking de partidos mantiene seis programas de 2024. Esta selección no tiene igual cantidad de referencias por partido ni mide preferencias electorales actuales.
 
 ## Cobertura programática del ranking ampliado
 
-Los cinco programas incorporados tienen sus valores, páginas y fundamentos en `dist/comparison-profiles.js`. Para Mujica y Vázquez se reemplazó la aproximación parcial a sus gobiernos por el programa de una elección concreta. Un perfil idéntico a cualquiera de esos cinco programas puede obtenerlo como primera referencia. Los empates conservan el orden alfabético.
+Los cinco programas incorporados tienen sus valores, páginas y fundamentos en `dist/comparison-profiles.js`. Para Mujica y Vázquez se reemplazó la aproximación parcial a sus gobiernos por el programa de una elección concreta. Cada referencia habilitada puede aparecer entre las más cercanas. Los empates se muestran completos: el orden alfabético inicial no significa mayor cercanía y la persona puede elegir cuál mostrar en la foto y la tarjeta.
 
 La combinación educación/seguridad social es un eje compuesto: el puntaje resume instrumentos de provisión y ahorro, no calidad de enseñanza ni generosidad de prestaciones. Una propuesta pública en educación puede coexistir con ahorro previsional mixto. Los números son lecturas editoriales gruesas, no una medición exacta.
 
 ## Ampliación biográfica
 
-`dist/figure-catalog.js` incorpora 25 fichas nuevas, evita duplicados y mantiene separadas trayectoria, propuestas documentadas y cobertura comparable. El catálogo incluye todos los nombres solicitados, aunque eso no amplía automáticamente el ranking de once candidaturas. Los datos desconocidos siguen siendo `null`. Las fichas históricas muestran contexto y fuentes en lugar de doce escalas vacías.
+`dist/figure-catalog.js` incorpora 25 fichas nuevas, evita duplicados y mantiene separadas trayectoria, propuestas documentadas y cobertura comparable. El catálogo incluye todos los nombres solicitados, y `dist/ranking-expansion.js` completa la comparación de quienes tienen los cinco temas documentados. Los datos desconocidos siguen siendo `null`. Las fichas históricas muestran contexto y fuentes en lugar de doce escalas vacías.
 
 Las fuentes incluyen Udelar, Presidencia, gobiernos departamentales, Parlamento, ANEP, INDDHH, el MNAV y documentos publicados por las propias candidaturas. Las fuentes partidarias documentan declaraciones propias; no se las presenta como evaluaciones independientes. Los alias de búsqueda reconocen «Aparicio Sarabia» como Aparicio Saravia sin crear otra ficha.
+
+## Resultados ampliados y avance guardado
+
+El cálculo habilita referencias por cobertura documental en los cinco temas comunes, no por la sola existencia de una ficha. `dist/result-ranking.js` recalcula también los tests guardados; no altera las respuestas ni requiere repetir el cuestionario. Las pruebas verifican que todos los referentes habilitados puedan aparecer como resultado y que las propuestas de Raffo, Sartori y Bordaberry puedan obtener una coincidencia máxima independiente. Elegir una foto entre referentes empatados no puede promover una afinidad inferior ni modificar un porcentaje.
+
+Las propuestas de educación y previsión forman un eje compuesto. Algunas fuentes documentan principalmente educación; otras, el régimen previsional. Cada fundamento identifica esa cobertura parcial dentro del tema. No se interpreta como una evaluación integral de ambas políticas.
+
+Referencias contemporáneas que siguen sin cobertura suficiente para el resultado: Wilson Ferreira Aldunate, Líber Seregni, Julio María Sanguinetti, Jorge Batlle, Luis Alberto Lacalle Herrera, Mario Bergara, Alejandro Sánchez, Lucía Topolansky, Óscar Andrade, Blanca Rodríguez, Martín Lema, Sebastián Da Silva. Los doce históricos conservan su contexto sin trasladarlos a debates posteriores.
