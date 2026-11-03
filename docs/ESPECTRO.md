@@ -4,9 +4,9 @@ La brújula de resultados se amplió por pedido del usuario. Mantiene economía 
 
 ## Catálogo y coordenadas
 
-Hay 28 figuras: las 16 anteriores y Valeria Ripoll, Robert Silva, Lorena Quintana, Mónica Bottero, María Elvira Canoniero, Daniel Martínez, Ernesto Talvi, Gonzalo Martínez, Eduardo Lust, César Vega, Jorge Batlle y Luis Alberto Lacalle Herrera.
+Hay 25 figuras. Se retiraron Artigas, Batlle y Ordóñez y Luis Alberto de Herrera: sus períodos no permiten comparar los debates modernos del test con cobertura suficiente.
 
-21 tienen evidencia para economía y seguridad. Las siete restantes siguen visibles, sin asignarles coordenadas: Artigas, Batlle y Ordóñez, Luis Alberto de Herrera, Wilson Ferreira Aldunate, Líber Seregni, Jorge Batlle y Luis Alberto Lacalle Herrera. Un dato parcial económico no permite completar seguridad con el centro de la escala. Sus fichas conservan fuentes y datos conocidos.
+21 tienen evidencia para economía y seguridad. Las cuatro restantes siguen en fichas de contexto, sin coordenadas: Wilson Ferreira Aldunate, Líber Seregni, Jorge Batlle y Luis Alberto Lacalle Herrera. Un dato parcial económico no permite completar seguridad con el centro de la escala. Sus fichas conservan fuentes y datos conocidos.
 
 Las fórmulas de 2024 usan el programa electoral que representaron, no convicciones personales de cada integrante. Cosse/Orsi, Ripoll/Delgado y las otras fórmulas pueden compartir coordenadas. Las personas de 2019 y las gestiones anteriores identifican expresamente ese período. La cercanía visual entre años con coberturas distintas no constituye un ranking de similitud.
 
@@ -21,12 +21,18 @@ Se documentan propuestas concretas en profile/rationale/evidence de cada figura.
 - [Corte Electoral: fórmulas nacionales de 2024](https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf).
 - [Programas de 2024](https://www.gub.uy/corte-electoral/comunicacion/publicaciones/programas-gobierno-nacional): programas de las seis fórmulas parlamentarias y de Asamblea Popular, PCA y PERI.
 - [Programas de 2019](https://www.gub.uy/corte-electoral/comunicacion/publicaciones/programas-gobierno-partidos-politicos-para-periodo-2020-2025): Frente Amplio, Partido Nacional y Partido Colorado.
-- Mujica: [participación público-privada, 2011](https://archivo.presidencia.gub.uy/sci/noticias/2011/03/2011031404.htm) y [Estrategia por la vida y la convivencia, 2012](https://www.gub.uy/presidencia/comunicacion/noticias/gabinete-seguridad-presento-documento-medidas-promueven-convivencia-social).
-- Vázquez: leyes [18.211 de salud](https://www.impo.com.uy/bases/leyes-originales/18211-2007) y [18.315 de procedimiento policial](https://www.impo.com.uy/bases/leyes-originales/18315-2008), en su versión original.
+- Mujica: [programa 2010–2015](https://www.frenteamplio.uy/wp-content/uploads/programa_2010_2015_1_0-2.pdf), candidatura de 2009.
+- Vázquez: [programa 2015–2020](https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/Programa_nacional_FA_2015_2020.pdf), candidatura de 2014.
 - Sanguinetti: leyes [16.906 de inversiones](https://www.impo.com.uy/bases/leyes-originales/16906-1998) y [16.707 de seguridad ciudadana](https://www.impo.com.uy/bases/leyes-originales/16707-1995), en su versión original.
 
 ## Interacción y límites
 
 Los números corresponden a grupos de coordenadas idénticas. Los puntos permanecen en sus coordenadas reales; los números se separan y se conectan al punto con una línea para evitar superposición. Todos los nombres aparecen como botones accesibles y amplios; los puntos también se seleccionan con Enter o espacio. Buscar no modifica las respuestas ni las envía a ningún servicio. La ficha seleccionada muestra los documentos utilizados y permite abrir su contexto completo.
 
-Los filtros pueden dejar el mapa sin referentes: el punto de la persona permanece. Las fichas sin coordenadas se identifican como tales. El ranking de afinidades y la tarjeta siguen usando una candidatura de 2024 por cada uno de los seis partidos parlamentarios, con los mismos cinco ejes; ampliar el catálogo no altera esa comparación.
+Los filtros pueden dejar el mapa sin referentes: el punto de la persona permanece. Las fichas sin coordenadas se identifican como tales. El ranking de personas y la tarjeta usan once programas: seis candidaturas de 2024, Mujica (2009), Vázquez (2014), Lacalle Pou, Martínez y Talvi (2019). Todas se comparan sobre economía, seguridad, comercio exterior, educación/seguridad social y ambiente. No se mezclan gestiones ni se completan los otros siete ejes desconocidos. El ranking de partidos mantiene seis programas de 2024. Esta selección no tiene igual cantidad de referencias por partido ni mide preferencias electorales actuales.
+
+## Cobertura programática del ranking ampliado
+
+Los cinco programas incorporados tienen sus valores, páginas y fundamentos en `dist/comparison-profiles.js`. Para Mujica y Vázquez se reemplazó la aproximación parcial a sus gobiernos por el programa de una elección concreta. Un perfil idéntico a cualquiera de esos cinco programas puede obtenerlo como primera referencia. Los empates conservan el orden alfabético.
+
+La combinación educación/seguridad social es un eje compuesto: el puntaje resume instrumentos de provisión y ahorro, no calidad de enseñanza ni generosidad de prestaciones. Una propuesta pública en educación puede coexistir con ahorro previsional mixto. Los números son lecturas editoriales gruesas, no una medición exacta.

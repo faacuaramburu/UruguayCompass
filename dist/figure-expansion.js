@@ -1,5 +1,5 @@
 // Ampliación editorial: las fuentes respaldan propuestas, no las coordenadas numéricas.
-// Solo se completan los ejes documentados. El ranking equilibrado de 2024 no cambia.
+// Solo se completan los ejes documentados. Las comparaciones adicionales se completan en comparison-profiles.js.
 const unknown='Sin ubicación: evidencia insuficiente en esta edición.';
 const source=(title,url)=>({title,url});
 const impo=(number,year)=>source(`IMPO · Ley ${number} (${year}), texto original`,`https://www.impo.com.uy/bases/leyes-originales/${number}-${year}`);
@@ -16,7 +16,7 @@ export function expandFigures(base,parties,candidatures,root){
   }
  }
  function add(id,name,partyId,partyName,period,bio,actions,sources,known=[],basis=''){
-  figures.push({id,name,party:partyId,partyName,sector:partyName,era:period,period,bio,summary:bio,actions,quotes:[],sources:[],profile:Array(12).fill(null),rationale:Array(12).fill(unknown),evidence:[],eligible:false,rankEligible:false,comparable:false,cohort:'catalogo-ampliado',editorial:true,comparisonNote:'Referencia de contexto. El mapa utiliza solo los ejes documentados del período indicado; esta ficha no se suma al ranking de seis candidaturas de 2024.'});
+  figures.push({id,name,party:partyId,partyName,sector:partyName,era:period,period,bio,summary:bio,actions,quotes:[],sources:[],profile:Array(12).fill(null),rationale:Array(12).fill(unknown),evidence:[],eligible:false,rankEligible:false,comparable:false,cohort:'catalogo-ampliado',editorial:true,comparisonNote:'Referencia de contexto. El mapa utiliza solo los ejes documentados del período indicado; esta ficha solo se suma al ranking si tiene los cinco ejes comunes documentados.'});
   locate(id,basis,sources,known);
  }
  const formula=(id,name,partyId,role)=>{

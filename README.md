@@ -20,17 +20,17 @@ Your results show separate scores for economy, taxation, labor, security, social
 
 ## Understand your results
 
-- **Closest political matches:** compare your answers with six presidential candidacies from 2024, with portraits, source documents, and a breakdown of similarities and differences. Party comparisons use the same five shared axes for every entry.
+- **Closest political matches:** compare your answers with 11 presidential candidacies from 2009, 2014, 2019, and 2024, with portraits, source documents, and a breakdown of similarities and differences. Party comparisons use the same five shared axes for every entry.
 - **Political spectrum:** see your position alongside 21 documented political figures on an economy and security map. Search by name, filter by party, or select a number to identify its figures and read the evidence. People who share coordinates remain grouped together.
-- **Your twelve axes:** read plain-language explanations, review the answers behind each score, and switch to a labeled radar chart.
+- **Your twelve axes:** read plain-language explanations, review the answers behind each score, and switch to a labeled radar chart inside an expandable section.
 - **Interpretations:** explore five educational ideological models, expressed priorities, and comparisons with individual references.
 - **Shareable result:** generate a PNG card with your closest figure, party comparison, and twelve scores. Saving or sharing requires an explicit action.
 
-These are educational, editorial comparisons, not a scientifically validated assessment or a voting recommendation. The main ranking compares campaign programs, not a complete reconstruction of a person's beliefs. Historical and other partial profiles remain separate. Sources support the documented positions; the numerical placements are editorial estimates. Missing evidence stays missing rather than becoming a score of 50.
+These are educational, editorial comparisons, not a scientifically validated assessment or a voting recommendation. The main ranking compares campaign programs, not a complete reconstruction of a person's beliefs. Older programs are dated explicitly; partial profiles stay outside the ranking. Century-old figures without comparable evidence have been removed. Sources support the documented positions; the numerical placements are editorial estimates. Missing evidence stays missing rather than becoming a score of 50.
 
 ## Explore the encyclopedia
 
-Browse explanations of all twelve axes, profiles of **28 political figures** and **six parties**, a searchable glossary, and a political history timeline. Seven figure profiles do not yet have enough comparable evidence to appear on the two-axis map; their available sources remain accessible.
+Browse explanations of all twelve axes, profiles of **25 political figures** and **six parties**, a searchable glossary, and a political history timeline. Four figure profiles do not yet have enough comparable evidence to appear on the two-axis map; their available sources remain accessible.
 
 The methodology and FAQ explain how scores and comparisons work. Found an error or disagree with a placement? Use the correction form to prepare a report, or [open a GitHub issue](https://github.com/faacuaramburu/UruguayCompass/issues) with supporting sources. Reports are never submitted automatically.
 

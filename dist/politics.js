@@ -1,5 +1,6 @@
 // Editorial dataset. The source documents support the proposals; the numbers are our estimates.
 import {expandFigures} from './figure-expansion.js';
+import {extendComparisons} from './comparison-profiles.js';
 const PROGRAM_ROOT = 'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const REPRESENTATION = {title:'Cámara de Representantes · Diario de Sesiones, 18/02/2025, pp. 209–212',url:'https://documentos.diputados.gub.uy/docs/L50/Diario/d4549.pdf#page=209'};
 const CANDIDATURES = {title:'Corte Electoral · Acta 10739, elección nacional de 2024',url:'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf'};
@@ -9,7 +10,7 @@ function party(id,name,short,file,summary,profile,notes,pages){
   return {id,name,short,period:'Programa 2025–2030',era:'2025–2030',summary,bio:summary,
     sources:[source,REPRESENTATION],profile,rationale:notes.map((n,i)=>profile[i]===null?UNKNOWN:n),
     evidence:notes.flatMap((note,axis)=>profile[axis]===null?[]:[{axis,source:0,page:pages[axis],note}]),
-    editorial:true,updatedAt:'2026-11-02',eligible:true,comparisonNote:'Estimación del programa de 2024; no describe a cada integrante ni cada votación.'};
+    editorial:true,updatedAt:'2026-11-03',eligible:true,comparisonNote:'Estimación del programa de 2024; no describe a cada integrante ni cada votación.'};
 }
 export const PARTIES = [
   party('fa','Frente Amplio','FA','Partido%20Frente%20Amplio_1.pdf',
@@ -57,7 +58,7 @@ function documented(id,name,partyId,era,bio,actions,sources,known=[]){
   known.forEach(([axis,value,note,source=0,page=null])=>{profile[axis]=value;rationale[axis]=note;evidence.push({axis,source,page,note});});
   return {id,name,party:partyId,partyName:partyId?byParty(partyId).name:'Anterior a los partidos actuales',sector:partyId?byParty(partyId).name:'Artiguismo',era,period:era,bio,summary:bio,actions,quotes:[],sources,profile,rationale,evidence,
     eligible:false,comparable:false,cohort:'enciclopedia',editorial:true,
-    comparisonNote:'Ficha de contexto histórico. No participa del ranking equilibrado de candidaturas de 2024; los ejes sin evidencia quedan sin puntaje.'};
+    comparisonNote:'Ficha de contexto. No participa del ranking mientras no haya evidencia comparable en los cinco ejes comunes; los ejes sin evidencia quedan sin puntaje.'};
 }
 
 const BASE_FIGURES = [
@@ -76,17 +77,6 @@ const BASE_FIGURES = [
     [{title:'MTSS · Renuncia al cargo ministerial, 2024',url:'https://www.gub.uy/ministerio-trabajo-seguridad-social/institucional/normativa/resolucion-n-1125024-renuncia-del-sr-pablo-mieres'}]),
   candidate('salle','Gustavo Salle','is','Candidato presidencial de Identidad Soberana en la elección nacional de 2024. La comparación usa sus propuestas electorales sobre soberanía y políticas públicas.',
     ['Encabezó la candidatura de Identidad Soberana en 2024.','El programa propone un sistema previsional estatal y mayor autonomía nacional.']),
-  documented('artigas','José Artigas',null,'1811–1820','Jefe de los Orientales y referente del federalismo rioplatense. Las propuestas de su época se explican en su contexto, sin trasladarlas a preguntas actuales.',
-    ['Impulsó las Instrucciones del Año XIII.','Promulgó el Reglamento de Tierras de 1815.'],
-    [{title:'ANEP · Reglamento de Tierras de 1815',url:'https://uruguayeduca.anep.edu.uy/efemerides/reglamento-de-tierras-de-artigas'},{title:'Ejército · Reseña histórica de José Artigas',url:'https://uuee.ejercito.mil.uy/eehh/2024/11/22/artigas-jose-gervasio-general/'}]),
-  documented('batlle','José Batlle y Ordóñez','pc','1903–1915','Presidente en dos períodos y referente del reformismo batllista. Impulsó cambios sociales, laborales, laicos y de participación estatal a comienzos del siglo XX.',
-    ['Promovió la ampliación de derechos laborales.','Defendió educación pública, secularización y empresas estatales.'],
-    [{title:'Junta de Montevideo · Exposición sobre Batlle y Ordóñez, 2026',url:'https://www.juntamvd.gub.uy/public/comunicacion/comunicado/7099/exposicion-verbal-sobre-jose-batlle-y-ordonez'}],
-    [[0,85,'Participación estatal en la economía y empresas públicas.'],[2,85,'Reformas de protección laboral.'],[4,20,'Reformismo social de su época; no equivale a todos los debates actuales.'],[5,5,'Promoción de la separación entre Iglesia y Estado.'],[10,15,'Impulso a la educación pública; sin extrapolar a las AFAP actuales.']]),
-  documented('herrera','Luis Alberto de Herrera','pn','Primera mitad del siglo XX','Abogado, diplomático, historiador y dirigente del Partido Nacional. Ejerció responsabilidades legislativas y encabezó durante décadas su colectividad política.',
-    ['Presidió el Directorio del Partido Nacional.','Presentó con Carlos Roxlo un antecedente de limitación de la jornada laboral.'],
-    [{title:'Biblioteca del Parlamento · Biobibliografía de Luis Alberto de Herrera',url:'https://omeka.parlamento.gub.uy/omeka-s/s/biobibliografias/item/3541'}],
-    [[2,65,'Proyecto de limitación de jornada: evidencia parcial, no un perfil laboral completo.']]),
   documented('wilson','Wilson Ferreira Aldunate','pn','1960–1988','Dirigente y candidato presidencial del Partido Nacional. Su trayectoria comprende oposición a la dictadura, exilio, prisión y participación en la recuperación democrática.',
     ['Ejerció cargos legislativos y ministeriales.','Su oposición a la dictadura lo llevó al exilio y la prisión.'],
     [{title:'Museo de la Memoria · Memorias de una vida por la democracia',url:'https://mume.montevideo.gub.uy/sites/mume.montevideo.gub.uy/files/articulos/descargas/folleto_a_30_anos_de_la_muerte_de_wilson.pdf'},{title:'IMPO · Decreto de duelo nacional, 1988',url:'https://www.impo.com.uy/bases/decretos/225-1988/1'}],
@@ -114,19 +104,19 @@ const BASE_FIGURES = [
     [{title:'Presidencia · Proclamación de la fórmula Orsi–Cosse',url:'https://www.gub.uy/presidencia/institucional/estructura-del-organismo/yamandu-orsi'},{title:'Uruguay XXI · Transición presidencial de 2025',url:'https://www.uruguayxxi.gub.uy/es/noticias/articulo/uruguay-celebra-su-continuidad-democratica-y-estabilidad-con-la-asuncion-de-yamandu-orsi-a-la-presidencia/'}])
 ];
 
-export const FIGURES=expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT);
+export const FIGURES=extendComparisons(expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT));
 
 export const POLITICAL_META = {
   updatedAt:'2026-11-02',
-  period:'Programas presentados en 2024 para el período 2025–2030',
+  period:'Programas de candidaturas de 2009, 2014, 2019 y 2024',
   representationSource:REPRESENTATION,
   candidateSource:CANDIDATURES,
-  cohort:'Una candidatura presidencial de 2024 por cada uno de los seis partidos con representación parlamentaria.',
-  figuresInRanking:['orsi','delgado','ojeda','manini','mieres','salle'],
-  balanceNote:'El ranking usa una figura por partido. La enciclopedia amplía la cobertura histórica, sin sumar esas fichas a la competencia de coincidencias. No se fuerza una división izquierda/derecha para equilibrar doce dimensiones.',
+  cohort:'Once referencias programáticas; seis candidaturas de 2024 y cinco anteriores con los mismos cinco ejes documentados.',
+  figuresInRanking:FIGURES.filter(f=>f.rankEligible).map(f=>f.id),
+  balanceNote:'La comparación entre personas incluye programas de distintas elecciones: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
   limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
-  individualLimit:'Los seis perfiles comparables representan programas de candidaturas de 2024, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'No se atribuyen a figuras históricas posturas sobre AFAP, Mercosur u otros debates que no existían en su época. Las evidencias parciales de sus fichas no habilitan un ranking comparable con las candidaturas actuales.',
+  individualLimit:'Los once perfiles comparables representan programas de candidaturas fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
+  historicalLimit:'Las figuras de hace un siglo o más sin datos comparables se excluyen del catálogo. Las referencias recientes con cobertura parcial no entran en el ranking de cinco ejes.',
   missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };

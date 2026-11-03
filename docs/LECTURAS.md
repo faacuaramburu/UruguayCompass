@@ -8,7 +8,7 @@ El usuario pidió una página de resultados más completa, tomando como referenc
 - Cobertura: cantidad de respuestas y respuestas neutras. No se calcula «confianza».
 - Brújula: proyección bidimensional de economía (Estado a la izquierda, mercado a la derecha) y seguridad (control arriba, libertades abajo). No representa todos los ejes ni mide autoritarismo.
 - Prioridades: lectura de seis ejes. Se considera intermedio un puntaje entre 41 y 59.
-- Coincidencias/diferencias: distancias absolutas en los cinco ejes comunes del ranking programático; selector entre seis candidaturas.
+- Coincidencias/diferencias: distancias absolutas en los cinco ejes comunes del ranking programático; selector entre once candidaturas de distintas elecciones.
 - Respuestas en ambos sentidos: recuento de signos tras invertir la orientación de las preguntas; no implica contradicción o incertidumbre.
 - Decisiones que requieren equilibrio: tres reglas explícitas en `possibleTradeoffs`, no un diagnóstico de coherencia. Si ninguna se activa, no se presume ausencia de tensiones.
 

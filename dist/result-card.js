@@ -9,7 +9,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,party
  let image=null;if(photo){try{image=await new Promise((resolve,reject)=>{const im=new Image();const timeout=setTimeout(()=>reject(Error('Foto no disponible')),4000);im.onload=()=>{clearTimeout(timeout);resolve(im)};im.onerror=()=>{clearTimeout(timeout);reject(Error('Foto no disponible'))};im.src=photo.src})}catch{}}
  if(image){const w=image.naturalWidth||image.width,h=image.naturalHeight||image.height;const ratio=320/390;let sw=w,sh=h;if(w/h>ratio)sw=h*ratio;else sh=w/ratio;c.drawImage(image,(w-sw)/2,Math.max(0,(h-sh)*.25),sw,sh,60,280,320,390)}
  else {c.fillStyle='#d8e6f7';c.fillRect(60,280,320,390);text(top.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),130,500,72,700)}
- text(`${top.score}%`,420,365,76,700,blue);text('coincidencia editorial',420,411,25);text('Programa de candidatura de 2024',420,460,22,400,muted);text('Comparación sobre cinco ejes comunes',420,499,22,400,muted);
+ text(`${top.score}%`,420,365,76,700,blue);text('coincidencia editorial',420,411,25);text(top.entity.comparisonLabel,420,460,22,400,muted);text('Comparación sobre cinco ejes comunes',420,499,22,400,muted);
  text('Otras referencias cercanas',420,558,27,700);ranking.slice(1,3).forEach((x,i)=>text(`${x.entity.name} · ${x.score}%`,420,605+i*43,24,400,ink,700));
  if(topParty){text(closestParties.length>1?'Partidos más cercanos (empate)':'Partido más cercano',60,730,25,700);text(closestParties.map(x=>x.entity.name).join(' / '),60,780,35,700,ink,1080);text(`${topParty.score}% de coincidencia editorial · Programas de 2024`,60,825,23);text('Comparación sobre cinco ejes comunes; no implica apoyo partidario.',60,860,20,400,muted)}
  text('Tus doce posiciones',60,733+offset,31,700);

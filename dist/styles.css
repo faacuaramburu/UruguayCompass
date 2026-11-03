@@ -114,10 +114,10 @@ html[data-theme=dark] .result-radar-dot,html[data-theme=dark] .radar-axis-value{
 .spectrum-tools input,.spectrum-tools select{width:100%;height:52px;min-height:52px;margin:0;padding:0 16px;font:inherit;font-weight:400;line-height:1.5}
 .spectrum-tools .secondary{display:flex;align-items:center;justify-content:center;min-height:52px;padding:0 20px;font-size:13px;line-height:1.5}
 .spectrum-count{font-size:12px;color:var(--muted);margin-bottom:16px!important}
-.spectrum-map-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:26px}
+.spectrum-map-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,1fr);gap:28px;align-items:start}
 .spectrum-figure{margin:0;min-width:0}
-.spectrum-selection{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:90px;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:20px}
-.spectrum-selection h3{font-family:var(--display);font-size:21px;line-height:1.4;margin:0}
+.spectrum-selection{display:flex;align-items:center;gap:14px;min-height:80px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:16px 0 24px}.spectrum-selection>div{flex:1;min-width:0}.spectrum-selection-number{display:grid;place-items:center;flex:0 0 34px;height:34px;border:1px solid var(--ink);border-radius:50%;font:600 21px var(--display)}
+.spectrum-selection h3{font-family:var(--display);font-size:23px;line-height:1.4;margin:0}
 .spectrum-selection p{font-size:12px;color:var(--muted);line-height:1.7;margin:6px 0 0!important}
 .spectrum-selection a{flex-shrink:0;display:flex;align-items:center;min-height:44px;font-size:12px;text-underline-offset:4px}
 .spectrum-graphic{display:block;width:100%;height:auto;max-width:900px;margin:auto;overflow:visible}
@@ -139,9 +139,9 @@ html[data-theme=dark] .result-radar-dot,html[data-theme=dark] .radar-axis-value{
 .spectrum-graphic .spectrum-user-label{font-size:22px;fill:var(--blue);font-weight:700;paint-order:stroke;stroke:var(--paper);stroke-width:5;pointer-events:none}
 html[data-theme=dark] .spectrum-user-ring{stroke:var(--sky)}
 html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graphic .spectrum-user-label{fill:var(--sky)}
-.spectrum-figure figcaption{font-size:12px;color:var(--muted);line-height:1.9;margin-top:10px}
-.spectrum-detail{min-width:0;border-top:1px solid var(--line);padding:24px 0}
-.spectrum-detail h3{margin:0;font-size:28px}
+.spectrum-figure figcaption{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:11px;color:var(--muted);line-height:1.9;margin-top:10px}.spectrum-figure figcaption>span:last-child{flex-basis:100%}.spectrum-legend-user{color:var(--blue)}html[data-theme=dark] .spectrum-legend-user{color:var(--sky)}
+.spectrum-detail{min-width:0;border-left:1px solid var(--line);padding:12px 0 12px 24px;overflow-wrap:anywhere}
+.spectrum-detail h3{margin:0;font-size:22px}
 .spectrum-detail p{font-size:14px}
 .spectrum-detail-meta{color:var(--muted);font-size:12px!important}
 .spectrum-detail-values{display:flex;flex-wrap:wrap;gap:28px;margin:20px 0}
@@ -160,7 +160,7 @@ html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graph
 .spectrum-reference-number{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;font-family:var(--display);font-size:16px}
 .spectrum-missing{border-bottom:0;margin-top:24px}
 .spectrum-missing>p{font-size:13px;color:var(--muted)}
-.spectrum-user-reading{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
+.spectrum-user-reading{margin:22px 0 28px;padding:0}.spectrum-user-reading h3{font-size:22px;margin:0 0 10px}.spectrum-user-reading>p{font-size:14px;line-height:1.9}.spectrum-user-coordinates{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:12px!important;color:var(--muted);font-size:12px!important}.spectrum-user-coordinates strong{color:var(--ink);margin-left:6px;font-variant-numeric:tabular-nums}
 .spectrum-user-reading .compass-summary-title{font-family:var(--display);font-size:24px;line-height:1.4;margin:18px 0}
 .spectrum-user-reading .compass-summary-text{font-size:14px;line-height:1.95}
 @media(max-width:850px){
@@ -170,8 +170,15 @@ html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graph
  .spectrum-reference strong{font-size:18px}
  .spectrum-detail h3{font-size:25px}
  .spectrum-map-layout{gap:20px}
- .spectrum-selection{align-items:flex-start;flex-direction:column;gap:4px;padding:12px 16px}
+ .spectrum-selection{flex-wrap:wrap;gap:10px;padding:16px 0;min-height:200px}.spectrum-selection>a{margin-left:48px}
  .spectrum-selection h3{font-size:19px}
  .spectrum-pin{r:18px}
  .spectrum-pin-number{font-size:25px;dominant-baseline:middle;transform:translateY(-4px)}
 }
+
+/* Expandable results and a map with an adjacent comparison workspace. */
+.axes-disclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:24px;list-style:none;min-height:64px}.axes-disclosure>summary::-webkit-details-marker{display:none}.axes-disclosure>summary:after{content:"";width:12px;height:12px;flex:0 0 12px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-right:6px}.axes-disclosure[open]>summary:after{transform:rotate(225deg)}.axes-disclosure>summary h2{display:inline;margin:0}.axes-disclosure-hint{display:block;color:var(--muted);font-size:13px;font-weight:400;line-height:1.8;margin-top:9px}.axes-disclosure-body{margin-top:28px}.spectrum-axis-comparison{padding:18px 0;border-bottom:1px solid var(--line)}.spectrum-axis-comparison h4{font-size:13px;margin:0 0 10px}.spectrum-axis-comparison>p{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;margin:0 0 16px!important}.spectrum-axis-comparison strong{color:var(--ink);font-variant-numeric:tabular-nums}.spectrum-comparison-track{height:4px;margin:0 7px 12px;position:relative;background:var(--line)}.spectrum-comparison-track i,.spectrum-comparison-track b{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%)}.spectrum-comparison-track i{background:var(--sky);border:2px solid var(--paper);z-index:1}.spectrum-comparison-track b{background:var(--paper);border:2px solid var(--ink);width:18px;height:18px}.spectrum-axis-comparison .pole-labels{font-size:10px}.spectrum-distance{font-size:12px!important;margin:20px 0!important}.spectrum-catalog>summary{padding:14px 0;min-height:48px}.spectrum-detail details{margin-top:20px}.spectrum-detail details summary{font-size:12px}.spectrum-detail .small{font-size:11px}.spectrum-count{font-size:12px!important}
+@media(max-width:1200px){.spectrum-map-layout{grid-template-columns:minmax(0,1fr)}.spectrum-detail{border-left:0;border-top:1px solid var(--line);padding:24px 0}.spectrum-detail .spectrum-axis-comparison{max-width:540px}.spectrum-graphic{max-width:700px}}
+@media(max-width:600px){.axes-disclosure-hint{font-size:12px}.axes-disclosure>summary h2{font-size:25px}.spectrum-selection h3{font-size:20px}.spectrum-selection-number{flex-basis:30px;height:30px;font-size:18px}.spectrum-selection>a{flex-basis:100%;margin-left:44px}.spectrum-selection>div{flex-basis:calc(100% - 44px)}.spectrum-user-reading h3{font-size:20px}.spectrum-user-reading>p{font-size:13px}.spectrum-tools .secondary{width:100%}.spectrum-graphic{width:calc(100% + 24px);max-width:none;margin-left:-12px}.spectrum-edge{font-size:21px}}
+
+.axes-disclosure>summary>span,.axes-disclosure-hint{margin-left:0}.spectrum-axis-comparison .pole-labels{margin:8px 0 0}.spectrum-detail .spectrum-detail-meta{margin-bottom:12px}
