@@ -96,7 +96,7 @@ function refreshSpectrum(){
  const active=document.activeElement,focusId=active?.dataset?.spectrumPick,wasMarker=active?.classList?.contains('spectrum-marker');
  host.innerHTML=renderSpectrumView(p,FIGURES,spectrumState);
  if(focusId){const candidates=[...host.querySelectorAll('[data-spectrum-pick]')];const next=candidates.find(e=>e.dataset.spectrumPick===focusId&&e.classList.contains('spectrum-marker')===wasMarker);next?.focus({preventScroll:true})}
- announce(host.querySelector('.spectrum-count').textContent);
+ announce(host.querySelector('.spectrum-selection').textContent);
 }
 document.addEventListener('input',event=>{if(event.target.id!=='spectrum-search')return;spectrumState.query=event.target.value;refreshSpectrum()});
 document.addEventListener('change',event=>{if(event.target.id!=='spectrum-party')return;spectrumState.party=event.target.value;refreshSpectrum()});
