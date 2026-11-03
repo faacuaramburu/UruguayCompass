@@ -1,4 +1,5 @@
 // Editorial dataset. The source documents support the proposals; the numbers are our estimates.
+import {expandFigures} from './figure-expansion.js';
 const PROGRAM_ROOT = 'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const REPRESENTATION = {title:'Cámara de Representantes · Diario de Sesiones, 18/02/2025, pp. 209–212',url:'https://documentos.diputados.gub.uy/docs/L50/Diario/d4549.pdf#page=209'};
 const CANDIDATURES = {title:'Corte Electoral · Acta 10739, elección nacional de 2024',url:'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf'};
@@ -59,7 +60,7 @@ function documented(id,name,partyId,era,bio,actions,sources,known=[]){
     comparisonNote:'Ficha de contexto histórico. No participa del ranking equilibrado de candidaturas de 2024; los ejes sin evidencia quedan sin puntaje.'};
 }
 
-export const FIGURES = [
+const BASE_FIGURES = [
   candidate('orsi','Yamandú Orsi','fa','Profesor de Historia y dirigente del Frente Amplio. Fue intendente de Canelones y asumió la Presidencia para el período 2025–2030.',
     ['Encabezó la fórmula presidencial del Frente Amplio en 2024.','Su comparación utiliza las bases programáticas presentadas por esa candidatura.'],
     [{title:'Presidencia · Trayectoria de Yamandú Orsi',url:'https://www.gub.uy/presidencia/institucional/estructura-del-organismo/yamandu-orsi'}]),
@@ -112,6 +113,8 @@ export const FIGURES = [
     ['Integró la fórmula presidencial con Yamandú Orsi en 2024.','Asumió la Vicepresidencia en la transición democrática de 2025.'],
     [{title:'Presidencia · Proclamación de la fórmula Orsi–Cosse',url:'https://www.gub.uy/presidencia/institucional/estructura-del-organismo/yamandu-orsi'},{title:'Uruguay XXI · Transición presidencial de 2025',url:'https://www.uruguayxxi.gub.uy/es/noticias/articulo/uruguay-celebra-su-continuidad-democratica-y-estabilidad-con-la-asuncion-de-yamandu-orsi-a-la-presidencia/'}])
 ];
+
+export const FIGURES=expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT);
 
 export const POLITICAL_META = {
   updatedAt:'2026-11-02',

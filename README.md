@@ -38,7 +38,8 @@ npm run check
 - Cuestionario de una afirmación por pantalla, cinco respuestas, progreso, anterior/siguiente y reanudación local.
 - Doce puntajes, radar y explicaciones con ambos polos.
 - Tres referencias cercanas y una lejana; todas las candidaturas y partidos; comparación por eje, fundamentos y fuentes.
-- Enciclopedia de doce ejes, 16 personajes, seis partidos, glosario con búsqueda e historia.
+- Enciclopedia de doce ejes, 28 personajes, seis partidos, glosario con búsqueda e historia.
+- Espectro político con tu posición y 21 referentes documentados, búsqueda, filtro por partido y fuentes. Las otras siete fichas se muestran sin inventar coordenadas.
 - Metodología, FAQ, privacidad y borrado local.
 - Tarjeta PNG y compartir desde el dispositivo; reportes de corrección descargables o como borrador de Issue, nunca enviados automáticamente.
 
