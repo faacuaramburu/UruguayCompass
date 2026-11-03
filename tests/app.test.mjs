@@ -64,7 +64,14 @@ test('complete application flows, persistence, content, corrections and privacy'
    assert.ok(w.document.querySelector('.spectrum-selection').textContent.includes('Andrés Ojeda')||w.document.querySelector('.spectrum-selection h3').textContent.length>3);
    assert.equal(w.document.activeElement,marker,'Keyboard selection preserves the actual focused SVG node');
   }
-  assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,5);
+  assert.equal(w.document.querySelectorAll('#figures-panel .affinity-closest .match-row').length,5);
+  assert.equal(w.document.querySelectorAll('#figures-panel .affinity-farthest .match-row').length,2);
+  const affinityRows=[...w.document.querySelectorAll('#figures-panel .match-row')];
+  assert.equal(new Set(affinityRows.map(row=>row.querySelector('h3 a').getAttribute('href'))).size,7);
+  assert.equal(affinityRows.reduce((sum,row)=>sum+Math.round(Number(row.querySelector('.match-score').firstChild.textContent.replace('%','').replace(',','.'))*10),0),1000);
+  assert.ok(affinityRows.every(row=>row.querySelector('.match-score span').textContent==='afinidad relativa'));
+  assert.ok([...w.document.querySelectorAll('#parties-panel .match-score span')].every(el=>el.textContent==='coincidencia editorial'));
+  assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,7);
   assert.ok(w.document.querySelector('.card-preview-party').textContent.includes('Partido Independiente'));
   const saved=JSON.parse(w.localStorage.getItem('uruguay-compass-v1'));assert.equal(saved.completed,true);assert.equal(Object.keys(saved.answers).length,n);
   if(version==='short'){click('[data-action=share]');await new Promise(r=>setTimeout(r,10));assert.equal(sharedFile.name,'uruguay-compass.png');assert.equal(w.document.querySelector('#share-preview').hidden,false);assert.equal(cardText.filter(t=>t.startsWith('0 ')&&t.endsWith(' 100')).length,12);assert.ok(cardText.includes('Partidos más cercanos (empate)'));assert.ok(cardText.some(t=>t.includes('Partido Independiente')&&t.includes('Cabildo Abierto')));assert.equal(w.document.querySelector('#share-preview').height,1680)}

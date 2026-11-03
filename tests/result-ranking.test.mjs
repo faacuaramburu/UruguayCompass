@@ -3,8 +3,44 @@ import assert from 'node:assert/strict';
 import {FIGURES} from '../dist/politics.js';
 import {QUESTIONS} from '../dist/questions.js';
 import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
-import {rankFigures} from '../dist/result-ranking.js';
+import {rankFigures,affinitySummary} from '../dist/result-ranking.js';
 import {questionSet,scoreProfile,restoreState} from '../dist/core.js';
+
+test('affinity summary selects five closest and two farthest references and totals exactly 100 percent',()=>{
+ for(const figure of FIGURES){
+  const ranking=rankFigures(figure.profile.map(v=>v??50),FIGURES).ranked;
+  const before=structuredClone(ranking),summary=affinitySummary(ranking),shown=[...summary.closest,...summary.farthest];
+  assert.equal(summary.closest.length,5);assert.equal(summary.farthest.length,2);
+  assert.equal(new Set(shown.map(x=>x.entity.id)).size,7);
+  assert.equal(shown.reduce((sum,x)=>sum+x.shareUnits,0),1000);
+  assert.equal(summary.normalized,true);
+  assert.ok(summary.closest.every(x=>x.score>=summary.farthest[0].score));
+  const omitted=ranking.filter(x=>!shown.some(s=>s.entity.id===x.entity.id));
+  assert.ok(omitted.every(x=>x.score<=summary.closest.at(-1).score&&x.score>=summary.farthest[0].score));
+  for(const x of shown){assert.equal(x.score,before.find(y=>y.entity.id===x.entity.id).score);assert.ok(Math.abs(x.shareUnits-x.score*1000/shown.reduce((sum,y)=>sum+y.score,0))<1)}
+  assert.deepEqual(ranking,before,'The independent coincidence scores are preserved');
+ }
+});
+
+test('ties and rounding remain deterministic when a different tied portrait is selected',()=>{
+ const ranking=Array.from({length:9},(_,i)=>({entity:{id:String(i),name:String.fromCharCode(65+i)},score:50}));
+ const summary=affinitySummary(ranking),reordered=affinitySummary([...ranking].reverse());
+ assert.deepEqual(summary,reordered);
+ assert.deepEqual(summary.closest.map(x=>x.entity.name),['A','B','C','D','E']);
+ assert.deepEqual(summary.farthest.map(x=>x.entity.name),['H','I']);
+ assert.equal([...summary.closest,...summary.farthest].reduce((sum,x)=>sum+x.shareUnits,0),1000);
+ const original=rankFigures(Array(12).fill(50),FIGURES),preferred=rankFigures(Array(12).fill(50),FIGURES,original.closest.at(-1).entity.id);
+ assert.deepEqual(affinitySummary(original.ranked),affinitySummary(preferred.ranked));
+});
+
+test('affinity summary keeps zero scores at zero and does not invent shares without positive coincidence',()=>{
+ const rows=Array.from({length:7},(_,i)=>({entity:{id:String(i),name:String(i)},score:i===6?0:80-i}));
+ assert.equal(affinitySummary(rows).farthest.at(-1).shareUnits,0);
+ const zero=affinitySummary(rows.map(x=>({...x,score:0})));
+ assert.equal(zero.normalized,false);assert.ok([...zero.closest,...zero.farthest].every(x=>x.shareUnits===null));
+ assert.deepEqual(affinitySummary([]),{closest:[],farthest:[],normalized:false});
+ assert.equal(affinitySummary(rows.slice(0,3)).farthest.length,0,'Small catalogs cannot duplicate a reference');
+});
 
 test('every eligible reference can appear among the closest results with sourced common axes',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
