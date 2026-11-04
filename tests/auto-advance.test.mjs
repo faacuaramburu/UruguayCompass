@@ -73,7 +73,7 @@ test('the question card identifies all twelve axes and keeps help separate from 
  const {dom,query,saved}=await boot();
  const qs=questionSet(QUESTIONS,'short');
  const axisIcons=new Set();
- assert.deepEqual([...query('.answers').querySelectorAll('input')].map(input=>Number(input.value)),[4,3,2,1,0]);
+ assert.deepEqual([...query('.answers').querySelectorAll('input')].map(input=>Number(input.value)),[0,1,2,3,4]);
  assert.equal(query('progress').value,0);
  for(let i=0;i<12;i++){
   assert.equal(query('.question-axis').textContent,AXES[qs[i].axis].name);
