@@ -250,8 +250,12 @@ html[data-theme] .axis-summary[data-side=balanced]{--axis-accent:var(--muted)}
 .questionnaire-page .answer:has(input:checked){background:var(--pale);border-color:var(--blue)}
 .answer-symbol{display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--muted);background:var(--surface)}
 .answer-symbol svg{width:14px;height:14px}
-.answer-agree .answer-symbol{color:#23634c;border-color:#8ab99f;background:#eff8f0}
-.answer-disagree .answer-symbol{color:#a13942;border-color:#d4a0a4;background:#fbefee}
+.answer-agree .answer-symbol{color:#78c49d;border-color:#285b42;background:#1b3026}
+.answer-disagree .answer-symbol{color:#e98e94;border-color:#78323a;background:#351d20}
+.answer-neutral .answer-symbol{color:#c0c4cc;border-color:#505757;background:#272c2d}
+.questionnaire-page .answer-agree{background:#0e1712;border-left-color:#285b42}
+.questionnaire-page .answer-neutral{background:#171a1a;border-left-color:#505757}
+.questionnaire-page .answer-disagree{background:#1b1012;border-left-color:#78323a}
 .questionnaire-page .answer input{width:17px;height:17px;margin:0 0 0 auto;accent-color:var(--blue)}
 .questionnaire-page .test-controls{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;margin:18px 0 0}
 .questionnaire-page .test-controls>.secondary,.questionnaire-page .test-controls>.primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:0;min-height:44px;padding:10px 16px;font-size:13px;line-height:1.5}
