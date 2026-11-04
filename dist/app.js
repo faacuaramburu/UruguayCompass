@@ -19,7 +19,7 @@ import {PHOTOS} from './photos.js';
 import {comparisonDetails,readingModels,MODEL_AXES} from './insights.js';
 import {createResultCard} from './result-card.js';
 import {renderResultPoster} from './result-poster.js';
-import {transitionTheme} from './theme-transition.js';
+import {transitionTheme,syncThemeColor} from './theme-transition.js';
 import {describeCompass,renderPoliticalGrid} from './compass.js';
 import {renderSpectrum,renderSpectrumView} from './spectrum.js';
 const app=document.querySelector('#app'),homeHTML=app.innerHTML,KEY='uruguay-compass-v2',OLD_KEY='uruguay-compass-v1',ARCHIVE_KEY='uruguay-compass-v1-archive',AUDIT_ARCHIVE='uruguay-compass-v2-archive';
@@ -34,6 +34,7 @@ let stopResultTracking=()=>{},pendingAuditArchive=null;
 function archiveAuditedState(raw){const previous=localStorage.getItem(AUDIT_ARCHIVE);let archives=[];if(previous!==null){try{const parsed=JSON.parse(previous);archives=Array.isArray(parsed)&&parsed.every(x=>typeof x==='string')?parsed:[previous]}catch{archives=[previous]}}if(!archives.includes(raw))archives.push(raw);localStorage.setItem(AUDIT_ARCHIVE,JSON.stringify(archives));pendingAuditArchive=null}
 try{const saved=localStorage.getItem(KEY),previous=saved===null?localStorage.getItem(OLD_KEY):null;state=restoreState(saved??previous,QUESTIONS);if(saved&&state&&JSON.parse(saved).schema===2){pendingAuditArchive=saved;archiveAuditedState(saved);localStorage.setItem(KEY,JSON.stringify(state))}if(previous&&state){const archived=localStorage.getItem(ARCHIVE_KEY);if(archived===null)localStorage.setItem(ARCHIVE_KEY,previous);localStorage.setItem(KEY,JSON.stringify(state));if(archived===null||archived===previous)localStorage.removeItem(OLD_KEY)}theme=localStorage.getItem('compass-theme')==='dark'?'dark':'light';autoAdvance=localStorage.getItem('compass-auto-advance')==='true'}catch{storageOK=false}
 document.documentElement.dataset.theme=theme;
+syncThemeColor();
 const announce=t=>{document.querySelector('#announcement').textContent=t};
 function save(){try{if(pendingAuditArchive)archiveAuditedState(pendingAuditArchive);localStorage.setItem(KEY,JSON.stringify(state))}catch{storageOK=false;announce('No se pudo guardar. Podés seguir, pero el avance se pierde al cerrar.')}}
 function go(route){if(location.hash===`#${route}`)render();else location.hash=route}

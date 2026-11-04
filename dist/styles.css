@@ -300,6 +300,7 @@ html[data-theme=dark] .questionnaire-page .primary{color:#10261e}
 
 /* Result overview: editorial profile, comparable references and documented coverage. */
 .ideology-heading{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.ideology-heading .percentage-badge{align-self:flex-start;margin-bottom:16px}
 .ideology-profile h2{font-size:42px;margin:4px 0 20px}
 .ideology-heading .small{margin:0;color:var(--muted)}
 .percentage-badge{display:flex;flex-direction:column;justify-content:center;align-items:center;flex-shrink:0;min-width:96px;min-height:96px;padding:12px;border:2px solid var(--muted);border-radius:50%;text-align:center}
@@ -487,6 +488,8 @@ html[data-theme=dark] .card-device-preview{background:#1b1c1f}
 
 /* Theme changes happen only after an explicit click, with reduced-motion support. */
 html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition-property:background-color,color,border-color,fill,stroke,box-shadow;transition-duration:200ms;transition-timing-function:ease-out}
+/* Touch layouts switch the palette together, avoiding cascaded inherited text colors. */
+@media(max-width:850px){html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition:none!important}}
 html.theme-changing [data-action=theme] svg{animation:theme-icon-change 200ms ease-out}
 @keyframes theme-icon-change{from{transform:rotate(-35deg) scale(.8);opacity:.6}to{transform:rotate(0) scale(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition:none!important;animation:none!important}}
