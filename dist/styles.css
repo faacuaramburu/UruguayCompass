@@ -247,6 +247,8 @@ html[data-theme] .axis-summary[data-side=balanced]{--axis-accent:var(--muted)}
 .questionnaire-page .answers{gap:10px;margin:20px 0 0}
 .questionnaire-page .answer{min-height:48px;padding:10px 14px;gap:14px;border-radius:10px;background:var(--paper);font-size:14px;line-height:1.5;font-weight:700}
 .questionnaire-page .answer:hover,.questionnaire-page .answer:has(input:checked):hover{background:#292929;border-color:#a3a3a3}
+.questionnaire-page .answer-agree:hover,.questionnaire-page .answer-agree:has(input:checked):hover{background:#173c2a;border-color:#78c49d}
+.questionnaire-page .answer-disagree:hover,.questionnaire-page .answer-disagree:has(input:checked):hover{background:#442027;border-color:#e98e94}
 .questionnaire-page .answer:has(input:checked){background:#171717;border-color:var(--muted)}
 .answer-symbol{display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--muted);background:var(--surface)}
 .answer-symbol svg{width:14px;height:14px}
