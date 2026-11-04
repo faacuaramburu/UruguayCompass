@@ -18,10 +18,10 @@ test('comparator uses the existing twelve positions without mutation, scores or 
 
 test('all person-person, party-party and mixed selections render twelve axes and sources',async()=>{
  const choices=comparisonEntities(FIGURES,PARTIES);assert.equal(choices.length,59);assert.equal(new Set(choices.map(x=>x.id)).size,59);
- for(const [a,b]of[['persona/orsi','persona/sartori'],['partido/fa','partido/pn'],['persona/manini','partido/fa'],['persona/orsi','persona/orsi']]){
+ for(const [a,b]of[['persona/orsi','persona/sartori'],['partido/fa','partido/pn'],['persona/manini','partido/fa']]){
   const dom=new JSDOM(renderComparator(choices,a,b)),d=dom.window.document;
-  assert.equal(d.querySelectorAll('.compare-axis').length,12);assert.equal(d.querySelectorAll('.compare-position').length,24);
-  assert.equal(d.querySelectorAll('select option').length,118);assert.equal(d.querySelectorAll('.compare-identity img').length,2);
+  assert.equal(d.querySelectorAll('.compare-axis').length,12);assert.equal(d.querySelectorAll('.cmp-selected>li').length,2);
+  assert.ok(d.querySelector('[role=combobox]'));assert.equal(d.querySelectorAll('.compare-identity img').length,2);
   assert.ok(d.querySelectorAll('.compare-axis details a').length>0);assert.doesNotMatch(d.body.textContent,/undefined|NaN/);
   if(a===b){assert.match(d.querySelector('[role=status]').textContent,/misma referencia/);assert.equal(d.querySelectorAll('.compare-tag--difference').length,0)}
   for(const image of d.querySelectorAll('.entity-media img'))await access(new URL('../dist/'+image.getAttribute('src'),import.meta.url));
@@ -44,9 +44,13 @@ test('standalone navigation, selectors, theme persistence, directories and media
  w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:()=>()=>{}});
  await import('../dist/app.js?comparator-integration');
  const waitFor=async selector=>{const deadline=Date.now()+2000;while(!w.document.querySelector(selector)&&Date.now()<deadline)await new Promise(r=>setTimeout(r,10));assert.ok(w.document.querySelector(selector),selector)};
- assert.equal(w.document.querySelectorAll('.compare-axis').length,12);assert.equal(w.localStorage.getItem('uruguay-compass-v2'),null);
- const select=w.document.getElementById('compare-first');select.value='partido/fa';select.dispatchEvent(new w.Event('change',{bubbles:true}));
- assert.match(w.document.querySelector('.compare-identity h2').textContent,/Frente Amplio/);assert.equal(w.document.activeElement.id,'compare-first');
+ assert.equal(w.document.querySelectorAll('.compare-axis').length,0);assert.equal(w.localStorage.getItem('uruguay-compass-v2'),null);
+ const choose=(query,id)=>{const input=w.document.getElementById('compare-search');input.value=query;input.dispatchEvent(new w.Event('input',{bubbles:true}));const option=w.document.querySelector('[data-compare-add="'+id+'"]');assert.ok(option,id);option.click()};
+ choose('Orsi','persona/orsi');assert.equal(w.document.querySelectorAll('.cmp-selected>li').length,1);assert.equal(w.document.activeElement.id,'compare-search');
+ choose('frente amplio','partido/fa');assert.equal(w.document.querySelectorAll('.compare-axis').length,12);assert.match(w.document.querySelector('.cmp-selected').textContent,/Frente Amplio/);assert.ok(w.location.hash.includes('partido%3Afa'));
+ choose('Terra','persona/terra');assert.equal(w.document.querySelectorAll('.cmp-selected>li').length,3);assert.equal(w.document.getElementById('compare-search'),null);
+ w.document.querySelector('[data-compare-remove="persona/terra"]').click();assert.equal(w.document.querySelectorAll('.cmp-selected>li').length,2);assert.ok(w.document.getElementById('compare-search'));
+ assert.equal(w.localStorage.getItem('uruguay-compass-v2'),null);
  w.document.querySelector('[data-action=theme]').click();assert.equal(w.document.documentElement.dataset.theme,'dark');assert.equal(w.localStorage.getItem('compass-theme'),'dark');
  w.location.hash='#inicio';await waitFor('.home-header');assert.equal(w.document.querySelectorAll('[data-action=theme]').length,1);assert.ok(w.document.querySelector('.home-header>[data-action=theme]'));assert.equal(w.document.querySelectorAll('.home-tools [data-action=theme]').length,0);
  w.location.hash='#enciclopedia';await waitFor('.axis-guide-grid');assert.equal(w.document.querySelectorAll('.axis-guide-card').length,12);
