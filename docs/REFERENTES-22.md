@@ -8,7 +8,7 @@ Se agregaron seis contemporáneos y dieciséis históricos al catálogo, sin bor
 
 El algoritmo actual admite valores desconocidos. El impedimento no es exigir doce números: el ranking utiliza cinco ejes comunes (economía, seguridad, comercio exterior, educación y servicios, ambiente). Las nuevas fuentes documentan posiciones cualitativas, parciales o de otros períodos; no proporcionan una calibración individual comparable en esos cinco ejes. Convertirlas arbitrariamente en 20, 50 u 80 alteraría el sentido de la evidencia. Se mantiene cada valor numérico desconocido como null.
 
-Hay 90 observaciones cualitativas sobre 264 combinaciones de persona y eje. Incluyen interpretaciones de alcance limitado, explícitas en cada registro. Los 174 restantes quedan sin determinar; ninguno se interpreta como neutral. El número de ejes con observaciones no equivale a cobertura completa de esos ejes.
+Hay 92 observaciones cualitativas sobre 264 combinaciones de persona y eje. Incluyen interpretaciones de alcance limitado, explícitas en cada registro. Los 172 restantes quedan sin determinar; ninguno se interpreta como neutral. El número de ejes con observaciones no equivale a cobertura completa de esos ejes.
 
 | Personaje | Grupo | Corriente principal documentada | Ejes con observaciones / 12 | Resultado numérico |
 | --- | --- | --- | --- | --- |
@@ -18,14 +18,14 @@ Hay 90 observaciones cualitativas sobre 264 combinaciones de persona y eje. Incl
 | Martín Lema | Contemporáneo | Luisismo · gestión y seguridad | 6 | No: requiere calibración y cobertura comparable |
 | Graciela Bianchi | Contemporáneo | Autodefinición marxista no leninista (2022) · luisismo | 4 | No: requiere calibración y cobertura comparable |
 | Gustavo Zubía | Contemporáneo | Énfasis en autoridad penal y reducción del IASS | 2 | No: requiere calibración y cobertura comparable |
-| José Batlle y Ordóñez | Histórico | Reformismo batllista · republicanismo social | 6 | No: requiere calibración y cobertura comparable |
+| José Batlle y Ordóñez | Histórico | Reformismo batllista · republicanismo social | 7 | No: requiere calibración y cobertura comparable |
 | Luis Batlle Berres | Histórico | Neobatllismo · industrialismo reformista | 5 | No: requiere calibración y cobertura comparable |
 | Luis Alberto de Herrera | Histórico | Liberalismo conservador · nacionalismo | 4 | No: requiere calibración y cobertura comparable |
 | Wilson Ferreira Aldunate | Histórico | Nacionalismo reformista · wilsonismo | 6 | No: requiere calibración y cobertura comparable |
 | Líber Seregni | Histórico | Izquierda democrática · frenteamplismo | 6 | No: requiere calibración y cobertura comparable |
 | Zelmar Michelini | Histórico | Batllismo de izquierda · republicanismo y derechos humanos | 3 | No: requiere calibración y cobertura comparable |
 | Rodney Arismendi | Histórico | Marxismo-leninismo · democracia avanzada | 3 | No: requiere calibración y cobertura comparable |
-| Emilio Frugoni | Histórico | Socialismo democrático y parlamentario | 5 | No: requiere calibración y cobertura comparable |
+| Emilio Frugoni | Histórico | Socialismo democrático y parlamentario | 6 | No: requiere calibración y cobertura comparable |
 | Raúl Sendic Antonaccio | Histórico | Socialismo revolucionario · propuesta de Frente Grande | 3 | No: requiere calibración y cobertura comparable |
 | Jorge Pacheco Areco | Histórico | Pachequismo · predominio del orden y del Ejecutivo | 4 | No: requiere calibración y cobertura comparable |
 | Juan María Bordaberry | Histórico | Autoritarismo corporativista | 4 | No: requiere calibración y cobertura comparable |
@@ -248,7 +248,7 @@ Fuentes de la ficha:
 | Seguridad | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
 | Instituciones | **Ejecutivo colegiado en lugar de presidencia unipersonal.** Propuso en 1913 una junta de nueve integrantes. El diseño y las críticas por posible predominio colorado se conservan como contexto histórico, sin trasladarlo a instituciones actuales. | Interpretación histórica / Baja | [8](https://otu.opp.gub.uy/gestor/imagesbiblioteca/08_Gobierno_Municipal_y_Regimen_Colegiado_DIGITAL.pdf) |
 | Valores sociales | **Divorcio por voluntad de la mujer.** En su segunda presidencia se promulgó la ley de 1913. Es evidencia sobre derechos civiles de esa época, no sobre debates del siglo XXI. | Documentada / Alta | [3](https://www.impo.com.uy/bases/leyes/4802-1913) |
-| Religión | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
+| Religión | **Separación entre Iglesia y Estado.** El estudio reproduce su defensa de la separación en 1917 y la aceptación de una transacción sobre los templos. No se confunde esa postura institucional con ateísmo personal ni se le atribuye toda la autoría de la reforma. | Documentada / Alta | [10](https://biblioteca.parlamento.gub.uy/PublicacionesD/anuariodelareasociojuridica/2018-12-01%20-%20ANUARIO%20DEL%20AREA%20SOCIO%20JURIDICA.pdf) |
 | Comercio exterior | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
 | Política exterior | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
 | Inmigración | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
@@ -266,6 +266,7 @@ Fuentes de la ficha:
 7. [UTE · Historia de la central Batlle y creación de Usinas Eléctricas del Estado en 1912](https://portal.ute.com.uy/central-de-generacion-termoelectrica-jose-batlle-y-ordonez-0) — primary.
 8. [OPP · Gobierno municipal y régimen colegiado, 2018](https://otu.opp.gub.uy/gestor/imagesbiblioteca/08_Gobierno_Municipal_y_Regimen_Colegiado_DIGITAL.pdf) — academic.
 9. [ANEP · Antecedentes de la ley de ocho horas: proyectos de Batlle de 1906 y 1911](https://uruguayeduca.anep.edu.uy/efemerides/se-aprueba-ley-de-las-8-horas) — educational.
+10. [Ruben Correa Freitas · La laicidad del Estado en la Constituyente de 1917, Anuario del Área Socio-Jurídica 10, 2018, pp. 98–110; reproduce intervenciones de Batlle y Frugoni](https://biblioteca.parlamento.gub.uy/PublicacionesD/anuariodelareasociojuridica/2018-12-01%20-%20ANUARIO%20DEL%20AREA%20SOCIO%20JURIDICA.pdf) — academic-primary-reprint.
 
 ### Luis Batlle Berres
 
@@ -453,7 +454,7 @@ Fuentes de la ficha:
 - **Partido / movimiento:** Partido Socialista. Socialismo parlamentario.
 - **Corriente:** Socialismo democrático y parlamentario.
 - **Cargo o relevancia:** Fundador del PS, diputado y diplomático · fallecido en 1969.
-- **Período representado:** Actuación parlamentaria y debates, 1910–1933.
+- **Período representado:** Actuación parlamentaria y pensamiento, 1910–1940.
 - **Descripción:** Escritor, jurista y fundador del Partido Socialista. Defendió representación política, derechos laborales y ciudadanía de las mujeres mediante acción parlamentaria.
 - **Evolución y límites:** Se representa su etapa parlamentaria inicial, no se le trasladan automáticamente las posiciones adoptadas posteriormente por el PS ni la política de otros partidos marxistas.
 - **Disponibilidad:** ficha documental; fuera del cálculo de afinidad.
@@ -466,7 +467,7 @@ Fuentes de la ficha:
 | Seguridad | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
 | Instituciones | **Voto secreto y ampliación de ciudadanía.** Defendió el voto secreto en la Constituyente de 1916 y la participación política de las mujeres. | Documentada / Alta | [1](https://uruguayeduca.anep.edu.uy/efemerides/nace-emilio-frugoni) |
 | Valores sociales | **Derechos civiles y sufragio femenino.** Su actuación parlamentaria defendió igualdad política y cuestionó argumentos que excluían a las mujeres de la ciudadanía. | Interpretación histórica / Baja | [2](https://catedraparalela.unr.edu.ar/index.php/revista/article/download/393/315/633) |
-| Religión | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
+| Religión | **Estado sin religión oficial y enseñanza neutral.** En la Constituyente del 23 de agosto de 1917 defendió la laicización del Estado y cuestionó mantener una religión oficial. Se identifica el discurso reproducido por Correa Freitas. | Documentada / Alta | [5](https://biblioteca.parlamento.gub.uy/PublicacionesD/anuariodelareasociojuridica/2018-12-01%20-%20ANUARIO%20DEL%20AREA%20SOCIO%20JURIDICA.pdf) |
 | Comercio exterior | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
 | Política exterior | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
 | Inmigración | **Sin determinar.** No se verificó en las fuentes seleccionadas una posición personal comparable para este eje en el período estudiado. No se extrapolan opiniones sobre políticas posteriores. | Desconocida / No asignada | Sin posición verificada en las fuentes seleccionadas |
@@ -479,6 +480,7 @@ Fuentes de la ficha:
 2. [Cátedra Paralela, UNR · Luisi y Frugoni, socialismo y sufragio femenino, 2023](https://catedraparalela.unr.edu.ar/index.php/revista/article/download/393/315/633) — academic.
 3. [Juan Oddone y M. Blanca París · La Universidad del militarismo a la crisis, capítulo 9, pp. 147–148](https://udelar.edu.uy/pmb/doc_num.php?explnum_id=967) — academic.
 4. [Historias Universitarias · Emilio Frugoni: pensamiento y acción universitaria](https://historiasuniversitarias.edu.uy/wp-content/uploads/2016/09/Frugoni_Emilio.pdf) — academic.
+5. [Ruben Correa Freitas · La laicidad del Estado en la Constituyente de 1917, Anuario del Área Socio-Jurídica 10, 2018, pp. 98–110; reproduce intervenciones de Batlle y Frugoni](https://biblioteca.parlamento.gub.uy/PublicacionesD/anuariodelareasociojuridica/2018-12-01%20-%20ANUARIO%20DEL%20AREA%20SOCIO%20JURIDICA.pdf) — academic-primary-reprint.
 
 ### Raúl Sendic Antonaccio
 
