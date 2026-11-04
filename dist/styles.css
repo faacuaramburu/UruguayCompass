@@ -496,3 +496,15 @@ html.theme-changing [data-action=theme] svg{animation:theme-icon-change 200ms ea
 .figure-nearby .portrait,.far-figures .portrait{grid-column:1;grid-row:1;float:none}
 .result-poster .portrait img{filter:grayscale(1)}
 .poster-axis-icon svg{width:10px;height:10px;stroke:#26313d}
+
+/* Comparison choices own their percentage; legacy .difference flex rules do not apply. */
+.axis-summary--options{display:block;width:100%;min-width:0}
+.axis-summary--options .axis-tile-heading{display:block;margin-bottom:10px}
+.axis-summary--options .axis-tile-heading h3{overflow-wrap:normal;word-break:normal;max-width:none}
+.axis-summary--options .axis-tile-heading>strong{display:block;max-width:none;text-align:left;margin-top:5px}
+.axis-summary--options .axis-poles{justify-content:flex-start;flex-wrap:wrap;gap:8px}
+.axis-summary--options .axis-pole{max-width:100%;flex:0 1 auto;padding:8px 10px;border-radius:6px;text-align:left;justify-content:flex-start;overflow-wrap:normal;word-break:normal}
+.axis-summary--options .axis-pole>span:last-child{overflow-wrap:normal;word-break:normal}
+.axis-summary--options .axis-pole.is-selected{color:var(--axis-accent);border-color:var(--axis-accent);font-weight:700}
+.axis-summary--options .axis-pole-percent{font:inherit;font-weight:700;white-space:nowrap}
+.result-poster .portrait img.preserve-color{filter:none}

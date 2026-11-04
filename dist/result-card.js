@@ -28,7 +28,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  text(m.ideology.name,60,202,58,700);
  text('TU PERFIL POLÍTICO',60,250,19,600,muted);
  box(60,294,425,514,panel);
- if(image){c.save();c.beginPath();if(c.roundRect)c.roundRect(60,294,425,514,22);else c.rect(60,294,425,514);c.clip();c.filter='grayscale(100%)';c.drawImage(image,...portraitRect(photo,image.naturalWidth||image.width,image.naturalHeight||image.height,425/514),60,294,425,514);c.restore()}
+ if(image){c.save();c.beginPath();if(c.roundRect)c.roundRect(60,294,425,514,22);else c.rect(60,294,425,514);c.clip();c.filter=photo.preserveColor?'none':'grayscale(100%)';c.drawImage(image,...portraitRect(photo,image.naturalWidth||image.width,image.naturalHeight||image.height,425/514),60,294,425,514);c.restore()}
  else text(m.lead.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),180,565,100,700);
  text(`${m.lead.score}%`,60,896,78,700);text('AFINIDAD EDITORIAL',60,931,18,600,muted);
  text(m.lead.entity.name,60,991,39,700,ink,425);

@@ -40,6 +40,7 @@ export const PHOTOS = {
     "source": "https://commons.wikimedia.org/wiki/File:%C3%81lvaro_Delgado.png"
   },
   "manini": {
+    "preserveColor": true,
     "author": "Desayunos Informales",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "license": "CC BY 3.0",
