@@ -55,16 +55,17 @@ function testScreen(){
  <div class="test-top"><span>Pregunta <strong>${state.cursor+1} de ${qs.length}</strong></span><span>${percent}% completado</span></div>
  <progress class="sr-only" value="${answered}" max="${qs.length}" aria-label="Preguntas respondidas"></progress>
  <div class="question-progress" aria-hidden="true">${Array.from({length:12},(_,i)=>`<span><i style="width:${Math.max(0,Math.min(100,(answered/qs.length*12-i)*100))}%"></i></span>`).join('')}</div>
- <form id="question-form">
+ <form id="question-form" autocomplete="off">
  <section class="question-card" aria-label="Pregunta actual">
  <span class="question-number" aria-hidden="true">${String(state.cursor+1).padStart(2,'0')}</span>
- <div class="question-meta"><span class="question-axis" aria-label="Eje: ${esc(axis.name)}">${quizIcon(axis.slug)}${esc(axis.name)}</span><button type="button" class="question-help" data-action="question-context" aria-expanded="false" aria-controls="question-context">${quizIcon('help')}Entender</button></div>
+ <div class="question-meta"><span class="question-axis" data-axis="${axis.slug}" aria-label="Eje: ${esc(axis.name)}">${quizIcon(axis.slug)}${esc(axis.name)}</span><button type="button" class="question-help" data-action="question-context" aria-expanded="false" aria-controls="question-context">${quizIcon('help')}Entender</button></div>
  <div id="question-context" class="question-context" hidden><p>${esc(axis.description)}</p><a href="#eje/${q.axis}">Leer ambas posturas y volver al test</a></div>
  <fieldset><legend class="question">${esc(q.text)}</legend><div class="answers">${[0,1,2,3,4].map(i=>`<label class="answer answer-${i>2?'agree':i<2?'disagree':'neutral'}"><span class="answer-symbol" aria-hidden="true">${quizIcon(i>2?'agree':i<2?'disagree':'neutral')}</span><span class="answer-label">${answerLabels[i]}</span><input type="radio" name="answer" value="${i}" ${v===i?'checked':''}></label>`).join('')}</div></fieldset>
  </section>
  <div class="test-controls"><button type="button" class="secondary" data-action="previous" ${state.cursor===0?'disabled':''}>${quizIcon('back')}Anterior</button><div class="test-options"><button type="button" class="auto-advance" data-action="auto-advance" aria-pressed="${autoAdvance}"><span class="auto-switch" aria-hidden="true"></span><span>Avance automático</span><strong class="sr-only">${autoAdvance?'Activado':'Desactivado'}</strong></button></div><button class="primary" type="submit" ${!validAnswer(v)?'disabled':''}>${state.cursor===qs.length-1?'Ver mi resultado':'Siguiente'}${quizIcon('next')}</button></div>
  </form>
  <p class="small muted test-storage">${storageOK?'Tu avance se guarda solo en este navegador.':'El almacenamiento está bloqueado. Podés seguir, pero no cerrar esta página.'} Podés volver y cambiar cualquier respuesta.</p><a class="quiet-link" href="#inicio">Salir y conservar avance</a>`,false,true);
+ document.querySelectorAll('#question-form input[name=answer]').forEach(input=>{input.checked=validAnswer(v)&&Number(input.value)===v});
  document.querySelector('#main').classList.add('questionnaire-page');document.querySelector('#main>h1').classList.add('sr-only');
 }
 const ranked=()=>rankFigures(profile(),FIGURES,resultReferenceId);
@@ -129,6 +130,7 @@ else if(action==='confirm-reset'){state=null;try{localStorage.removeItem(KEY)}ca
 else if(action==='erase'){state=null;try{localStorage.removeItem(KEY);localStorage.removeItem(OLD_KEY);localStorage.removeItem(ARCHIVE_KEY);document.querySelector('#erase-status').textContent='Respuestas y resultado borrados.'}catch{document.querySelector('#erase-status').textContent='El navegador impidió borrar el almacenamiento. Borrá los datos de este sitio en la configuración del navegador. El perfil ya no se muestra en esta sesión.'}}
 else if(action==='download'||action==='share'){try{b.disabled=true;const blob=await resultImage();if(action==='share'&&navigator.canShare?.({files:[new File([blob],'uruguay-compass.png',{type:'image/png'})]})){await navigator.share({files:[new File([blob],'uruguay-compass.png',{type:'image/png'})],title:'Mi perfil · Uruguay Compass'})}else{download(blob,'uruguay-compass.png');document.querySelector('#export-status').textContent=action==='share'?'Este navegador no permite compartir archivos directamente. Descargamos la imagen para que la compartas.':'Imagen guardada. La tarjeta incluye el alcance y los límites de la comparación.'}}catch(e){if(e.name!=='AbortError')document.querySelector('#export-status').textContent='No se pudo crear la imagen. Intentá de nuevo desde un navegador actualizado.'}finally{b.disabled=false}}
 else if(action==='report-download')download(new Blob([reportText],{type:'text/plain;charset=utf-8'}),'correccion-compass.txt')});
+document.addEventListener('pointermove',event=>{event.target.closest('.answers')?.classList.add('hover-ready')});
 function recordAnswer(input){
  const form=document.querySelector('#question-form');if(!state||state.completed||!input.isConnected||input.form!==form)return;
  const value=Number(input.value);if(!validAnswer(value))return;

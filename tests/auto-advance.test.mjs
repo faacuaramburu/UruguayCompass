@@ -51,6 +51,8 @@ test('a stored preference supports keyboard changes and completes the test on th
  assert.equal(saved().cursor,1);
  for(let i=1;i<36;i++){
   assert.equal(saved().cursor,i);
+  assert.equal(query('[name=answer]:checked'),null,'A new question must have no selected answer');
+  assert.equal(query('.answers').classList.contains('hover-ready'),false,'A stationary pointer must not highlight the next answer');
   query('[name=answer][value="2"]').click();
  }
  await new Promise(r=>setTimeout(r,20));
