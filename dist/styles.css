@@ -287,6 +287,7 @@ html,body,#app{background:#000}
 @media(max-width:600px){.questionnaire-page{margin-top:24px;padding:0 16px}.question-card{padding:20px 16px 22px}.question-number{font-size:52px;top:17px;right:16px}.question-meta{padding-right:44px;gap:6px}.question-axis,.question-help{font-size:11px;padding:6px 10px;min-height:36px}.questionnaire-page .question{font-size:23px;padding-right:0}.questionnaire-page .answer{padding:11px 12px;gap:10px;font-size:13px}.questionnaire-page .test-controls{grid-template-columns:1fr 1fr;gap:10px}.questionnaire-page .test-options{grid-column:1/-1;grid-row:2}.questionnaire-page .test-controls>.primary{grid-column:2;grid-row:1}.questionnaire-page .test-controls>.secondary{grid-column:1;grid-row:1}.questionnaire-page .test-controls>button{width:100%}.questionnaire-page .auto-advance{font-size:12px}.question-progress{gap:3px}}
 
 .question-axis,.question-help{text-transform:uppercase;letter-spacing:.04em}
+.results-index nav a[aria-current=location]{background:#263b35;color:#c5f2df;font-weight:700;border-radius:6px;padding-left:10px;padding-right:10px;text-decoration:underline;text-underline-offset:4px}
 .question-axis[data-axis=economia]{background:#47331f;color:#ffdbad}
 .question-axis[data-axis=impuestos]{background:#403a19;color:#f3e4a2}
 .question-axis[data-axis=trabajo]{background:#263851;color:#c5dcff}
