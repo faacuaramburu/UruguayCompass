@@ -4,10 +4,11 @@ import {FIGURES} from '../dist/politics.js';
 import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
 import {hasMapEvidence,filteredSpectrum,spectrumGroups} from '../dist/spectrum.js';
 
-const removed=['wilson','seregni','alejandro-sanchez','topolansky','blanca-rodriguez','lema','da-silva','pacheco-areco','artigas','rivera','oribe','lavalleja','berro','saravia','herrera','haedo','batlle','terra','latorre'];
-test('only the 31 sourced, usable result references remain in the catalog and map',()=>{
- assert.equal(FIGURES.length,31);assert.equal(new Set(FIGURES.map(f=>f.id)).size,31);
- for(const f of FIGURES){
+const removed=['topolansky','blanca-rodriguez','da-silva','artigas','rivera','oribe','lavalleja','berro','haedo','batlle','latorre'];
+test('31 sourced numerical references retain their coverage alongside 22 documentary additions',()=>{
+ assert.equal(FIGURES.length,53);assert.equal(new Set(FIGURES.map(f=>f.id)).size,53);
+ assert.equal(FIGURES.filter(f=>f.rankEligible).length,31);
+ for(const f of FIGURES.filter(f=>f.rankEligible)){
   assert.ok(f.rankEligible&&f.eligible&&f.comparable,f.id);
   assert.ok(f.bio.length>50&&f.actions.length>0&&f.sources.length>0,f.id);
   assert.ok(f.sources.every(s=>s.title&&s.url.startsWith('https://')),f.id);
@@ -19,7 +20,7 @@ test('only the 31 sourced, usable result references remain in the catalog and ma
   }
   for(const axis of COMPARISON_AXES)assert.ok(Number.isFinite(f.profile[axis]),f.id);
  }
- assert.equal(removed.length,19);
+ assert.equal(removed.length,11);
  for(const id of removed){assert.ok(!FIGURES.some(f=>f.id===id),id);assert.ok(!filteredSpectrum(FIGURES,{query:id}).some(f=>f.id===id),id)}
  assert.equal(filteredSpectrum(FIGURES,{query:'Aparicio Sarabia'}).length,0);
 });

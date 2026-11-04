@@ -565,3 +565,11 @@ html[data-theme=dark] .compare-position--2{--compare-color:#8fd4b0}
 .compare-identity .person-details{margin:0}
 .result-poster .card-preview-person .person-details{font-size:8px;line-height:1.6;margin:0;color:#d0d4da}
 .result-poster .person-details .person-party{color:#f3f6fa}
+
+/* Documentary figures keep qualitative evidence separate from numerical estimates. */
+.research-axis summary span{display:block;margin:3px 0 0;font-size:12px;color:var(--muted)}
+.research-axis p,.research-axis h3{max-width:70ch;overflow-wrap:anywhere}
+.compare-documentary>span{font-size:12px}
+.page .compare-qualitative{margin:8px 0 0}
+.compare-qualitative strong{display:block;max-width:none;text-align:left;color:var(--ink)}
+.compare-qualitative>span{display:block;margin-top:6px;font-size:12px;color:var(--muted)}

@@ -5,9 +5,10 @@ import {QUESTIONS} from '../dist/questions.js';
 import {AXES,GLOSSARY,TIMELINE,FAQ} from '../dist/context.js';
 import {PARTIES,FIGURES} from '../dist/politics.js';
 import {PHOTOS} from '../dist/photos.js';
-assert.equal(QUESTIONS.length,240);assert.equal(AXES.length,12);assert.equal(PARTIES.length,6);assert.equal(FIGURES.length,31);
+assert.equal(QUESTIONS.length,240);assert.equal(AXES.length,12);assert.equal(PARTIES.length,6);assert.equal(FIGURES.length,53);
 assert.equal(new Set(QUESTIONS.map(q=>q.text)).size,240);
-assert.ok(FIGURES.every(f=>f.rankEligible),'Every catalog entry must be usable as a result');
+assert.equal(FIGURES.filter(f=>f.rankEligible).length,31);
+assert.equal(FIGURES.filter(f=>f.researchOnly&&!f.rankEligible&&f.profile.every(v=>v===null)).length,22);
 for(const figure of FIGURES){
  const photo=PHOTOS[figure.id];assert.ok(photo?.author&&(photo?.source?.startsWith('https://')||(photo.providedByUser===true&&photo.publisher&&photo.source===null)),`Procedencia documentada: ${figure.id}`);
  assert.ok(photo.license||(photo.rightsStatus==='unspecified'&&photo.publisher),`Derechos documentados: ${figure.id}`);

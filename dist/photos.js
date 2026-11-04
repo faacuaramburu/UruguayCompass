@@ -1,3 +1,4 @@
+import {ADDITIONAL_PHOTOS} from './additional-photos.js';
 export const PHOTOS = {
   "lacalle-herrera": {
     "author": "Embajada de EEUU en Uruguay",
@@ -275,5 +276,6 @@ export const PHOTOS = {
       380
     ],
     "note": "Fotografía publicada junto a la noticia sobre Canoniero; encuadre de la oradora a la izquierda mediante CSS. La fuente no indica autor individual ni licencia abierta."
-  }
+  },
+  ...ADDITIONAL_PHOTOS
 };

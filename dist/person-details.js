@@ -1,3 +1,4 @@
+import {ADDITIONAL_PERSON_DETAILS} from './additional-figures.js';
 // Display metadata, reviewed 2026-11-04. Sources and classification criteria:
 // docs/PERSONAS.md. These descriptions do not take part in affinity scoring.
 export const PERSON_DETAILS={
@@ -31,7 +32,8 @@ export const PERSON_DETAILS={
  argimon:{party:'Partido Nacional',orientation:'Nacionalismo · tradición wilsonista',role:'Embajadora de Uruguay ante la UNESCO'},
  sartori:{party:'Partido Nacional',orientation:'Liberalismo económico',role:'Empresario · exsenador (2020–2025)'},
  larranaga:{party:'Partido Nacional · Alianza Nacional',orientation:'Wilsonismo',role:'Exministro del Interior (2020–2021) · fallecido en 2021'},
- bordaberry:{party:'Partido Colorado',orientation:'Liberalismo conservador',role:'Senador (2025–2030)'}
+ bordaberry:{party:'Partido Colorado',orientation:'Liberalismo conservador',role:'Senador (2025–2030)'},
+ ...ADDITIONAL_PERSON_DETAILS
 };
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function personDetailLines(entity){const p=PERSON_DETAILS[entity.id];return p?[p.party,p.orientation,p.role]:[]}
