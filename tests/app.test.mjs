@@ -23,15 +23,16 @@ test('complete application flows, persistence, content, corrections and privacy'
  w.HTMLCanvasElement.prototype.toBlob=function(callback){callback(new Blob(['png-test'],{type:'image/png'}))};
  await import('../dist/app.js');
  const click=s=>{const el=w.document.querySelector(s);assert.ok(el,`Missing ${s}`);el.click()};
- const route=async hash=>{w.location.hash=hash;await new Promise(r=>setTimeout(r,15))};
+ const waitFor=async selector=>{const deadline=Date.now()+2000;while(!w.document.querySelector(selector)&&Date.now()<deadline)await new Promise(r=>setTimeout(r,5));assert.ok(w.document.querySelector(selector),selector)};
+ const route=async hash=>{if(w.location.hash===hash)return;await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Navigation did not finish: '+hash)),2000);w.addEventListener('hashchange',()=>{clearTimeout(timer);resolve()},{once:true});w.location.hash=hash})};
  const text=()=>w.document.querySelector('#app').textContent;
  for(const[version,n]of [['short',36],['full',60],['extreme',240]]){
   await route('#inicio');if(w.document.querySelector('.resume-actions')){click('[data-action=reset]');click('[data-action=confirm-reset]');await new Promise(r=>setTimeout(r,10))}
   assert.deepEqual([...w.document.querySelectorAll('.home-actions a')].map(a=>a.textContent),['Iniciar','Ver 12 ejes']);
   assert.equal(w.document.querySelector('[name=version]'),null);
-  click('.home-actions a[href="#enciclopedia"]');await new Promise(r=>setTimeout(r,15));
-  assert.equal(w.document.querySelectorAll('.axis-guide-grid a[href^="#eje/"]').length,12);
-  await route('#inicio');click('.home-actions a[href="#iniciar"]');await new Promise(r=>setTimeout(r,15));
+  click('.home-actions a[href="#enciclopedia"]');await waitFor('.axis-guide-grid');
+  assert.equal(w.document.querySelectorAll('.axis-guide-grid a[href^="#eje/"]').length,12,`${version}: ${w.location.hash}; ${w.document.querySelector('h1')?.textContent}`);
+  await route('#inicio');click('.home-actions a[href="#iniciar"]');await waitFor('[name=version]');
   assert.equal(w.document.querySelectorAll('[name=version]').length,3);
   const radio=w.document.querySelector(`[name=version][value=${version}]`);radio.checked=true;radio.dispatchEvent(new w.Event('change',{bubbles:true}));click('[data-action=start]');await new Promise(r=>setTimeout(r,10));
   assert.ok(text().includes(`Pregunta 1 de ${n}`));assert.equal(w.document.querySelector('button[type=submit]').disabled,true);
@@ -72,6 +73,9 @@ test('complete application flows, persistence, content, corrections and privacy'
    assert.equal(w.document.activeElement,marker,'Keyboard selection preserves the actual focused SVG node');
   }
   assert.equal(w.document.querySelectorAll('.match-row .portrait img').length,5);
+  assert.equal(w.document.querySelectorAll('#figures-panel .person-details').length,6);
+  assert.equal(w.document.querySelectorAll('.portrait figcaption').length,0);
+  assert.ok(![...w.document.querySelectorAll('a')].some(a=>a.textContent==='Comparar eje por eje y ver fuentes'));
   assert.equal(w.document.querySelector('.card-preview-party'),null);assert.ok(w.document.querySelector('.poster-bottom').textContent.includes('PAÍSES ACTUALES'));
   assert.equal(w.document.querySelectorAll('#parties-panel .party-match').length,5);assert.equal(w.document.querySelectorAll('#parties-panel .party-match img').length,5);
   const ranksBefore=w.localStorage.getItem('uruguay-compass-v2');

@@ -9,7 +9,7 @@ assert.equal(QUESTIONS.length,240);assert.equal(AXES.length,12);assert.equal(PAR
 assert.equal(new Set(QUESTIONS.map(q=>q.text)).size,240);
 assert.ok(FIGURES.every(f=>f.rankEligible),'Every catalog entry must be usable as a result');
 for(const figure of FIGURES){
- const photo=PHOTOS[figure.id];assert.ok(photo?.author&&photo?.source.startsWith('https://'),`Retrato atribuido: ${figure.id}`);
+ const photo=PHOTOS[figure.id];assert.ok(photo?.author&&(photo?.source?.startsWith('https://')||(photo.providedByUser===true&&photo.publisher&&photo.source===null)),`Procedencia documentada: ${figure.id}`);
  assert.ok(photo.license||(photo.rightsStatus==='unspecified'&&photo.publisher),`Derechos documentados: ${figure.id}`);
  if(photo.crop){const [x,y,w,h]=photo.crop,[width,height]=photo.dimensions;assert.ok([x,y,w,h,width,height].every(Number.isFinite)&&x>=0&&y>=0&&w>0&&h>0&&x+w<=width&&y+h<=height,figure.id)}
  await access('dist/'+photo.src);

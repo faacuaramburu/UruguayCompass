@@ -1,6 +1,7 @@
 import {quizIcon} from './icons.js';
 import {posterModel} from './result-poster.js';
-import {portraitRect,photoCredit} from './portrait.js';
+import {portraitRect} from './portrait.js';
+import {personDetailLines} from './person-details.js';
 const loadImage=src=>new Promise(resolve=>{
  if(!src){resolve(null);return}
  const image=new Image(),timer=setTimeout(()=>resolve(null),4000);
@@ -32,7 +33,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  else text(m.lead.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),180,565,100,700);
  text(`${m.lead.score}%`,60,896,78,700);text('AFINIDAD EDITORIAL',60,931,18,600,muted);
  text(m.lead.entity.name,60,991,39,700,ink,425);
- text(m.lead.entity.comparisonLabel,60,1030,18,400,muted,425);
+ personDetailLines(m.lead.entity).forEach((line,i)=>text(line,60,1020+i*26,17,400,muted,425));
  box(520,294,620,752,panel);text('TUS 12 EJES',545,333,20,700,muted);
  m.positions.forEach((x,i)=>{
   const y=383+i*57,label=x.reading.side?x.axis[x.reading.side]:x.axis.short;
@@ -52,6 +53,5 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  const tied=ranking.filter(x=>Number.isFinite(m.lead.distance)?x.distance===m.lead.distance:x.score===m.lead.score);
  if(tied.length>1)text(`Empate exacto entre ${tied.length} referencias; se destaca la primera por orden alfabético.`,60,1590,17,400,muted);
  text('Educativo. Sin validación científica ni recomendación de voto.',60,1625,17,400,muted);
- if(photo)text(`Foto: ${photoCredit(photo)} · ${new URL(photo.source).hostname}`,60,1655,14,400,muted);
  return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(Error('PNG no disponible')),'image/png'));
 }

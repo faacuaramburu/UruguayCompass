@@ -556,3 +556,12 @@ html[data-theme=dark] .compare-position--2{--compare-color:#8fd4b0}
 @media(max-width:850px){.app-header{padding:18px 76px 18px 20px}.app-header nav{justify-content:flex-start}.home-header nav{width:100%;margin-top:14px;flex-wrap:wrap}.home-header nav .nav-button{font-size:12px}.axis-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.axis-guide-card{padding:20px 16px}.comparator-selections{gap:20px}.comparator-axes{column-gap:24px}.compare-identity{align-items:flex-start;gap:12px}.compare-identity h2{font-size:21px}.compare-identity .entity-media{width:48px;height:48px}.compare-identity .entity-media--party{width:56px;height:44px}}
 @media(max-width:580px){.axis-guide-grid,.comparator-selections,.comparator-axes{grid-template-columns:1fr}.axis-guide-card{padding:22px}.axis-guide-card h2{font-size:23px}.axis-guide-card p{font-size:13px}.axis-guide-card .axis-guide-poles{font-size:12px}.comparator-selections{gap:24px}.compare-entity{padding-bottom:20px;border-bottom:1px solid var(--line)}.compare-identity{align-items:center}.compare-axis-heading h3{font-size:21px}.entity-directory>a{gap:12px}.entity-media{width:52px;height:52px}.entity-media--party{width:64px;height:46px}.app-header nav{gap:0}.app-header .nav-button{font-size:11px;padding:8px}.home-header .brand{max-width:calc(100% - 56px)}}
 @media(prefers-reduced-motion:reduce){.nav-button,.axis-guide-card{transition:none}}
+.person-details{display:block;min-width:0;margin:6px 0 14px;font-size:12px;line-height:1.75;color:var(--muted);overflow-wrap:break-word}
+.person-details>span{display:block}
+.person-details .person-party{color:var(--ink)}
+.figure-lead .closest-person>.person-details{grid-column:2;grid-row:3;margin:0}
+.figure-nearby .person-details,.far-figures .person-details{font-size:11px;margin-bottom:0}
+.entity-directory>a>div>.person-details{line-height:1.75;margin-bottom:0}
+.compare-identity .person-details{margin:0}
+.result-poster .card-preview-person .person-details{font-size:8px;line-height:1.6;margin:0;color:#d0d4da}
+.result-poster .person-details .person-party{color:#f3f6fa}
