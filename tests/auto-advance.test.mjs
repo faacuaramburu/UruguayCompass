@@ -22,6 +22,9 @@ async function boot({enabled=false,blocked=false}={}){
 test('automatic advance is optional and a click advances exactly once, including a previously selected answer',async()=>{
  const {dom,w,query,saved}=await boot();
  assert.equal(query('[data-action=auto-advance]').getAttribute('aria-pressed'),'false');
+ assert.equal(query('.test-controls').nextElementSibling,query('.test-options'));
+ assert.equal(query('#auto-advance-help'),null);
+ assert.equal(query('.test-options p'),null);
  query('[name=answer][value="3"]').click();assert.equal(saved().cursor,0);
  query('[data-action=auto-advance]').click();assert.equal(saved().cursor,0,'Enabling does not submit an existing answer');
  assert.equal(w.localStorage.getItem('compass-auto-advance'),'true');
@@ -59,6 +62,6 @@ test('automatic advance remains usable when saving preferences or answers is blo
  query('[name=answer][value="2"]').click();
  assert.ok(query('.test-top').textContent.includes('Pregunta 2 de 36'));
  assert.equal(query('[data-action=auto-advance]').getAttribute('aria-pressed'),'true');
- assert.ok(query('.small.muted').textContent.includes('Al elegir una respuesta'));
+ assert.equal(query('#auto-advance-help'),null);
  dom.window.close();
 });
