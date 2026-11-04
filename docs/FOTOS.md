@@ -1,8 +1,8 @@
 # Fotografías de las coincidencias
 
-Los 31 referentes tienen fotografía documental local, sin consultas a terceros al mostrar resultados. Veintinueve provienen de Wikimedia Commons, con la licencia indicada en su ficha; dos proceden de publicaciones periodísticas que no indican licencia abierta. En estos casos se identifica el medio y la fuente sin atribuirles una licencia inexistente. No son retratos generados.
+Los 31 referentes tienen fotografía documental local, sin consultas a terceros al mostrar resultados. Veintiocho provienen de Wikimedia Commons, con la licencia indicada en sus metadatos; dos proceden de publicaciones periodísticas que no indican licencia abierta; la de Laura Raffo fue aportada por el usuario. No son retratos generados.
 
-Los archivos originales se conservan. La interfaz usa `object-fit: cover` para recortar el encuadre; no modifica rostros ni añade elementos. Los créditos de autor y licencia enlazan a la ficha original junto a cada retrato. Datos completos también en `dist/photos.js`.
+Los archivos originales se conservan. La interfaz usa `object-fit: cover` para recortar el encuadre; no modifica rostros ni añade elementos. La procedencia y las licencias se conservan en este documento y en `dist/photos.js`. Por pedido del usuario no se muestran créditos fotográficos en las pantallas ni en la tarjeta exportada. Junto a los nombres se muestran partido, orientación y cargo o actividad, centralizados en `dist/person-details.js`.
 
 | Persona | Autor | Licencia | Fuente |
 | --- | --- | --- | --- |
@@ -37,7 +37,7 @@ Se descargaron archivos o miniaturas de las fuentes identificadas. El tamaño y 
 - Eduardo Lust: [fuente](https://commons.wikimedia.org/wiki/File:Lust_cropped.jpg), Desayunos Informales, CC BY 3.0 ([licencia](https://creativecommons.org/licenses/by/3.0)).
 - César Vega: [fuente](https://commons.wikimedia.org/wiki/File:C%C3%A9sar_Vega.jpg), Marinna, CC BY-SA 3.0 ([licencia](https://creativecommons.org/licenses/by-sa/3.0)).
 - Danilo Astori: [fuente](https://commons.wikimedia.org/wiki/File:Danilo_Astori_2011.jpg), Zeroth, CC BY-SA 3.0 ([licencia](https://creativecommons.org/licenses/by-sa/3.0)).
-- Laura Raffo: [fuente](https://commons.wikimedia.org/wiki/File:Laura_Raffo_Set_2020_cropped.jpg), Ganímedes, CC BY-SA 4.0 ([licencia](https://creativecommons.org/licenses/by-sa/4.0)).
+- Laura Raffo: fotografía aportada por el usuario el 4 de noviembre de 2026, archivo original PNG de 678 × 452, `dist/images/raffo-user.png`. Autor y licencia no indicados; no se le atribuyen los derechos ni la procedencia del retrato anterior. El retrato reemplazado (`images/raffo.jpg`) provenía de [Commons](https://commons.wikimedia.org/wiki/File:Laura_Raffo_Set_2020_cropped.jpg), Ganímedes, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), y ya no se usa en la interfaz ni en exportaciones.
 - Beatriz Argimón: [fuente](https://commons.wikimedia.org/wiki/File:Beatriz_Argim%C3%B3n_PN_septiembre_2019_(cropped).jpg), Coto1510, CC BY-SA 4.0 ([licencia](https://creativecommons.org/licenses/by-sa/4.0)).
 - Juan Sartori: [fuente](https://commons.wikimedia.org/wiki/File:Juan_Jos%C3%A9_Sartori_(cropped).png), Desayunos informales, CC BY 3.0 ([licencia](https://creativecommons.org/licenses/by/3.0)).
 - Jorge Larrañaga: [fuente](https://commons.wikimedia.org/wiki/File:Jorge_Larra%C3%B1aga_2009.jpg), Andrea Mazza, CC BY 3.0 ([licencia](https://creativecommons.org/licenses/by/3.0)).
@@ -55,8 +55,8 @@ Se descargaron archivos o miniaturas de las fuentes identificadas. El tamaño y 
 - Gonzalo Martínez: [APU · Tiempo Político](https://www.apu.uy/node/2024), imagen promocional de su entrevista de junio de 2024. No indica licencia abierta. Se encuadra únicamente el retrato, dejando fuera los textos del anuncio.
 - María Elvira Canoniero: [Paysandú Online](https://paysanduonline.uy/noticia/la-sanducera-marita-canoniero-renuncio-a-la-presidencia-de-identidad-soberana-y-cuestiono-la-conduccion-del-partido), autor individual y licencia no indicados. Se encuadra la oradora a la izquierda de la fotografía.
 
-Los archivos y miniaturas se conservan como fueron descargados; el encuadre se aplica en la interfaz y en el PNG. La atribución enlaza siempre la publicación de origen.
+Los archivos y miniaturas se conservan como fueron descargados; el encuadre se aplica en la interfaz y en el PNG. La procedencia se conserva en los metadatos y en este documento.
 
-La tarjeta de resultados recorta el retrato según el encuadre documentado y lo presenta en blanco y negro. La vista previa y el PNG conservan la atribución del retrato y un enlace al sitio con las fuentes completas. Las referencias secundarias del PNG usan iniciales, no nuevas fotografías sin atribuir. El código QR local contiene únicamente la URL pública del sitio, sin respuestas ni afinidades.
+La tarjeta de resultados recorta el retrato según el encuadre documentado y lo presenta en blanco y negro. La vista previa y el PNG muestran los datos personales y conservan un enlace al sitio. Las referencias secundarias del PNG usan iniciales. El código QR local contiene únicamente la URL pública del sitio, sin respuestas ni afinidades.
 
-El retrato de Guido Manini Ríos conserva su color original también en la tarjeta y el PNG, por pedido del usuario; no se modifica el archivo fuente.
+Los retratos de Guido Manini Ríos y Laura Raffo conservan su color original también en la tarjeta y el PNG, por pedido del usuario; no se modifica el archivo fuente.

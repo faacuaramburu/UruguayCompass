@@ -121,12 +121,16 @@ export const PHOTOS = {
     "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
   },
   "raffo": {
-    "src": "images/raffo.jpg",
-    "author": "Ganímedes",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Laura_Raffo_Set_2020_cropped.jpg",
-    "note": "Archivo de Wikimedia Commons; encuadre visual en la interfaz."
+    "src": "images/raffo-user.png",
+    "author": "Autor no identificado",
+    "publisher": "Imagen aportada por el usuario",
+    "providedByUser": true,
+    "license": null,
+    "licenseUrl": null,
+    "rightsStatus": "unspecified",
+    "source": null,
+    "preserveColor": true,
+    "note": "Fotografía aportada por el usuario el 4 de noviembre de 2026. Archivo original conservado; no se atribuye una licencia abierta ni la procedencia de la imagen anterior."
   },
   "sartori": {
     "src": "images/sartori.png",
