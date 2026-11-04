@@ -93,3 +93,29 @@ test('the question card identifies all twelve axes and keeps help separate from 
  assert.equal(axisIcons.size,12,'Each axis has its own icon');
  dom.window.close();
 });
+
+test('the test header has only an icon theme toggle and a restart control that preserves answers until confirmed',async()=>{
+ const {dom,w,query,saved}=await boot();
+ const nav=query('.app-header nav');
+ assert.equal(nav.querySelectorAll('a').length,0);
+ assert.deepEqual([...nav.querySelectorAll('button')].map(b=>b.dataset.action),['theme','reset']);
+ const toggle=query('[data-action=theme]');
+ assert.equal(toggle.textContent,'');assert.equal(toggle.getAttribute('aria-label'),'Activar modo oscuro');
+ const moon=toggle.innerHTML;
+ query('[name=answer][value="3"]').click();const before=saved();
+ toggle.click();assert.equal(w.document.documentElement.dataset.theme,'dark');
+ assert.equal(toggle.textContent,'');assert.equal(toggle.getAttribute('aria-label'),'Activar modo claro');assert.notEqual(toggle.innerHTML,moon);
+ assert.equal(w.localStorage.getItem('compass-theme'),'dark');assert.deepEqual(saved(),before);
+ toggle.click();assert.equal(toggle.innerHTML,moon);assert.deepEqual(saved(),before);
+ query('.app-header [data-action=reset]').click();
+ assert.ok(query('[data-action=confirm-reset]'));assert.deepEqual(saved(),before);
+ query('.actions a[href="#test"]').click();await new Promise(r=>setTimeout(r,20));
+ assert.equal(query('[name=answer][value="3"]').checked,true);
+ query('.app-header [data-action=reset]').click();query('[data-action=confirm-reset]').click();
+ await new Promise(r=>setTimeout(r,20));assert.equal(saved(),null);
+ const homeToggle=query('[data-action=theme]');assert.equal(homeToggle.textContent,'');assert.ok(homeToggle.querySelector('svg'));
+ w.location.hash='#metodologia';await new Promise(r=>setTimeout(r,20));
+ assert.equal(query('.app-header nav').querySelectorAll('a').length,3);
+ assert.equal(query('[data-action=theme]').textContent,'');
+ dom.window.close();
+});
