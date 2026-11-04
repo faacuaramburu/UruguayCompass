@@ -20,7 +20,7 @@ Los referentes políticos quedan sin puntaje en ambos temas hasta seleccionar ev
 
 ## Interpretaciones y comparaciones
 
-La lectura general describe hasta tres ejes según su distancia a 50, con umbral de diez puntos. Los recuentos de respuestas neutras o en ambos sentidos no se interpretan como confianza, incoherencia ni certeza.
+La página comienza con el nombre, frase y porcentaje del modelo pedagógico más próximo. La explicación y su cálculo se despliegan dentro de ese panel; ya no hay secciones separadas de escala ni de lecturas ideológicas. Lo que te distingue compara los ejes documentados con la mediana del catálogo de referentes; no representa una mediana poblacional ni de todas las ideologías.
 
 Los cinco modelos pedagógicos comparan economía, impuestos, trabajo y valores sociales. Sus prototipos y la fórmula son públicos. Las coordenadas de los prototipos se adaptan al nuevo orden y sentido de los polos; no se atribuyen esos valores a personas ni partidos.
 
