@@ -37,8 +37,8 @@ test('ideology names and phrases retain the existing model scores and values',()
 
 test('distinctive priorities use only evidenced medians and the compass preserves axis meaning',()=>{
  const p=Array(12).fill(50),doc=new JSDOM(distinctivePriorities(p,FIGURES)).window.document;
- assert.equal(doc.querySelectorAll('.distinctive-grid>article').length,2);
- assert.ok(doc.body.textContent.includes('mediana'));assert.ok(!doc.body.textContent.includes('undefined'));
+ assert.equal(doc.querySelectorAll('.distinctive-grid>article').length,0);
+ assert.ok(doc.body.textContent.includes('evidencia'));assert.ok(!doc.body.textContent.includes('undefined'));
  const grid=new JSDOM(renderPoliticalGrid(p)).window.document;
  assert.equal(grid.querySelectorAll('rect').length,82);
  assert.ok(grid.body.textContent.includes('no mide autoritarismo'));
