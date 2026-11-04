@@ -5,34 +5,38 @@ const impo = (title, path) => ({ title, url: `https://www.impo.com.uy/bases/${pa
 export const AXES = [
   {
     id: 0, slug: 'economia', name: 'Economía', short: 'Economía',
-    left: 'Mercado', right: 'Estado',
+    left: 'Intervencionismo estatal', right: 'Libre mercado',
+    leftIcon: '🏛️', rightIcon: '💼',
     description: 'Explora qué papel deberían tener la iniciativa privada, las empresas públicas y la regulación en la actividad económica. No equivale a estar a favor o en contra de toda intervención estatal.',
-    leftText: 'Prioriza la iniciativa privada, la competencia y las decisiones de personas y empresas para organizar la producción. Prefiere una intervención estatal más acotada, con reglas generales, protección de la competencia y supervisión de los servicios esenciales.',
-    rightText: 'Prioriza un papel activo del Estado para orientar la producción y prestar servicios. Valora las empresas públicas y la regulación como herramientas para atender necesidades colectivas, reducir desequilibrios y sostener actividades consideradas estratégicas.',
+    leftText: 'Prioriza un papel activo del Estado para orientar la producción y prestar servicios. Valora las empresas públicas y la regulación como herramientas para atender necesidades colectivas, reducir desequilibrios y sostener actividades consideradas estratégicas.',
+    rightText: 'Prioriza la iniciativa privada, la competencia y las decisiones de personas y empresas para organizar la producción. Prefiere una intervención estatal más acotada, con reglas generales, protección de la competencia y supervisión de los servicios esenciales.',
     debates: ['Alcance de los servicios de ANCAP, UTE y Antel.', 'Competencia y regulación de los mercados.', 'Apoyos públicos e inversión productiva.'],
     sources: [impo('Constitución, artículo 36: actividades económicas', 'constitucion/1967-1967/36'), impo('Constitución, artículo 50: orientación económica', 'constitucion/1967-1967/50')]
   },
   {
-    id: 1, slug: 'impuestos', name: 'Impuestos y redistribución', short: 'Impuestos',
-    left: 'Impuestos bajos', right: 'Redistribución',
+    id: 1, slug: 'impuestos', name: 'Impuestos', short: 'Impuestos',
+    left: 'Redistribución', right: 'Impuestos bajos',
+    leftIcon: '🤝', rightIcon: '🪙',
     description: 'Examina el equilibrio entre la carga tributaria y la financiación de transferencias y servicios. Bajar un impuesto y aumentar otro puede expresar una posición intermedia, no una contradicción.',
-    leftText: 'Prefiere una carga tributaria menor para que hogares y empresas dispongan de más recursos. Pone el foco en la previsibilidad de los impuestos, el ahorro y la inversión, junto con un gasto público más acotado o focalizado.',
-    rightText: 'Prefiere una recaudación que permita financiar más servicios y transferencias. Pone el foco en distribuir el esfuerzo según la capacidad de pago y en compensar desigualdades de ingreso, patrimonio y oportunidades mediante la política fiscal.',
+    leftText: 'Prefiere una recaudación que permita financiar más servicios y transferencias. Pone el foco en distribuir el esfuerzo según la capacidad de pago y en compensar desigualdades de ingreso, patrimonio y oportunidades mediante la política fiscal.',
+    rightText: 'Prefiere una carga tributaria menor para que hogares y empresas dispongan de más recursos. Pone el foco en la previsibilidad de los impuestos, el ahorro y la inversión, junto con un gasto público más acotado o focalizado.',
     debates: ['IRPF y tributación de las distintas fuentes de ingreso.', 'IVA y costo del consumo.', 'Transferencias sociales, gasto público y distribución del ingreso.'],
     sources: [impo('Ley 18.083: reforma tributaria', 'leyes/18083-2006')]
   },
   {
     id: 2, slug: 'trabajo', name: 'Trabajo', short: 'Trabajo',
-    left: 'Flexibilidad laboral', right: 'Protección laboral',
+    left: 'Protección laboral', right: 'Flexibilidad laboral',
+    leftIcon: '🛡️', rightIcon: '🔄',
     description: 'Explora cuánto deberían definir las reglas comunes, la negociación colectiva y los acuerdos particulares en las relaciones de trabajo. La libertad sindical forma parte del marco de derechos, no de una opción a favor o en contra.',
-    leftText: 'Prefiere dar más espacio a los acuerdos entre cada empresa y sus trabajadores para organizar horarios, tareas y remuneraciones. Considera que adaptar las condiciones a situaciones distintas puede facilitar la contratación y la continuidad de los empleos.',
-    rightText: 'Prefiere reglas comunes y negociación colectiva para fijar condiciones de trabajo. Considera que la protección laboral y la representación sindical permiten equilibrar la capacidad de negociación y dar mayor estabilidad a salarios, jornadas y trayectorias laborales.',
+    leftText: 'Prefiere reglas comunes y negociación colectiva para fijar condiciones de trabajo. Considera que la protección laboral y la representación sindical permiten equilibrar la capacidad de negociación y dar mayor estabilidad a salarios, jornadas y trayectorias laborales.',
+    rightText: 'Prefiere dar más espacio a los acuerdos entre cada empresa y sus trabajadores para organizar horarios, tareas y remuneraciones. Considera que adaptar las condiciones a situaciones distintas puede facilitar la contratación y la continuidad de los empleos.',
     debates: ['Consejos de Salarios y negociación por rama o empresa.', 'Organización de la jornada y cambios de tareas.', 'Regulación de despidos, tercerizaciones y trabajo en plataformas.'],
     sources: [impo('Ley 18.566: negociación colectiva', 'leyes/18566-2009'), impo('Constitución, artículo 57: organización sindical', 'constitucion/1967-1967/57')]
   },
   {
-    id: 3, slug: 'seguridad', name: 'Seguridad y libertades individuales', short: 'Seguridad',
-    left: 'Libertades', right: 'Control de seguridad',
+    id: 3, slug: 'seguridad', name: 'Seguridad', short: 'Seguridad',
+    left: 'Libertades individuales', right: 'Control y autoridad',
+    leftIcon: '🕊️', rightIcon: '🚔',
     description: 'Compara prioridades ante las tensiones entre prevención del delito, facultades de control y garantías individuales. Ambos polos pueden buscar seguridad y respeto de los derechos: difieren en las herramientas que priorizan.',
     leftText: 'Prioriza límites claros a la vigilancia y a las facultades coercitivas, junto con controles judiciales y garantías procesales. Prefiere que las nuevas medidas de seguridad demuestren su necesidad y tengan un alcance delimitado sobre la vida cotidiana.',
     rightText: 'Prioriza ampliar herramientas de prevención, investigación y control para responder al delito. Prefiere dar mayor margen operativo a las instituciones de seguridad, con responsabilidades y supervisión, cuando considera que las facultades existentes resultan insuficientes.',
@@ -40,8 +44,19 @@ export const AXES = [
     sources: [impo('Constitución, artículo 7: derechos y garantías', 'constitucion/1967-1967/7'), impo('Ley 18.315: procedimiento policial', 'leyes/18315-2008')]
   },
   {
-    id: 4, slug: 'valores', name: 'Valores sociales', short: 'Valores sociales',
-    left: 'Progresista', right: 'Conservador',
+    id: 4, slug: 'instituciones', name: 'Instituciones', short: 'Instituciones',
+    left: 'Gobierno controlado', right: 'Gobierno fuerte',
+    leftIcon: '⚖️', rightIcon: '🏛️',
+    description: 'Explora el equilibrio entre los controles al Poder Ejecutivo y su capacidad para dirigir y ejecutar políticas. Ambos polos se plantean dentro de la democracia constitucional, la separación de poderes y las garantías de las personas. Gobierno fuerte no significa dictadura, ni gobierno controlado significa un gobierno incapaz de actuar.',
+    leftText: 'Prefiere reforzar la fiscalización parlamentaria, la transparencia y la revisión independiente de las decisiones del gobierno. Da más peso a los contrapesos y a justificar públicamente las excepciones, aunque eso pueda hacer más lenta la gestión.',
+    rightText: 'Prefiere mayor capacidad de conducción y coordinación del Poder Ejecutivo, con procedimientos administrativos más ágiles y un margen de decisión más amplio dentro de sus competencias. Mantiene como marco la Constitución, la independencia judicial y la rendición de cuentas.',
+    debates: ['Control parlamentario e información sobre la gestión del Ejecutivo.', 'Compras públicas, auditorías y revisión de decisiones administrativas.', 'Coordinación de ministerios y procedimientos legislativos de urgencia.'],
+    sources: [impo('Constitución, artículo 82: gobierno democrático republicano', 'constitucion/1967-1967/82'), impo('Constitución, artículo 85: atribuciones del Parlamento', 'constitucion/1967-1967/85'), impo('Constitución, artículo 168: atribuciones del Poder Ejecutivo', 'constitucion/1967-1967/168'), impo('Constitución, artículo 256: control de constitucionalidad', 'constitucion/1967-1967/256')]
+  },
+  {
+    id: 5, slug: 'valores', name: 'Valores sociales', short: 'Valores sociales',
+    left: 'Progresismo', right: 'Conservadurismo',
+    leftIcon: '🌈', rightIcon: '🏡',
     description: 'Explora actitudes hacia los cambios en las normas familiares, de género y de vida personal. Estas palabras tienen varios usos; acá describen este conjunto de asuntos y no toda la identidad política de alguien.',
     leftText: 'Prefiere ampliar el reconocimiento de distintas formas de familia, identidades y decisiones personales. Valora revisar normas sociales heredadas cuando considera que limitan la autonomía o el trato igualitario, y suele aceptar cambios legislativos en esos ámbitos.',
     rightText: 'Prefiere conservar instituciones y referencias sociales que considera valiosas para la convivencia. Valora la continuidad de los vínculos familiares y comunitarios, y suele pedir mayor cautela o deliberación antes de modificar las normas que los organizan.',
@@ -49,8 +64,9 @@ export const AXES = [
     sources: [impo('Ley 19.075: matrimonio igualitario', 'leyes/19075-2013'), impo('Ley 18.987: interrupción voluntaria del embarazo', 'leyes/18987-2012')]
   },
   {
-    id: 5, slug: 'laicidad', name: 'Laicidad y religión en lo público', short: 'Laicidad',
-    left: 'Laicidad', right: 'Presencia religiosa',
+    id: 6, slug: 'laicidad', name: 'Religión', short: 'Religión',
+    left: 'Laicismo', right: 'Tradicionalismo religioso',
+    leftIcon: '⚖️', rightIcon: '🕯️',
     description: 'Explora el lugar de las expresiones religiosas en instituciones, ceremonias y políticas públicas. La libertad de creer o no creer y la separación constitucional entre Estado y religión son el marco común del debate.',
     leftText: 'Prefiere que las instituciones públicas mantengan distancia de los símbolos y argumentos religiosos en su actuación oficial. Considera que esa separación facilita la convivencia entre personas de distintas creencias y protege la libertad de conciencia de todas ellas.',
     rightText: 'Prefiere admitir mayor presencia de expresiones y organizaciones religiosas en la vida pública, sin establecer una religión oficial. Considera que sus tradiciones, aportes sociales y convicciones pueden participar del debate junto con otras visiones de la sociedad.',
@@ -58,8 +74,9 @@ export const AXES = [
     sources: [impo('Constitución, artículo 5: cultos y Estado', 'constitucion/1967-1967/5'), impo('Ley 18.437: principios de la educación', 'leyes/18437-2008')]
   },
   {
-    id: 6, slug: 'comercio', name: 'Comercio exterior', short: 'Comercio exterior',
+    id: 7, slug: 'comercio', name: 'Comercio exterior', short: 'Comercio exterior',
     left: 'Apertura comercial', right: 'Proteccionismo',
+    leftIcon: '🌐', rightIcon: '🏭',
     description: 'Explora cuánto debería facilitar Uruguay el intercambio internacional y cuánto debería resguardar determinadas actividades locales. Apertura y protección pueden combinarse según el sector, el socio y las condiciones del acuerdo.',
     leftText: 'Prefiere reducir barreras al intercambio y ampliar acuerdos que faciliten comprar y vender en otros mercados. Valora la competencia, la variedad y el acceso a insumos, junto con medidas de adaptación para las actividades que enfrentan cambios.',
     rightText: 'Prefiere conservar herramientas para resguardar o desarrollar actividades productivas locales frente a la competencia externa. Valora los aranceles, las compras públicas y las condiciones de acceso como instrumentos para sostener capacidades, empleo y objetivos de desarrollo.',
@@ -67,8 +84,9 @@ export const AXES = [
     sources: [{ title: 'Tratado de Asunción: marco del Mercosur', url: 'https://www.gub.uy/ministerio-defensa-nacional/institucional/normativa/tratado-asuncion' }, impo('Constitución, artículo 50: comercio exterior', 'constitucion/1967-1967/50')]
   },
   {
-    id: 7, slug: 'exterior', name: 'Política exterior', short: 'Política exterior',
-    left: 'No alineamiento', right: 'Alineamiento con bloques',
+    id: 8, slug: 'exterior', name: 'Política exterior', short: 'Política exterior',
+    left: 'No alineamiento', right: 'Alineamiento internacional',
+    leftIcon: '🧭', rightIcon: '🤝',
     description: 'Explora si Uruguay debería decidir sus vínculos caso a caso o coordinar de forma más estable con determinados bloques. No alinearse no significa evitar toda posición; alinearse tampoco implica aceptar todas las decisiones de un socio.',
     leftText: 'Prefiere mantener autonomía para definir posiciones y relaciones según cada asunto, diversificando los vínculos. Valora la mediación, las reglas internacionales y la capacidad de dialogar con gobiernos distintos sin una pertenencia política estable a un bloque.',
     rightText: 'Prefiere construir asociaciones políticas más estables con países o bloques de referencia. Valora coordinar posiciones diplomáticas, acuerdos y objetivos compartidos, considerando que esos compromisos pueden aumentar la influencia y la previsibilidad de un país pequeño.',
@@ -76,35 +94,29 @@ export const AXES = [
     sources: [impo('Constitución, artículo 6: relaciones internacionales', 'constitucion/1967-1967/6')]
   },
   {
-    id: 8, slug: 'inmigracion', name: 'Inmigración y diversidad', short: 'Inmigración',
-    left: 'Restricción migratoria', right: 'Apertura y diversidad',
+    id: 9, slug: 'inmigracion', name: 'Inmigración', short: 'Inmigración',
+    left: 'Apertura migratoria', right: 'Restricción migratoria',
+    leftIcon: '🌍', rightIcon: '🛂',
     description: 'Explora prioridades sobre ingreso, residencia e integración de personas migrantes. Los derechos fundamentales y el trato sin discriminación son el marco del debate, incluso cuando se proponen requisitos diferentes para la admisión.',
-    leftText: 'Prefiere mayores requisitos de ingreso y residencia, y ajustar los flujos a la capacidad de los servicios y del mercado laboral. Pone el foco en la planificación, la verificación administrativa y los recursos disponibles para una integración sostenida.',
-    rightText: 'Prefiere facilitar el ingreso, la regularización y la participación de personas migrantes. Pone el foco en la reunificación familiar, el reconocimiento de capacidades y los aportes de la diversidad, junto con políticas que acompañen la integración cotidiana.',
+    leftText: 'Prefiere facilitar el ingreso, la regularización y la participación de personas migrantes. Pone el foco en la reunificación familiar, el reconocimiento de capacidades y los aportes de la diversidad, junto con políticas que acompañen la integración cotidiana.',
+    rightText: 'Prefiere mayores requisitos de ingreso y residencia, y ajustar los flujos a la capacidad de los servicios y del mercado laboral. Pone el foco en la planificación, la verificación administrativa y los recursos disponibles para una integración sostenida.',
     debates: ['Trámites de residencia y reconocimiento de títulos.', 'Acceso a empleo, educación y servicios.', 'Reunificación familiar e integración en los barrios.'],
     sources: [impo('Ley 18.250: migraciones', 'leyes/18250-2008')]
   },
   {
-    id: 9, slug: 'memoria', name: 'Memoria histórica y Fuerzas Armadas', short: 'Memoria histórica',
-    left: 'Verdad y revisión', right: 'Cierre de procesos',
-    description: 'Explora prioridades sobre investigación del pasado reciente, justicia, memoria y funciones militares. Reúne asuntos distintos: alguien puede apoyar más investigación histórica y, al mismo tiempo, una determinada política de defensa. El eje no agota esas diferencias.',
-    leftText: 'Prioriza continuar la búsqueda de información, la investigación de responsabilidades y las políticas de memoria y reparación. Valora revisar decisiones anteriores cuando hay elementos pendientes, manteniendo las garantías procesales y el control civil sobre las instituciones militares.',
-    rightText: 'Prioriza la estabilidad de las decisiones adoptadas, los plazos y las garantías de los procesos, y una agenda militar centrada en funciones actuales. Puede apoyar otras formas de memoria y reparación, con mayor énfasis en cerrar controversias institucionales.',
-    debates: ['Acceso a archivos y búsqueda de personas detenidas desaparecidas.', 'Responsabilidades del pasado reciente y garantías procesales.', 'Formación militar, defensa nacional y control civil.'],
-    sources: [impo('Ley 18.831: pretensión punitiva por delitos del terrorismo de Estado', 'leyes/18831-2011'), impo('Ley 18.650: marco de la defensa nacional', 'leyes/18650-2010')]
+    id: 10, slug: 'educacion-servicios', name: 'Educación y servicios', short: 'Educación y servicios',
+    left: 'Provisión pública', right: 'Libertad de elección',
+    leftIcon: '🏫', rightIcon: '🔀',
+    description: 'Explora si la educación, la salud y los cuidados deberían ampliarse principalmente mediante prestadores públicos comunes o mediante opciones entre prestadores habilitados. La elección puede existir dentro del sector público; ambos polos pueden apoyar financiamiento estatal y acceso universal. Este eje no mide las preferencias jubilatorias.',
+    leftText: 'Prefiere fortalecer escuelas, centros de salud y servicios de cuidados gestionados por instituciones públicas. Da prioridad a una oferta común y a la responsabilidad directa del Estado para prestar y coordinar servicios accesibles.',
+    rightText: 'Prefiere ampliar la libertad de las personas para elegir entre centros o prestadores habilitados, públicos y privados. Puede apoyar ayudas y financiamiento estatal que acompañen esa elección, con regulación, acceso básico y controles de calidad.',
+    debates: ['Oferta educativa pública y elección de centros.', 'ASSE, prestadores de salud y acceso a la atención.', 'Servicios de cuidados y elección de prestadores habilitados.'],
+    sources: [impo('Constitución, artículo 44: salud pública', 'constitucion/1967-1967/44'), impo('Constitución, artículo 68: libertad de enseñanza', 'constitucion/1967-1967/68'), impo('Ley 18.437: Ley General de Educación', 'leyes/18437-2008'), impo('Ley 19.353: Sistema Nacional Integrado de Cuidados', 'leyes/19353-2015')]
   },
   {
-    id: 10, slug: 'educacion-prevision', name: 'Educación y seguridad social', short: 'Educación y previsión',
-    left: 'Provisión pública', right: 'Elección y provisión mixta',
-    description: 'Explora el peso de la provisión pública común y de la elección entre prestadores o modalidades. Educación y jubilaciones no son el mismo asunto: una persona puede ubicarse de manera diferente en cada uno y el promedio oculta parte de esa diferencia.',
-    leftText: 'Prefiere fortalecer sistemas públicos comunes, con financiación y reglas solidarias, para organizar la educación y la protección previsional. Valora compartir riesgos y sostener prestaciones ampliamente accesibles, con mayor responsabilidad directa del Estado en su provisión.',
-    rightText: 'Prefiere dar más espacio a la elección entre modalidades y prestadores, combinando participación pública y privada. Valora adaptar las opciones a distintas necesidades y trayectorias, con regulación estatal y mecanismos que aseguren acceso y protección básica.',
-    debates: ['Gobierno y financiación de la educación pública.', 'Elección educativa y relación entre prestadores.', 'BPS, ahorro individual, AFAP y organización de las jubilaciones.'],
-    sources: [impo('Ley 18.437: Ley General de Educación', 'leyes/18437-2008'), impo('Ley 20.130: reforma de la seguridad social', 'leyes/20130-2023')]
-  },
-  {
-    id: 11, slug: 'ambiente', name: 'Ambiente y desarrollo', short: 'Ambiente',
-    left: 'Prioridad ambiental', right: 'Prioridad productiva',
+    id: 11, slug: 'ambiente', name: 'Ambiente', short: 'Ambiente',
+    left: 'Protección ambiental', right: 'Desarrollo productivo',
+    leftIcon: '🌿', rightIcon: '🏗️',
     description: 'Explora qué prioridad dar a la precaución ambiental y a las oportunidades productivas cuando aparecen tensiones. Ambos polos pueden apoyar el desarrollo y el cuidado ambiental; difieren en el riesgo aceptable y en las condiciones para avanzar.',
     leftText: 'Prefiere condiciones ambientales más exigentes y mayor precaución antes de autorizar actividades con impactos inciertos. Valora la conservación, la calidad del agua y la biodiversidad, incluso cuando eso posterga inversiones o limita determinadas formas de producción.',
     rightText: 'Prefiere facilitar proyectos productivos que cumplan reglas ambientales y aporten empleo e ingresos. Valora evaluar los riesgos junto con sus beneficios y aplicar medidas de mitigación, evitando exigencias que considera desproporcionadas respecto del impacto previsto.',

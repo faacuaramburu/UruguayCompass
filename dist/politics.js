@@ -1,3 +1,4 @@
+import {migratePoliticalEntity} from './axis-model.js';
 // Editorial dataset. The source documents support the proposals; the numbers are our estimates.
 import {expandFigures} from './figure-expansion.js';
 import {extendComparisons} from './comparison-profiles.js';
@@ -16,7 +17,7 @@ function party(id,name,short,file,summary,profile,notes,pages){
     evidence:notes.flatMap((note,axis)=>profile[axis]===null?[]:[{axis,source:0,page:pages[axis],note}]),
     editorial:true,updatedAt:'2026-11-03',eligible:true,comparisonNote:'Estimación del programa de 2024; no describe a cada integrante ni cada votación.'};
 }
-export const PARTIES = [
+const LEGACY_PARTIES = [
   party('fa','Frente Amplio','FA','Partido%20Frente%20Amplio_1.pdf',
     'Fuerza fundada en 1971 que reúne sectores de izquierda y progresistas. Su programa articula desarrollo, derechos y redistribución.',
     [80,80,80,40,15,10,40,20,85,10,20,25],
@@ -49,7 +50,7 @@ export const PARTIES = [
     [2,null,null,27,null,7,17,1,null,null,13,18])
 ];
 
-const byParty = id => PARTIES.find(p=>p.id===id);
+const byParty = id => LEGACY_PARTIES.find(p=>p.id===id);
 function candidate(id,name,partyId,bio,actions,extraSources=[]){
   const p=byParty(partyId);
   return {id,name,party:partyId,partyName:p.name,sector:p.name,era:'Candidatura nacional de 2024',period:'2024',bio,summary:bio,actions,quotes:[],
@@ -97,19 +98,22 @@ const BASE_FIGURES = [
     [{title:'Presidencia · Proclamación de la fórmula Orsi–Cosse',url:'https://www.gub.uy/presidencia/institucional/estructura-del-organismo/yamandu-orsi'},{title:'Uruguay XXI · Transición presidencial de 2025',url:'https://www.uruguayxxi.gub.uy/es/noticias/articulo/uruguay-celebra-su-continuidad-democratica-y-estabilidad-con-la-asuncion-de-yamandu-orsi-a-la-presidencia/'}])
 ];
 
-export const FIGURES=expandRankedReferences(extendStatementReferences(extendGovernmentReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,PARTIES,CANDIDATURES,PROGRAM_ROOT)),PARTIES))));
+const LEGACY_FIGURES=expandRankedReferences(extendStatementReferences(extendGovernmentReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,LEGACY_PARTIES,CANDIDATURES,PROGRAM_ROOT)),LEGACY_PARTIES))));
+
+export const PARTIES=LEGACY_PARTIES.map(migratePoliticalEntity);
+export const FIGURES=LEGACY_FIGURES.map(migratePoliticalEntity);
 
 export const POLITICAL_META = {
   updatedAt:'2026-11-03',
   period:'Programas de 2009, 2014, 2019 y 2024, medidas de gobiernos de 1995–2005 y declaraciones de 2016–2019 y 2024',
   representationSource:REPRESENTATION,
   candidateSource:CANDIDATURES,
-  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cinco temas documentados, incluidos programas presidenciales, precandidaturas, fórmulas, medidas de gobiernos y declaraciones públicas identificadas.`,
+  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cuatro temas documentados, incluidos programas presidenciales, precandidaturas, fórmulas, medidas de gobiernos y declaraciones públicas identificadas.`,
   figuresInRanking:FIGURES.filter(f=>f.rankEligible).map(f=>f.id),
   balanceNote:'La comparación entre personas incluye programas de distintas elecciones, medidas de gobiernos concretos y declaraciones públicas fechadas: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
   limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
   individualLimit:'Los perfiles comparables representan programas, medidas de gobierno o declaraciones públicas fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'El catálogo solo incluye referentes con los cinco temas comunes documentados. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
+  historicalLimit:'El catálogo solo incluye referentes con los cuatro temas comunes documentados. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
   missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };

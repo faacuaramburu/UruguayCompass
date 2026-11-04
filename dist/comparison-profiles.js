@@ -1,6 +1,8 @@
-// One dated program per reference. All ranked references share these five axes.
+// Legacy source tables record five topics; politics.js maps them to the four current shared axes.
 // Values are editorial interpretations in steps of five, not numbers in the sources.
-export const COMPARISON_AXES=[0,3,6,10,11];
+import {CURRENT_COMPARISON_AXES} from './axis-model.js';
+export const COMPARISON_AXES=CURRENT_COMPARISON_AXES;
+export const LEGACY_COMPARISON_AXES=[0,3,6,10,11];
 const root='https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const programs=[
  {id:'mujica',year:2009,period:'2010–2015',title:'Frente Amplio · Programa 2010–2015',url:'https://www.frenteamplio.uy/wp-content/uploads/programa_2010_2015_1_0-2.pdf',positions:[

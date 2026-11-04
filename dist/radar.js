@@ -1,5 +1,5 @@
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const labels=[['Economía'],['Impuestos'],['Trabajo'],['Seguridad'],['Valores','sociales'],['Laicidad'],['Comercio','exterior'],['Política','exterior'],['Inmigración'],['Memoria','histórica'],['Educación','y previsión'],['Ambiente']];
+const labels=[['Economía'],['Impuestos'],['Trabajo'],['Seguridad'],['Instituciones'],['Valores','sociales'],['Religión'],['Comercio','exterior'],['Política','exterior'],['Inmigración'],['Educación','y servicios'],['Ambiente']];
 export function radarPoint(index,value,radius=220){
  if(!Number.isFinite(value))return null;
  const angle=index*Math.PI/6-Math.PI/2,ratio=Math.max(0,Math.min(100,value))/100;

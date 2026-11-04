@@ -4,7 +4,7 @@ El mapa representa economía y seguridad/libertades. No equivale a una escala un
 
 ## Catálogo vigente
 
-Hay **31 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cinco temas documentados: economía, seguridad y libertades, comercio exterior, educación/seguridad social y ambiente/desarrollo. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
+Hay **31 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cuatro temas documentados: economía, seguridad, comercio exterior y ambiente. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
 
 Los programas corresponden a elecciones de 2009, 2014, 2019 y 2024. Se agregan dos referencias de medidas de gobierno, explícitamente identificadas y distintas de un programa electoral: Sanguinetti (1995–2000) y Jorge Batlle (2000–2005). Cada ficha identifica su documento y período. Los integrantes de una misma fórmula pueden compartir programa y afinidad: se muestra el empate y se permite elegir el retrato sin modificar el puntaje. No se copia un programa a una persona solo por pertenecer a su partido.
 
@@ -14,17 +14,16 @@ Los programas corresponden a elecciones de 2009, 2014, 2019 y 2024. Se agregan d
 
 | Tema | Puntaje editorial | Página del PDF |
 | --- | --- | --- |
-| Economía | 25 | 14 |
+| Economía | 75 | 14 |
 | Seguridad y libertades | 85 | 25 |
 | Comercio exterior | 10 | 14 |
-| Educación/seguridad social | 60 | 20–21; evidencia educativa |
 | Ambiente/desarrollo | 35 | 18 |
 
-Los fundamentos están en `dist/ranking-expansion.js`. Las propuestas sustentan la lectura; los números no aparecen en el programa y son estimaciones editoriales. El eje educativo/previsional combina políticas distintas: el fundamento indica cuál está documentada.
+Los fundamentos están en `dist/ranking-expansion.js`. Las propuestas sustentan la lectura; los números no aparecen en el programa y son estimaciones editoriales. La educación/previsión de las tablas anteriores no se reutiliza para Educación y servicios. Ese eje y el nuevo eje Instituciones permanecen sin puntaje en los referentes hasta seleccionar evidencia comparable.
 
 ## Referencias retiradas
 
-Se retiraron estas **19 fichas** del catálogo, los resultados y el mapa porque esta revisión no reunió evidencia comparable suficiente en los cinco temas. Esto no significa que no existan fuentes sobre sus trayectorias.
+Se retiraron estas **19 fichas** del catálogo, los resultados y el mapa porque esta revisión no reunió evidencia comparable suficiente en los cuatro temas. Esto no significa que no existan fuentes sobre sus trayectorias.
 
 - Wilson Ferreira Aldunate
 - Líber Seregni
@@ -56,19 +55,19 @@ Las referencias más antiguas no se proyectan sobre instituciones y debates post
 - Mujica: [programa 2010–2015](https://www.frenteamplio.uy/wp-content/uploads/programa_2010_2015_1_0-2.pdf), candidatura de 2009.
 - Vázquez: [programa 2015–2020](https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/Programa_nacional_FA_2015_2020.pdf), candidatura de 2014.
 
-Las fuentes y páginas de cada ubicación se encuentran en las fichas y en `dist/comparison-profiles.js` y `dist/ranking-expansion.js`. Los seis programas partidarios de 2024 se comparan por separado y no cambian con esta revisión.
+Las fuentes y páginas de cada ubicación se encuentran en las fichas y en `dist/comparison-profiles.js` y `dist/ranking-expansion.js`. Los seis programas partidarios de 2024 se comparan por separado. Se adaptan al nuevo orden de polos y a los cuatro temas comunes sin asignar valores a los temas nuevos.
 
-La afinidad es 100 menos el promedio de las diferencias absolutas en los cinco temas. `dist/result-ranking.js` recalcula también los tests guardados sin alterar respuestas ni requerir repetir el cuestionario. Las pruebas verifican que todos los referentes del catálogo puedan salir y que seleccionar una foto no altere la afinidad.
+La afinidad es 100 menos el promedio de las diferencias absolutas en los cuatro temas. `dist/result-ranking.js` compara los cuatro temas comunes de la nueva edición. Las respuestas guardadas se migran por identidad de pregunta; Instituciones y Educación y servicios deben completarse antes de mostrar un resultado nuevo. Las pruebas verifican que todos los referentes del catálogo puedan salir y que seleccionar una foto no altere la afinidad.
 
 ## Interacción del mapa
 
-Economía conserva 0 = mercado, 100 = Estado; seguridad conserva 0 = libertades, 100 = control. El mapa coloca Estado a la izquierda, mercado a la derecha, control arriba y libertades abajo.
+Economía usa 0 = Intervencionismo estatal y 100 = Libre mercado; Seguridad usa 0 = Libertades individuales y 100 = Control y autoridad. El mapa coloca Estado a la izquierda, mercado a la derecha, control arriba y libertades abajo.
 
 Las coordenadas idénticas se agrupan bajo un número. Las etiquetas se separan para evitar superposiciones y una línea las une al punto real, sin mover los datos. Se puede buscar por nombre, filtrar por partido y seleccionar un referente con clic, Enter o espacio. Buscar o seleccionar no modifica ni transmite las respuestas. El punto de la persona permanece cuando un filtro no encuentra referentes.
 
 ## Nuevas referencias de gobierno
 
-Se recuperaron Sanguinetti y Jorge Batlle al completar la búsqueda con normas originales y declaraciones de sus administraciones. Los cinco temas se conservan, pero la fuente cambia: medidas aprobadas y declaraciones en ejercicio, no promesas electorales. La ficha y la metodología explican esa limitación. La promulgación no prueba autoría exclusiva del presidente ni describe toda su trayectoria. Los otros siete ejes permanecen sin puntaje.
+Se recuperaron Sanguinetti y Jorge Batlle al completar la búsqueda con normas originales y declaraciones de sus administraciones. Los cuatro temas se conservan, pero la fuente cambia: medidas aprobadas y declaraciones en ejercicio, no promesas electorales. La ficha y la metodología explican esa limitación. La promulgación no prueba autoría exclusiva del presidente ni describe toda su trayectoria. Los otros ocho ejes permanecen sin puntaje.
 
 Los fundamentos y fuentes están en `dist/government-references.js`:
 
@@ -79,9 +78,9 @@ Estos dos perfiles pueden resultar los más cercanos de forma independiente. Tam
 
 ## Declaraciones públicas incorporadas
 
-Bergara (2024) y Andrade (2016–2019) completan los cinco temas con declaraciones propias fechadas, sin copiar el programa de su partido. No se presume que sigan vigentes. Los fundamentos están en `dist/statement-references.js`; los números son interpretaciones editoriales.
+Bergara (2024) y Andrade (2016–2019) completan los cuatro temas con declaraciones propias fechadas, sin copiar el programa de su partido. No se presume que sigan vigentes. Los fundamentos están en `dist/statement-references.js`; los números son interpretaciones editoriales.
 
 - **Mario Bergara:** [entrevista en Voces, 4/5/2024](https://semanariovoces.com/mario-bergara-los-cucos-de-bolches-y-tupas-insultan-la-inteligencia-de-la-gente/), sobre inversión, seguridad, inserción comercial, previsión y ambiente.
 - **Óscar Andrade:** [entrevista en Voces, 8/6/2019](https://semanariovoces.com/oscar-andrade-si-esperas-la-bendicion-de-los-sectores-mas-poderosos-no-vas-a-hacer-nada/), y [declaraciones sobre un TLC con China, 2/10/2016](https://www.elobservador.com.uy/nota/posible-tlc-con-china-divide-y-pone-en-alerta-al-pit-cnt-20161022500). El fundamento comercial se limita a ese acuerdo y fecha; no se interpreta como rechazo a todo comercio.
 
-La evidencia educativa no completa automáticamente la previsional ni viceversa: las fichas señalan qué parte está documentada. Los siete ejes restantes se mantienen sin puntaje.
+La evidencia educativa o previsional anterior no completa automáticamente el nuevo eje Educación y servicios. Instituciones tampoco hereda posiciones sobre memoria histórica. Los ocho ejes restantes de estas referencias se mantienen sin puntaje.

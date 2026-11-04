@@ -1,49 +1,37 @@
 # Lecturas de los resultados
 
-El usuario pidió una página de resultados más completa, tomando como referencia capturas de otro test, sin humor ni expresiones informales. Se adopta la profundidad y navegación, manteniendo los doce ejes uruguayos y una estética propia marino/celeste.
+## Los doce ejes
 
-## Qué se deriva de las respuestas
+El cuestionario usa Economía, Impuestos, Trabajo, Seguridad, Instituciones, Valores sociales, Religión, Comercio exterior, Política exterior, Inmigración, Educación y servicios, y Ambiente, en ese orden. Cada eje tiene veinte afirmaciones y dos polos identificados en la enciclopedia.
 
-- Lectura general: hasta tres ejes ordenados por distancia absoluta a 50, con umbral de 10 puntos. Sin etiqueta global.
-- Cobertura: cantidad de respuestas y respuestas neutras. No se calcula «confianza».
-- Brújula: proyección bidimensional de economía (Estado a la izquierda, mercado a la derecha) y seguridad (control arriba, libertades abajo). No representa todos los ejes ni mide autoritarismo.
-- Prioridades: lectura de seis ejes. Se considera intermedio un puntaje entre 41 y 59.
-- Coincidencias/diferencias: distancias absolutas en los cinco ejes comunes del ranking programático; selector entre once candidaturas de distintas elecciones.
-- Respuestas en ambos sentidos: recuento de signos tras invertir la orientación de las preguntas; no implica contradicción o incertidumbre.
-- Decisiones que requieren equilibrio: tres reglas explícitas en `possibleTradeoffs`, no un diagnóstico de coherencia. Si ninguna se activa, no se presume ausencia de tensiones.
+La posición se calcula con la misma fórmula: 50 + 25 × media de las respuestas orientadas. La escala original va del primer polo al segundo. Economía, Impuestos, Trabajo e Inmigración invierten la orientación respecto de la edición anterior, conservando el sentido de las respuestas a preguntas que siguen vigentes.
 
-## Prototipos pedagógicos
+La sección «Tus doce ejes» presenta un porcentaje acompañado por el polo predominante: 30 en Economía se lee «70% Intervencionismo estatal» y 70 se lee «70% Libre mercado». Entre 41 y 59 se muestra «Equilibrado». Las barras conservan la posición original y destacan el tramo desde el centro. Los emojis son decorativos y los nombres de los polos también están escritos.
 
-Se incorporan cinco modelos de lectura sobre economía, impuestos, trabajo y valores sociales, todos con los mismos cuatro ejes. Sus vectores propios y fórmula están visibles junto a cada resultado. No se atribuyen esos números a movimientos, partidos o personas reales.
+La sección no incluye descripciones ni desplegables por eje, ni un párrafo bajo su título. Las explicaciones se consultan en la enciclopedia. El radar y las comparaciones detalladas conservan la escala original y lo indican expresamente.
 
-La cercanía a un modelo = 100 menos distancia absoluta media. Un alto valor no permite identificar a la persona con esa ideología, no incluye los otros ocho ejes y no equivale a confianza estadística. Un perfil de medias centrales puede reflejar neutralidad o preferencias distintas entre propuestas.
+## Instituciones y Educación y servicios
 
-## Imagen para compartir
+Instituciones mide la preferencia por contrapesos y fiscalización del Ejecutivo frente a mayor capacidad de conducción y autonomía de gestión dentro de la Constitución. Ambos polos se plantean en un marco democrático; gobierno fuerte no se equipara a dictadura.
 
-Foto local de la referencia principal con atribución, índice de coincidencia sobre cinco ejes, otras dos referencias y doce puntajes con sus polos 0/100. Las fotos no se consultan a terceros al exportar. La tarjeta no incluye respuestas individuales ni datos personales. El envío se realiza solo por una acción explícita.
+Educación y servicios incluye educación, salud y cuidados: provisión pública frente a elección entre prestadores habilitados. No reutiliza respuestas sobre jubilaciones. La elección puede darse entre prestadores públicos y ambos polos pueden apoyar financiamiento estatal y acceso universal.
 
-Verificación: pruebas de cálculo y DOM; la inspección visual de la nueva página y PNG permanece pendiente porque el navegador local está deshabilitado en esta sesión.
+Los referentes políticos quedan sin puntaje en ambos temas hasta seleccionar evidencia comparable. El ranking conserva 31 referencias documentadas y compara cuatro temas comunes: economía, seguridad, comercio exterior y ambiente. Los puntajes faltantes permanecen en null y no se completan con 50.
 
-La primera sección del resultado muestra ahora el modelo ideológico más cercano (con explicación de cobertura y empates). Inmediatamente después aparece una leyenda 0/50/100 visible antes de la lectura y de los ejes. Se aclara que izquierda/derecha describe el lado de cada barra y no una clasificación política universal: Mercado ocupa 0 y Estado 100, mientras Progresista ocupa 0 y Conservador 100.
+## Interpretaciones y comparaciones
 
-## Interpretación de cada eje y retrato inicial
+La lectura general describe hasta tres ejes según su distancia a 50, con umbral de diez puntos. Los recuentos de respuestas neutras o en ambos sentidos no se interpretan como confianza, incoherencia ni certeza.
 
-Cada eje incluye una frase visible que interpreta su propio valor, sin usar izquierda/derecha política como equivalencia universal. A menos de diez puntos de 50 se considera intermedio; de diez a diecinueve, inclinación leve; de veinte a treinta y cuatro, moderada; de treinta y cinco a cincuenta, marcada. Estas palabras describen distancia entre polos, no seguridad ni firmeza de la persona. La explicación usa un par de significados específico para cada eje.
+Los cinco modelos pedagógicos comparan economía, impuestos, trabajo y valores sociales. Sus prototipos y la fórmula son públicos. Las coordenadas de los prototipos se adaptan al nuevo orden y sentido de los polos; no se atribuyen esos valores a personas ni partidos.
 
-El primer panel separa «¿Qué propone este modelo?» de las respuestas. A su derecha aparece el personaje más cercano con fotografía y crédito; se aclara que la similitud del modelo (cuatro ejes) y la afinidad programática del personaje (cinco ejes comunes) son comparaciones distintas. En móvil, el retrato pasa debajo.
+El mapa proyecta economía y seguridad. Conserva Estado a la izquierda, mercado a la derecha, control arriba y libertades abajo. Con los ejes actuales, X sigue Economía e Y invierte Seguridad; la inversión de las coordenadas de las fuentes mantiene las posiciones físicas del mapa. La proyección no representa los otros diez ejes ni mide autoritarismo.
 
-La brújula usa ahora un gráfico SVG de datos con cuatro zonas de tonos equivalentes, ejes explícitos, proyecciones punteadas hacia el centro y un marcador «Vos». Se conservan las coordenadas originales: x=100−economía e y=100−seguridad. Los valores y su orientación aparecen también como texto. No requiere interacción para comprenderse; la explicación de alcance se despliega con teclado. Pruebas cubren centro, extremos, límites, descripción accesible y ubicación del marcador. La revisión visual nueva sigue pendiente por navegador local deshabilitado.
+La afinidad con personajes y partidos es 100 menos la diferencia absoluta media en los cuatro temas comunes. Las fórmulas compartidas pueden producir empates. Elegir un retrato empatado no modifica la afinidad. La tarjeta PNG usa fotos locales con atribución, muestra su cobertura y solo se guarda o comparte por una acción explícita.
 
-La brújula incluye un resumen combinado de economía y seguridad: nueve combinaciones según orientación a cada polo o posición intermedia. Los umbrales son los mismos que en los demás ejes (hasta 40, centro 41–59, desde 60); a menos de veinte puntos del centro, el texto usa «algo más de peso». El resumen describe preferencias de esos dos temas y no asigna una identidad ideológica.
+## Respuestas guardadas
 
-## Revisión de textos informativos
+La edición actual usa esquema 2. Los datos del esquema 1 se conservan en una copia del almacenamiento local del navegador antes de migrar, y solo se trasladan respuestas vinculadas a la misma pregunta. Memoria histórica no se interpreta como Instituciones y previsión no se interpreta como Educación y servicios.
 
-Por pedido del usuario, los párrafos bajo las barras dejan de repetir el número y el nombre del polo. Hay ejemplos de aplicación, decisiones de diseño y cuestiones a evaluar para cada orientación; los promedios centrales tienen preguntas específicas del tema. Son contexto educativo compatible con una orientación, no propuestas individuales atribuidas automáticamente a quien responde. Los puntajes y etiquetas siguen visibles en la barra.
+Un test corto anterior conserva treinta respuestas vigentes y debe completar seis nuevas antes de mostrar un resultado. Las versiones Completa y Extrema conservan cincuenta y doscientas respuestas, respectivamente. Una migración con errores de almacenamiento mantiene el original intacto. Un archivo anterior ya existente tampoco se sobrescribe. «Borrar mis respuestas» elimina el estado actual y los datos anteriores conservados por la aplicación.
 
-La brújula también cambia: explica combinaciones mediante ejemplos de decisiones de política económica y seguridad, en lugar de repetir que la persona se inclina a un polo. Se mantienen el cálculo, las coordenadas y las comparaciones. Evitar volver a fórmulas repetitivas como «tu puntaje indica inclinación hacia…» en estos párrafos.
-
-La tarjeta de la página y el PNG muestran también el partido más cercano, calculado a partir del ranking de partidos y no inferido del personaje. Si hay empate, se listan todos los partidos empatados. El PNG aumenta su altura para conservar los doce ejes y las aclaraciones sin solapamientos. La coincidencia sigue siendo programática y no implica apoyo partidario.
-
-## Preferencia final de redacción del usuario
-
-El usuario aclaró que quiere descripciones personales y simples de la orientación: «Tu postura se inclina hacia el libre mercado, con más espacio para las empresas y menos intervención del Estado». Esta indicación sustituye la redacción anterior de ejemplos de políticas y dilemas. Se aplicó a los doce ejes y a la brújula, conservando polos, umbrales y cálculos. Evitar textos académicos, preguntas sobre diseño de políticas y atribuciones de posiciones absolutas. Usar «menos intervención» en lugar de afirmar que el Estado no interviene en nada. Para posiciones centrales, reconocer que pueden surgir de respuestas neutras o de preferencias distintas.
+Estos resultados son educativos y editoriales, sin validación científica ni recomendación de voto.
