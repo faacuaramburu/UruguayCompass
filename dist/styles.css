@@ -231,7 +231,7 @@ html[data-theme=dark] .axis-summary[data-side=balanced]{--axis-accent:var(--mute
 .question-number{position:absolute;right:30px;top:18px;font-family:var(--display);font-size:96px;font-weight:700;line-height:1;color:var(--line);opacity:.5;pointer-events:none}
 .question-meta{position:relative;display:flex;flex-wrap:wrap;gap:8px;padding-right:90px;margin-bottom:18px}
 .question-axis,.question-help{display:inline-flex;align-items:center;gap:9px;min-height:40px;padding:7px 13px;border-radius:24px;font-size:12px;line-height:1.5;font-weight:700}
-.question-axis{background:#e0e9ef;color:#234965;overflow-wrap:anywhere}
+.question-axis{background:#34383d;color:#f3f4f6;overflow-wrap:anywhere}
 .question-help{background:var(--surface);color:var(--muted)}
 .question-help:hover,.question-help[aria-expanded=true]{background:var(--pale);color:var(--ink)}
 .question-meta svg{width:20px;height:20px;flex-shrink:0}
@@ -262,7 +262,6 @@ html[data-theme=dark] .axis-summary[data-side=balanced]{--axis-accent:var(--mute
 .questionnaire-page .quiet-link{margin-top:8px;font-size:12px}
 html[data-theme=dark] #app:has(.questionnaire-page){--ink:#edf3ff;--muted:#b8c6ce;--blue:#8cd1b0;--sky:#8cd1b0;--pale:#233e39;--line:#40534e;--paper:#0f201e;--surface:#1c302b}
 html[data-theme=dark] .question-card{background:#152923}
-html[data-theme=dark] .question-axis{background:#243f4b;color:#cee7fa}
 html[data-theme=dark] .questionnaire-page .test-controls>.primary{color:#10261e}
 html[data-theme=dark] .questionnaire-page .test-controls>.primary:hover{background:#a8e4c6}
 @media(max-width:600px){.questionnaire-page{margin-top:24px;padding:0 16px}.question-card{padding:20px 16px 22px}.question-number{font-size:52px;top:17px;right:16px}.question-meta{padding-right:44px;gap:6px}.question-axis,.question-help{font-size:11px;padding:6px 10px;min-height:36px}.questionnaire-page .question{font-size:23px;padding-right:0}.questionnaire-page .answer{padding:11px 12px;gap:10px;font-size:13px}.questionnaire-page .test-controls{grid-template-columns:1fr 1fr;gap:10px}.questionnaire-page .test-options{grid-column:1/-1;grid-row:2}.questionnaire-page .test-controls>.primary{grid-column:2;grid-row:1}.questionnaire-page .test-controls>.secondary{grid-column:1;grid-row:1}.questionnaire-page .test-controls>button{width:100%}.questionnaire-page .auto-advance{font-size:12px}.question-progress{gap:3px}}
