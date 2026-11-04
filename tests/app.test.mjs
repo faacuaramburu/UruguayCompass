@@ -30,7 +30,7 @@ test('complete application flows, persistence, content, corrections and privacy'
   assert.deepEqual([...w.document.querySelectorAll('.home-actions a')].map(a=>a.textContent),['Iniciar','Ver 12 ejes']);
   assert.equal(w.document.querySelector('[name=version]'),null);
   click('.home-actions a[href="#enciclopedia"]');await new Promise(r=>setTimeout(r,15));
-  assert.equal(w.document.querySelectorAll('.reading-list a[href^="#eje/"]').length,12);
+  assert.equal(w.document.querySelectorAll('.axis-guide-grid a[href^="#eje/"]').length,12);
   await route('#inicio');click('.home-actions a[href="#iniciar"]');await new Promise(r=>setTimeout(r,15));
   assert.equal(w.document.querySelectorAll('[name=version]').length,3);
   const radio=w.document.querySelector(`[name=version][value=${version}]`);radio.checked=true;radio.dispatchEvent(new w.Event('change',{bubbles:true}));click('[data-action=start]');await new Promise(r=>setTimeout(r,10));

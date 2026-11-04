@@ -117,7 +117,7 @@ test('the test header has only an icon theme toggle and a restart control that p
  await new Promise(r=>setTimeout(r,20));assert.equal(saved(),null);
  const homeToggle=query('[data-action=theme]');assert.equal(homeToggle.textContent,'');assert.ok(homeToggle.querySelector('svg'));
  w.location.hash='#metodologia';await new Promise(r=>setTimeout(r,20));
- assert.equal(query('.app-header nav').querySelectorAll('a').length,3);
+ assert.equal(query('.app-header nav').querySelectorAll('a').length,4);
  assert.equal(query('[data-action=theme]').textContent,'');
  dom.window.close();
 });

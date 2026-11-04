@@ -1,3 +1,4 @@
+import {COUNTRY_PERIOD_CORRECTIONS} from './country-review.js';
 import {COUNTRY_CATALOG} from './country-catalog.js';
 import {rankProfiles} from './core.js';
 import {CURRENT_COUNTRY_DATA} from './country-data.js';
@@ -33,6 +34,9 @@ export const CURRENT_COUNTRIES=COUNTRY_CATALOG.map(country=>{
  const result=entry(country.id,country.name,country.flag,`Texto comparado: ${data.title}`,data.values,data.notes||countryNotes(data.values),data.sources);
  if(original){result.notes=original.notes;result.sources=original.sources}
  result.document=data.document;result.subsequentlyAmended=data.subsequentlyAmended;
+ const correction=COUNTRY_PERIOD_CORRECTIONS[country.id];
+ if(correction){result.profile=Array(12).fill(null);result.notes=[correction.note];result.sources=[correction.source];result.period='Perfil actual pendiente de revisión';result.review=correction;}
+
  return result;
 });
 const EXTRA_HISTORY=[
@@ -41,7 +45,9 @@ const EXTRA_HISTORY=[
  entry('fr-1804','Francia napoleónica','','Texto constitucional de 1804',[75,100,75],['El juramento imperial protege la irrevocabilidad de la venta de los bienes nacionales: artículo 53.','El gobierno y la justicia quedan bajo el emperador; sucesión hereditaria: artículos 1–3.','El juramento preserva el Concordato y la libertad de cultos: artículo 53.'],[{title:'Fondation Napoléon · Sénatus-consulte de 1804',url:'https://www.napoleon.org/histoire-des-2-empires/articles/senatus-consulte-organique-du-28-floreal-xii-18-mai-1804/'}]),
  entry('otomanos-1876','Imperio otomano de 1876','','Constitución de 1876, antes de la reforma de 1909',[75,100,100],['Garantía de propiedad con expropiación indemnizada: artículo 21.','El sultán designa y destituye ministros, y conserva prerrogativas soberanas: artículos 5 y 7.','El islam es religión del Estado: artículo 11.'],[{title:'Constitución otomana de 1876 · transcripción del original',url:'https://en.wikisource.org/wiki/Ottoman_constitution_of_1876'}])
 ];
-export const HISTORICAL_COUNTRIES=[...ORIGINAL_HISTORICAL_COUNTRIES,...HISTORICAL_COUNTRY_DATA.map(x=>entry(x.id,x.name,x.flag,x.period,x.values,x.notes||countryNotes(x.values),x.sources)),...EXTRA_HISTORY];
+const archivedAfghanistan=CURRENT_COUNTRY_DATA.find(x=>x.id==='af');
+export const HISTORICAL_COUNTRIES=[entry('af-2004','Afganistán de la Constitución de 2004','',COUNTRY_PERIOD_CORRECTIONS.af.period,archivedAfghanistan.values,archivedAfghanistan.notes||countryNotes(archivedAfghanistan.values),[...archivedAfghanistan.sources,COUNTRY_PERIOD_CORRECTIONS.af.source]),...ORIGINAL_HISTORICAL_COUNTRIES,...HISTORICAL_COUNTRY_DATA.map(x=>entry(x.id,x.name,x.flag,x.period,x.values,x.notes||countryNotes(x.values),x.sources)),...EXTRA_HISTORY];
+const syriaHistory=HISTORICAL_COUNTRIES.find(x=>x.id==='sy-2012');syriaHistory.period=COUNTRY_PERIOD_CORRECTIONS.sy.period;syriaHistory.sources=[...syriaHistory.sources,COUNTRY_PERIOD_CORRECTIONS.sy.source];
 export const HISTORICAL_CATALOG=HISTORICAL_COUNTRIES;
-export function rankCountries(profile,mode='current'){return rankProfiles(profile,mode==='historical'?HISTORICAL_COUNTRIES:CURRENT_COUNTRIES).ranked}
+export function rankCountries(profile,mode='current'){return rankProfiles(profile,(mode==='historical'?HISTORICAL_COUNTRIES:CURRENT_COUNTRIES).filter(c=>COUNTRY_AXES.every(i=>Number.isFinite(c.profile[i])))).ranked}
 export function countryCatalog(mode='current'){return mode==='historical'?HISTORICAL_CATALOG:CURRENT_COUNTRIES}

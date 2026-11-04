@@ -1,6 +1,20 @@
 # Países y cobertura
 
-La afinidad documental cubre **195 países actuales y 22 perfiles históricos**. «Actuales» identifica el catálogo de Estados (193 miembros y dos observadores de la ONU), no una auditoría de su gobierno o legislación en noviembre de 2026. La selección histórica compara documentos concretos, desde 1791 hasta períodos recientes; no representa toda la historia ni todos los Estados desaparecidos.
+La afinidad documental cubre **195 entradas de países (193 con comparación documental y dos pendientes) y 23 perfiles históricos**. «Actuales» identifica el catálogo de Estados (193 miembros y dos observadores de la ONU), no una auditoría de su gobierno o legislación en noviembre de 2026. La selección histórica compara documentos concretos, desde 1791 hasta períodos recientes; no representa toda la historia ni todos los Estados desaparecidos.
+
+
+## Revisión del 4 de noviembre de 2026
+
+Se consultó el [catálogo de 12Axes](https://12axes.vercel.app/en/countries#antiguidade) y su [perfil de Uruguay](https://12axes.vercel.app/en/countries/uruguai). Separa países/regiones y regímenes históricos por épocas (Antigüedad, Edad Media, Edad Moderna, siglo XIX, siglos XX–XXI). No es un catálogo de los 195 Estados de esta aplicación. Sus dimensiones de estructura, representación, poder, inmigración, diplomacia, intervención, economía, control, comercio, religión, moral y tecnología no equivalen a nuestros doce ejes. Por ejemplo, su economía separa propiedad pública/privada y su control trata planificación/mercado; nuestro eje económico reúne asuntos de ambos. Instituciones tampoco equivale directamente a representación; laicidad constitucional no mide irreligiosidad personal. No se copiaron ni convirtieron sus porcentajes.
+
+Correcciones verificadas:
+
+- Afganistán: el perfil de la Constitución de 2004 pasó al catálogo histórico como texto suspendido en 2021. [ACNUR/Refworld](https://www.refworld.org/legal/legislation/natlegbod/2004/en/35107) y [Naciones Unidas, A/HRC/WG.6/46/AFG/2, §10](https://documents.un.org/doc/undoc/gen/g24/025/18/pdf/g2402518.pdf). La entrada actual permanece, sin porcentaje hasta documentar y codificar su marco actual.
+- Siria: se conserva la Constitución de 2012 en Histórico, identificada como reemplazada en 2025. La ficha actual deja de reutilizar ese perfil. [OIT/NATLEX, declaración constitucional de 2025 y texto derogado](https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=118300).
+
+La fórmula de distancia en tres ejes y los valores de los demás documentos se conservan. El filtrado de perfiles sin datos impide que un null se interprete como cero o borre la cobertura común de los demás. No se modifican preguntas, cálculos del test ni afinidades de personas/partidos.
+
+**Pendiente:** una auditoría completa de políticas vigentes y todos los períodos históricos. Esta revisión identifica diferencias de cobertura y corrige dos errores de período; no valida globalmente las ubicaciones editoriales restantes. La referencia 12Axes tampoco constituye por sí sola evidencia suficiente para reemplazarlas.
 
 ## Qué significa el porcentaje
 
@@ -32,7 +46,7 @@ Las columnas numéricas están en el orden Economía / Instituciones / Religión
 
 | País o referencia | Documento / período | Economía | Instituciones | Religión | Fuentes |
 | --- | --- | ---: | ---: | ---: | --- |
-| Afganistán | Texto comparado: Afghanistan 2004 | 75 | 50 | 100 | [1](https://www.constituteproject.org/constitution/Afghanistan_2004) |
+| Afganistán | Perfil actual pendiente; Constitución de 2004 trasladada a Histórico | pendiente | pendiente | pendiente | [ACNUR](https://www.refworld.org/legal/legislation/natlegbod/2004/en/35107) |
 | Albania | Texto comparado: Albania 1998 (rev. 2016) | 50 | 25 | 0 | [1](https://www.constituteproject.org/constitution/Albania_2016) |
 | Alemania | Texto comparado: Germany 1949 (rev. 2014) | 25 | 25 | 0 | [1](https://www.constituteproject.org/constitution/German_Federal_Republic_2014) |
 | Andorra | Texto comparado: Andorra 1993 | 50 | 25 | 75 | [1](https://www.constituteproject.org/constitution/Andorra_1993) |
@@ -197,7 +211,7 @@ Las columnas numéricas están en el orden Economía / Instituciones / Religión
 | Seychelles | Texto comparado: Seychelles 1993 (rev. 2025) | 75 | 50 | 25 | [1](https://www.constituteproject.org/constitution/Seychelles_2025) |
 | Sierra Leone | Texto comparado: Sierra Leone 1991 (reinst. 1996, rev. 2022) | 50 | 50 | 25 | [1](https://www.constituteproject.org/constitution/Sierra_Leone_2022) |
 | Singapur | Texto comparado: Singapore 1963 (rev. 2016) | 75 | 25 | 75 | [1](https://www.constituteproject.org/constitution/Singapore_2016) |
-| Siria | Texto comparado: Syrian Arab Republic 2012 | 75 | 50 | 75 | [1](https://www.constituteproject.org/constitution/Syria_2012) |
+| Siria | Perfil actual pendiente; Constitución de 2012 reemplazada en 2025 | pendiente | pendiente | pendiente | [OIT/NATLEX](https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=118300) |
 | Somalia | Texto comparado: Somalia 2012 | 50 | 25 | 100 | [1](https://www.constituteproject.org/constitution/Somalia_2012) |
 | Sri Lanka | Texto comparado: Sri Lanka 1978 (rev. 2015) | 50 | 50 | 75 | [1](https://www.constituteproject.org/constitution/Sri_Lanka_2015) |
 | Sudáfrica | Texto comparado: South Africa 1996 (rev. 2012) | 50 | 25 | 25 | [1](https://www.constituteproject.org/constitution/South_Africa_2012) |
@@ -228,7 +242,9 @@ Las columnas numéricas están en el orden Economía / Instituciones / Religión
 | Zambia | Texto comparado: Zambia 1991 (rev. 2016) | 75 | 50 | 75 | [1](https://www.constituteproject.org/constitution/Zambia_2016) |
 | Zimbabue | Texto comparado: Zimbabwe 2013 (rev. 2021) | 50 | 50 | 25 | [1](https://www.constituteproject.org/constitution/Zimbabwe_2021) |
 
-### 22 referencias históricas
+### 23 referencias históricas
+
+Afganistán de la Constitución de 2004: texto suspendido en 2021. Valores documentales conservados: 75 / 50 / 100. Fuentes: [Constitute](https://www.constituteproject.org/constitution/Afghanistan_2004), [ACNUR](https://www.refworld.org/legal/legislation/natlegbod/2004/en/35107). Siria de 2012: texto reemplazado en 2025, no perfil de la transición actual.
 
 | País o referencia | Documento / período | Economía | Instituciones | Religión | Fuentes |
 | --- | --- | ---: | ---: | ---: | --- |
