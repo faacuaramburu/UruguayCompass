@@ -375,3 +375,124 @@ html[data-theme=light] .results-index nav a[aria-current=location]{background:#d
 @media(max-width:850px){.figure-nearby{grid-template-columns:1fr}.political-grid-layout{grid-template-columns:1fr}.ideology-profile h2{font-size:34px}.figure-lead .closest-person{grid-template-columns:90px minmax(0,1fr)}.figure-lead .portrait{width:90px!important}.figure-lead .portrait img{width:90px!important;height:110px!important}.figure-lead .percentage-badge{grid-column:2;grid-row:4;justify-self:start}.figure-lead .closest-person h4{font-size:24px}.distinctive-grid,.difference-grid{grid-template-columns:1fr}.card-live-preview{grid-template-columns:1fr}}
 @media(max-width:500px){.ideology-heading{align-items:flex-start;gap:12px}.percentage-badge{min-width:76px;min-height:76px;padding:8px}.percentage-badge strong{font-size:23px}.ideology-profile h2{font-size:29px}.ideology-phrase p{font-size:22px}.party-match,.country-match{grid-template-columns:70px minmax(0,1fr);gap:12px}.party-match img{width:70px;height:55px}.party-match .percentage-badge,.country-match .percentage-badge{grid-column:2;justify-self:start;min-width:70px;min-height:70px}.party-match h3,.country-match h3{font-size:21px}.far-figures{grid-template-columns:1fr}.country-flag{font-size:38px}.figure-lead{padding:16px}}
 @media(max-width:500px){.country-flag-image{width:70px;height:55px}}
+
+/* Compact result sections: preserve reading size without scaling the whole page. */
+.results-page{max-width:1320px!important}
+.results-page>h1{font-size:38px}
+.results-layout{grid-template-columns:minmax(0,1fr) 185px;gap:20px}
+.result-panel{padding:22px 24px;margin-bottom:18px}
+.result-panel>h2{font-size:25px;margin-bottom:18px}
+.result-panel h3{font-size:18px}
+.result-panel p{line-height:1.65}
+.results-index{padding:18px 14px}
+.results-index nav a{font-size:12px;padding:7px 8px}
+#axes-panel .axes-grid{gap:10px 26px}
+#axes-panel .axis-tile{padding:7px 0}
+.axis-summary .axis-tile-heading h3{font-size:15px}
+.axis-summary .axis-tile-heading strong{font-size:12px}
+.axis-scale{height:8px;margin:16px 9px 10px}
+.axis-marker{width:17px;height:17px;border-width:3px}
+.axis-midpoint{height:14px;top:-3px}
+.axis-pole{font-size:11px;padding:5px 7px;gap:5px}
+.axis-icon{font-size:14px}
+.ideology-profile h2{font-size:36px;margin-bottom:16px}
+.ideology-phrase p{font-size:24px;margin-bottom:12px}
+.figure-lead{padding:18px}
+.figure-lead .closest-person{grid-template-columns:90px minmax(0,1fr) auto;gap:8px 18px}
+.figure-lead .portrait{width:90px!important;grid-row:2/6}
+.figure-lead .portrait img{width:90px!important;height:105px!important}
+.figure-lead .portrait .portrait-window>img{width:var(--photo-width)!important;height:auto!important}
+.figure-lead .closest-person h4{font-size:25px}
+.figure-lead .closest-person>h3{margin-bottom:4px}
+.figure-lead .closest-person>.small{font-size:11px;margin-top:3px}
+.figure-lead .percentage-badge{min-width:76px;min-height:76px}
+.figure-nearby,.far-figures{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.figure-nearby .match-row,.far-figures .match-row{padding:12px;gap:8px;align-items:start}
+.figure-nearby .portrait,.far-figures .portrait{width:56px!important;margin:0}
+.figure-nearby .portrait img,.far-figures .portrait img{width:56px!important;height:62px!important;object-fit:cover}
+.figure-nearby .portrait .portrait-window>img,.far-figures .portrait .portrait-window>img{width:var(--photo-width)!important;height:auto!important}
+.figure-nearby figcaption,.far-figures figcaption{font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.figure-nearby .match-copy h3,.far-figures .match-copy h3{font-size:16px}
+.figure-nearby .match-copy>a,.far-figures .match-copy>a{font-size:10px}
+.figure-nearby .match-copy .small,.far-figures .match-copy .small{font-size:10px;margin:5px 0}
+.figure-nearby .match-score,.far-figures .match-score{font-size:23px}
+.figure-nearby .match-score span,.far-figures .match-score span{font-size:9px}
+.party-match,.country-match{grid-template-columns:80px minmax(0,1fr) auto;gap:14px;padding:12px 0}
+.party-match img,.country-flag-image{width:80px;height:55px}
+.party-match h3,.country-match h3{font-size:20px}
+.party-match p,.country-match p{font-size:11px;margin:4px 0!important}
+.party-match .percentage-badge,.country-match .percentage-badge{min-width:60px;min-height:60px;padding:7px}
+.party-match .percentage-badge strong,.country-match .percentage-badge strong{font-size:21px}
+.party-match .match-more{grid-column:2/4;font-size:11px}
+.distinctive-grid>article{padding:16px}
+.distinctive-grid .axis-tile-heading h3{font-size:16px}
+.axis-comparison{min-width:0;padding:8px 0 12px;border:0;border-radius:0}
+.axis-comparison .axis-summary .axis-tile-heading h3{font-size:16px}
+.axis-comparison .comparison-reference{font-size:11px;margin:7px 0 0;color:var(--muted)}
+.axis-reference-marker{position:absolute;left:50%;top:50%;width:19px;height:19px;background:var(--paper);border:2px solid var(--muted);border-radius:50%;transform:translate(-50%,-50%);z-index:1}
+.axis-comparison .axis-marker{z-index:2}
+#difference-content>p{font-size:12px}
+#difference-content>h3{margin:16px 0 8px}
+#difference-content .difference-grid{gap:10px 26px}
+.country-catalog li[hidden]{display:none}
+.country-catalog li>div{min-width:0}
+.country-catalog .small{font-size:11px;overflow-wrap:anywhere}
+.country-catalog strong{flex-shrink:0}
+.political-grid{max-width:370px}
+.political-grid-layout{gap:22px}
+.political-grid-layout h3{font-size:24px}
+
+/* The exported poster and its preview share the same hierarchy and source data. */
+.card-device-preview{position:relative;isolation:isolate;display:grid;place-items:center;min-height:515px;padding:22px 44px;background:#e4e6e8;border-radius:20px;overflow:hidden}
+.card-device-preview:before{content:'';position:absolute;z-index:-1;width:270px;height:445px;left:calc(50% - 180px);top:30px;transform:rotate(-6deg);border:7px solid #111417;border-radius:35px;background:#343a42;box-shadow:0 12px 25px #0003}
+.card-device-preview:after{content:'';position:absolute;z-index:-1;left:calc(50% - 90px);top:42px;width:85px;height:16px;border-radius:20px;background:#111417;transform:rotate(-6deg)}
+.card-live-preview.result-poster{display:block;position:relative;max-width:100%;width:320px;margin:0;padding:17px;border:0;border-radius:18px;background:#454b53;color:#f3f6fa;box-shadow:0 12px 25px #0003;line-height:1.4}
+.result-poster .poster-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid #747a82;font:600 13px var(--display)}
+.poster-header span{font-size:7px;letter-spacing:.12em}
+.result-poster h3.poster-ideology{font-size:23px;margin:10px 0 13px;color:#fff;line-height:1.1}
+.poster-main{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.2fr);gap:9px}
+.result-poster .card-preview-person{display:block;min-width:0}
+.result-poster .card-preview-person .portrait{float:none;display:block;margin:0;width:100%!important}
+.result-poster .card-preview-person .portrait>img{display:block;width:100%;height:auto;aspect-ratio:5/6;object-fit:cover;border-radius:8px}
+.result-poster .card-preview-person .portrait-window{aspect-ratio:5/6!important}
+.result-poster .card-preview-person .portrait-window>img{width:var(--photo-width);height:auto}
+.poster-affinity{display:block;font:750 28px/1.1 var(--display);margin-top:8px}
+.poster-label{display:block;font-size:7px;letter-spacing:.06em}
+.result-poster .card-preview-person h4{font:650 15px/1.2 var(--display);margin:5px 0}
+.result-poster .card-preview-person p{font-size:8px;line-height:1.5;margin:0;color:#d0d4da}
+.result-poster .card-preview-axes{display:block;padding:9px 7px;border-radius:9px;background:#343a42;min-width:0}
+.result-poster h4{font-size:7px;letter-spacing:.06em;margin:0 0 7px;line-height:1.3}
+.result-poster .card-preview-axes>div{display:grid;grid-template-columns:12px minmax(0,1fr) 17px 24px;align-items:center;gap:4px;margin:0;min-height:18px;font-size:8px}
+.poster-axis-icon{display:grid;place-items:center;width:12px;height:12px;border-radius:3px;font-size:9px;background:var(--poster-accent)}
+.poster-axis-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.poster-axis-track{height:3px;background:#65707e}
+.poster-axis-track i{display:block;height:100%;background:var(--poster-accent)}
+.result-poster .card-preview-axes strong{font-size:8px;text-align:right;color:var(--poster-accent);font-variant-numeric:tabular-nums}
+.poster-bottom{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.poster-bottom>div{background:#343a42;border-radius:8px;padding:9px;min-width:0}
+.result-poster .card-preview-countries{grid-column:auto;border:0}
+.poster-bottom ul{list-style:none;padding:0;margin:0}
+.poster-bottom li{display:flex;justify-content:space-between;gap:5px;font-size:8px;line-height:1.5;margin-top:6px}
+.poster-bottom li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.poster-bottom li strong{font-size:9px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.poster-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #747a82;margin-top:12px;padding-top:10px}
+.poster-footer a{font:600 7px/1.6 var(--display);color:#f3f6fa;text-decoration:none;overflow-wrap:anywhere}
+.poster-footer img{width:44px;height:44px;flex-shrink:0}
+.result-poster .poster-credit{font-size:7px;line-height:1.6;color:#d0d4da;margin:8px 0 0}
+.poster-credit a{color:inherit}
+html[data-theme=dark] .card-device-preview{background:#1b1c1f}
+@media(max-width:1100px){.results-layout{grid-template-columns:minmax(0,1fr) 170px;gap:16px}.result-panel{padding:20px}.figure-nearby,.far-figures{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.results-layout{display:flex;flex-direction:column}.results-content{width:100%}.results-index{position:static;width:100%}.result-panel{padding:20px}.figure-lead .closest-person{grid-template-columns:80px minmax(0,1fr)}.figure-lead .portrait{width:80px!important}.figure-lead .percentage-badge{grid-column:2;grid-row:auto;justify-self:start}.political-grid-layout{grid-template-columns:1fr}.political-grid{max-width:340px;margin:auto}.difference-grid,.distinctive-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.results-page>h1{font-size:30px}.result-panel{padding:18px 16px}.result-panel>h2{font-size:23px}.figure-nearby,.far-figures{grid-template-columns:1fr}.ideology-profile h2{font-size:28px}.ideology-phrase p{font-size:21px}.card-device-preview{padding:20px 8px;min-height:0}.card-device-preview:before,.card-device-preview:after{display:none}.card-live-preview.result-poster{width:100%;padding:14px}.party-match,.country-match{grid-template-columns:60px minmax(0,1fr) auto;gap:10px}.party-match img,.country-flag-image{width:60px;height:45px}.party-match .percentage-badge,.country-match .percentage-badge{grid-column:3;grid-row:1;min-width:52px;min-height:52px}.party-match h3,.country-match h3{font-size:17px}.axis-pole{font-size:11px}.country-era{font-size:19px}}
+
+/* Theme changes happen only after an explicit click, with reduced-motion support. */
+html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition-property:background-color,color,border-color,fill,stroke,box-shadow;transition-duration:200ms;transition-timing-function:ease-out}
+html.theme-changing [data-action=theme] svg{animation:theme-icon-change 200ms ease-out}
+@keyframes theme-icon-change{from{transform:rotate(-35deg) scale(.8);opacity:.6}to{transform:rotate(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition:none!important;animation:none!important}}
+.figure-nearby .match-row,.far-figures .match-row{display:grid;grid-template-columns:56px minmax(0,1fr) 45px;gap:9px}
+.figure-nearby .match-copy,.far-figures .match-copy{grid-column:2;grid-row:1;flex-basis:auto}
+.figure-nearby .match-row .match-score,.far-figures .match-row .match-score{grid-column:3;grid-row:1;text-align:right;margin:0;font-size:20px}
+.figure-nearby .portrait,.far-figures .portrait{grid-column:1;grid-row:1;float:none}
+.result-poster .portrait img{filter:grayscale(1)}
+.poster-axis-icon svg{width:10px;height:10px;stroke:#26313d}

@@ -47,7 +47,7 @@ test('documented profiles remap their evidence, reverse the specified poles and 
  PREVIOUS_AXES.forEach((previous,axis)=>{if(previous!==null){assert.equal(current.rationale[axis],old.rationale[previous]);assert.ok(current.evidence.some(e=>e.axis===axis&&e.note===`Evidence ${previous}`))}});
  const oldX=60+(100-old.profile[0])*2.6;
  assert.equal(compassCoordinates(current.profile[0],current.profile[3]).x,oldX);
- for(const entity of [...FIGURES,...PARTIES]){assert.equal(entity.profile[4],null);assert.equal(entity.profile[10],null);assert.ok(!entity.evidence.some(e=>e.axis===4||e.axis===10))}
+ for(const entity of [...FIGURES,...PARTIES]){assert.equal(entity.profile[4],null);assert.ok(Number.isFinite(entity.profile[10]));assert.ok(!entity.evidence.some(e=>e.axis===4));assert.ok(entity.evidence.some(e=>e.axis===10&&entity.sources[e.source]?.url))}
  assert.deepEqual(sharedAxes(FIGURES),CURRENT_COMPARISON_AXES);assert.deepEqual(sharedAxes(PARTIES),CURRENT_COMPARISON_AXES);
 });
 

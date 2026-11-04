@@ -3,7 +3,7 @@
 export const AXIS_SCHEMA=2;
 export const PREVIOUS_AXES=[0,1,2,3,null,4,5,6,7,8,null,11];
 export const REVERSED_AXES=new Set([0,1,2,9]);
-export const CURRENT_COMPARISON_AXES=[0,3,7,11];
+export const CURRENT_COMPARISON_AXES=[0,3,7,10,11];
 
 export function migratePoliticalEntity(entity){
  const profile=Array(12).fill(null),rationale=Array(12).fill('Sin evidencia comparable seleccionada para este eje en la nueva edición.');
@@ -14,6 +14,7 @@ export function migratePoliticalEntity(entity){
   if(Number.isFinite(value)){profile[axis]=REVERSED_AXES.has(axis)?100-value:value;rationale[axis]=entity.rationale[previous]}
   for(const item of entity.evidence||[])if(item.axis===previous)evidence.push({...item,axis});
  });
+ // Education must be sourced separately before the migrated profile is eligible.
  const comparable=CURRENT_COMPARISON_AXES.every(axis=>Number.isFinite(profile[axis])&&evidence.some(e=>e.axis===axis&&entity.sources[e.source]?.url));
  return {...entity,profile,rationale,evidence,
   ...(Object.hasOwn(entity,'rankEligible')?{rankEligible:comparable}:{}),eligible:comparable,comparable,

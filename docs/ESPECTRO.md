@@ -4,7 +4,7 @@ El mapa representa economía y seguridad/libertades. No equivale a una escala un
 
 ## Catálogo vigente
 
-Hay **31 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cuatro temas documentados: economía, seguridad, comercio exterior y ambiente. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
+Hay **31 referentes**, todos disponibles como resultado y en el mapa. Se comparan los mismos cinco temas documentados: economía, seguridad, comercio exterior, educación y servicios, y ambiente. Los otros ejes sin evidencia suficiente permanecen en `null`; nunca se sustituyen por 50.
 
 Los programas corresponden a elecciones de 2009, 2014, 2019 y 2024. Se agregan dos referencias de medidas de gobierno, explícitamente identificadas y distintas de un programa electoral: Sanguinetti (1995–2000) y Jorge Batlle (2000–2005). Cada ficha identifica su documento y período. Los integrantes de una misma fórmula pueden compartir programa y afinidad: se muestra el empate y se permite elegir el retrato sin modificar el puntaje. No se copia un programa a una persona solo por pertenecer a su partido.
 
@@ -55,9 +55,9 @@ Las referencias más antiguas no se proyectan sobre instituciones y debates post
 - Mujica: [programa 2010–2015](https://www.frenteamplio.uy/wp-content/uploads/programa_2010_2015_1_0-2.pdf), candidatura de 2009.
 - Vázquez: [programa 2015–2020](https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/Programa_nacional_FA_2015_2020.pdf), candidatura de 2014.
 
-Las fuentes y páginas de cada ubicación se encuentran en las fichas y en `dist/comparison-profiles.js` y `dist/ranking-expansion.js`. Los seis programas partidarios de 2024 se comparan por separado. Se adaptan al nuevo orden de polos y a los cuatro temas comunes sin asignar valores a los temas nuevos.
+Las fuentes y páginas de cada ubicación se encuentran en las fichas y en `dist/comparison-profiles.js` y `dist/ranking-expansion.js`. Los seis programas partidarios de 2024 se comparan por separado. Se adaptan al nuevo orden de polos y a los cinco temas comunes con evidencia educativa nueva y específica en dist/service-evidence.js. Instituciones sigue sin datos comparables.
 
-La afinidad es 100 menos el promedio de las diferencias absolutas en los cuatro temas. `dist/result-ranking.js` compara los cuatro temas comunes de la nueva edición. Las respuestas guardadas se migran por identidad de pregunta; Instituciones y Educación y servicios deben completarse antes de mostrar un resultado nuevo. Las pruebas verifican que todos los referentes del catálogo puedan salir y que seleccionar una foto no altere la afinidad.
+La afinidad es 100 menos el promedio de las diferencias absolutas en los cinco temas comunes. `dist/result-ranking.js` compara los cinco temas comunes de la nueva edición. Las respuestas guardadas se migran por identidad de pregunta; Instituciones y Educación y servicios deben completarse antes de mostrar un resultado nuevo. Las pruebas verifican que todos los referentes del catálogo puedan salir y que el resultado se seleccione automáticamente por distancia sin redondear, conservando la información de empates exactos.
 
 ## Interacción del mapa
 
@@ -67,7 +67,7 @@ Las coordenadas idénticas se agrupan bajo un número. Las etiquetas se separan 
 
 ## Nuevas referencias de gobierno
 
-Se recuperaron Sanguinetti y Jorge Batlle al completar la búsqueda con normas originales y declaraciones de sus administraciones. Los cuatro temas se conservan, pero la fuente cambia: medidas aprobadas y declaraciones en ejercicio, no promesas electorales. La ficha y la metodología explican esa limitación. La promulgación no prueba autoría exclusiva del presidente ni describe toda su trayectoria. Los otros ocho ejes permanecen sin puntaje.
+Se recuperaron Sanguinetti y Jorge Batlle al completar la búsqueda con normas originales y declaraciones de sus administraciones. Los cuatro temas se conservan, pero la fuente cambia: medidas aprobadas y declaraciones en ejercicio, no promesas electorales. La ficha y la metodología explican esa limitación. La promulgación no prueba autoría exclusiva del presidente ni describe toda su trayectoria. Esta edición añade la expansión educativa pública documentada en cada administración; los otros siete ejes permanecen sin puntaje.
 
 Los fundamentos y fuentes están en `dist/government-references.js`:
 
