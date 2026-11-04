@@ -5,11 +5,11 @@ import {readFile} from 'node:fs/promises';
 import {QUESTIONS} from '../dist/questions.js';
 import {questionSet} from '../dist/core.js';
 let counter=0;
-async function boot({blocked=false,archive=null}={}){
+async function boot({blocked=false,archive=null,schema=2}={}){
  const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8'),dom=new JSDOM(html,{url:'https://example.org/',pretendToBeVisual:true}),w=dom.window;
  for(const key of ['window','document','localStorage','location','FormData','File'])globalThis[key]=w[key];
  w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:()=>()=>{}});
- const answers=Object.fromEntries(questionSet(QUESTIONS,'short').map(q=>[q.id.replace(/v3$/,''),3])),saved=JSON.stringify({schema:2,version:'short',answers,cursor:35,completed:true});w.localStorage.setItem('uruguay-compass-v2',saved);
+ const answers=Object.fromEntries(questionSet(QUESTIONS,'short').map(q=>[schema===2?q.id.replace(/v3$/,''):q.id,3])),saved=JSON.stringify({schema,version:'short',answers,cursor:35,completed:true});w.localStorage.setItem('uruguay-compass-v2',saved);
  if(archive!==null)w.localStorage.setItem('uruguay-compass-v2-archive',archive);
  const set=w.Storage.prototype.setItem;
  if(blocked)w.Storage.prototype.setItem=function(key,value){if(key==='uruguay-compass-v2-archive')throw Error('Archive blocked');return set.call(this,key,value)};
@@ -25,4 +25,22 @@ test('existing audit archives are retained when another prior test is migrated',
 test('failed archive writes cannot overwrite the original, including later answer changes',async()=>{
  const {dom,w,saved}=await boot({blocked:true});assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);
  w.location.hash='#test';await new Promise(r=>setTimeout(r,30));const answer=w.document.querySelector('[name=answer][value="4"]');assert.ok(answer);answer.checked=true;answer.dispatchEvent(new w.Event('change',{bubbles:true}));assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);dom.window.close();
+});
+
+test('restoring the previous ranking preserves a completed schema 3 test and every archive',async()=>{
+ const {dom,w,saved}=await boot({schema:3,archive:'older-backup'});
+ assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);
+ assert.equal(w.localStorage.getItem('uruguay-compass-v2-archive'),'older-backup');
+ assert.ok(w.document.querySelector('a[href="#resultados"]'));
+ w.location.hash='#resultados';
+ const deadline=Date.now()+2000;while(!w.document.querySelector('#figures-panel')&&Date.now()<deadline)await new Promise(r=>setTimeout(r,10));
+ assert.ok(w.document.querySelector('#figures-panel'));
+ assert.ok(w.document.querySelector('.closest-person').textContent.includes('cinco ejes'));
+ assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);
+ w.location.hash='#privacidad';
+ const until=Date.now()+2000;while(!w.document.querySelector('[data-action=erase]')&&Date.now()<until)await new Promise(r=>setTimeout(r,10));
+ w.document.querySelector('[data-action=erase]').click();
+ assert.equal(w.localStorage.getItem('uruguay-compass-v2-archive'),null);
+ assert.equal(w.localStorage.getItem('uruguay-compass-v2'),null);
+ dom.window.close();
 });

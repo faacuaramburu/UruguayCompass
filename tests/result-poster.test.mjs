@@ -7,19 +7,9 @@ import {AXES} from '../dist/context.js';
 import {FIGURES} from '../dist/politics.js';
 import {PHOTOS} from '../dist/photos.js';
 import {rankFigures} from '../dist/result-ranking.js';
-import {QUESTIONS} from '../dist/questions.js';
-import {evidenceQuestionId} from '../dist/question-audit.js';
-
-test('an empty evidence ranking renders without inventing a score or photo',()=>{
- const profile=Array(12).fill(50),dom=new JSDOM(renderResultPoster({profile,axes:AXES,ranking:[],photos:PHOTOS}));
- assert.equal(dom.window.document.querySelector('.poster-affinity').textContent,'—');
- assert.equal(dom.window.document.querySelector('.card-preview-person img'),null);
- assert.match(dom.window.document.body.textContent,/Sin referencia documentada/);
- assert.doesNotMatch(dom.window.document.body.innerHTML,/undefined|NaN/);dom.window.close();
-});
 
 test('Manini uses the original color portrait in the poster',()=>{
- const manini=FIGURES.find(f=>f.id==='manini'),profile=manini.profile.map(v=>v??50),ranking=rankFigures(QUESTIONS,Object.fromEntries(QUESTIONS.map(q=>[q.id,manini.positions[evidenceQuestionId(q)].position??2])),[manini]).ranked;
+ const manini=FIGURES.find(f=>f.id==='manini'),profile=manini.profile.map(v=>v??50),ranking=rankFigures(profile,FIGURES).ranked;
  assert.equal(ranking[0].entity.id,'manini');assert.equal(PHOTOS.manini.preserveColor,true);
  const dom=new JSDOM(renderResultPoster({profile,axes:AXES,ranking,photos:PHOTOS}));
  const image=dom.window.document.querySelector('.card-preview-person img');
@@ -28,7 +18,7 @@ test('Manini uses the original color portrait in the poster',()=>{
 });
 
 test('poster preview and PNG model use the automatic reference, twelve positions and chosen country period',async()=>{
- const profile=Array(12).fill(50),before=[...profile],ranking=rankFigures(QUESTIONS,Object.fromEntries(QUESTIONS.map(q=>[q.id,2])),FIGURES).ranked;
+ const profile=Array(12).fill(50),before=[...profile],ranking=rankFigures(profile,FIGURES).ranked;
  for(const mode of ['current','historical']){
   const model=posterModel(profile,AXES,ranking,mode),dom=new JSDOM(renderResultPoster({profile,axes:AXES,ranking,photos:PHOTOS,countryMode:mode})),d=dom.window.document;
   assert.equal(model.lead.entity.id,ranking[0].entity.id);assert.equal(model.positions.length,12);
