@@ -1,30 +1,57 @@
-import {readingModels} from './insights.js';
-import {ideologyDescription} from './result-presentation.js';
-import {describeAxisPosition} from './axis-presentation.js';
-import {rankCountries} from './countries.js';
+import {quizIcon} from './icons.js';
+import {posterModel} from './result-poster.js';
 import {portraitRect,photoCredit} from './portrait.js';
-// Canvas local: no peticiones de imágenes a terceros ni datos en URLs.
-export async function createResultCard(canvas,{profile,axes,ranking,photos,partyRanking=[],countryMode='current'}){
- await document.fonts.ready;canvas.hidden=false;const topParty=partyRanking[0],closestParties=partyRanking.filter(x=>x.score===topParty?.score),offset=topParty?180:0;canvas.height=1500+offset;const c=canvas.getContext('2d'),top=ranking[0],photo=photos[top.entity.id];
- const ink='#f3f6fa',blue='#9cd6ba',muted='#bfccdb';c.fillStyle='#242c38';c.fillRect(0,0,1200,canvas.height);
- const text=(t,x,y,size=24,weight=400,color=ink,max)=>{c.fillStyle=color;c.font=`${weight} ${size}px ${weight===700?'Bricolage Grotesque':'Biryani'}`;if(max&&c.measureText){while(c.measureText(t).width>max&&size>15){size--;c.font=`${weight} ${size}px ${weight===700?'Bricolage Grotesque':'Biryani'}`}}c.fillText(t,x,y)};
- text('Uruguay Compass',60,85,38,700);text('Los 12 Ejes',860,85,27);c.strokeStyle='#c6cfdf';c.beginPath();c.moveTo(60,118);c.lineTo(1140,118);c.stroke();
- const ideology=ideologyDescription(readingModels(profile)[0]);
- text(ideology.name,60,181,49,700,ink,1080);
- text(`${ideology.score}% de similitud con el modelo · ${top.entity.name}`,60,230,24,400,muted,1080);
- let image=null;if(photo){try{image=await new Promise((resolve,reject)=>{const im=new Image();const timeout=setTimeout(()=>reject(Error('Foto no disponible')),4000);im.onload=()=>{clearTimeout(timeout);resolve(im)};im.onerror=()=>{clearTimeout(timeout);reject(Error('Foto no disponible'))};im.src=photo.src})}catch{}}
- if(image){const w=image.naturalWidth||image.width,h=image.naturalHeight||image.height;c.drawImage(image,...portraitRect(photo,w,h,320/390),60,280,320,390)}
- else {c.fillStyle='#d8e6f7';c.fillRect(60,280,320,390);text(top.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),130,500,72,700)}
- text(`${top.score}%`,420,365,76,700,blue);text('coincidencia editorial',420,411,25);text(top.entity.comparisonLabel,420,460,22,400,muted);text('Comparación sobre cuatro ejes comunes',420,499,22,400,muted);
- const tied=ranking.filter(x=>x.score===top.score);
- text(top.entity.name,420,542,30,700,ink,700);text('Otras referencias cercanas',420,585,23,700);ranking.slice(1,3).forEach((x,i)=>text(`${x.entity.name} · ${x.score}%`,420,625+i*35,24,400,ink,700));
- if(tied.length>1)text(`Comparte la afinidad máxima con otros ${tied.length-1} referentes.`,60,700,22,400,muted,1080);
- if(topParty){text(closestParties.length>1?'Partidos más cercanos (empate)':'Partido más cercano',60,730,25,700);text(closestParties.map(x=>x.entity.name).join(' / '),60,780,35,700,ink,1080);text(`${topParty.score}% de coincidencia editorial · Programas de 2024`,60,825,23);text('Comparación sobre cuatro ejes comunes; no implica apoyo partidario.',60,860,20,400,muted)}
- text('Tus doce posiciones',60,733+offset,31,700);
- profile.forEach((n,i)=>{const col=i<6?0:1,row=i%6,x=60+col*560,y=790+offset+row*73;text(axes[i].short,x,y,20,700,ink,390);const reading=describeAxisPosition(axes[i],n);text(reading.label,x,y+23,14,400,muted,470);c.fillStyle='#4b5666';c.fillRect(x,y+40,470,7);c.fillStyle=blue;c.fillRect(x+Math.min(50,n)*4.7,y+40,Math.abs(n-50)*4.7,7);c.beginPath();c.arc(x+n*4.7,y+43,7,0,Math.PI*2);c.fill()});
- text('Países · afinidad constitucional (3 ejes)',60,1248+offset,20,700);rankCountries(profile,countryMode).slice(0,3).forEach((x,i)=>text(`${x.entity.name} ${x.score}%`,60+i*355,1283+offset,20,400,muted,340));
- text('No implica pensar igual en todo ni apoyar a un partido.',60,1320+offset,22);
- text('Educativo. Sin validación científica ni recomendación de voto.',60,1360+offset,21);
- if(photo)text(`Foto: ${photoCredit(photo)} · ${new URL(photo.source).hostname}`,60,1422+offset,15,400,muted,1080);
- return new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('PNG no disponible')),'image/png'));
+const loadImage=src=>new Promise(resolve=>{
+ if(!src){resolve(null);return}
+ const image=new Image(),timer=setTimeout(()=>resolve(null),4000);
+ image.onload=()=>{clearTimeout(timer);resolve(image)};
+ image.onerror=()=>{clearTimeout(timer);resolve(null)};
+ image.src=src;
+});
+export async function createResultCard(canvas,{profile,axes,ranking,photos,countryMode='current'}){
+ await document.fonts.ready;
+ const m=posterModel(profile,axes,ranking,countryMode),photo=photos[m.lead.entity.id];
+ const [image,qr,...assets]=await Promise.all([loadImage(photo?.src),loadImage('site-qr.svg'),...m.countries.map(x=>loadImage(countryMode==='current'?`flags/${x.entity.id}.svg`:null)),...m.positions.map(x=>loadImage('data:image/svg+xml,'+encodeURIComponent(quizIcon(x.axis.slug).replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ').replace('currentColor','#26313d'))))]);
+ canvas.width=1200;canvas.height=1680;const c=canvas.getContext('2d');
+ const ink='#f3f6fa',muted='#d0d4da',paper='#454b53',panel='#343a42';
+ const text=(value,x,y,size=24,weight=400,color=ink,max=1080)=>{
+  let label=String(value);c.fillStyle=color;
+  const font=()=>{c.font=`${weight} ${size}px ${weight>=600?'Bricolage Grotesque':'Biryani'}`};font();
+  while(c.measureText(label).width>max&&size>14){size--;font()}
+  if(c.measureText(label).width>max){while(label.length&&c.measureText(label+'…').width>max)label=label.slice(0,-1);label+='…'}
+  c.fillText(label,x,y);
+ };
+ const box=(x,y,w,h,color,r=24)=>{c.fillStyle=color;c.beginPath();if(c.roundRect)c.roundRect(x,y,w,h,r);else c.rect(x,y,w,h);c.fill()};
+ c.fillStyle=paper;c.fillRect(0,0,1200,1680);
+ text('UruguayCompass',60,88,36,700);text('MI RESULTADO',915,88,20,700,muted,225);
+ c.strokeStyle='#747a82';c.lineWidth=1;c.beginPath();c.moveTo(60,117);c.lineTo(1140,117);c.stroke();
+ text(m.ideology.name,60,202,58,700);
+ text('TU PERFIL POLÍTICO',60,250,19,600,muted);
+ box(60,294,425,514,panel);
+ if(image){c.save();c.beginPath();if(c.roundRect)c.roundRect(60,294,425,514,22);else c.rect(60,294,425,514);c.clip();c.filter='grayscale(100%)';c.drawImage(image,...portraitRect(photo,image.naturalWidth||image.width,image.naturalHeight||image.height,425/514),60,294,425,514);c.restore()}
+ else text(m.lead.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),180,565,100,700);
+ text(`${m.lead.score}%`,60,896,78,700);text('AFINIDAD EDITORIAL',60,931,18,600,muted);
+ text(m.lead.entity.name,60,991,39,700,ink,425);
+ text(m.lead.entity.comparisonLabel,60,1030,18,400,muted,425);
+ box(520,294,620,752,panel);text('TUS 12 EJES',545,333,20,700,muted);
+ m.positions.forEach((x,i)=>{
+  const y=383+i*57,label=x.reading.side?x.axis[x.reading.side]:x.axis.short;
+  box(543,y-24,29,29,x.color,6);
+  const icon=assets[m.countries.length+i];if(icon)c.drawImage(icon,547,y-20,21,21);else text(x.axis.short[0],549,y-3,18,700,'#26313d',25);
+  text(label,585,y,20,400,ink,345);
+  c.fillStyle='#65707e';c.fillRect(945,y-10,90,5);c.fillStyle=x.color;c.fillRect(945,y-10,90*(x.reading.percent??50)/100,5);
+  text(x.reading.percent===null?'—':x.reading.percent+'%',1048,y,18,700,x.color,75);
+ });
+ box(60,1094,525,281,panel);box(610,1094,530,281,panel);
+ text('OTRAS REFERENCIAS',85,1133,19,700,muted);text(countryMode==='current'?'PAÍSES ACTUALES':'PAÍSES HISTÓRICOS',635,1133,19,700,muted);
+ m.nearby.forEach((x,i)=>{const y=1189+i*66,initial=x.entity.name.split(' ').map(p=>p[0]).slice(0,2).join('');box(85,y-31,40,40,'#58616e',20);text(initial,92,y-4,16,700,ink,30);text(x.entity.name,140,y,21,600,ink,305);text(x.score+'%',475,y,23,700,ink,80)});
+ m.countries.forEach((x,i)=>{const y=1189+i*66,flag=assets[i];if(flag)c.drawImage(flag,635,y-28,49,32);text(x.entity.name,flag?700:635,y,20,600,ink,310);text(x.score+'%',1040,y,23,700,ink,80)});
+ text('DESCUBRÍ TU PERFIL',60,1460,20,700,muted);text('URUGUAYCOMPASS.ONRENDER.COM',60,1499,24,700,ink,915);
+ if(qr)c.drawImage(qr,1035,1417,105,105);
+ text('—: Equilibrado · Personajes: 5 ejes · Países: 3 ejes constitucionales.',60,1555,18,400,muted);
+ const tied=ranking.filter(x=>Number.isFinite(m.lead.distance)?x.distance===m.lead.distance:x.score===m.lead.score);
+ if(tied.length>1)text(`Empate exacto entre ${tied.length} referencias; se destaca la primera por orden alfabético.`,60,1590,17,400,muted);
+ text('Educativo. Sin validación científica ni recomendación de voto.',60,1625,17,400,muted);
+ if(photo)text(`Foto: ${photoCredit(photo)} · ${new URL(photo.source).hostname}`,60,1655,14,400,muted);
+ return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(Error('PNG no disponible')),'image/png'));
 }

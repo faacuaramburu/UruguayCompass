@@ -1,4 +1,5 @@
 import {migratePoliticalEntity} from './axis-model.js';
+import {extendServiceEvidence} from './service-evidence.js';
 // Editorial dataset. The source documents support the proposals; the numbers are our estimates.
 import {expandFigures} from './figure-expansion.js';
 import {extendComparisons} from './comparison-profiles.js';
@@ -100,20 +101,20 @@ const BASE_FIGURES = [
 
 const LEGACY_FIGURES=expandRankedReferences(extendStatementReferences(extendGovernmentReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,LEGACY_PARTIES,CANDIDATURES,PROGRAM_ROOT)),LEGACY_PARTIES))));
 
-export const PARTIES=LEGACY_PARTIES.map(migratePoliticalEntity);
-export const FIGURES=LEGACY_FIGURES.map(migratePoliticalEntity);
+export const PARTIES=extendServiceEvidence(LEGACY_PARTIES.map(migratePoliticalEntity));
+export const FIGURES=extendServiceEvidence(LEGACY_FIGURES.map(migratePoliticalEntity),{includeTaxes:true});
 
 export const POLITICAL_META = {
   updatedAt:'2026-11-03',
   period:'Programas de 2009, 2014, 2019 y 2024, medidas de gobiernos de 1995–2005 y declaraciones de 2016–2019 y 2024',
   representationSource:REPRESENTATION,
   candidateSource:CANDIDATURES,
-  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cuatro temas documentados, incluidos programas presidenciales, precandidaturas, fórmulas, medidas de gobiernos y declaraciones públicas identificadas.`,
+  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cinco temas documentados, incluidos programas presidenciales, precandidaturas, fórmulas, medidas de gobiernos y declaraciones públicas identificadas. Educación y servicios se añade con evidencia educativa específica.`,
   figuresInRanking:FIGURES.filter(f=>f.rankEligible).map(f=>f.id),
   balanceNote:'La comparación entre personas incluye programas de distintas elecciones, medidas de gobiernos concretos y declaraciones públicas fechadas: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
   limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
   individualLimit:'Los perfiles comparables representan programas, medidas de gobierno o declaraciones públicas fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'El catálogo solo incluye referentes con los cuatro temas comunes documentados. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
+  historicalLimit:'El catálogo solo incluye referentes con los cinco temas comunes documentados. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
   missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };

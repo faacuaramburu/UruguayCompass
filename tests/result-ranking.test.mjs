@@ -6,6 +6,15 @@ import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
 import {rankFigures} from '../dist/result-ranking.js';
 import {questionSet,scoreProfile,restoreState} from '../dist/core.js';
 
+test('the automatically featured reference minimizes distance before rounded percentages',()=>{
+ const make=(id,name,economy)=>({id,name,rankEligible:true,profile:Array.from({length:12},(_,i)=>COMPARISON_AXES.includes(i)?(i===0?economy:50):null)});
+ const a=make('a','Alfa',48),b=make('b','Beta',49),p=Array(12).fill(50);
+ const result=rankFigures(p,[a,b]);
+ assert.equal(result.ranked[0].score,100);assert.equal(result.ranked[1].score,100);
+ assert.equal(result.ranked[0].entity.id,'b');assert.deepEqual(result.closest.map(x=>x.entity.id),['b']);
+ assert.equal(rankFigures(p,[a,b],'a').ranked[0].entity.id,'b');
+});
+
 test('every eligible reference can appear among the closest results with sourced common axes',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
  assert.equal(eligible.length,31);
@@ -25,11 +34,11 @@ test('independent sourced references can win without copying a current party pro
  }
 });
 
-test('dated shared programs produce visible ties and selecting a portrait cannot change affinity',()=>{
+test('dated shared programs preserve exact ties and a preference cannot alter the automatic result',()=>{
  const f=FIGURES.find(f=>f.id==='mujica'),p=f.profile.map(v=>v??50);
  const original=rankFigures(p,FIGURES),selected=rankFigures(p,FIGURES,'mujica');
  assert.deepEqual(original.closest.map(x=>x.entity.id).sort(),['astori','mujica']);
- assert.equal(selected.ranked[0].entity.id,'mujica');
+ assert.equal(selected.ranked[0].entity.id,original.ranked[0].entity.id);
  assert.deepEqual(new Map(selected.ranked.map(x=>[x.entity.id,x.score])),new Map(original.ranked.map(x=>[x.entity.id,x.score])));
  assert.equal(rankFigures(p,FIGURES,'sartori').ranked[0].entity.id,original.ranked[0].entity.id,'A lower match cannot be promoted');
 });

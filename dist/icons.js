@@ -1,0 +1,12 @@
+export const quizIcon=kind=>{const paths={"economia":"<path d=\"m3 8 9-5 9 5H3Zm2 3v7m5-7v7m4-7v7m5-7v7M3 21h18M3 18h18\"/>",
+ "impuestos":"<ellipse cx=\"9\" cy=\"6\" rx=\"6\" ry=\"3\"/><path d=\"M3 6v5c0 1.7 2.7 3 6 3m-6-3v5c0 1.7 2.7 3 6 3\"/><ellipse cx=\"16\" cy=\"14\" rx=\"5\" ry=\"3\"/><path d=\"M11 14v4c0 1.7 2.2 3 5 3s5-1.3 5-3v-4\"/>",
+ "trabajo":"<rect x=\"3\" y=\"7\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 7V4h8v3M3 12c5 3 13 3 18 0m-9 0v4\"/>",
+ "seguridad":"<path d=\"M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z\"/><path d=\"m8 12 3 3 5-6\"/>",
+ "instituciones":"<path d=\"M12 3v18M5 21h14M4 7h16M7 7l-4 8h8L7 7Zm10 0-4 8h8l-4-8ZM3 15c0 4 8 4 8 0m2 0c0 4 8 4 8 0\"/>",
+ "valores":"<circle cx=\"9\" cy=\"7\" r=\"3\"/><path d=\"M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3\"/>",
+ "laicidad":"<path d=\"M9 11h6v10H9zM7 21h10M12 11V8m0-5c-4 4-3 5 0 5s4-1 0-5Z\"/>",
+ "comercio":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><ellipse cx=\"12\" cy=\"12\" rx=\"4\" ry=\"9\"/><path d=\"M3 12h18M5 7h14M5 17h14\"/>",
+ "exterior":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"m16 8-2 6-6 2 2-6 6-2Z\"/>",
+ "inmigracion":"<rect x=\"5\" y=\"3\" width=\"14\" height=\"18\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"4\"/><path d=\"M8 10h8m-4-4c-2 2-2 6 0 8 2-2 2-6 0-8ZM9 18h6\"/>",
+ "educacion-servicios":"<path d=\"M12 6c-3-2-6-3-10-2v15c4-1 7 0 10 2 3-2 6-3 10-2V4c-4-1-7 0-10 2Zm0 0v15\"/>",
+ "ambiente":"<path d=\"M20 3c-9 0-16 4-16 10a7 7 0 0 0 7 7c6 0 9-8 9-17ZM3 21 15 9m-7 7h6m-4-2V9\"/>",help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 3v.2"/>',agree:'<path d="m6 12 4 4 8-8"/>',disagree:'<path d="m7 7 10 10M17 7 7 17"/>',neutral:'<path d="M6 12h12"/>',back:'<path d="m10 6-6 6 6 6M4 12h16"/>',next:'<path d="m14 6 6 6-6 6M20 12H4"/>'};return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[kind]}</svg>`};
