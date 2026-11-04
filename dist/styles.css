@@ -270,4 +270,16 @@ html[data-theme=dark] #app:has(.questionnaire-page){--ink:#edf3ff;--muted:#b8c6c
 html[data-theme=dark] .question-card{background:#152923}
 html[data-theme=dark] .questionnaire-page .test-controls>.primary{color:#10261e}
 html[data-theme=dark] .questionnaire-page .test-controls>.primary:hover{background:#a8e4c6}
+
+/* Black page background across every route and theme preference. */
+:root,html[data-theme=dark]{--ink:#f1f3f5;--muted:#b9bec7;--blue:#8dbbff;--sky:#84caff;--pale:#202020;--line:#454545;--paper:#000;--surface:#121212;color-scheme:dark}
+html,body,#app{background:#000}
+.skip-link:focus{background:var(--ink);color:#000}
+.primary{color:#08111d}
+.primary:hover{background:#aed0ff;color:#08111d}
+.axis-summary{--axis-accent:hsl(var(--axis-hue) 65% 74%)}
+#app:has(.questionnaire-page),html[data-theme=dark] #app:has(.questionnaire-page){--ink:#f1f3f5;--muted:#b9bec7;--blue:#8cd1b0;--sky:#8cd1b0;--pale:#202923;--line:#454545;--paper:#000;--surface:#171717;background:#000}
+.question-card,html[data-theme=dark] .question-card{background:#101010}
+.questionnaire-page .test-controls>.primary{color:#10261e}
+.questionnaire-page .test-controls>.primary:hover{background:#a8e4c6;color:#10261e}
 @media(max-width:600px){.questionnaire-page{margin-top:24px;padding:0 16px}.question-card{padding:20px 16px 22px}.question-number{font-size:52px;top:17px;right:16px}.question-meta{padding-right:44px;gap:6px}.question-axis,.question-help{font-size:11px;padding:6px 10px;min-height:36px}.questionnaire-page .question{font-size:23px;padding-right:0}.questionnaire-page .answer{padding:11px 12px;gap:10px;font-size:13px}.questionnaire-page .test-controls{grid-template-columns:1fr 1fr;gap:10px}.questionnaire-page .test-options{grid-column:1/-1;grid-row:2}.questionnaire-page .test-controls>.primary{grid-column:2;grid-row:1}.questionnaire-page .test-controls>.secondary{grid-column:1;grid-row:1}.questionnaire-page .test-controls>button{width:100%}.questionnaire-page .auto-advance{font-size:12px}.question-progress{gap:3px}}
