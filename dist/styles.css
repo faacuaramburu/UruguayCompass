@@ -300,6 +300,7 @@ html[data-theme=dark] .questionnaire-page .primary{color:#10261e}
 
 /* Result overview: editorial profile, comparable references and documented coverage. */
 .ideology-heading{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.ideology-heading .percentage-badge{align-self:flex-start;margin-bottom:16px}
 .ideology-profile h2{font-size:42px;margin:4px 0 20px}
 .ideology-heading .small{margin:0;color:var(--muted)}
 .percentage-badge{display:flex;flex-direction:column;justify-content:center;align-items:center;flex-shrink:0;min-width:96px;min-height:96px;padding:12px;border:2px solid var(--muted);border-radius:50%;text-align:center}
@@ -485,11 +486,10 @@ html[data-theme=dark] .card-device-preview{background:#1b1c1f}
 @media(max-width:850px){.results-layout{display:flex;flex-direction:column}.results-content{width:100%}.results-index{position:static;width:100%}.result-panel{padding:20px}.figure-lead .closest-person{grid-template-columns:80px minmax(0,1fr)}.figure-lead .portrait{width:80px!important}.figure-lead .percentage-badge{grid-column:2;grid-row:auto;justify-self:start}.political-grid-layout{grid-template-columns:1fr}.political-grid{max-width:340px;margin:auto}.difference-grid,.distinctive-grid{grid-template-columns:1fr}}
 @media(max-width:500px){.results-page>h1{font-size:30px}.result-panel{padding:18px 16px}.result-panel>h2{font-size:23px}.figure-nearby,.far-figures{grid-template-columns:1fr}.ideology-profile h2{font-size:28px}.ideology-phrase p{font-size:21px}.card-device-preview{padding:20px 8px;min-height:0}.card-device-preview:before,.card-device-preview:after{display:none}.card-live-preview.result-poster{width:100%;padding:14px}.party-match,.country-match{grid-template-columns:60px minmax(0,1fr) auto;gap:10px}.party-match img,.country-flag-image{width:60px;height:45px}.party-match .percentage-badge,.country-match .percentage-badge{grid-column:3;grid-row:1;min-width:52px;min-height:52px}.party-match h3,.country-match h3{font-size:17px}.axis-pole{font-size:11px}.country-era{font-size:19px}}
 
-/* Theme changes happen only after an explicit click, with reduced-motion support. */
-html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition-property:background-color,color,border-color,fill,stroke,box-shadow;transition-duration:200ms;transition-timing-function:ease-out}
+/* Switch the palette together; animate only the icon, not the entire results document. */
 html.theme-changing [data-action=theme] svg{animation:theme-icon-change 200ms ease-out}
 @keyframes theme-icon-change{from{transform:rotate(-35deg) scale(.8);opacity:.6}to{transform:rotate(0) scale(1);opacity:1}}
-@media(prefers-reduced-motion:reduce){html.theme-changing,html.theme-changing *,html.theme-changing *:before,html.theme-changing *:after{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){html.theme-changing [data-action=theme] svg{animation:none!important}}
 .figure-nearby .match-row,.far-figures .match-row{display:grid;grid-template-columns:56px minmax(0,1fr) 45px;gap:9px}
 .figure-nearby .match-copy,.far-figures .match-copy{grid-column:2;grid-row:1;flex-basis:auto}
 .figure-nearby .match-row .match-score,.far-figures .match-row .match-score{grid-column:3;grid-row:1;text-align:right;margin:0;font-size:20px}
