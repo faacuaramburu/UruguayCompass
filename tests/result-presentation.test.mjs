@@ -12,7 +12,7 @@ test('country coverage is explicit and unknown profiles never receive a score',(
  const catalog=countryCatalog();assert.equal(catalog.length,195);assert.equal(new Set(catalog.map(c=>c.id)).size,195);
  const p=Array(12).fill(50),before=structuredClone(p);
  for(const mode of ['current','historical']){
-  const ranked=rankCountries(p,mode),known=mode==='current'?CURRENT_COUNTRIES:HISTORICAL_COUNTRIES;
+  const ranked=rankCountries(p,mode),known=(mode==='current'?CURRENT_COUNTRIES:HISTORICAL_COUNTRIES).filter(c=>COUNTRY_AXES.every(i=>Number.isFinite(c.profile[i])));
   assert.equal(ranked.length,known.length);
   for(const row of ranked){assert.equal(row.score,Math.round(100-COUNTRY_AXES.reduce((sum,i)=>sum+Math.abs(p[i]-row.entity.profile[i]),0)/3));assert.ok(row.entity.sources.length);assert.ok(row.entity.sources.every(s=>s.url.startsWith('https://')))}
   const doc=new JSDOM(renderCountryResults(p,mode)).window.document;
@@ -21,7 +21,7 @@ test('country coverage is explicit and unknown profiles never receive a score',(
   assert.ok(doc.querySelector('.country-coverage').textContent.includes('constitucional'));
  }
  assert.deepEqual(p,before);
- for(const entity of [...CURRENT_COUNTRIES,...HISTORICAL_COUNTRIES])assert.equal(entity.profile.filter(v=>v===null).length,9);
+ for(const entity of [...CURRENT_COUNTRIES,...HISTORICAL_COUNTRIES])assert.equal(entity.profile.filter(v=>v===null).length,entity.review?12:9);
 });
 
 test('ideology names and phrases retain the existing model scores and values',()=>{
@@ -50,7 +50,7 @@ test('the theme palettes separate light and dark backgrounds instead of forcing 
  const root=rules.filter(r=>r.selectorText===':root').find(r=>r.style.getPropertyValue('--paper'));
  assert.equal(root.style.getPropertyValue('--paper'),'#fff');
  const dark=rules.filter(r=>r.selectorText==='html[data-theme=dark]').at(-1);
- assert.equal(dark.style.getPropertyValue('--paper'),'#000');
+ assert.equal(dark.style.getPropertyValue('--paper'),'#191c21');
  assert.ok(!rules.some(r=>r.selectorText==='html,body,#app'&&r.style.background==='#000'));
  dom.window.close();
 });
