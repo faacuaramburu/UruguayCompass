@@ -246,9 +246,9 @@ html[data-theme] .axis-summary[data-side=balanced]{--axis-accent:var(--muted)}
 .questionnaire-page .question{position:relative;padding-right:60px;font-family:var(--display);font-size:27px;line-height:1.3;letter-spacing:-.02em}
 .questionnaire-page .answers{gap:10px;margin:20px 0 0}
 .questionnaire-page .answer{min-height:48px;padding:10px 14px;gap:14px;border-radius:10px;background:var(--paper);font-size:14px;line-height:1.5;font-weight:700}
-.questionnaire-page .answer:hover,.questionnaire-page .answer:has(input:checked):hover{background:#292929;border-color:#a3a3a3}
-.questionnaire-page .answer-agree:hover,.questionnaire-page .answer-agree:has(input:checked):hover{background:#173c2a;border-color:#78c49d}
-.questionnaire-page .answer-disagree:hover,.questionnaire-page .answer-disagree:has(input:checked):hover{background:#442027;border-color:#e98e94}
+.questionnaire-page .hover-ready .answer:hover,.questionnaire-page .hover-ready .answer:has(input:checked):hover{background:#292929;border-color:#a3a3a3}
+.questionnaire-page .hover-ready .answer-agree:hover,.questionnaire-page .hover-ready .answer-agree:has(input:checked):hover{background:#173c2a;border-color:#78c49d}
+.questionnaire-page .hover-ready .answer-disagree:hover,.questionnaire-page .hover-ready .answer-disagree:has(input:checked):hover{background:#442027;border-color:#e98e94}
 .questionnaire-page .answer:has(input:checked){background:#171717;border-color:var(--muted)}
 .answer-symbol{display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--muted);background:var(--surface)}
 .answer-symbol svg{width:14px;height:14px}
@@ -285,3 +285,19 @@ html,body,#app{background:#000}
 .questionnaire-page .test-controls>.primary{color:#10261e}
 .questionnaire-page .test-controls>.primary:hover{background:#a8e4c6;color:#10261e}
 @media(max-width:600px){.questionnaire-page{margin-top:24px;padding:0 16px}.question-card{padding:20px 16px 22px}.question-number{font-size:52px;top:17px;right:16px}.question-meta{padding-right:44px;gap:6px}.question-axis,.question-help{font-size:11px;padding:6px 10px;min-height:36px}.questionnaire-page .question{font-size:23px;padding-right:0}.questionnaire-page .answer{padding:11px 12px;gap:10px;font-size:13px}.questionnaire-page .test-controls{grid-template-columns:1fr 1fr;gap:10px}.questionnaire-page .test-options{grid-column:1/-1;grid-row:2}.questionnaire-page .test-controls>.primary{grid-column:2;grid-row:1}.questionnaire-page .test-controls>.secondary{grid-column:1;grid-row:1}.questionnaire-page .test-controls>button{width:100%}.questionnaire-page .auto-advance{font-size:12px}.question-progress{gap:3px}}
+
+.question-axis,.question-help{text-transform:uppercase;letter-spacing:.04em}
+.question-axis[data-axis=economia]{background:#47331f;color:#ffdbad}
+.question-axis[data-axis=impuestos]{background:#403a19;color:#f3e4a2}
+.question-axis[data-axis=trabajo]{background:#263851;color:#c5dcff}
+.question-axis[data-axis=seguridad]{background:#47272b;color:#ffc7cd}
+.question-axis[data-axis=instituciones]{background:#383047;color:#e3d2ff}
+.question-axis[data-axis=valores]{background:#422c40;color:#f6c9ed}
+.question-axis[data-axis=laicidad]{background:#353442;color:#dcd9f7}
+.question-axis[data-axis=comercio]{background:#1f3b38;color:#b9eee4}
+.question-axis[data-axis=exterior]{background:#263f4a;color:#c0e8fa}
+.question-axis[data-axis=inmigracion]{background:#393e25;color:#e0ebbb}
+.question-axis[data-axis=educacion-servicios]{background:#3d3026;color:#f2d6bd}
+.question-axis[data-axis=ambiente]{background:#253e2c;color:#c3ebcf}
+.questionnaire-page .answers:not(.hover-ready) .answer:hover{background:var(--paper);border-color:var(--line)}
+.questionnaire-page .answers:not(.hover-ready) .answer:has(input:checked):hover{background:#171717;border-color:var(--muted)}
