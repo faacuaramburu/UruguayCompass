@@ -72,10 +72,12 @@ test('automatic advance remains usable when saving preferences or answers is blo
 test('the question card identifies all twelve axes and keeps help separate from answers',async()=>{
  const {dom,query,saved}=await boot();
  const qs=questionSet(QUESTIONS,'short');
+ const axisIcons=new Set();
  assert.deepEqual([...query('.answers').querySelectorAll('input')].map(input=>Number(input.value)),[4,3,2,1,0]);
  assert.equal(query('progress').value,0);
  for(let i=0;i<12;i++){
   assert.equal(query('.question-axis').textContent,AXES[qs[i].axis].name);
+  const icon=query('.question-axis svg');assert.equal(icon.getAttribute('aria-hidden'),'true');axisIcons.add(icon.innerHTML);
   assert.equal(query('.question').textContent,qs[i].text);
   assert.equal(query('#question-context').hidden,true);
   query('[data-action=question-context]').click();
@@ -88,5 +90,6 @@ test('the question card identifies all twelve axes and keeps help separate from 
   query('#question-form button[type=submit]').click();
   assert.equal(query('progress').value,i+1);
  }
+ assert.equal(axisIcons.size,12,'Each axis has its own icon');
  dom.window.close();
 });
