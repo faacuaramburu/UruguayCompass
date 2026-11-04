@@ -28,7 +28,11 @@ test('ideology names and phrases retain the existing model scores and values',()
  for(const model of readingModels(Array(12).fill(50))){const description=ideologyDescription(model);assert.ok(description.name&&description.phrase);assert.equal(description.score,model.score);assert.deepEqual(description.values,model.values)}
  const doc=new JSDOM(differenceCard({axis:0,user:30,reference:70})).window.document;
  assert.ok(doc.body.textContent.includes('70% Intervencionismo estatal'));assert.ok(doc.body.textContent.includes('70% Libre mercado'));
- assert.ok(doc.querySelector('.sr-only').textContent.includes('vos 30, referencia 70'));assert.equal(doc.querySelector('.axis-reference-marker').style.left,'70%');
+ assert.ok(doc.querySelector('.sr-only').textContent.includes('vos 30, referencia 70'));
+ assert.equal(doc.querySelector('.axis-pole.is-selected .axis-pole-percent').textContent,'70%');
+ assert.equal(doc.querySelector('.axis-tile-heading>strong'),null);
+ assert.equal(doc.querySelector('.axis-scale,.axis-marker,.axis-reference-marker'),null);
+ assert.equal(doc.querySelector('.difference'),null,'Legacy horizontal flex layout must not apply');
 });
 
 test('distinctive priorities use only evidenced medians and the compass preserves axis meaning',()=>{

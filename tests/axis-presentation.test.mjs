@@ -4,6 +4,22 @@ import {JSDOM} from 'jsdom';
 import {AXES} from '../dist/context.js';
 import {describeAxisPosition,renderAxisSummary} from '../dist/axis-presentation.js';
 
+test('comparison percentages belong to the selected pole and keep complete axis labels',()=>{
+ for(const axis of AXES)for(const [value,side] of [[30,'left'],[70,'right']]){
+  const dom=new JSDOM(renderAxisSummary(axis,value,{inlineResult:true})),d=dom.window.document;
+  assert.equal(d.querySelector('h3').textContent,axis.short||axis.name);
+  assert.equal(d.querySelectorAll('.axis-pole.is-selected').length,1);
+  assert.equal(d.querySelector('.is-selected>span:last-child').textContent,`70% ${axis[side]}`);
+  assert.equal(d.querySelectorAll('.axis-pole-percent').length,1);
+  assert.equal(d.querySelector('.axis-tile-heading>strong'),null);
+  assert.equal(d.querySelector('.axis-scale,i'),null);dom.window.close();
+ }
+ const neutral=new JSDOM(renderAxisSummary(AXES[0],50,{inlineResult:true}));
+ assert.equal(neutral.window.document.querySelector('.is-selected'),null);
+ assert.equal(neutral.window.document.querySelector('.axis-tile-heading>strong').textContent,'Equilibrado');
+ neutral.window.close();
+});
+
 test('axis percentages name the corresponding pole without reversing the stored position',()=>{
  for(const axis of AXES){
   assert.deepEqual(describeAxisPosition(axis,30),{label:`70% ${axis.left}`,side:'left',percent:70});

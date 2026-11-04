@@ -8,6 +8,15 @@ import {FIGURES} from '../dist/politics.js';
 import {PHOTOS} from '../dist/photos.js';
 import {rankFigures} from '../dist/result-ranking.js';
 
+test('Manini uses the original color portrait in the poster',()=>{
+ const manini=FIGURES.find(f=>f.id==='manini'),profile=manini.profile.map(v=>v??50),ranking=rankFigures(profile,FIGURES).ranked;
+ assert.equal(ranking[0].entity.id,'manini');assert.equal(PHOTOS.manini.preserveColor,true);
+ const dom=new JSDOM(renderResultPoster({profile,axes:AXES,ranking,photos:PHOTOS}));
+ const image=dom.window.document.querySelector('.card-preview-person img');
+ assert.equal(image.getAttribute('src'),'images/manini.png');assert.ok(image.classList.contains('preserve-color'));
+ dom.window.close();
+});
+
 test('poster preview and PNG model use the automatic reference, twelve positions and chosen country period',async()=>{
  const profile=Array(12).fill(50),before=[...profile],ranking=rankFigures(profile,FIGURES).ranked;
  for(const mode of ['current','historical']){

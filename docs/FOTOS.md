@@ -58,3 +58,5 @@ Se descargaron archivos o miniaturas de las fuentes identificadas. El tamaño y 
 Los archivos y miniaturas se conservan como fueron descargados; el encuadre se aplica en la interfaz y en el PNG. La atribución enlaza siempre la publicación de origen.
 
 La tarjeta de resultados recorta el retrato según el encuadre documentado y lo presenta en blanco y negro. La vista previa y el PNG conservan la atribución del retrato y un enlace al sitio con las fuentes completas. Las referencias secundarias del PNG usan iniciales, no nuevas fotografías sin atribuir. El código QR local contiene únicamente la URL pública del sitio, sin respuestas ni afinidades.
+
+El retrato de Guido Manini Ríos conserva su color original también en la tarjeta y el PNG, por pedido del usuario; no se modifica el archivo fuente.
