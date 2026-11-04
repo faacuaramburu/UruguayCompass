@@ -1,3 +1,4 @@
+import {ADDITIONAL_FIGURES} from './additional-figures.js';
 import {migratePoliticalEntity} from './axis-model.js';
 import {extendServiceEvidence} from './service-evidence.js';
 // Editorial dataset. The source documents support the proposals; the numbers are our estimates.
@@ -102,7 +103,7 @@ const BASE_FIGURES = [
 const LEGACY_FIGURES=expandRankedReferences(extendStatementReferences(extendGovernmentReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,LEGACY_PARTIES,CANDIDATURES,PROGRAM_ROOT)),LEGACY_PARTIES))));
 
 export const PARTIES=extendServiceEvidence(LEGACY_PARTIES.map(migratePoliticalEntity));
-export const FIGURES=extendServiceEvidence(LEGACY_FIGURES.map(migratePoliticalEntity),{includeTaxes:true});
+export const FIGURES=[...extendServiceEvidence(LEGACY_FIGURES.map(migratePoliticalEntity),{includeTaxes:true}),...ADDITIONAL_FIGURES];
 
 export const POLITICAL_META = {
   updatedAt:'2026-11-03',
@@ -114,7 +115,7 @@ export const POLITICAL_META = {
   balanceNote:'La comparación entre personas incluye programas de distintas elecciones, medidas de gobiernos concretos y declaraciones públicas fechadas: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
   limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
   individualLimit:'Los perfiles comparables representan programas, medidas de gobierno o declaraciones públicas fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'El catálogo solo incluye referentes con los cinco temas comunes documentados. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
+  historicalLimit:'El ranking conserva 31 referentes con cinco temas comunes documentados. Las 22 fichas documentales adicionales distinguen posiciones cualitativas y desconocidas, sin afinidad numérica ni coordenadas en el mapa. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
   missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };

@@ -1,10 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
-import {FIGURES} from '../dist/politics.js';
+import {FIGURES as CATALOG} from '../dist/politics.js';
+const FIGURES=CATALOG.filter(f=>f.rankEligible);
 import {hasMapEvidence,spectrumGroups,filteredSpectrum,renderSpectrumView,placeSpectrumLabels} from '../dist/spectrum.js';
 
-test('catalog contains only result-eligible references with documented map coordinates',()=>{
+test('map retains 31 numerical references and excludes the 22 documentary records',()=>{
+ assert.equal(CATALOG.length,53);assert.ok(CATALOG.filter(f=>f.researchOnly).every(f=>!hasMapEvidence(f)));
  assert.equal(FIGURES.length,31);
  assert.equal(new Set(FIGURES.map(e=>e.id)).size,31);
  assert.equal(FIGURES.filter(e=>e.rankEligible).length,31);

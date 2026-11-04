@@ -17,11 +17,11 @@ test('comparator uses the existing twelve positions without mutation, scores or 
 });
 
 test('all person-person, party-party and mixed selections render twelve axes and sources',async()=>{
- const choices=comparisonEntities(FIGURES,PARTIES);assert.equal(choices.length,37);assert.equal(new Set(choices.map(x=>x.id)).size,37);
+ const choices=comparisonEntities(FIGURES,PARTIES);assert.equal(choices.length,59);assert.equal(new Set(choices.map(x=>x.id)).size,59);
  for(const [a,b]of[['persona/orsi','persona/sartori'],['partido/fa','partido/pn'],['persona/manini','partido/fa'],['persona/orsi','persona/orsi']]){
   const dom=new JSDOM(renderComparator(choices,a,b)),d=dom.window.document;
   assert.equal(d.querySelectorAll('.compare-axis').length,12);assert.equal(d.querySelectorAll('.compare-position').length,24);
-  assert.equal(d.querySelectorAll('select option').length,74);assert.equal(d.querySelectorAll('.compare-identity img').length,2);
+  assert.equal(d.querySelectorAll('select option').length,118);assert.equal(d.querySelectorAll('.compare-identity img').length,2);
   assert.ok(d.querySelectorAll('.compare-axis details a').length>0);assert.doesNotMatch(d.body.textContent,/undefined|NaN/);
   if(a===b){assert.match(d.querySelector('[role=status]').textContent,/misma referencia/);assert.equal(d.querySelectorAll('.compare-tag--difference').length,0)}
   for(const image of d.querySelectorAll('.entity-media img'))await access(new URL('../dist/'+image.getAttribute('src'),import.meta.url));
@@ -50,7 +50,7 @@ test('standalone navigation, selectors, theme persistence, directories and media
  w.document.querySelector('[data-action=theme]').click();assert.equal(w.document.documentElement.dataset.theme,'dark');assert.equal(w.localStorage.getItem('compass-theme'),'dark');
  w.location.hash='#inicio';await waitFor('.home-header');assert.equal(w.document.querySelectorAll('[data-action=theme]').length,1);assert.ok(w.document.querySelector('.home-header>[data-action=theme]'));assert.equal(w.document.querySelectorAll('.home-tools [data-action=theme]').length,0);
  w.location.hash='#enciclopedia';await waitFor('.axis-guide-grid');assert.equal(w.document.querySelectorAll('.axis-guide-card').length,12);
- w.location.hash='#figuras';await waitFor('.entity-directory');assert.equal(w.document.querySelectorAll('.entity-directory>a').length,31);assert.equal(w.document.querySelectorAll('.entity-directory img').length,29);
+ w.location.hash='#figuras';await waitFor('.entity-directory');assert.equal(w.document.querySelectorAll('.entity-directory>a').length,53);assert.equal(w.document.querySelectorAll('.entity-directory img').length,50);
  const image=w.document.querySelector('.entity-directory img');image.dispatchEvent(new w.Event('error'));assert.ok(!image.closest('.entity-media').classList.contains('has-image'));
  w.document.getElementById('entity-search').value='Sartori';w.document.getElementById('entity-search').dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal([...w.document.querySelectorAll('.entity-directory>a')].filter(x=>!x.hidden).length,1);
  w.location.hash='#partidos';await waitFor('.entity-media--party');assert.equal(w.document.querySelectorAll('.entity-directory img').length,6);

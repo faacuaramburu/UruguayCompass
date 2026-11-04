@@ -17,7 +17,7 @@ const assertCleanPortraits=d=>{
  assert.ok([...d.querySelectorAll('.entity-media')].every(a=>!/(?:CC BY|Commons|Embassy|Desayunos)/i.test(a.title)));
 };
 
-test('all 31 people have independent display metadata; current and former roles are distinguished',()=>{
+test('all 53 people have independent display metadata; current and former roles are distinguished',()=>{
  assert.deepEqual(Object.keys(PERSON_DETAILS).sort(),FIGURES.map(f=>f.id).sort());
  for(const f of FIGURES)assert.ok(personDetailLines(f).length===3&&personDetailLines(f).every(s=>s.length>5),f.id);
  assert.equal(PERSON_DETAILS.raffo.role,'Directora de Antel');
@@ -57,7 +57,7 @@ test('directory and every personal fiche show the same metadata, retain politica
  w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};
  w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:()=>()=>{}});
  await import('../dist/app.js?person-details-integration');
- assert.equal(w.document.querySelectorAll('.entity-directory .person-details').length,31);assertCleanPortraits(w.document);
+ assert.equal(w.document.querySelectorAll('.entity-directory .person-details').length,53);assertCleanPortraits(w.document);
  const item=w.document.querySelector('a[href="#ficha/raffo"]');assert.equal(item.querySelector('img').getAttribute('src'),PHOTOS.raffo.src);
  for(const f of FIGURES){
   w.location.hash='#ficha/'+f.id;
