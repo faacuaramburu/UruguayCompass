@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
+import {AXES} from '../dist/context.js';
+import {QUESTIONS} from '../dist/questions.js';
+import {questionSet} from '../dist/core.js';
 
 let iteration=0;
 async function boot({enabled=false,blocked=false}={}){
@@ -22,7 +25,7 @@ async function boot({enabled=false,blocked=false}={}){
 test('automatic advance is optional and a click advances exactly once, including a previously selected answer',async()=>{
  const {dom,w,query,saved}=await boot();
  assert.equal(query('[data-action=auto-advance]').getAttribute('aria-pressed'),'false');
- assert.equal(query('.test-controls').nextElementSibling,query('.test-options'));
+ assert.equal(query('.test-options').parentElement,query('.test-controls'));
  assert.equal(query('#auto-advance-help'),null);
  assert.equal(query('.test-options p'),null);
  query('[name=answer][value="3"]').click();assert.equal(saved().cursor,0);
@@ -63,5 +66,27 @@ test('automatic advance remains usable when saving preferences or answers is blo
  assert.ok(query('.test-top').textContent.includes('Pregunta 2 de 36'));
  assert.equal(query('[data-action=auto-advance]').getAttribute('aria-pressed'),'true');
  assert.equal(query('#auto-advance-help'),null);
+ dom.window.close();
+});
+
+test('the question card identifies all twelve axes and keeps help separate from answers',async()=>{
+ const {dom,query,saved}=await boot();
+ const qs=questionSet(QUESTIONS,'short');
+ assert.deepEqual([...query('.answers').querySelectorAll('input')].map(input=>Number(input.value)),[4,3,2,1,0]);
+ assert.equal(query('progress').value,0);
+ for(let i=0;i<12;i++){
+  assert.equal(query('.question-axis').textContent,AXES[qs[i].axis].name);
+  assert.equal(query('.question').textContent,qs[i].text);
+  assert.equal(query('#question-context').hidden,true);
+  query('[data-action=question-context]').click();
+  assert.equal(query('[data-action=question-context]').getAttribute('aria-expanded'),'true');
+  assert.equal(query('#question-context').hidden,false);
+  assert.equal(Object.keys(saved().answers).length,i,'Opening help must not answer or advance');
+  query('[data-action=question-context]').click();assert.equal(query('#question-context').hidden,true);
+  query('[name=answer][value="4"]').click();
+  assert.equal(saved().answers[qs[i].id],4,'Changing visual order preserves the stored answer value');
+  query('#question-form button[type=submit]').click();
+  assert.equal(query('progress').value,i+1);
+ }
  dom.window.close();
 });
