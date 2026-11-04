@@ -7,7 +7,8 @@ import {PARTIES,FIGURES} from '../dist/politics.js';
 import {PHOTOS} from '../dist/photos.js';
 assert.equal(QUESTIONS.length,240);assert.equal(AXES.length,12);assert.equal(PARTIES.length,6);assert.equal(FIGURES.length,31);
 assert.equal(new Set(QUESTIONS.map(q=>q.text)).size,240);
-assert.ok(FIGURES.every(f=>f.rankEligible),'Every catalog entry must be usable as a result');
+assert.equal(spawnSync(process.execPath,['scripts/audit.mjs','--check'],{stdio:'inherit'}).status,0,'Audit artifacts must match the current evidence');
+assert.ok(FIGURES.every(f=>Object.keys(f.positions).length===240&&f.research),'Every reference preserves known and unknown positions');
 for(const figure of FIGURES){
  const photo=PHOTOS[figure.id];assert.ok(photo?.author&&photo?.source.startsWith('https://'),`Retrato atribuido: ${figure.id}`);
  assert.ok(photo.license||(photo.rightsStatus==='unspecified'&&photo.publisher),`Derechos documentados: ${figure.id}`);

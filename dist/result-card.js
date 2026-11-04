@@ -30,7 +30,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  box(60,294,425,514,panel);
  if(image){c.save();c.beginPath();if(c.roundRect)c.roundRect(60,294,425,514,22);else c.rect(60,294,425,514);c.clip();c.filter=photo.preserveColor?'none':'grayscale(100%)';c.drawImage(image,...portraitRect(photo,image.naturalWidth||image.width,image.naturalHeight||image.height,425/514),60,294,425,514);c.restore()}
  else text(m.lead.entity.name.split(' ').map(x=>x[0]).slice(0,2).join(''),180,565,100,700);
- text(`${m.lead.score}%`,60,896,78,700);text('AFINIDAD EDITORIAL',60,931,18,600,muted);
+ text(m.lead.score===null?'—':`${m.lead.score}%`,60,896,78,700);text('COMPATIBILIDAD OBSERVADA',60,931,18,600,muted,425);
  text(m.lead.entity.name,60,991,39,700,ink,425);
  text(m.lead.entity.comparisonLabel,60,1030,18,400,muted,425);
  box(520,294,620,752,panel);text('TUS 12 EJES',545,333,20,700,muted);
@@ -48,10 +48,10 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  m.countries.forEach((x,i)=>{const y=1189+i*66,flag=assets[i];if(flag)c.drawImage(flag,635,y-28,49,32);text(x.entity.name,flag?700:635,y,20,600,ink,310);text(x.score+'%',1040,y,23,700,ink,80)});
  text('DESCUBRÍ TU PERFIL',60,1460,20,700,muted);text('URUGUAYCOMPASS.ONRENDER.COM',60,1499,24,700,ink,915);
  if(qr)c.drawImage(qr,1035,1417,105,105);
- text('—: Equilibrado · Personajes: 5 ejes · Países: 3 ejes constitucionales.',60,1555,18,400,muted);
- const tied=ranking.filter(x=>Number.isFinite(m.lead.distance)?x.distance===m.lead.distance:x.score===m.lead.score);
+ text(`Personaje: ${m.lead.knownQuestions??0} preguntas · Cobertura ${Math.round((m.lead.coverage??0)*100)}%. Países: 3 ejes constitucionales.`,60,1555,18,400,muted);
+ const tied=ranking.filter(x=>Number.isFinite(m.lead.rawScore)?Math.abs(x.rawScore-m.lead.rawScore)<1e-10:Number.isFinite(m.lead.distance)?x.distance===m.lead.distance:x.score===m.lead.score);
  if(tied.length>1)text(`Empate exacto entre ${tied.length} referencias; se destaca la primera por orden alfabético.`,60,1590,17,400,muted);
- text('Educativo. Sin validación científica ni recomendación de voto.',60,1625,17,400,muted);
+ text('Índice provisional sobre evidencia parcial. No demuestra coincidencia personal única.',60,1625,17,400,muted);
  if(photo)text(`Foto: ${photoCredit(photo)} · ${new URL(photo.source).hostname}`,60,1655,14,400,muted);
  return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(Error('PNG no disponible')),'image/png'));
 }

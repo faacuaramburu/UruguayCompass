@@ -94,7 +94,7 @@ const CURRENT_BANK = [
   [
     'El Estado debería reconocer por igual a los distintos tipos de familia.',
     'Las políticas de apoyo a las familias deberían dar prioridad a las que se basan en el matrimonio.',
-    'Las personas adultas deberían tener amplia libertad para decidir sobre el embarazo, el uso de anticonceptivos y otros cuidados reproductivos.',
+    'Las personas adultas deberían poder decidir interrumpir un embarazo dentro de los plazos y garantías establecidos por ley.',
     'Debería haber más restricciones al aborto.',
     'Los centros educativos deberían enseñar sobre diversidad sexual.',
     'Las familias deberían participar más al decidir qué se enseña sobre sexualidad.',
@@ -110,7 +110,7 @@ const CURRENT_BANK = [
     'Debería haber más límites a las técnicas permitidas para ayudar a las personas a tener hijos.',
     'Los formularios de las instituciones públicas deberían contemplar distintas identidades y tipos de familia.',
     'Los cambios en las normas sobre familia deberían hacerse de forma más gradual.',
-    'Debería ampliarse la ayuda para que las personas adultas decidan sobre el final de su vida, en los casos que permita la ley.',
+    'Las personas adultas con una enfermedad incurable y sufrimiento insoportable deberían poder solicitar eutanasia voluntaria con controles médicos y legales.',
     'Al debatir cambios sociales, el Estado debería dar prioridad a conservar las tradiciones culturales.'
   ],
   [
@@ -226,7 +226,7 @@ const CURRENT_BANK = [
   ]
 ];
 export const QUESTIONS=Array.from({length:20},(_,tier)=>CURRENT_BANK.map((statements,axis)=>({
- id:`a${axis}q${tier+1}`,axis,order:tier+1,text:statements[tier],
+ id:`a${axis}q${tier+1}${axis===5&&[2,18].includes(tier)?'v3':''}`,axis,order:tier+1,text:statements[tier],
  direction:(tier%2===0?-1:1)*(REVERSED_AXES.has(axis)?-1:1),
- legacyId:PREVIOUS_AXES[axis]===null?null:`a${PREVIOUS_AXES[axis]}q${tier+1}`
+ legacyId:PREVIOUS_AXES[axis]===null||(axis===5&&[2,18].includes(tier))?null:`a${PREVIOUS_AXES[axis]}q${tier+1}`
 }))).flat();

@@ -4,21 +4,21 @@ import {JSDOM} from 'jsdom';
 import {FIGURES} from '../dist/politics.js';
 import {hasMapEvidence,spectrumGroups,filteredSpectrum,renderSpectrumView,placeSpectrumLabels} from '../dist/spectrum.js';
 
-test('catalog contains only result-eligible references with documented map coordinates',()=>{
+test('catalog preserves unknown references without inventing map coordinates',()=>{
  assert.equal(FIGURES.length,31);
  assert.equal(new Set(FIGURES.map(e=>e.id)).size,31);
- assert.equal(FIGURES.filter(e=>e.rankEligible).length,31);
- assert.equal(FIGURES.filter(hasMapEvidence).length,31);
+ assert.ok(FIGURES.some(e=>!e.rankEligible));
+ assert.ok(FIGURES.filter(hasMapEvidence).length>0&&FIGURES.filter(hasMapEvidence).length<31);
  for(const f of FIGURES.filter(hasMapEvidence))for(const axis of [0,3]){
   const evidence=f.evidence.find(e=>e.axis===axis);assert.ok(f.sources[evidence.source].url.startsWith('https://'));assert.ok(evidence.note.length>20);assert.ok(f.mapBasis);
  }
- assert.ok(FIGURES.every(f=>f.rankEligible&&!f.historical));
+ assert.ok(FIGURES.every(f=>f.research));
  assert.equal(hasMapEvidence({...FIGURES[0],evidence:[]}),false);
 });
 test('shared coordinates retain every name without moving data points',()=>{
  const groups=spectrumGroups(FIGURES);
- assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),31);
- const fa=groups.find(g=>g.figures.some(e=>e.id==='orsi'));assert.deepEqual(fa.figures.map(e=>e.id).sort(),['cosse','orsi']);assert.equal(fa.economy,20);assert.equal(fa.security,40);
+ assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),FIGURES.filter(hasMapEvidence).length);
+ const f=FIGURES.find(hasMapEvidence),copy={...f,id:'copy',name:'Copy'};const shared=spectrumGroups([f,copy]);assert.equal(shared.length,1);assert.equal(shared[0].figures.length,2);
  for(const g of groups)for(const f of g.figures)assert.deepEqual([g.economy,g.security],[f.profile[0],f.profile[3]]);
 });
 test('filters support accents and parties without retaining removed historical profiles',()=>{
@@ -36,8 +36,8 @@ test('number labels avoid one another while source points remain fixed',()=>{
  }
 });
 test('map and catalog stay accessible, including exact overlaps and removed selections',()=>{
- const p=Array(12).fill(50);p[0]=20;p[3]=40;
- const dom=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'cosse'}));const d=dom.window.document;
+ const p=Array(12).fill(50);p[0]=FIGURES.find(f=>f.id==='orsi').profile[0];p[3]=FIGURES.find(f=>f.id==='orsi').profile[3];
+ const dom=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'orsi'}));const d=dom.window.document;
  assert.equal(d.querySelectorAll('.spectrum-reference').length,31);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
  assert.equal(d.querySelector('.spectrum-user-label').textContent,'Vos');assert.equal(d.querySelectorAll('.spectrum-user-ring').length,1);
  assert.equal(d.querySelectorAll('.spectrum-selected-label').length,0);
