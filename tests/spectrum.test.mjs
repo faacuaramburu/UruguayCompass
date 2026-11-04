@@ -18,7 +18,7 @@ test('catalog contains only result-eligible references with documented map coord
 test('shared coordinates retain every name without moving data points',()=>{
  const groups=spectrumGroups(FIGURES);
  assert.equal(groups.reduce((sum,g)=>sum+g.figures.length,0),31);
- const fa=groups.find(g=>g.figures.some(e=>e.id==='orsi'));assert.deepEqual(fa.figures.map(e=>e.id).sort(),['cosse','orsi']);assert.equal(fa.economy,80);assert.equal(fa.security,40);
+ const fa=groups.find(g=>g.figures.some(e=>e.id==='orsi'));assert.deepEqual(fa.figures.map(e=>e.id).sort(),['cosse','orsi']);assert.equal(fa.economy,20);assert.equal(fa.security,40);
  for(const g of groups)for(const f of g.figures)assert.deepEqual([g.economy,g.security],[f.profile[0],f.profile[3]]);
 });
 test('filters support accents and parties without retaining removed historical profiles',()=>{
@@ -31,12 +31,12 @@ test('number labels avoid one another while source points remain fixed',()=>{
  const groups=spectrumGroups(FIGURES),positioned=placeSpectrumLabels(groups,Array(12).fill(50));
  for(let i=0;i<positioned.length;i++){
   const a=positioned[i];assert.ok(a.label.x>=120&&a.label.x<=640);assert.ok(a.label.y>=86&&a.label.y<=504);
-  assert.equal(a.point.x,100+(100-a.economy)*5.6);assert.equal(a.point.y,65+(100-a.security)*4.6);
+  assert.equal(a.point.x,100+a.economy*5.6);assert.equal(a.point.y,65+(100-a.security)*4.6);
   for(const b of positioned.slice(i+1))assert.ok(Math.hypot(a.label.x-b.label.x,a.label.y-b.label.y)>=51.9);
  }
 });
 test('map and catalog stay accessible, including exact overlaps and removed selections',()=>{
- const p=Array(12).fill(50);p[0]=80;p[3]=40;
+ const p=Array(12).fill(50);p[0]=20;p[3]=40;
  const dom=new JSDOM(renderSpectrumView(p,FIGURES,{selectedId:'cosse'}));const d=dom.window.document;
  assert.equal(d.querySelectorAll('.spectrum-reference').length,31);assert.equal(d.querySelectorAll('.spectrum-marker').length,spectrumGroups(FIGURES).length);
  assert.equal(d.querySelector('.spectrum-user-label').textContent,'Vos');assert.equal(d.querySelectorAll('.spectrum-user-ring').length,1);
@@ -55,7 +55,7 @@ test('all-party labels leave room for the user, their caption and every source p
  const profiles=[[25,75],[0,0],[0,100],[100,0],[100,100],[50,50],...groups.map(g=>[g.economy,g.security])];
  for(const [economy,security] of profiles){
   const profile=Array(12).fill(50);profile[0]=economy;profile[3]=security;
-  const user={x:100+(100-economy)*5.6,y:65+(100-security)*4.6};
+  const user={x:100+economy*5.6,y:65+(100-security)*4.6};
   const caption={x:Math.max(140,Math.min(620,user.x)),y:Math.min(552,user.y+39)-10};
   const labels=placeSpectrumLabels(groups,profile);
   for(const [i,a] of labels.entries()){

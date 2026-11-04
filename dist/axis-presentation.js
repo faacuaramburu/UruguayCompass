@@ -16,9 +16,9 @@ export function describeAxisPosition(axis,value){
 }
 
 export function renderAxisSummary(axis,value){
- const reading=describeAxisPosition(axis,value),visual=visuals[axis.id]||visuals[0];
+ const reading=describeAxisPosition(axis,value),visual=visuals[axis.id]||visuals[0],icons=[axis.leftIcon||visual.icons[0],axis.rightIcon||visual.icons[1]];
  const available=Number.isFinite(value)&&value>=0&&value<=100;
- const poles=['left','right'].map((side,index)=>`<span class="axis-pole${reading.side===side?' is-selected':''}"><span class="axis-icon" aria-hidden="true">${visual.icons[index]}</span><span>${esc(axis[side])}</span></span>`).join('');
+ const poles=['left','right'].map((side,index)=>`<span class="axis-pole${reading.side===side?' is-selected':''}"><span class="axis-icon" aria-hidden="true">${icons[index]}</span><span>${esc(axis[side])}</span></span>`).join('');
  const scale=available?`<div class="axis-scale" role="img" aria-label="${esc(axis.name)}: ${esc(reading.label)}. Entre ${esc(axis.left)} y ${esc(axis.right)}."><i class="axis-midpoint"></i><i class="axis-fill" style="left:${Math.min(50,value)}%;width:${reading.side?Math.abs(value-50):0}%"></i><i class="axis-marker" style="left:${value}%"></i></div>`:'';
  return `<div class="axis-summary" data-side="${reading.side||'balanced'}" style="--axis-hue:${visual.hue}"><div class="axis-tile-heading"><h3>${esc(axis.short||axis.name)}</h3><strong>${esc(reading.label)}</strong></div>${scale}<div class="axis-poles">${poles}</div></div>`;
 }

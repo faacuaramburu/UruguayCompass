@@ -1,8 +1,7 @@
-// Proyección de datos, no clasificación ideológica. Economía se invierte en X
-// para conservar Estado a la izquierda y Mercado a la derecha.
+// Proyección: 0 es Intervencionismo estatal y 100 Libre mercado.
 export function describeCompass(economy,security){
  const category=n=>n<=40?'low':n>=60?'high':'center';
- const e=category(economy),s=category(security);
+ const e=category(100-economy),s=category(security);
  const titles={
   low:{low:'Mercado y libertades individuales',center:'Mercado, con equilibrio en seguridad',high:'Mercado y mayor control de seguridad'},
   center:{low:'Economía intermedia y libertades individuales',center:'Una posición intermedia en ambos ejes',high:'Economía intermedia y mayor control de seguridad'},
@@ -22,14 +21,14 @@ export function describeCompass(economy,security){
 }
 export function compassCoordinates(economy,security){
  const bounded=n=>Math.max(0,Math.min(100,Number.isFinite(n)?n:50));
- return {x:60+(100-bounded(economy))*2.6,y:55+(100-bounded(security))*2.6};
+ return {x:60+bounded(economy)*2.6,y:55+(100-bounded(security))*2.6};
 }
 export function renderCompass(profile){
  const {x,y}=compassCoordinates(profile[0],profile[3]);
  const guideLines=[.25,.75].map(f=>`<path class="compass-grid-line" d="M${60+260*f} 55V315 M60 ${55+260*f}H320"/>`).join('');
  return `<svg class="compass-graphic" viewBox="0 0 380 365" role="img" aria-labelledby="compass-svg-title compass-svg-desc">
  <title id="compass-svg-title">Tu posición en economía y seguridad</title>
- <desc id="compass-svg-desc">Economía: ${profile[0]} de 100, desde Mercado hacia Estado. Seguridad: ${profile[3]} de 100, desde Libertades hacia Control. El punto marcado Vos muestra la intersección de ambas posiciones.</desc>
+ <desc id="compass-svg-desc">Economía: ${profile[0]} de 100, desde Intervencionismo estatal hacia Libre mercado. Seguridad: ${profile[3]} de 100, desde Libertades hacia Control. El punto marcado Vos muestra la intersección de ambas posiciones.</desc>
  <text class="compass-edge" x="190" y="24" text-anchor="middle">Más control de seguridad</text>
  <text class="compass-edge" x="190" y="348" text-anchor="middle">Más libertades individuales</text>
  <text class="compass-edge" transform="translate(24 185) rotate(-90)" text-anchor="middle">Más Estado</text>

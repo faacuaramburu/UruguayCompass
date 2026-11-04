@@ -1,0 +1,46 @@
+// Editorial statements, not claims about the powers currently granted by law.
+export const INSTITUTIONS_QUESTIONS=[
+ 'Las decisiones más importantes del Poder Ejecutivo deberían requerir un debate parlamentario previo.',
+ 'El Poder Ejecutivo debería tener más margen para fijar prioridades de gestión sin autorizaciones parlamentarias adicionales.',
+ 'Los organismos de control deberían contar con recursos propios para fiscalizar al gobierno.',
+ 'Las decisiones administrativas rutinarias del gobierno deberían aprobarse con menos controles previos.',
+ 'La oposición parlamentaria debería tener más herramientas para pedir información a los ministros.',
+ 'La Presidencia debería poder coordinar de forma más directa la gestión de los ministerios.',
+ 'Las grandes compras del Estado deberían pasar por controles independientes antes de contratarse.',
+ 'Los ministerios deberían disponer de más autonomía para reasignar recursos dentro de sus presupuestos aprobados.',
+ 'Los datos sobre las decisiones del gobierno deberían publicarse aunque generen críticas a su gestión.',
+ 'El gobierno debería usar con más frecuencia los procedimientos de tratamiento legislativo urgente previstos en la Constitución.',
+ 'Los nombramientos en organismos de control deberían buscar acuerdos amplios entre partidos.',
+ 'Quien gana la elección debería tener más libertad para elegir los equipos que dirigen la administración.',
+ 'El Parlamento debería revisar con mayor frecuencia cómo se ejecutan las políticas del gobierno.',
+ 'Los organismos públicos deberían seguir una conducción nacional más centralizada para ejecutar las prioridades del gobierno.',
+ 'Las excepciones a los procedimientos habituales de contratación deberían requerir una justificación pública más detallada.',
+ 'Las autorizaciones administrativas deberían resolverse más rápido aunque se reduzcan las instancias de revisión previa.',
+ 'Las comisiones parlamentarias deberían tener más capacidad para investigar decisiones del Ejecutivo.',
+ 'La Presidencia debería tener más herramientas para resolver desacuerdos de gestión entre organismos.',
+ 'Las políticas de emergencia deberían tener plazos de revisión parlamentaria más frecuentes.',
+ 'El gobierno debería poder poner en marcha programas dentro de su competencia antes de completar evaluaciones externas adicionales.'
+];
+
+export const EDUCATION_SERVICES_QUESTIONS=[
+ 'Al repartir el dinero del Estado para educación, debería darse prioridad a los centros públicos.',
+ 'Las familias deberían poder usar ayudas del Estado para elegir entre centros educativos públicos y privados.',
+ 'La ampliación de la atención de salud debería apoyarse principalmente en ASSE.',
+ 'Las personas deberían poder elegir entre prestadores de salud habilitados usando el financiamiento público disponible.',
+ 'La educación debería ampliarse principalmente a través de centros públicos.',
+ 'Las familias deberían tener más posibilidades de elegir a qué centro público van sus hijos.',
+ 'El Estado debería gestionar directamente una mayor parte de los servicios de cuidados para personas mayores.',
+ 'Las familias deberían poder elegir quién presta los cuidados financiados con ayuda estatal.',
+ 'La educación terciaria pública debería llegar a más lugares del país con dinero del Estado.',
+ 'El Estado debería contratar más servicios educativos de organizaciones privadas.',
+ 'Los centros de atención a la primera infancia deberían ser gestionados principalmente por instituciones públicas.',
+ 'Las personas con discapacidad deberían poder elegir entre prestadores de apoyo habilitados que reciban financiamiento estatal.',
+ 'Los servicios de cuidados deberían ampliarse principalmente con centros gestionados por el Estado.',
+ 'Los usuarios deberían tener más opciones para elegir el centro de salud donde reciben atención.',
+ 'La atención de salud debería ampliarse principalmente mediante hospitales y policlínicas públicas.',
+ 'Los centros educativos privados deberían recibir dinero del Estado según la cantidad de estudiantes que atienden.',
+ 'Los nuevos centros de rehabilitación y cuidados deberían ser gestionados principalmente por organismos públicos.',
+ 'La ayuda estatal para cuidados debería seguir a la persona al prestador habilitado que elija.',
+ 'La planificación pública debería priorizar una oferta educativa común antes de financiar opciones alternativas.',
+ 'Los usuarios deberían tener más opciones para cambiar de prestador de salud manteniendo el apoyo público.'
+];

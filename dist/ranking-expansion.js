@@ -1,4 +1,4 @@
-import {COMPARISON_AXES} from './comparison-profiles.js';
+import {LEGACY_COMPARISON_AXES as COMPARISON_AXES} from './comparison-profiles.js';
 
 // A biography alone never enables a result. Every ranked reference needs dated
 // evidence for the same five topics; unknown positions stay unknown.

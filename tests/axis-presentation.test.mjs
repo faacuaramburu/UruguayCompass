@@ -12,8 +12,8 @@ test('axis percentages name the corresponding pole without reversing the stored 
   assert.equal(describeAxisPosition(axis,100).label,`100% ${axis.right}`);
  }
  for(const value of [41,50,59])assert.equal(describeAxisPosition(AXES[0],value).label,'Equilibrado');
- assert.equal(describeAxisPosition(AXES[0],40).label,'60% Mercado');
- assert.equal(describeAxisPosition(AXES[0],60).label,'60% Estado');
+ assert.equal(describeAxisPosition(AXES[0],40).label,'60% Intervencionismo estatal');
+ assert.equal(describeAxisPosition(AXES[0],60).label,'60% Libre mercado');
  for(const value of [null,undefined,NaN,-1,101])assert.equal(describeAxisPosition(AXES[0],value).label,'Sin dato');
 });
 

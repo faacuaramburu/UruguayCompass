@@ -1,8 +1,7 @@
-// Banco editorial: 20 afirmaciones por eje; una idea por afirmación.
-// Acuerdo con direction +1 acerca al polo derecho; con -1, al izquierdo.
-// No es una escala psicométrica validada. Ver metodología de la aplicación.
-// Lenguaje sencillo: conservar el tema, los matices y el sentido de cada postura.
-const BY_AXIS = [
+import {PREVIOUS_AXES,REVERSED_AXES} from './axis-model.js';
+import {INSTITUTIONS_QUESTIONS,EDUCATION_SERVICES_QUESTIONS} from './new-axis-questions.js';
+// Twenty editorial statements per current axis. Agreement follows direction, not label order.
+const CURRENT_BANK = [
   [
     'Las empresas privadas deberían poder competir en la venta de combustibles.',
     'ANCAP debería seguir siendo propiedad del Estado.',
@@ -91,6 +90,7 @@ const BY_AXIS = [
     'El derecho a publicar información de interés público debería protegerse aunque moleste a las autoridades.',
     'Las autoridades deberían poder limitar las concentraciones de personas si hay un riesgo concreto de violencia.'
   ],
+  INSTITUTIONS_QUESTIONS,
   [
     'El Estado debería reconocer por igual a los distintos tipos de familia.',
     'Las políticas de apoyo a las familias deberían dar prioridad a las que se basan en el matrimonio.',
@@ -201,50 +201,7 @@ const BY_AXIS = [
     'La integración de las personas migrantes debería dar más importancia a que adopten las costumbres locales.',
     'La diversidad de culturas debería tener más presencia en las actividades públicas.'
   ],
-  [
-    'El Estado debería destinar más recursos a investigar las desapariciones durante la dictadura.',
-    'Las políticas sobre la dictadura y el pasado reciente deberían dar prioridad a la reconciliación entre instituciones.',
-    'La población debería tener más acceso a los archivos militares sobre el pasado reciente.',
-    'Los archivos militares de antes de 1985 deberían seguir siendo reservados durante plazos especiales.',
-    'Al enseñar la historia reciente, deberían incluirse más testimonios de víctimas de la dictadura.',
-    'Los actos que recuerdan el pasado reciente deberían centrarse en acuerdos para convivir en el presente.',
-    'Las instituciones militares deberían colaborar más para esclarecer lo que pasó durante la dictadura.',
-    'Las políticas sobre el pasado reciente deberían centrarse en compensar económicamente a las víctimas.',
-    'La búsqueda de restos de personas desaparecidas debería recibir dinero del Estado de forma permanente.',
-    'Los gobiernos deberían impulsar acuerdos políticos para cerrar la discusión institucional sobre las responsabilidades del pasado.',
-    'El Estado debería proteger más los lugares vinculados a violaciones de derechos humanos.',
-    'La formación militar debería dedicar más tiempo a sus responsabilidades actuales que a revisar el pasado de la institución.',
-    'Las investigaciones sobre el pasado reciente deberían seguir mientras queden hechos por aclarar.',
-    'Antes de publicar documentos militares históricos completos, deberían difundirse resúmenes hechos por las instituciones.',
-    'Las organizaciones de derechos humanos deberían participar en las decisiones sobre los archivos del pasado reciente.',
-    'Las Fuerzas Armadas deberían tener más libertad para decidir cómo recuerdan su historia.',
-    'El Estado debería revisar los reconocimientos dados a personas responsables de violaciones de derechos humanos.',
-    'Los actos que recuerdan la historia militar deberían mantener más las tradiciones de sus instituciones.',
-    'La población debería tener más formas de controlar cómo tratan las Fuerzas Armadas la memoria del pasado.',
-    'El debate público debería dar más prioridad al futuro de las Fuerzas Armadas que a revisar su actuación pasada.'
-  ],
-  [
-    'Al repartir el dinero del Estado para educación, debería darse prioridad a los centros públicos.',
-    'Las familias deberían poder usar ayudas del Estado para elegir entre centros educativos públicos y privados.',
-    'Las jubilaciones deberían basarse principalmente en un fondo público que use los aportes actuales para pagar a los jubilados.',
-    'El ahorro que cada persona hace para su propia jubilación debería tener más importancia en el futuro.',
-    'La educación debería ampliarse principalmente a través de centros públicos.',
-    'Los centros educativos deberían tener más libertad para decidir cómo enseñar.',
-    'Para financiar las jubilaciones, debería darse prioridad a sistemas en los que se aporta a un fondo común.',
-    'Las personas deberían tener más opciones para elegir quién administra sus ahorros para jubilarse.',
-    'La educación terciaria pública debería llegar a más lugares del país con dinero del Estado.',
-    'El Estado debería contratar más servicios educativos de organizaciones privadas.',
-    'Las jubilaciones y otras prestaciones básicas de seguridad social deberían estar a cargo de instituciones públicas.',
-    'Las personas deberían poder destinar parte de sus aportes para la jubilación a planes individuales.',
-    'El plan nacional de educación debería fijar una base común amplia para todos los centros educativos.',
-    'Las familias deberían tener más posibilidades de elegir a qué centro público van sus hijos.',
-    'El dinero para que más personas accedan a la educación debería salir de los recursos generales del Estado.',
-    'Los centros educativos privados deberían recibir dinero del Estado según la cantidad de estudiantes que atienden.',
-    'Los fondos para las jubilaciones deberían ser administrados principalmente por organismos públicos.',
-    'El Estado debería dar incentivos para que las personas contraten coberturas extra de seguridad social.',
-    'El Estado debería coordinar más las medidas para reducir las desigualdades educativas.',
-    'Debería haber más variedad de instituciones que ofrezcan servicios de seguridad social.'
-  ],
+  EDUCATION_SERVICES_QUESTIONS,
   [
     'Para proteger las fuentes de agua, deberían limitarse las actividades productivas en las zonas cercanas.',
     'Al decidir cómo se usa el territorio, debería darse más prioridad a los proyectos que generan empleo.',
@@ -268,15 +225,8 @@ const BY_AXIS = [
     'Al planificar el uso de la costa, debería darse más prioridad a nuevos proyectos turísticos.'
   ]
 ];
-
-// El orden intercala ejes para evitar bloques temáticos consecutivos.
-// Corta: order <= 3; Completa: order <= 5; Extrema: las 240.
-export const QUESTIONS = Array.from({ length: 20 }, (_, tier) =>
-  BY_AXIS.map((statements, axis) => ({
-    id: `a${axis}q${tier + 1}`,
-    axis,
-    order: tier + 1,
-    text: statements[tier],
-    direction: tier % 2 === 0 ? -1 : 1
-  }))
-).flat();
+export const QUESTIONS=Array.from({length:20},(_,tier)=>CURRENT_BANK.map((statements,axis)=>({
+ id:`a${axis}q${tier+1}`,axis,order:tier+1,text:statements[tier],
+ direction:(tier%2===0?-1:1)*(REVERSED_AXES.has(axis)?-1:1),
+ legacyId:PREVIOUS_AXES[axis]===null?null:`a${PREVIOUS_AXES[axis]}q${tier+1}`
+}))).flat();
