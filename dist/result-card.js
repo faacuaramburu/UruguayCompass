@@ -11,13 +11,18 @@ const loadImage=src=>new Promise(resolve=>{
 });
 export async function createResultCard(canvas,{profile,axes,ranking,photos,countryMode='current'}){
  await document.fonts.ready;
+ await Promise.allSettled([
+  document.fonts.load?.('400 24px Poppins'),
+  document.fonts.load?.('600 24px Sora'),
+  document.fonts.load?.('700 24px Sora')
+ ]);
  const m=posterModel(profile,axes,ranking,countryMode),photo=photos[m.lead.entity.id];
  const [image,qr,...assets]=await Promise.all([loadImage(photo?.src),loadImage('site-qr.svg'),...m.countries.map(x=>loadImage(countryMode==='current'?`flags/${x.entity.id}.svg`:null)),...m.positions.map(x=>loadImage('data:image/svg+xml,'+encodeURIComponent(quizIcon(x.axis.slug).replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ').replace('currentColor','#26313d'))))]);
  canvas.width=1200;canvas.height=1680;const c=canvas.getContext('2d');
  const ink='#f3f6fa',muted='#d0d4da',paper='#454b53',panel='#343a42';
  const text=(value,x,y,size=24,weight=400,color=ink,max=1080)=>{
   let label=String(value);c.fillStyle=color;
-  const font=()=>{c.font=`${weight} ${size}px system-ui, sans-serif`};font();
+  const font=()=>{c.font=`${weight} ${size}px ${weight>=600?'Sora':'Poppins'}, system-ui, sans-serif`};font();
   while(c.measureText(label).width>max&&size>14){size--;font()}
   if(c.measureText(label).width>max){while(label.length&&c.measureText(label+'…').width>max)label=label.slice(0,-1);label+='…'}
   c.fillText(label,x,y);
