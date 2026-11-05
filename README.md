@@ -37,6 +37,8 @@ Browse explanations of all twelve axes, profiles of **53 political figures** and
 
 The methodology and FAQ explain how scores and comparisons work. Found an error or disagree with a placement? Use the correction form to prepare a report, or [open a GitHub issue](https://github.com/faacuaramburu/UruguayCompass/issues) with supporting sources. Reports are never submitted automatically.
 
+The [twelve-axis research proposal](docs/AUDITORIA-12-EJES.md) records additional sourced placements, their dates and confidence, and remaining gaps. It is still under review and does not change the published ranking. Run `npm run research:report` to regenerate its coverage matrix.
+
 ## Your answers stay in your browser
 
 Answers, progress, and results are processed and stored locally. They are not sent to a server, analytics, correction reports, or share links. You can repeat the test or delete your saved data from the app. Clearing browser storage also removes your progress; there is no account sync between devices.
