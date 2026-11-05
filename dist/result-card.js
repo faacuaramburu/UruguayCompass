@@ -17,7 +17,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  const ink='#f3f6fa',muted='#d0d4da',paper='#454b53',panel='#343a42';
  const text=(value,x,y,size=24,weight=400,color=ink,max=1080)=>{
   let label=String(value);c.fillStyle=color;
-  const font=()=>{c.font=`${weight} ${size}px ${weight>=600?'Bricolage Grotesque':'Biryani'}`};font();
+  const font=()=>{c.font=`${weight} ${size}px system-ui, sans-serif`};font();
   while(c.measureText(label).width>max&&size>14){size--;font()}
   if(c.measureText(label).width>max){while(label.length&&c.measureText(label+'…').width>max)label=label.slice(0,-1);label+='…'}
   c.fillText(label,x,y);

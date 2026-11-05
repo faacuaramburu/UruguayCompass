@@ -28,7 +28,7 @@ test('complete application flows, persistence, content, corrections and privacy'
  const text=()=>w.document.querySelector('#app').textContent;
  for(const[version,n]of [['short',36],['full',60],['extreme',240]]){
   await route('#inicio');if(w.document.querySelector('.resume-actions')){click('[data-action=reset]');click('[data-action=confirm-reset]');await new Promise(r=>setTimeout(r,10))}
-  assert.deepEqual([...w.document.querySelectorAll('.home-actions a')].map(a=>a.textContent),['Iniciar','Ver 12 ejes']);
+  assert.deepEqual([...w.document.querySelectorAll('.home-actions a')].map(a=>a.textContent),['INICIAR','VER 12 EJES']);
   assert.equal(w.document.querySelector('[name=version]'),null);
   click('.home-actions a[href="#enciclopedia"]');await waitFor('.axis-guide-grid');
   assert.equal(w.document.querySelectorAll('.axis-guide-grid a[href^="#eje/"]').length,12,`${version}: ${w.location.hash}; ${w.document.querySelector('h1')?.textContent}`);
@@ -46,9 +46,9 @@ test('complete application flows, persistence, content, corrections and privacy'
   assert.equal(w.document.querySelectorAll('#axes-panel .axis-pole.is-selected').length,0);
   assert.equal(w.document.querySelector('#scale-panel'),null);
   assert.equal(w.document.querySelector('#models-panel'),null);
-  assert.equal(w.document.querySelectorAll('.results-index nav a').length,9);assert.equal(w.document.querySelectorAll('.model-row').length,0);
+  assert.equal(w.document.querySelectorAll('.results-index nav a').length,8);assert.equal(w.document.querySelectorAll('.model-row').length,0);
   assert.equal(w.document.querySelector('.results-content>section').id,'ideology-panel');assert.equal(w.document.querySelector('.results-content>section:nth-child(2)').id,'axes-panel');assert.equal(w.document.querySelector('.results-content>section:nth-child(3)').id,'figures-panel');assert.ok(w.document.querySelector('#ideology-panel h2').textContent.includes('Pragmatismo'));
-  assert.ok(w.document.querySelector('#ideology-panel').textContent.includes('Una frase que te describe'));assert.ok(w.document.querySelector('#figures-panel .closest-person .portrait img'));assert.ok(w.document.querySelector('.ranking-coverage').textContent.includes('53 referentes'));assert.equal(w.document.querySelector('#closest-reference'),null);assert.ok(w.document.querySelector('.closest-person h4').textContent.includes('Gustavo Zubía'));assert.ok(w.document.querySelector('.card-preview-person').textContent.includes('Gustavo Zubía'));assert.ok(w.document.querySelector('.closest-person').textContent.includes('hipótesis'));assert.equal(w.document.querySelector('.radar-details'),null);assert.equal(w.document.querySelector('#priorities-panel details'),null);assert.equal(w.document.querySelector('#priorities-panel .axis-comparison'),null);assert.ok(w.document.querySelector('.compass-cross'));assert.ok(w.document.querySelector('.result-poster'));assert.equal(w.document.querySelectorAll('.country-match details').length,0);assert.ok(w.document.querySelector('#figures-panel .closest-person').textContent.includes('comparación distinta'));assert.equal(w.document.querySelector('#axes-panel').tagName,'SECTION');assert.equal(w.document.querySelectorAll('#axes-panel .axis-tile-heading').length,12);assert.equal(w.document.querySelectorAll('#axes-panel .axis-scale').length,12);assert.equal(w.document.querySelectorAll('.axis-reading').length,0);assert.equal(w.document.querySelector('#axes-panel > .section-description'),null);click('[data-jump=axes-panel]');assert.equal(w.document.querySelectorAll('.axis-explanation').length,0);
+  assert.ok(w.document.querySelector('#ideology-panel').textContent.includes('Una frase que te describe'));assert.ok(w.document.querySelector('#figures-panel .closest-person .portrait img'));assert.ok(w.document.querySelector('.ranking-coverage').textContent.includes('53 referentes'));assert.equal(w.document.querySelector('#closest-reference'),null);assert.ok(w.document.querySelector('.closest-person h4').textContent.includes('Gustavo Zubía'));assert.ok(w.document.querySelector('.card-preview-person').textContent.includes('Gustavo Zubía'));assert.ok(w.document.querySelector('.closest-person').textContent.includes('hipótesis'));assert.equal(w.document.querySelector('.radar-details'),null);assert.equal(w.document.querySelector('#priorities-panel details'),null);assert.equal(w.document.querySelector('#priorities-panel .axis-comparison'),null);assert.ok(w.document.querySelector('.compass-cross'));assert.ok(w.document.querySelector('.result-poster'));assert.equal(w.document.querySelector('#countries-panel, [data-jump=countries-panel]'),null);assert.ok(w.document.querySelector('#figures-panel .closest-person').textContent.includes('comparación distinta'));assert.equal(w.document.querySelector('#axes-panel').tagName,'SECTION');assert.equal(w.document.querySelectorAll('#axes-panel .axis-tile-heading').length,12);assert.equal(w.document.querySelectorAll('#axes-panel .axis-scale').length,12);assert.equal(w.document.querySelectorAll('.axis-reading').length,0);assert.equal(w.document.querySelector('#axes-panel > .section-description'),null);click('[data-jump=axes-panel]');assert.equal(w.document.querySelectorAll('.axis-explanation').length,0);
   const ref=w.document.querySelector('#insight-reference');ref.value='salle';ref.dispatchEvent(new w.Event('change',{bubbles:true}));assert.ok(w.document.querySelector('#difference-content').textContent.includes('Gustavo Salle'));
   click('[data-jump="compass-panel"]');assert.equal(w.document.activeElement.id,'compass-panel');assert.equal(w.location.hash,'#resultados');
   assert.ok(w.document.querySelector('#compass-panel svg[role="group"]'));assert.ok(w.document.querySelector('.political-grid'));assert.equal(w.document.querySelector('.compass-point-label').textContent,'Vos');
@@ -78,11 +78,15 @@ test('complete application flows, persistence, content, corrections and privacy'
   assert.ok(![...w.document.querySelectorAll('a')].some(a=>a.textContent==='Comparar eje por eje y ver fuentes'));
   assert.equal(w.document.querySelector('.card-preview-party'),null);assert.ok(w.document.querySelector('.poster-bottom').textContent.includes('PAÍSES ACTUALES'));
   assert.equal(w.document.querySelectorAll('#parties-panel .party-match').length,5);assert.equal(w.document.querySelectorAll('#parties-panel .party-match img').length,5);
-  const ranksBefore=w.localStorage.getItem('uruguay-compass-v2');
-  click('[data-country-mode=historical]');assert.equal(w.document.querySelector('[data-country-mode=historical]').getAttribute('aria-pressed'),'true');assert.ok(w.document.querySelector('#country-results').textContent.includes('Japón imperial'));
-  click('[data-country-mode=current]');assert.equal(w.document.querySelectorAll('.country-catalog li').length,195);
-  const countrySearch=w.document.querySelector('#country-search');countrySearch.value='uruguay';countrySearch.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal([...w.document.querySelectorAll('.country-catalog li')].filter(li=>!li.hidden).length,1);
-  assert.equal(w.localStorage.getItem('uruguay-compass-v2'),ranksBefore);
+  assert.equal(w.document.querySelector('#ideology-panel .match-score span').textContent,'similitud');
+  if(version==='short'){
+   const answersBefore=w.localStorage.getItem('uruguay-compass-v2');
+   click('button[data-action=privacy]');
+   await waitFor('[data-action=erase]');
+   assert.equal(w.location.hash,'#privacidad');
+   assert.equal(w.localStorage.getItem('uruguay-compass-v2'),answersBefore);
+   await route('#resultados');
+  }
   click('[data-action=theme]');assert.equal(w.document.documentElement.dataset.theme,'dark');click('[data-action=theme]');assert.equal(w.document.documentElement.dataset.theme,'light');
 
   const saved=JSON.parse(w.localStorage.getItem('uruguay-compass-v2'));assert.equal(saved.completed,true);assert.equal(Object.keys(saved.answers).length,n);
