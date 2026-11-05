@@ -2,7 +2,7 @@
 
 **Explore your political views across 12 dimensions and compare your answers with Uruguayan political figures and parties.** Take the questionnaire, find your closest matches, and understand where your views align or differ. A built-in encyclopedia explains the issues, people, and history behind the results.
 
-**[Take the test at uruguaycompass.onrender.com](https://uruguaycompass.onrender.com/)** · Spanish (Uruguay) · Desktop and mobile
+**[Take the test at uruguaycompass.pages.dev](https://uruguaycompass.pages.dev/)** · Spanish (Uruguay) · Desktop and mobile
 
 ![Uruguay Compass home screen in dark mode, with the questionnaire options and an example twelve-axis radar](docs/images/uruguay-compass-dark.jpg)
 
@@ -43,6 +43,8 @@ The [twelve-axis research report](docs/AUDITORIA-12-EJES.md) records the complet
 
 Answers, progress, and results are processed and stored locally. They are not sent to a server, analytics, correction reports, or share links. You can repeat the test or delete your saved data from the app. Clearing browser storage also removes your progress; there is no account sync between devices.
 
+Browser storage is tied to the site's address. Progress saved on [the previous Render site](https://uruguaycompass.onrender.com/) stays there in the same browser and does not transfer automatically to Cloudflare Pages.
+
 The live site uses Cloudflare Web Analytics for traffic and performance statistics. Automatic SPA navigation tracking is disabled, and the app does not send questionnaire answers, scores, political affinities, or test interaction events to analytics. Result images are generated on your device.
 
 ## Built with
@@ -51,7 +53,7 @@ The live site uses Cloudflare Web Analytics for traffic and performance statisti
 - **Frontend:** static pages with hash-based routing, data-driven SVG charts, and Canvas for the home illustration and PNG export. No runtime framework or build step.
 - **Storage:** browser local storage, with handling for unavailable storage.
 - **Testing:** Node.js test runner and jsdom for scoring, data integrity, and application flows.
-- **Hosting:** Render Static Site, serving `dist/` from `main`.
+- **Hosting:** Cloudflare Pages, serving `dist/` from `main`.
 - **Analytics:** Cloudflare Web Analytics.
 
 ## Run locally
@@ -78,12 +80,15 @@ The tests cover scoring extremes, neutral answers, shared comparison coverage, i
 
 ## Deploy
 
-Create a Render **Static Site** connected to this repository and the `main` branch:
+The `uruguaycompass` project deploys automatically on pushes to `main` through [Cloudflare Pages' GitHub integration](https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/). Use these project settings:
 
+- **Framework preset:** None
+- **Production branch:** `main`, with automatic deployments enabled
+- **Build environment:** Pages build system v3 (Node.js 22)
 - **Build command:** `npm ci --include=dev && npm test && npm run check`
-- **Publish directory:** `dist`
+- **Build output directory:** `dist`
 
-No backend, environment secrets, or bundling step are required. The Cloudflare beacon configuration lives in `dist/index.html`; its site identifier is public. Keep `spa: false` and do not add tracking that includes political answers or results.
+The build command verifies the app. The static files in `dist/` are maintained directly in the repository. The manual Cloudflare Web Analytics beacon in `dist/index.html` uses a public site identifier and `spa: false`. Keep automatic Pages injection disabled so each page loads one beacon.
 
 ## Credits and documentation
 

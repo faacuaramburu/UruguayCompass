@@ -52,7 +52,7 @@ export async function createResultCard(canvas,{profile,axes,ranking,photos,count
  text('OTRAS REFERENCIAS',85,1133,19,700,muted);text(countryMode==='current'?'PAÍSES ACTUALES':'PAÍSES HISTÓRICOS',635,1133,19,700,muted);
  m.nearby.forEach((x,i)=>{const y=1189+i*66,initial=x.entity.name.split(' ').map(p=>p[0]).slice(0,2).join('');box(85,y-31,40,40,'#58616e',20);text(initial,92,y-4,16,700,ink,30);text(x.entity.name,140,y,21,600,ink,305);text(x.score+'%',475,y,23,700,ink,80)});
  m.countries.forEach((x,i)=>{const y=1189+i*66,flag=assets[i];if(flag)c.drawImage(flag,635,y-28,49,32);text(x.entity.name,flag?700:635,y,20,600,ink,310);text(x.score+'%',1040,y,23,700,ink,80)});
- text('DESCUBRÍ TU PERFIL',60,1460,20,700,muted);text('URUGUAYCOMPASS.ONRENDER.COM',60,1499,24,700,ink,915);
+ text('DESCUBRÍ TU PERFIL',60,1460,20,700,muted);text('URUGUAYCOMPASS.PAGES.DEV',60,1499,24,700,ink,915);
  if(qr)c.drawImage(qr,1035,1417,105,105);
  text('—: Equilibrado · Personajes: 12 ejes (incluye hipótesis) · Países: 3 ejes constitucionales.',60,1555,18,400,muted);
  const tied=ranking.filter(x=>Number.isFinite(m.lead.distance)?x.distance===m.lead.distance:x.score===m.lead.score);
