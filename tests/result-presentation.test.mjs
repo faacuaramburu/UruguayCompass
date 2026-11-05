@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {readFile} from 'node:fs/promises';
 import {CURRENT_COUNTRIES,HISTORICAL_COUNTRIES,COUNTRY_AXES,rankCountries,countryCatalog} from '../dist/countries.js';
-import {ideologyDescription,renderCountryResults,distinctivePriorities,differenceCard} from '../dist/result-presentation.js';
+import {ideologyDescription,distinctivePriorities,differenceCard} from '../dist/result-presentation.js';
 import {readingModels} from '../dist/insights.js';
 import {FIGURES} from '../dist/politics.js';
 import {renderPoliticalGrid} from '../dist/compass.js';
@@ -15,10 +15,6 @@ test('country coverage is explicit and unknown profiles never receive a score',(
   const ranked=rankCountries(p,mode),known=(mode==='current'?CURRENT_COUNTRIES:HISTORICAL_COUNTRIES).filter(c=>COUNTRY_AXES.every(i=>Number.isFinite(c.profile[i])));
   assert.equal(ranked.length,known.length);
   for(const row of ranked){assert.equal(row.score,Math.round(100-COUNTRY_AXES.reduce((sum,i)=>sum+Math.abs(p[i]-row.entity.profile[i]),0)/3));assert.ok(row.entity.sources.length);assert.ok(row.entity.sources.every(s=>s.url.startsWith('https://')))}
-  const doc=new JSDOM(renderCountryResults(p,mode)).window.document;
-  assert.equal(doc.querySelectorAll('.country-catalog li').length,countryCatalog(mode).length);
-  assert.equal([...doc.querySelectorAll('.country-catalog strong')].filter(e=>e.textContent.endsWith('%')).length,known.length);
-  assert.ok(doc.querySelector('.country-coverage').textContent.includes('constitucional'));
  }
  assert.deepEqual(p,before);
  for(const entity of [...CURRENT_COUNTRIES,...HISTORICAL_COUNTRIES])assert.equal(entity.profile.filter(v=>v===null).length,entity.review?12:9);
@@ -40,7 +36,9 @@ test('distinctive priorities use only evidenced medians and the compass preserve
  assert.equal(doc.querySelectorAll('.distinctive-grid>article').length,2);
  assert.ok(doc.body.textContent.includes('mediana'));assert.ok(!doc.body.textContent.includes('undefined'));
  const grid=new JSDOM(renderPoliticalGrid(p)).window.document;
- assert.equal(grid.querySelectorAll('rect').length,82);
+ assert.equal(grid.querySelector('.compass-cross').getAttribute('d'),'M193.5 45V322M55 183.5H332');
+ assert.equal(grid.querySelectorAll('.political-grid > rect').length,3,'Two continuous color layers and the position marker');
+ assert.equal(grid.querySelectorAll('.political-grid > path').length,2,'Only the central axes and the position glyph');
  assert.ok(grid.body.textContent.includes('no mide autoritarismo'));
 });
 

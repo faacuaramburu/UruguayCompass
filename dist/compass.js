@@ -24,14 +24,19 @@ export function compassCoordinates(economy,security){
  return {x:60+bounded(economy)*2.6,y:55+(100-bounded(security))*2.6};
 }
 export function renderPoliticalGrid(profile){
- const cells=[];const mix=(a,b,t)=>a.map((n,i)=>n+(b[i]-n)*t);
- for(let row=0;row<9;row++)for(let col=0;col<9;col++){
-  const rgb=mix(mix([224,104,128],[94,137,225],col/8),mix([97,198,157],[232,198,92],col/8),row/8).map(Math.round);
-  cells.push(`<rect x="${55+col*31}" y="${45+row*31}" width="29" height="29" rx="2" fill="rgb(${rgb.join(',')})"/>`);
- }
+ const field=`<defs>
+  <linearGradient id="grid-control"><stop stop-color="#e06880"/><stop offset="1" stop-color="#5e89e1"/></linearGradient>
+  <linearGradient id="grid-liberty"><stop stop-color="#61c69d"/><stop offset="1" stop-color="#e8c65c"/></linearGradient>
+  <linearGradient id="grid-blend" x2="0" y2="1"><stop stop-color="white" stop-opacity="0"/><stop offset="1" stop-color="white"/></linearGradient>
+  <mask id="grid-liberty-mask" maskUnits="userSpaceOnUse" x="55" y="45" width="277" height="277">
+   <rect x="55" y="45" width="277" height="277" fill="url(#grid-blend)"/>
+  </mask>
+ </defs>
+ <rect x="55" y="45" width="277" height="277" rx="2" fill="url(#grid-control)"/>
+ <rect x="55" y="45" width="277" height="277" rx="2" fill="url(#grid-liberty)" mask="url(#grid-liberty-mask)"/>`;
  const x=55+profile[0]/100*277,y=45+(100-profile[3])/100*277;
  const cross='<path class="compass-cross" d="M193.5 45V322M55 183.5H332" fill="none" stroke="#26313d" stroke-width="2" vector-effect="non-scaling-stroke" aria-hidden="true"/>';
- return `<svg class="political-grid" viewBox="0 0 390 370" role="img" aria-labelledby="grid-title grid-desc"><title id="grid-title">Tu brújula política</title><desc id="grid-desc">Economía ${profile[0]} entre Intervencionismo estatal y Libre mercado; Seguridad ${profile[3]} entre Libertades individuales y Control y autoridad. El marcador Vos muestra tu posición; no mide autoritarismo.</desc><text class="compass-edge" x="194" y="22" text-anchor="middle">Control y autoridad</text><text class="compass-edge" x="194" y="352" text-anchor="middle">Libertades individuales</text><text class="compass-edge" transform="translate(22 184) rotate(-90)" text-anchor="middle">Intervención estatal</text><text class="compass-edge" transform="translate(365 184) rotate(90)" text-anchor="middle">Libre mercado</text>${cells.join('')}${cross}<rect x="${x-13}" y="${y-13}" width="26" height="26" rx="4" fill="#26313d" stroke="#fff" stroke-width="2"/><path d="m${x-4} ${y-4} 8 8m0-8-8 8" stroke="#fff" stroke-width="2"/><text class="compass-point-label" x="${Math.max(70,Math.min(315,x))}" y="${y-22}" text-anchor="middle">Vos</text></svg>`;
+ return `<svg class="political-grid" viewBox="0 0 390 370" role="img" aria-labelledby="grid-title grid-desc"><title id="grid-title">Tu brújula política</title><desc id="grid-desc">Economía ${profile[0]} entre Intervencionismo estatal y Libre mercado; Seguridad ${profile[3]} entre Libertades individuales y Control y autoridad. El marcador Vos muestra tu posición; no mide autoritarismo.</desc><text class="compass-edge" x="194" y="22" text-anchor="middle">Control y autoridad</text><text class="compass-edge" x="194" y="352" text-anchor="middle">Libertades individuales</text><text class="compass-edge" transform="translate(22 184) rotate(-90)" text-anchor="middle">Intervención estatal</text><text class="compass-edge" transform="translate(365 184) rotate(90)" text-anchor="middle">Libre mercado</text>${field}${cross}<rect x="${x-13}" y="${y-13}" width="26" height="26" rx="4" fill="#26313d" stroke="#fff" stroke-width="2"/><path d="m${x-4} ${y-4} 8 8m0-8-8 8" stroke="#fff" stroke-width="2"/><text class="compass-point-label" x="${Math.max(70,Math.min(315,x))}" y="${y-22}" text-anchor="middle">Vos</text></svg>`;
 }
 export function renderCompass(profile){
  const {x,y}=compassCoordinates(profile[0],profile[3]);

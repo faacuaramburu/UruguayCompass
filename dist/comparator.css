@@ -1,14 +1,7 @@
-@font-face{font-family:Comparator Sora;src:url('fonts/Sora.ttf') format('truetype');font-weight:100 800;font-display:swap}
-@font-face{font-family:Comparator Poppins;src:url('fonts/Poppins-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:Comparator Poppins;src:url('fonts/Poppins-SemiBold.ttf') format('truetype');font-weight:600 800;font-display:swap}
 /* Comparator-only reproduction of the supplied 12Axes layout. */
-body:has(.comparator-page){--ink:#101010;--muted:#5d605e;--paper:#f4f1e8;--surface:#fbf9f3;--line:#e2ded3;--blue:#12382d;background:var(--paper)}
-html[data-theme=dark] body:has(.comparator-page){--ink:#f3f2ed;--muted:#c2c4bf;--paper:#111312;--surface:#1a1d1b;--line:#3d433e;--blue:#a3d4bc}
-body:has(.comparator-page) .app-header{position:sticky;top:0;z-index:20;padding:14px 4%;background:var(--paper);font-family:Comparator Poppins,sans-serif}
-body:has(.comparator-page) .app-brand{font-family:Comparator Sora,sans-serif;font-size:20px}
-body:has(.comparator-page) .app-footer{font-family:Comparator Poppins,sans-serif}
-.comparator-page.page.wide{max-width:1200px;margin:30px auto 96px;padding:0 24px;color:var(--ink);font-family:Comparator Poppins,sans-serif;font-size:14px;line-height:1.6}
-.comparator-page h1,.comparator-page h2,.comparator-page h3,.comparator-page h4{font-family:Comparator Sora,sans-serif;font-weight:600;letter-spacing:-.035em}
+body:has(.comparator-page) .app-header{position:sticky;top:0;z-index:20;padding:14px 4%;background:var(--paper);font-family:var(--font-sans)}
+.comparator-page.page.wide{max-width:1200px;margin:30px auto 96px;padding:0 24px;color:var(--ink);font-family:var(--font-sans);font-size:14px;line-height:1.6}
+.comparator-page h1,.comparator-page h2,.comparator-page h3,.comparator-page h4{font-family:var(--display);font-weight:600;letter-spacing:-.035em}
 .comparator-page h1{max-width:24ch;font-size:48px;line-height:1.15;margin:0 0 26px}
 .comparator-page .cmp-top-actions{display:flex;justify-content:flex-end;margin:-4px 0 20px}
 .comparator-page .cmp-top-actions:empty{display:none}
@@ -19,12 +12,11 @@ body:has(.comparator-page) .app-footer{font-family:Comparator Poppins,sans-serif
 .comparator-page .cmp-panel p{max-width:70ch}
 .comparator-page .cmp-selected{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;list-style:none;margin:0 0 20px;padding:0}
 .comparator-page .cmp-profile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;margin:0;min-width:0;padding:28px 14px 22px;border:1px solid var(--line);border-radius:24px;background:var(--paper);overflow:hidden}
-.comparator-page .cmp-profile:before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:var(--profile-color)}
 .comparator-page .cmp-profile>.entity-media{width:94px;height:94px;border-radius:50%;border:3px solid var(--profile-color);background:var(--surface);margin-bottom:18px;flex-shrink:0;overflow:hidden}
 .comparator-page .cmp-profile>.entity-media .entity-media-image{border-radius:0}
 .comparator-page .cmp-profile>.entity-media--party{border-radius:18px;padding:6px}
 .comparator-page .cmp-type{text-transform:uppercase;font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--muted);margin-bottom:5px}
-.comparator-page .cmp-profile>strong{font-family:Comparator Sora,sans-serif;font-size:18px;text-align:center;line-height:1.35;overflow-wrap:break-word;max-width:100%}
+.comparator-page .cmp-profile>strong{font-family:var(--display);font-size:18px;text-align:center;line-height:1.35;overflow-wrap:break-word;max-width:100%}
 .comparator-page .cmp-remove{position:absolute;right:10px;top:12px;width:30px;height:30px;display:grid;place-items:center;padding:7px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--muted)}
 .comparator-page svg{fill:none;stroke:currentColor;stroke-width:1.5}
 .comparator-page .cmp-remove:hover{color:var(--ink);background:var(--line)}
@@ -48,8 +40,7 @@ body:has(.comparator-page) .app-footer{font-family:Comparator Poppins,sans-serif
 .comparator-page .cmp-index>a{display:flex;gap:14px;align-items:center;min-height:42px;padding:10px;border-radius:12px;color:var(--ink);font-size:14px;line-height:1.4;text-decoration:none;font-weight:400}
 .comparator-page .cmp-index>a>span{font-size:12px;font-variant-numeric:tabular-nums}
 .comparator-page .cmp-index>a:hover{background:var(--paper)}
-.comparator-page .cmp-index>a[aria-current=location]{background:#e0eae3;font-weight:600;color:#163b2e}
-html[data-theme=dark] .comparator-page .cmp-index>a[aria-current=location]{background:#2b4034;color:#e2f0e8}
+.comparator-page .cmp-index>a[aria-current=location]{background:var(--pale);font-weight:600;color:var(--ink)}
 .comparator-page .cmp-ideologies{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
 .comparator-page .cmp-ideology{border-radius:22px;background:color-mix(in srgb,var(--profile-color) 12%,var(--surface));padding:24px;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
 .comparator-page .cmp-person-label{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:18px}
@@ -62,8 +53,8 @@ html[data-theme=dark] .comparator-page .cmp-index>a[aria-current=location]{backg
 .comparator-page .cmp-legend li{display:flex;align-items:center;gap:7px;padding:3px 11px 3px 3px;border:1px solid var(--line);border-radius:24px;font-size:11px;font-weight:600;background:var(--paper)}
 .comparator-page .cmp-legend .entity-media{width:30px;height:30px;flex:0 0 30px;border:2px solid var(--profile-color);border-radius:50%}
 .comparator-page .cmp-axis.compare-axis{padding:0;margin:0 0 34px;border:0;min-width:0}
-.comparator-page .cmp-axis h3{font-size:17px;letter-spacing:-.02em;margin:0 0 14px;font-family:Comparator Poppins,sans-serif;font-weight:600}
-.comparator-page .cmp-track{position:relative;height:9px;border-radius:6px;margin:calc(28px + var(--pin-rows,0)*30px) 8px 18px;background:linear-gradient(90deg,color-mix(in srgb,var(--pole-left,#497e77) 65%,var(--surface)),#cfccc1,color-mix(in srgb,var(--pole-right,#bb7863) 65%,var(--surface)))}
+.comparator-page .cmp-axis h3{font-size:17px;letter-spacing:-.02em;margin:0 0 14px;font-family:var(--font-sans);font-weight:600}
+.comparator-page .cmp-track{position:relative;height:9px;border-radius:6px;margin:calc(28px + var(--pin-rows,0)*30px) 8px 18px;background:linear-gradient(90deg,color-mix(in srgb,var(--pole-left,#497e77) 65%,var(--surface)),var(--line),color-mix(in srgb,var(--pole-right,#bb7863) 65%,var(--surface)))}
 .comparator-page .cmp-track.is-empty{background:var(--line);margin-top:20px}
 .comparator-page .cmp-midpoint{position:absolute;left:50%;top:-4px;height:17px;width:1px;background:var(--muted);opacity:.65}
 .comparator-page .cmp-pin{position:absolute;bottom:calc(-6px + var(--pin-row,0)*30px);transform:translateX(var(--pin-align,-50%));padding:4px 11px;border:2px solid var(--surface);border-radius:20px;background:var(--profile-color);color:#fff;max-width:160px;font-size:11px;line-height:1.2;font-weight:600;white-space:nowrap;text-overflow:ellipsis;box-shadow:0 3px 6px #00000020;cursor:help}
@@ -91,13 +82,13 @@ html[data-theme=dark] .comparator-page .cmp-index>a[aria-current=location]{backg
 .comparator-page .cmp-difference{background:var(--paper);padding:22px 20px;border-radius:22px;min-width:0}
 .comparator-page .cmp-difference>p{font-size:11px;color:var(--muted);margin:0 0 12px}
 .comparator-page .cmp-difference h4{font-size:20px;line-height:1.3;margin:0 0 10px}
-.comparator-page .cmp-gap-number{font-family:Comparator Sora,sans-serif;font-size:42px;font-weight:600;line-height:1.2}
-.comparator-page .cmp-gap-number small{font:400 12px Comparator Poppins,sans-serif;color:var(--muted)}
+.comparator-page .cmp-gap-number{font-family:var(--display);font-size:42px;font-weight:600;line-height:1.2}
+.comparator-page .cmp-gap-number small{font:400 12px var(--font-sans);color:var(--muted)}
 .comparator-page .cmp-difference .cmp-pin{max-width:95px;font-size:9px;padding:4px 6px}
 .comparator-page .cmp-difference .cmp-poles>span{padding:0;background:transparent;border:0;font-size:9px}
 .comparator-page .cmp-opposites{font-size:12px;margin:18px 0 0;line-height:1.7}
 .comparator-page .cmp-compass{display:block;width:100%;max-width:470px;margin:0 auto;stroke:none}
-.comparator-page .cmp-compass>text{fill:var(--ink);font:400 10px Comparator Poppins,sans-serif}
+.comparator-page .cmp-compass>text{fill:var(--ink);font:400 10px var(--font-sans)}
 .comparator-page .cmp-compass-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;list-style:none;padding:0;margin:18px 0 0;font-size:12px}
 .comparator-page .cmp-compass-legend li{display:flex;align-items:center;gap:7px}
 .comparator-page .cmp-compass-legend li>span:first-child{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--profile-color);color:white;font-size:10px;font-weight:600}
@@ -107,7 +98,7 @@ html[data-theme=dark] .comparator-page .cmp-index>a[aria-current=location]{backg
 .comparator-page .cmp-share:hover{background:var(--line)}
 .comparator-page #compare-status:not(.sr-only){font-size:12px;margin:14px 0 0}
 @media(max-width:1000px){.comparator-page .cmp-layout{grid-template-columns:1fr}.comparator-page .cmp-side{position:static;grid-row:1}.comparator-page .cmp-index.results-index{display:flex;gap:6px;align-items:center;overflow:auto;padding:8px;border-radius:18px}.comparator-page .cmp-index>p{display:none}.comparator-page .cmp-index>a{flex:0 0 auto;font-size:12px;min-height:40px;padding:8px 10px}.comparator-page .cmp-layout{gap:16px}.comparator-page h1{font-size:40px}.comparator-page .cmp-difference .cmp-pin{max-width:110px}}
-@media(max-width:600px){body:has(.comparator-page) .app-header{position:static;padding:18px 20px;gap:14px}body:has(.comparator-page) .app-header nav{font-family:Comparator Poppins,sans-serif;gap:0}.comparator-page.page.wide{margin:26px auto 60px;padding:0 16px}.comparator-page h1{font-size:31px;line-height:1.2;margin-bottom:22px}.comparator-page .cmp-panel{padding:24px 20px;border-radius:24px;scroll-margin-top:20px}.comparator-page .cmp-panel h2{font-size:26px;margin-bottom:20px}.comparator-page .cmp-selected{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.comparator-page .cmp-profile{padding:32px 10px 20px;border-radius:20px}.comparator-page .cmp-profile>strong{font-size:15px}.comparator-page .cmp-profile>.entity-media{width:72px;height:72px;margin-bottom:12px}.comparator-page .cmp-type{font-size:9px}.comparator-page #compare-search{font-size:13px;padding:14px 16px}.comparator-page #compare-options{max-height:300px}.comparator-page #compare-options button{padding:8px;gap:8px}.comparator-page #compare-options em{display:none}.comparator-page .cmp-ideologies{grid-template-columns:1fr}.comparator-page .cmp-ideology{padding:22px}.comparator-page .cmp-ideology h3{font-size:23px}.comparator-page .cmp-difference-grid{grid-template-columns:1fr}.comparator-page .cmp-track{margin-top:calc(28px + (var(--profile-count,1) - 1)*30px)}.comparator-page .cmp-pin{bottom:calc(-6px + var(--profile-index,0)*30px);max-width:135px;font-size:10px}.comparator-page .cmp-pin:after{left:0;transform:none;max-width:180px}.comparator-page .cmp-pin[style*="--pin-align:-100%"]:after{left:auto;right:0}.comparator-page .cmp-track.is-empty{margin-top:18px}.comparator-page .cmp-legend{gap:6px}.comparator-page .cmp-legend li{font-size:10px}.comparator-page .cmp-axis h3{font-size:16px}.comparator-page .cmp-poles{font-size:10px;gap:8px}.comparator-page .cmp-poles>span{padding:5px 7px}.comparator-page .cmp-share{font-size:11px}.comparator-page .cmp-difference .cmp-pin{font-size:10px;max-width:135px}}
+@media(max-width:600px){body:has(.comparator-page) .app-header{position:static;padding:18px 20px;gap:14px}body:has(.comparator-page) .app-header nav{font-family:var(--font-sans);gap:0}.comparator-page.page.wide{margin:26px auto 60px;padding:0 16px}.comparator-page h1{font-size:31px;line-height:1.2;margin-bottom:22px}.comparator-page .cmp-panel{padding:24px 20px;border-radius:24px;scroll-margin-top:20px}.comparator-page .cmp-panel h2{font-size:26px;margin-bottom:20px}.comparator-page .cmp-selected{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.comparator-page .cmp-profile{padding:32px 10px 20px;border-radius:20px}.comparator-page .cmp-profile>strong{font-size:15px}.comparator-page .cmp-profile>.entity-media{width:72px;height:72px;margin-bottom:12px}.comparator-page .cmp-type{font-size:9px}.comparator-page #compare-search{font-size:13px;padding:14px 16px}.comparator-page #compare-options{max-height:300px}.comparator-page #compare-options button{padding:8px;gap:8px}.comparator-page #compare-options em{display:none}.comparator-page .cmp-ideologies{grid-template-columns:1fr}.comparator-page .cmp-ideology{padding:22px}.comparator-page .cmp-ideology h3{font-size:23px}.comparator-page .cmp-difference-grid{grid-template-columns:1fr}.comparator-page .cmp-track{margin-top:calc(28px + (var(--profile-count,1) - 1)*30px)}.comparator-page .cmp-pin{bottom:calc(-6px + var(--profile-index,0)*30px);max-width:135px;font-size:10px}.comparator-page .cmp-pin:after{left:0;transform:none;max-width:180px}.comparator-page .cmp-pin[style*="--pin-align:-100%"]:after{left:auto;right:0}.comparator-page .cmp-track.is-empty{margin-top:18px}.comparator-page .cmp-legend{gap:6px}.comparator-page .cmp-legend li{font-size:10px}.comparator-page .cmp-axis h3{font-size:16px}.comparator-page .cmp-poles{font-size:10px;gap:8px}.comparator-page .cmp-poles>span{padding:5px 7px}.comparator-page .cmp-share{font-size:11px}.comparator-page .cmp-difference .cmp-pin{font-size:10px;max-width:135px}}
 
 .comparator-page .cmp-pin-name{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .comparator-page .cmp-missing{margin:8px 0;font-size:11px;color:var(--muted)}
