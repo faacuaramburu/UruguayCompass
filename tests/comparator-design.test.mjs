@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
-import {FIGURES,PARTIES} from '../dist/politics.js';
+import {FIGURES,PARTIES,DOCUMENTED_FIGURES} from '../dist/politics.js';
 import {comparisonEntities,compareEntities,renderComparator,searchComparisonProfiles,selectedComparisonProfiles,comparisonIdsFromRoute,comparisonShareHash} from '../dist/political-comparator.js';
 import {mountComparator} from '../dist/comparator-controller.js';
 const choices=comparisonEntities(FIGURES,PARTIES);
@@ -35,7 +35,7 @@ test('two and three profiles retain exact positions, individual evidence and gen
  }
  const empty=new JSDOM(renderComparator(choices,[]));assert.equal(empty.window.document.querySelectorAll('.compare-axis').length,0);
  const one=new JSDOM(renderComparator(choices,['persona/orsi','persona/orsi']));assert.equal(one.window.document.querySelectorAll('.cmp-profile').length,1);
- const unknown=new JSDOM(renderComparator(choices,['persona/terra','persona/saravia']));assert.equal(unknown.window.document.querySelectorAll('.cmp-pin').length,0);assert.equal(unknown.window.document.querySelector('.cmp-compass'),null);
+ const unknown=new JSDOM(renderComparator(comparisonEntities(DOCUMENTED_FIGURES,PARTIES),['persona/terra','persona/saravia']));assert.equal(unknown.window.document.querySelectorAll('.cmp-pin').length,0);assert.equal(unknown.window.document.querySelector('.cmp-compass'),null);
  const same=FIGURES.find(f=>f.id==='orsi');assert.ok(compareEntities(same,same).every(row=>row.gap===null||row.gap===0));
 });
 

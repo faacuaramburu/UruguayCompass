@@ -8,6 +8,9 @@ import {completeFigureCatalog} from './figure-catalog.js';
 import {expandRankedReferences} from './ranking-expansion.js';
 import {extendGovernmentReferences} from './government-references.js';
 import {extendStatementReferences} from './statement-references.js';
+import {extendPoliticalAxisResearch,extendPartyAxisResearch,assertTwelveAxisCoverage} from './political-axis-research.js';
+import {completeWithHypotheses} from './political-hypotheses.js';
+import {withResearchMetadata} from './political-profile-metadata.js';
 const PROGRAM_ROOT = 'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/documentos/publicaciones/';
 const REPRESENTATION = {title:'Cámara de Representantes · Diario de Sesiones, 18/02/2025, pp. 209–212',url:'https://documentos.diputados.gub.uy/docs/L50/Diario/d4549.pdf#page=209'};
 const CANDIDATURES = {title:'Corte Electoral · Acta 10739, elección nacional de 2024',url:'https://www.gub.uy/corte-electoral/sites/corte-electoral/files/2024-11/ACTA%20N%C2%BA%2010739%20-%20Declaraci%C3%B3n%20de%20segunda%20elecci%C3%B3n.pdf'};
@@ -102,20 +105,23 @@ const BASE_FIGURES = [
 
 const LEGACY_FIGURES=expandRankedReferences(extendStatementReferences(extendGovernmentReferences(completeFigureCatalog(extendComparisons(expandFigures(BASE_FIGURES,LEGACY_PARTIES,CANDIDATURES,PROGRAM_ROOT)),LEGACY_PARTIES))));
 
-export const PARTIES=extendServiceEvidence(LEGACY_PARTIES.map(migratePoliticalEntity));
-export const FIGURES=[...extendServiceEvidence(LEGACY_FIGURES.map(migratePoliticalEntity),{includeTaxes:true}),...ADDITIONAL_FIGURES];
+export const DOCUMENTED_PARTIES=extendServiceEvidence(LEGACY_PARTIES.map(migratePoliticalEntity));
+export const DOCUMENTED_FIGURES=[...extendServiceEvidence(LEGACY_FIGURES.map(migratePoliticalEntity),{includeTaxes:true}),...ADDITIONAL_FIGURES];
+export const PARTIES=withResearchMetadata(completeWithHypotheses(extendPartyAxisResearch(DOCUMENTED_PARTIES),{parties:true}));
+export const FIGURES=withResearchMetadata(completeWithHypotheses(extendPoliticalAxisResearch(DOCUMENTED_FIGURES)));
+assertTwelveAxisCoverage(FIGURES);assertTwelveAxisCoverage(PARTIES);
 
 export const POLITICAL_META = {
-  updatedAt:'2026-11-03',
-  period:'Programas de 2009, 2014, 2019 y 2024, medidas de gobiernos de 1995–2005 y declaraciones de 2016–2019 y 2024',
+  updatedAt:'2026-11-04',
+  period:'Programas, medidas y declaraciones de distintas etapas, con fecha por eje; incluye reconstrucciones históricas e hipótesis contrafácticas',
   representationSource:REPRESENTATION,
   candidateSource:CANDIDATURES,
-  cohort:`${FIGURES.filter(f=>f.rankEligible).length} referentes con los mismos cinco temas documentados, incluidos programas presidenciales, precandidaturas, fórmulas, medidas de gobiernos y declaraciones públicas identificadas. Educación y servicios se añade con evidencia educativa específica.`,
+  cohort:`${FIGURES.length} referentes sobre los mismos doce ejes. Las fuentes temáticas se distinguen de hipótesis contrafácticas asistidas por IA y marcadas con confianza muy baja.`,
   figuresInRanking:FIGURES.filter(f=>f.rankEligible).map(f=>f.id),
   balanceNote:'La comparación entre personas incluye programas de distintas elecciones, medidas de gobiernos concretos y declaraciones públicas fechadas: no mide apoyo actual ni reparte el mismo número de referencias por partido. La comparación entre partidos mantiene seis programas de 2024.',
-  limits:'Las fuentes documentan propuestas y trayectorias. Los valores de 0 a 100 son estimaciones editoriales, no mediciones ni puntuaciones emitidas por las personas o los partidos. Un dato desconocido es null y nunca se reemplaza por 50.',
+  limits:'Los valores de 0 a 100 son coordenadas editoriales. La base documental conserva null cuando falta evidencia. La capa de hipótesis completa esos huecos con inferencias explícitas de confianza muy baja; no las convierte en posiciones documentadas ni usa 50 como relleno automático.',
   individualLimit:'Los perfiles comparables representan programas, medidas de gobierno o declaraciones públicas fechadas, no biografías ideológicas completas. Dos dirigentes pueden compartir un programa y discrepar en temas concretos.',
-  historicalLimit:'El ranking conserva 31 referentes con cinco temas comunes documentados. Las 22 fichas documentales adicionales distinguen posiciones cualitativas y desconocidas, sin afinidad numérica ni coordenadas en el mapa. No se asignan posiciones contemporáneas a figuras históricas sin evidencia comparable.',
-  missing:'Sin base documental suficiente en esta edición; excluido de la distancia.',
+  historicalLimit:'Las reconstrucciones históricas y las hipótesis contemporáneas son aproximaciones editoriales. Una hipótesis no demuestra qué respondería esa persona hoy. Cada eje indica su período, fundamento y confianza; las referencias de contexto no se presentan como evidencia temática.',
+  missing:'La ausencia de fuente temática se distingue de las hipótesis editoriales identificadas.',
   precision:'Escala editorial orientativa, en pasos de cinco puntos; no implica una precisión empírica de cinco puntos.'
 };

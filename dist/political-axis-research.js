@@ -306,6 +306,19 @@ export function extendPoliticalAxisResearch(figures){return figures.map(original
 
 export function axisResearchCoverage(figures){return {total:figures.length*12,placed:figures.reduce((n,f)=>n+f.profile.filter(Number.isFinite).length,0),complete:figures.filter(f=>f.profile.every(Number.isFinite)).map(f=>f.id),missing:figures.map(f=>({id:f.id,name:f.name,axes:f.profile.flatMap((v,i)=>Number.isFinite(v)?[]:[i])})).filter(f=>f.axes.length)}}
 
+export function extendPartyAxisResearch(parties){
+ const candidate={fa:'orsi',pn:'delgado',pc:'ojeda',ca:'manini',pi:'mieres',is:'salle'};
+ return parties.map(original=>{
+  const record=programs.find(p=>p.ids.includes(candidate[original.id]));
+  if(!record)throw new Error(`Programa no identificado: ${original.id}`);
+  const entity={...original,profile:[...original.profile],rationale:[...original.rationale],sources:original.sources.map(s=>({...s})),evidence:original.evidence.map(e=>({...e})),placementResearch:Array(12).fill(null)};
+  let source=entity.sources.findIndex(s=>s.url.split('#')[0]===record.url);
+  if(source<0){source=entity.sources.length;entity.sources.push({title:record.title,url:record.url})}
+  for(const [axis,value,page,note,confidence='media'] of record.positions)attach(entity,axis,value,note,[{source,page}],{period:record.period,confidence,basis:'program'});
+  return entity;
+ });
+}
+
 // The requested twelve-axis ranking must never silently shrink its axis set
 // when any compared reference is incomplete. This is a release prerequisite.
 export function assertTwelveAxisCoverage(figures){
@@ -315,7 +328,13 @@ export function assertTwelveAxisCoverage(figures){
   for(const [axis,value] of figure.profile.entries()){
    if(value===null)continue;
    if(!Number.isFinite(value)||value<0||value>100)throw new Error(`Ubicación inválida: ${figure.id}/${axis}`);
-   if(!figure.evidence.some(e=>e.axis===axis&&figure.sources[e.source]?.url?.startsWith('https://')))throw new Error(`Ubicación sin fuente: ${figure.id}/${axis}`);
+   const hypothesis=figure.placementResearch?.[axis];
+   if(hypothesis?.kind==='hypothesis'){
+    if(hypothesis.value!==value||hypothesis.confidence!=='muy-baja'||!hypothesis.note||!hypothesis.period||!hypothesis.refs?.length||!hypothesis.basisAxes?.length||hypothesis.basisAxes.includes(axis)||!hypothesis.refs.every(r=>figure.sources[r.source]?.url?.startsWith('https://')))
+     throw new Error(`Hipótesis sin contexto o etiqueta: ${figure.id}/${axis}`);
+    if(figure.evidence.some(e=>e.axis===axis)||!hypothesis.refs.every(r=>figure.evidence.some(e=>hypothesis.basisAxes.includes(e.axis)&&e.source===r.source&&(e.page??null)===(r.page??null))))
+     throw new Error(`Una hipótesis no es evidencia temática: ${figure.id}/${axis}`);
+   }else if(!figure.evidence.some(e=>e.axis===axis&&figure.sources[e.source]?.url?.startsWith('https://')))throw new Error(`Ubicación sin fuente: ${figure.id}/${axis}`);
   }
  }
  const missing=axisResearchCoverage(figures).missing;

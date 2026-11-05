@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {FIGURES} from '../dist/politics.js';
+import {DOCUMENTED_FIGURES as FIGURES} from '../dist/politics.js';
 import {extendPoliticalAxisResearch,axisResearchCoverage,assertTwelveAxisCoverage,rankTwelveAxisProfiles} from '../dist/political-axis-research.js';
 
 test('research fills only supported gaps, retaining existing coordinates and input objects',()=>{
