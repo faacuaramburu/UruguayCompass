@@ -27,7 +27,7 @@ test('poster preview and PNG model use the automatic reference, twelve positions
   assert.equal(d.querySelectorAll('.poster-bottom>div:first-child li').length,3);assert.equal(d.querySelectorAll('.card-preview-countries li').length,3);
   assert.equal(d.querySelector('.card-preview-person h4').textContent,ranking[0].entity.name);
   assert.ok(d.querySelector('.card-preview-countries').textContent.includes(mode==='current'?'ACTUALES':'HISTÓRICOS'));
-  assert.equal(d.querySelector('.poster-footer a').href,'https://uruguaycompass.pages.dev/');assert.equal(d.querySelector('.poster-footer img').getAttribute('src'),'site-qr.svg');
+  assert.equal(d.querySelector('.poster-footer a').href,'https://uruguaycompass.cc/');assert.equal(d.querySelector('.poster-footer img').getAttribute('src'),'site-qr.svg');
   assert.doesNotMatch(d.body.innerHTML,/undefined|NaN/);dom.window.close();
  }
  assert.deepEqual(profile,before);

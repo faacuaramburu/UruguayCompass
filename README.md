@@ -2,7 +2,7 @@
 
 **Explore your political views across 12 dimensions and compare your answers with Uruguayan political figures and parties.** Take the questionnaire, find your closest matches, and understand where your views align or differ. A built-in encyclopedia explains the issues, people, and history behind the results.
 
-**[Take the test at uruguaycompass.pages.dev](https://uruguaycompass.pages.dev/)** · Spanish (Uruguay) · Desktop and mobile
+**[Take the test at uruguaycompass.cc](https://uruguaycompass.cc/)** · Spanish (Uruguay) · Desktop and mobile
 
 ![Uruguay Compass home screen in dark mode, with the questionnaire options and an example twelve-axis radar](docs/images/uruguay-compass-dark.jpg)
 
@@ -43,7 +43,7 @@ The [twelve-axis research report](docs/AUDITORIA-12-EJES.md) records the complet
 
 Answers, progress, and results are processed and stored locally. They are not sent to a server, analytics, correction reports, or share links. You can repeat the test or delete your saved data from the app. Clearing browser storage also removes your progress; there is no account sync between devices.
 
-Browser storage is tied to the site's address. Progress saved on [the previous Render site](https://uruguaycompass.onrender.com/) stays there in the same browser and does not transfer automatically to Cloudflare Pages.
+Browser storage is tied to the site's address. Progress saved on [the Pages address](https://uruguaycompass.pages.dev/) or [the previous Render site](https://uruguaycompass.onrender.com/) stays at that address in the same browser.
 
 The live site uses Cloudflare Web Analytics for traffic and performance statistics. Automatic SPA navigation tracking is disabled, and the app does not send questionnaire answers, scores, political affinities, or test interaction events to analytics. Result images are generated on your device.
 
