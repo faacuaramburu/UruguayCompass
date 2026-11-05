@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {FIGURES} from '../dist/politics.js';
+import {DOCUMENTED_FIGURES as FIGURES} from '../dist/politics.js';
 import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
 import {hasMapEvidence,filteredSpectrum,spectrumGroups} from '../dist/spectrum.js';
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {FIGURES,PARTIES,POLITICAL_META} from '../dist/politics.js';
+import {DOCUMENTED_FIGURES as FIGURES,DOCUMENTED_PARTIES as PARTIES,POLITICAL_META} from '../dist/politics.js';
 import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
 import {rankProfiles,sharedAxes} from '../dist/core.js';
 import {PHOTOS} from '../dist/photos.js';
@@ -20,7 +20,7 @@ test('older candidacies can win the same five-axis comparison without filling un
   for(const axis of COMPARISON_AXES){const e=f.evidence.find(e=>e.axis===axis);assert.ok(e?.page>0);assert.ok(f.sources[e.source].url.startsWith('https://'));}
   assert.ok(PHOTOS[id]?.src);
  }
- assert.deepEqual(POLITICAL_META.figuresInRanking,eligible.map(f=>f.id));
+ assert.ok(eligible.every(f=>POLITICAL_META.figuresInRanking.includes(f.id)));
 });
 
 test('party comparisons and the six 2024 candidacies share the remapped documented coverage',()=>{
@@ -28,5 +28,5 @@ test('party comparisons and the six 2024 candidacies share the remapped document
  assert.equal(current.length,6);assert.equal(PARTIES.length,6);
  for(const f of current)for(const axis of COMPARISON_AXES)assert.equal(f.profile[axis],PARTIES.find(p=>p.id===f.party).profile[axis]);
  assert.deepEqual(sharedAxes(PARTIES),COMPARISON_AXES);
- assert.ok(FIGURES.filter(f=>!f.rankEligible).every(f=>!POLITICAL_META.figuresInRanking.includes(f.id)));
+ assert.ok(FIGURES.filter(f=>!f.rankEligible).every(f=>POLITICAL_META.figuresInRanking.includes(f.id)),'Documentary additions now enter the identified inference layer');
 });

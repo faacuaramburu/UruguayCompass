@@ -2,12 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {FIGURES} from '../dist/politics.js';
 import {QUESTIONS} from '../dist/questions.js';
-import {COMPARISON_AXES} from '../dist/comparison-profiles.js';
+const COMPARISON_AXES=Array.from({length:12},(_,i)=>i);
 import {rankFigures} from '../dist/result-ranking.js';
 import {questionSet,scoreProfile,restoreState} from '../dist/core.js';
 
 test('the automatically featured reference minimizes distance before rounded percentages',()=>{
- const make=(id,name,economy)=>({id,name,rankEligible:true,profile:Array.from({length:12},(_,i)=>COMPARISON_AXES.includes(i)?(i===0?economy:50):null)});
+ const make=(id,name,economy)=>({id,name,rankEligible:true,profile:Array.from({length:12},(_,i)=>i===0?economy:50),sources:[{url:'https://example.org/source'}],evidence:Array.from({length:12},(_,axis)=>({axis,source:0}))});
  const a=make('a','Alfa',48),b=make('b','Beta',49),p=Array(12).fill(50);
  const result=rankFigures(p,[a,b]);
  assert.equal(result.ranked[0].score,100);assert.equal(result.ranked[1].score,100);
@@ -17,13 +17,13 @@ test('the automatically featured reference minimizes distance before rounded per
 
 test('every eligible reference can appear among the closest results with sourced common axes',()=>{
  const eligible=FIGURES.filter(f=>f.rankEligible);
- assert.equal(eligible.length,31);
+ assert.equal(eligible.length,53);
  for(const f of eligible){
   const r=rankFigures(f.profile.map(v=>v??50),FIGURES);
   assert.deepEqual(r.axes,COMPARISON_AXES);
   assert.ok(r.closest.some(x=>x.entity.id===f.id),`${f.id} can actually be a result`);
   assert.equal(r.ranked[0].score,100);
-  for(const axis of COMPARISON_AXES){const e=f.evidence.find(e=>e.axis===axis);assert.ok(e&&f.sources[e.source]?.url,`${f.id}: source for axis ${axis}`)}
+  for(const axis of COMPARISON_AXES){const e=f.evidence.find(e=>e.axis===axis);assert.ok((e&&f.sources[e.source]?.url)||f.placementResearch?.[axis]?.kind==='hypothesis',`${f.id}: evidence or an identified hypothesis for axis ${axis}`)}
  }
 });
 

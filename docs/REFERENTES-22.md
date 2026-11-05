@@ -2,6 +2,8 @@
 
 Revisión: 4 de noviembre de 2026.
 
+**Archivo de la etapa documental inicial.** Los desconocidos se conservan en esa capa; el modelo actual añade interpretaciones e hipótesis identificadas y compara los doce ejes. Ver [investigación y matriz actualizadas](AUDITORIA-12-EJES.md). Las indicaciones de exclusión del ranking que siguen describen esta etapa anterior.
+
 ## A. Incorporaciones y disponibilidad
 
 Se agregaron seis contemporáneos y dieciséis históricos al catálogo, sin borrar ni modificar los 31 perfiles anteriores. Los 22 nuevos están disponibles en sus fichas y en el comparador cualitativo. **Ninguno de los 22 está activado como resultado de afinidad numérica ni como punto del mapa.**

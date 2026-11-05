@@ -27,7 +27,7 @@ test('failed archive writes cannot overwrite the original, including later answe
  w.location.hash='#test';await new Promise(r=>setTimeout(r,30));const answer=w.document.querySelector('[name=answer][value="4"]');assert.ok(answer);answer.checked=true;answer.dispatchEvent(new w.Event('change',{bubbles:true}));assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);dom.window.close();
 });
 
-test('restoring the previous ranking preserves a completed schema 3 test and every archive',async()=>{
+test('twelve-axis recalculation preserves a completed schema 3 test and every archive',async()=>{
  const {dom,w,saved}=await boot({schema:3,archive:'older-backup'});
  assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);
  assert.equal(w.localStorage.getItem('uruguay-compass-v2-archive'),'older-backup');
@@ -35,7 +35,7 @@ test('restoring the previous ranking preserves a completed schema 3 test and eve
  w.location.hash='#resultados';
  const deadline=Date.now()+2000;while(!w.document.querySelector('#figures-panel')&&Date.now()<deadline)await new Promise(r=>setTimeout(r,10));
  assert.ok(w.document.querySelector('#figures-panel'));
- assert.ok(w.document.querySelector('.closest-person').textContent.includes('cinco ejes'));
+ assert.ok(w.document.querySelector('.closest-person').textContent.includes('doce ejes'));
  assert.equal(w.localStorage.getItem('uruguay-compass-v2'),saved);
  w.location.hash='#privacidad';
  const until=Date.now()+2000;while(!w.document.querySelector('[data-action=erase]')&&Date.now()<until)await new Promise(r=>setTimeout(r,10));
