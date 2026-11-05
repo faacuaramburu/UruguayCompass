@@ -2,13 +2,13 @@
 body:has(.comparator-page) .app-header{position:sticky;top:0;z-index:20;padding:14px 4%;background:var(--paper);font-family:var(--font-sans)}
 .comparator-page.page.wide{max-width:1200px;margin:30px auto 96px;padding:0 24px;color:var(--ink);font-family:var(--font-sans);font-size:14px;line-height:1.6}
 .comparator-page h1,.comparator-page h2,.comparator-page h3,.comparator-page h4{font-family:var(--display);font-weight:600;letter-spacing:-.035em}
-.comparator-page h1{max-width:24ch;font-size:48px;line-height:1.15;margin:0 0 26px}
+.comparator-page h1{max-width:24ch;font-size:50px;line-height:1.03;margin:0 0 26px}
 .comparator-page .cmp-top-actions{display:flex;justify-content:flex-end;margin:-4px 0 20px}
 .comparator-page .cmp-top-actions:empty{display:none}
 .comparator-page .cmp-layout{display:grid;grid-template-columns:minmax(0,1fr) 256px;gap:40px;align-items:start}
 .comparator-page .cmp-content{display:flex;flex-direction:column;gap:24px;min-width:0}
 .comparator-page .cmp-panel{padding:34px 36px;border:1px solid var(--line);border-radius:28px;background:var(--surface);scroll-margin-top:100px;min-width:0}
-.comparator-page .cmp-panel h2{font-size:32px;line-height:1.2;margin:0 0 22px}
+.comparator-page .cmp-panel h2{font-size:34px;line-height:1.1;letter-spacing:-.03em;margin:0 0 22px}
 .comparator-page .cmp-panel p{max-width:70ch}
 .comparator-page .cmp-selected{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;list-style:none;margin:0 0 20px;padding:0}
 .comparator-page .cmp-profile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;margin:0;min-width:0;padding:28px 14px 22px;border:1px solid var(--line);border-radius:24px;background:var(--paper);overflow:hidden}
@@ -21,7 +21,7 @@ body:has(.comparator-page) .app-header{position:sticky;top:0;z-index:20;padding:
 .comparator-page svg{fill:none;stroke:currentColor;stroke-width:1.5}
 .comparator-page .cmp-remove:hover{color:var(--ink);background:var(--line)}
 .comparator-page .cmp-search{position:relative;min-width:0}
-.comparator-page #compare-search{font:inherit;font-size:15px;line-height:1.5;margin:0;padding:16px 20px;width:100%;border:1px solid var(--line);border-radius:30px;color:var(--ink);background:var(--paper)}
+.comparator-page #compare-search{font:inherit;font-size:15.5px;line-height:1.65;margin:0;padding:16px 20px;width:100%;border:1px solid var(--line);border-radius:30px;color:var(--ink);background:var(--paper)}
 .comparator-page #compare-search::placeholder{color:var(--muted);opacity:1}
 .comparator-page #compare-search:focus{outline:2px solid var(--blue);outline-offset:2px}
 .comparator-page #compare-options{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:15;list-style:none;margin:0;padding:8px;max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 10px 24px #00000018}
@@ -33,7 +33,7 @@ body:has(.comparator-page) .app-header{position:sticky;top:0;z-index:20;padding:
 .comparator-page #compare-options strong{font-weight:600;font-size:13px}
 .comparator-page #compare-options small{font-size:11px;color:var(--muted);margin-top:4px}
 .comparator-page #compare-options em{font-size:10px;font-style:normal;color:var(--muted)}
-.comparator-page .cmp-hint,.comparator-page .cmp-limit,.comparator-page .cmp-search-empty{font-size:13px;color:var(--muted);margin:12px 3px 0}
+.comparator-page .cmp-hint,.comparator-page .cmp-limit,.comparator-page .cmp-search-empty{font-size:14px;line-height:1.65;color:var(--muted);margin:12px 3px 0}
 .comparator-page .cmp-side{position:sticky;top:96px}
 .comparator-page .cmp-index.results-index{position:static;display:block;border:1px solid var(--line);background:var(--surface);border-radius:28px;padding:20px 14px;min-width:0;width:auto;font-size:14px}
 .comparator-page .cmp-index>p{font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin:0 10px 12px}
