@@ -219,6 +219,7 @@ html[data-theme=dark] .spectrum-user-point,html[data-theme=dark] .spectrum-graph
 .axis-pole>span:last-child{min-width:0;overflow-wrap:anywhere}
 .axis-pole.is-selected{background:color-mix(in srgb,var(--axis-accent) 10%,var(--paper));border-color:color-mix(in srgb,var(--axis-accent) 45%,var(--paper));color:var(--ink);font-weight:700}
 .axis-icon{flex-shrink:0;font-size:16px;line-height:1}
+.axis-emoji{display:inline-block;filter:grayscale(1)}
 .scale-explainer .scale-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .scale-explainer .scale-legend strong{font-size:clamp(15px,1.4vw,22px);overflow-wrap:anywhere}
 html[data-theme=dark] .axis-summary{--axis-accent:hsl(var(--axis-hue) 65% 74%)}
